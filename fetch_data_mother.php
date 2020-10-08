@@ -97,12 +97,9 @@ if(isset($_POST["action"]))
 	}
 	else
 	{
-
 		$output = '<h3>No Data Found</h3>';
 	}
-	?>
-</form>
-	<?php
+
 	echo $output;
 	// echo $query;
 }

@@ -1,14 +1,34 @@
 <?php
 session_start();
-if(isset($_SESSION['loginid'])) {
-  if($_SESSION['user']=='user'){
+if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
+  header('location: login.php');
+}
+
 //index.php
 
 include('database_connection.php');
 
-?>
+if (isset($_POST['add'])) {
+// die("WORKING");
+$name=$_POST['result'];
+// echo "$name";
+$sql="select price,socket from mothertbl where name='$name'";
+// echo "$sql";
+$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+$result=mysqli_query($con,$sql)or die("query moonchi");
+$rows=mysqli_fetch_array($result);
+  $price=$rows['price'];
+  $socket=$rows['socket'];
 
-<!DOCTYPE html>
+$id=$_SESSION['loginid'];
+$_SESSION['socket']=$socket;
+$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
+// echo $sql;
+$result=mysqli_query($con,$sql)or die("query moonchi");
+header('location: cpu.php');
+} else {
+
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,8 +50,7 @@ include('database_connection.php');
   function one(a) {
 
   document.getElementById('resulte').value=a;
-
-  // document.getElementById("forme").submit();
+   // document.getElementById("forme").submit();
   }
   </script>
 
@@ -59,19 +78,18 @@ include('database_connection.php');
                     <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
 					<?php
 
-                    $query = "SELECT DISTINCT(company) FROM mothertbl  ORDER BY company DESC";
+                    $query = "select distinct(`company`) from `mothertbl` order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
                     foreach($result as $row)
                     {
-                    ?>
+          ?>
                     <div class="list-group-item checkbox">
                         <label><input type="checkbox" class="common_selector company" value="<?php echo $row['company']; ?>"  > <?php echo $row['company']; ?></label>
                     </div>
-                    <?php
+          <?php
                     }
-
                     ?>
                     </div>
                 </div>
@@ -80,7 +98,7 @@ include('database_connection.php');
                     <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
           <?php
 
-                    $query = "SELECT DISTINCT(purpose) FROM mothertbl  ORDER BY purpose DESC";
+                    $query = "select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -99,11 +117,10 @@ include('database_connection.php');
 
 				<div class="list-group">
 					<h3>Socket</h3>
+                      <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                     <?php
 
-                    $query = "
-                    SELECT DISTINCT(socket) FROM mothertbl ORDER BY socket DESC
-                    ";
+                    $query = "select distinct(`socket`) from `mothertbl` order by `socket` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -113,18 +130,19 @@ include('database_connection.php');
                     <div class="list-group-item checkbox">
                         <label><input type="checkbox" class="common_selector socket" value="<?php echo $row['socket']; ?>" > <?php echo $row['socket']; ?></label>
                     </div>
+
                     <?php
                     }
 
                     ?>
                 </div>
+                  </div>
                 <div class="list-group">
                   <h3>Ram Type</h3>
+                                <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                             <?php
 
-                            $query = "
-                            SELECT DISTINCT(ram_type) FROM mothertbl  ORDER BY ram_type DESC
-                            ";
+                            $query = "select distinct(`ram_type`) from `mothertbl` order by `ram_type` desc";
                             $statement = $connect->prepare($query);
                             $statement->execute();
                             $result = $statement->fetchAll();
@@ -139,13 +157,13 @@ include('database_connection.php');
 
                             ?>
                         </div>
+                        </div>
                         <div class="list-group">
                           <h3>Max RAM</h3>
+                                        <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                                     <?php
 
-                                    $query = "
-                                    SELECT DISTINCT(max_ram) FROM mothertbl  ORDER BY max_ram DESC
-                                    ";
+                                    $query = "select distinct(`max_ram`) from `mothertbl` order by `max_ram` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
@@ -160,12 +178,12 @@ include('database_connection.php');
 
                                     ?>
                                 </div>
+                                </div>
 				<div class="list-group">
 					<h3>M.2 Support</h3>
+                              <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
 					<?php
-                    $query = "
-                    SELECT DISTINCT(m2_count) FROM mothertbl ORDER BY m2_count DESC
-                    ";
+                    $query = "select distinct(`m2_count`) from `mothertbl` order by `m2_count` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -179,6 +197,7 @@ include('database_connection.php');
                     }
                     ?>
                 </div>
+                </div>
             </div>
 
             <div class="col-md-9">
@@ -187,6 +206,7 @@ include('database_connection.php');
 
                 </div>
             </div>
+          </form>
         </div>
 
     </div>
@@ -259,34 +279,7 @@ $(document).ready(function(){
 
 });
 </script>
-<?php
-if (isset($_POST['add'])) {
-// die("WORKING");
-$name=$_POST['result'];
-// echo "$name";
-$sql="select price,socket from mothertbl where name='$name'";
-// echo "$sql";
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
-$result=mysqli_query($con,$sql)or die("query moonchi");
-$rows=mysqli_fetch_array($result);
-  $price=$rows['price'];
-  $socket=$rows['socket'];
-
-$id=$_SESSION['loginid'];
-$_SESSION['socket']=$socket;
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
-// echo $sql;
-$result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:cpu.php');
-}
-}
-else {
-header('location:login.php');
-}
-}else {
-  header('location:login.php');
-}
- ?>
 </body>
 
 </html>
+<?php } ?>
