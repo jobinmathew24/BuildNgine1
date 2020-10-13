@@ -85,7 +85,7 @@ if(isset($_POST["action"]))
 					Max freq : '. $row['max_freq'] .' Mhz <br />
 					Purpose : '. $row['purpose'] .'  </p>
 					<br>
-<i class="fa fa-shopping-cart"></i>
+					<i class="fa fa-shopping-cart"></i>
 					<input type="Submit" name="add" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
 
 					</center>

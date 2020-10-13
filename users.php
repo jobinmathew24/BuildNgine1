@@ -1,7 +1,16 @@
 <?php
 session_start();
-if(isset($_SESSION['loginid'])) {
-  if($_SESSION['user']=='user'){
+if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
+  header('location: login.php');
+}include('database_connection.php');
+
+$ide=$_SESSION['loginid'];
+$sql2="select Count(*) from ordertbl where loginid='$ide'";
+// echo $sql2;
+$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+$result1=mysqli_query($con,$sql2)or die("number query moonchi");
+$row=mysqli_fetch_array($result1);
+$cart=$row['Count(*)'];
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +21,7 @@ if(isset($_SESSION['loginid'])) {
     <title>BulidNgine</title>
   <link rel="stylesheet" href="BOOT.css">
   <link rel="stylesheet" href="1.css">
+  <link rel="stylesheet" href="hover.css">
 
 <style>
 body
@@ -47,6 +57,7 @@ width: 500px}
     <a href="logout.php">Logout</a>
   <!--  <a href="3.html">Register</a>-->
   <a>welcome <?php echo($_SESSION['loginid'] )?></a>
+  <a><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
       <a href="Motherboard.php">Bulid a PC</a>
         <a href="users.php">Home</a>
 
@@ -73,13 +84,7 @@ A simple PC builder tool for the users. Select parts from the curated list of co
     </center>
   </main>
 <?php
-}
-else {
-header('location:login.php');
-}
-}else {
-  header('location:login.php');
-}
+
  ?>
 </body>
 </html>

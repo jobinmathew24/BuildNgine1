@@ -6,9 +6,9 @@ include('database_connection.php');
 
 if(isset($_POST["action"]))
 {
-$socket=$_SESSION['socket'];
+// $socket=$_SESSION['socket'];
 	$query = "
-		SELECT * FROM cpu_tbl where status=1 and socket='$socket'
+		SELECT * FROM ram_tbl where status=1
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{
@@ -23,26 +23,26 @@ $socket=$_SESSION['socket'];
 		 AND company IN('".$company_filter."')
 		";
 	}
-	if(isset($_POST["purpose"]))
+	if(isset($_POST["ram_type"]))
 	{
-		$purpose_filter = implode("','", $_POST["purpose"]);
+		$ram_type_filter = implode("','", $_POST["ram_type"]);
 		$query .= "
-		 AND purpose IN('".$purpose_filter."')
+		 AND ram_type IN('".$ram_type_filter."')
 		";
 	}
-	if(isset($_POST["core"]))
+	if(isset($_POST["ram_size"]))
 	{
-		$core_filter = implode(",", $_POST["core"]);
+		$ram_size_filter = implode(",", $_POST["ram_size"]);
 		$query .= "
-		 AND core_count IN(".$core_filter.")
+		 AND ram_size IN(".$ram_size_filter.")
 		";
 	}
 
-	if(isset($_POST["igpu"]))
+	if(isset($_POST["mem_freq"]))
 	{
-		$igpu_filter = implode("','", $_POST["igpu"]);
+		$mem_freq_filter = implode("','", $_POST["mem_freq"]);
 		$query .= "
-		 AND igpu IN('".$igpu_filter."')
+		 AND mem_freq IN('".$mem_freq_filter."')
 		";
 	}
 
@@ -59,20 +59,17 @@ $socket=$_SESSION['socket'];
 			$output .= '
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:550px;">
-					<img src="project/cpu/'. $row['pic'] .'" width="150px" height="150px" >
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">
+					<img src="project/ram/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
-					<p>Socket : '. $row['socket'].' <br />
-					Core Count : '. $row['core_count'] .' Nos<br  />
-					Thread Count: '. $row['thread_count'] .' Nos<br />
-					Frequency : '. $row['frequency'] .' Mhz<br />
-					Turbo boost: '. $row['turboboost'] .' <br />
-					GPU: '. $row['igpu'] .' <br />
-					Cache : '. $row['cache'] .' Kb <br />
-					Lithography : '. $row['lithography'] .' <br />
-					Max Temp : '. $row['max_temp'] .' °C<br />
-					Purpose : '. $row['purpose'] .'  </p>
+					<p>RAM Type : '. $row['ram_type'].' <br />
+					RAM Size : '. $row['ram_size'] .' GB<br  />
+					Memory Frequency: '. $row['mem_freq'] .' Mhz <br />
+					FSB : '. $row['fsb'] .' <br />
+					Voltage: '. $row['voltage'] . 'V <br />
+					Timing: '. $row['timing'] .' <br />
+
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
@@ -92,7 +89,7 @@ $socket=$_SESSION['socket'];
 </form>
 	<?php
 	echo $output;
-	// echo $query;
+	echo $query;
 }
 
 ?>

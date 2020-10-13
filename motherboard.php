@@ -4,41 +4,44 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: login.php');
 }
 
-//index.php
-
 include('database_connection.php');
-
-if (isset($_POST['add'])) {
-// die("WORKING");
-$name=$_POST['result'];
-// echo "$name";
-$sql="select price,socket from mothertbl where name='$name'";
-// echo "$sql";
+$ide=$_SESSION['loginid'];
+$sql2="select Count(*) from ordertbl where loginid='$ide'";
+// echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
-$result=mysqli_query($con,$sql)or die("query moonchi");
-$rows=mysqli_fetch_array($result);
-  $price=$rows['price'];
-  $socket=$rows['socket'];
+$result1=mysqli_query($con,$sql2)or die("number query moonchi");
+$row=mysqli_fetch_array($result1);
+$cart=$row['Count(*)'];
+// echo $cart;
+if (isset($_POST['add'])) {
+  $name=$_POST['result'];
 
-$id=$_SESSION['loginid'];
-$_SESSION['socket']=$socket;
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
+  $sql="select price,socket from mothertbl where name='$name'";
+  $result=mysqli_query($con,$sql)or die("query moonchi");
+  $rows=mysqli_fetch_array($result);
+    $price=$rows['price'];
+    $socket=$rows['socket'];
+
+  $id=$_SESSION['loginid'];
+  $_SESSION['socket']=$socket;
+
+  $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
 // echo $sql;
-$result=mysqli_query($con,$sql)or die("query moonchi");
-header('location: cpu.php');
-} else {
+  $result=mysqli_query($con,$sql)or die("query moonchi");
+  header('location: cpu.php');
+}
+  else {
 
 ?><!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <title>Motherboard</title>
-
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="hover.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->
@@ -46,37 +49,40 @@ header('location: cpu.php');
 </head>
 
 <body>
+  <div class="topnav">
+  <a href="logout.php">Logout</a>
+  <a><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
+  <a>welcome <?php echo($_SESSION['loginid'] )?></a>
+  <a href="users.php">Home</a>
+  </div>
+
   <script type="text/javascript">
   function one(a) {
-
   document.getElementById('resulte').value=a;
-   // document.getElementById("forme").submit();
   }
   </script>
 
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-        	<br />
-        	<h2 align="center">Select the Motherboard</h2>
-        	<br />
-          <form id="forme" action="Motherboard.php" method="post">
-              <input type="hidden" name="result" id="resulte">
-
-            <div class="col-md-3">
-				<div class="list-group">
-					<h3>Price</h3>
-					<input type="hidden" id="hidden_minimum_price" value="2850" />
-                    <input type="hidden" id="hidden_maximum_price" value="46000" />
-
-
-                    <p id="price_show">2850 - 46000</p>
+  <div class="container">
+    <div class="row">
+      <br />
+      <h2 align="center">Select the Motherboard</h2>
+      <br />
+      <form id="forme" action="Motherboard.php" method="post">
+          <input type="hidden" name="result" id="resulte">
+          <div class="col-md-3">
+				        <div class="list-group">
+					      <h3>Price</h3>
+					      <input type="hidden" id="hidden_minimum_price" value="2850" />
+                <input type="hidden" id="hidden_maximum_price" value="46000" />
+                <p id="price_show">2850 - 46000</p>
                     <div id="price_range"></div>
                 </div>
+
                 <div class="list-group">
-					<h3>Brand</h3>
+					      <h3>Brand</h3>
                     <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
-					<?php
+
+                    <?php
 
                     $query = "select distinct(`company`) from `mothertbl` order by `company` desc";
                     $statement = $connect->prepare($query);
@@ -84,20 +90,22 @@ header('location: cpu.php');
                     $result = $statement->fetchAll();
                     foreach($result as $row)
                     {
-          ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector company" value="<?php echo $row['company']; ?>"  > <?php echo $row['company']; ?></label>
-                    </div>
-          <?php
+                    ?>
+
+                      <div class="list-group-item checkbox">
+                      <label><input type="checkbox" class="common_selector company" value="<?php echo $row['company']; ?>"  > <?php echo $row['company']; ?></label>
+                      </div>
+                    <?php
                     }
                     ?>
                     </div>
                 </div>
-                <div class="list-group">
-          <h3>Purpose</h3>
-                    <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
-          <?php
 
+                <div class="list-group">
+                  <h3>Purpose</h3>
+                    <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
+
+                      <?php
                     $query = "select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
@@ -105,9 +113,10 @@ header('location: cpu.php');
                     foreach($result as $row)
                     {
                     ?>
-                    <div class="list-group-item checkbox">
+
+                      <div class="list-group-item checkbox">
                         <label><input type="checkbox" class="common_selector purpose" value="<?php echo $row['purpose']; ?>"  > <?php echo $row['purpose']; ?></label>
-                    </div>
+                      </div>
                     <?php
                     }
 
