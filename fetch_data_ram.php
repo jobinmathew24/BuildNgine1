@@ -6,9 +6,9 @@ include('database_connection.php');
 
 if(isset($_POST["action"]))
 {
-// $socket=$_SESSION['socket'];
+$ram_type=$_SESSION['ram_type'];
 	$query = "
-		SELECT * FROM ram_tbl where status=1
+		SELECT * FROM ram_tbl where status=1 and ram_type='$ram_type'
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{
@@ -46,7 +46,7 @@ if(isset($_POST["action"]))
 		";
 	}
 
-
+	$query .= "order by `price` ";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
@@ -89,7 +89,7 @@ if(isset($_POST["action"]))
 </form>
 	<?php
 	echo $output;
-	echo $query;
+	// echo $query;
 }
 
 ?>

@@ -46,7 +46,7 @@ $socket=$_SESSION['socket'];
 		";
 	}
 
-
+	$query .= "order by `price` ";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();

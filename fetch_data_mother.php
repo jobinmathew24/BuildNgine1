@@ -57,7 +57,7 @@ if(isset($_POST["action"]))
 		 AND m2_count IN('".$m2_filter."')
 		";
 	}
-
+	$query .= "order by `price` ";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();

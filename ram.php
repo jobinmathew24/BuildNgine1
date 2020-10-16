@@ -12,6 +12,13 @@ $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
+
+$sql3="select MIN(price) as min, MAX(price) as max from ram_tbl where status=1";
+$result2=mysqli_query($con,$sql3)or die("price query moonchi");
+$row=mysqli_fetch_array($result2);
+$min=$row['min'];
+$max=$row['max'];
+
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
@@ -27,7 +34,7 @@ while ($rows=mysqli_fetch_array($result)) {
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,1,$price*1)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-
+header('location:gpu.php');
 }
 else {
 
@@ -67,7 +74,7 @@ else {
   function one(a) {
 
   document.getElementById('resulte').value=a;
-  alert(a);
+  // alert(a);
   // document.getElementById("forme").submit();
   }
   </script>
@@ -82,18 +89,17 @@ else {
               <input type="hidden" name="result" id="resulte">
 
             <div class="col-md-3">
-				<div class="list-group">
-					<h3>Price</h3>
-					<input type="hidden" id="hidden_minimum_price" value="1100" />
-                    <input type="hidden" id="hidden_maximum_price" value="7000" />
+              <div class="list-group">
+      					<h3>Price</h3>
+      					<input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
+                          <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
 
 
-                    <p id="price_show">1100 - 7000</p>
-                    <div id="price_range"></div>
-                </div>
+                          <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
+                          <div id="price_range"></div>
+                      </div>
                 <div class="list-group">
 					<h3>Brand</h3>
-                    <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
 					<?php
 
                     $query = "select distinct(`company`) from `ram_tbl` order by `company` desc";
@@ -110,11 +116,9 @@ else {
                     }
 
                     ?>
-                    </div>
                 </div>
                 <div class="list-group">
           <h3>RAM Type</h3>
-                    <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
           <?php
 
                     $query = "select distinct(`ram_type`) from `ram_tbl` order by `ram_type` desc";
@@ -131,7 +135,6 @@ else {
                     }
 
                     ?>
-                    </div>
                 </div>
 
 				<div class="list-group">
@@ -146,7 +149,7 @@ else {
                     {
                     ?>
                     <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector ram_size" value="<?php echo $row['ram_size']; ?>" > <?php echo $row['ram_size']; ?></label>
+                        <label><input type="checkbox" class="common_selector ram_size" value="<?php echo $row['ram_size']; ?>" > <?php echo $row['ram_size']; ?> GB</label>
                     </div>
                     <?php
                     }
@@ -166,7 +169,7 @@ else {
                                     {
                                     ?>
                                     <div class="list-group-item checkbox">
-                                        <label><input type="checkbox" class="common_selector mem_freq" value="<?php echo $row['mem_freq']; ?>" > <?php echo $row['mem_freq']; ?> GB</label>
+                                        <label><input type="checkbox" class="common_selector mem_freq" value="<?php echo $row['mem_freq']; ?>" > <?php echo $row['mem_freq']; ?> Mhz</label>
                                     </div>
                                     <?php
                                     }
@@ -238,9 +241,9 @@ $(document).ready(function(){
 
     $('#price_range').slider({
         range:true,
-        min:1100,
-        max:7000,
-        values:[1100, 7000],
+        min:<?php echo( $min) ?>,
+        max:<?php echo( $max) ?>,
+        values:[<?php echo( $min) ?>, <?php echo( $max) ?>],
         step:50,
         stop:function(event, ui)
         {

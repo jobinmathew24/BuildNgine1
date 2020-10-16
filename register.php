@@ -252,7 +252,7 @@ Female </h6><input type="radio" name="gender" value="F"><br>
   $password=$_POST['pass'];
   $main="select * from logintable where loginid='$username'";
   $sql1="insert into logintable(loginid,password,usertype)values('$username','$password','user')";
-  // echo $sql1;
+  echo $sql1;
 
   $con=mysqli_connect("localhost","root","","bulid");
    $result=mysqli_query($con,$main);
@@ -262,10 +262,12 @@ Female </h6><input type="radio" name="gender" value="F"><br>
     // echo("username is taken");
     mysqli_query($con,$sql1);
     $sql="insert into user_login(name,address,gender,email,phone,loginid)values('$name','$address','$gender','$email','$phone','$username')";
+
+    echo "$sql";
     mysqli_query($con,$sql) or die("query moonchi"); // but I think this is working fine;
     mysqli_close($con);
     header('Location: login.php');
    }
-   else header('location:regitest.php');
+   else header('location:register.php');
 
 } ?>

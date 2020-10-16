@@ -12,21 +12,30 @@ $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
+
+$sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1";
+$result2=mysqli_query($con,$sql3)or die("price query moonchi");
+$row=mysqli_fetch_array($result2);
+$min=$row['min'];
+$max=$row['max'];
+
 // echo $cart;
 if (isset($_POST['add'])) {
   $name=$_POST['result'];
 
-  $sql="select price,socket from mothertbl where name='$name'";
+  $sql="select price,socket,ram_type from mothertbl where name='$name'";
   $result=mysqli_query($con,$sql)or die("query moonchi");
   $rows=mysqli_fetch_array($result);
     $price=$rows['price'];
     $socket=$rows['socket'];
+    $ram_type=$rows['ram_type'];
 
   $id=$_SESSION['loginid'];
   $_SESSION['socket']=$socket;
+  $_SESSION['ram_type']=$ram_type;
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
-// echo $sql;
+echo $sql;
   $result=mysqli_query($con,$sql)or die("query moonchi");
   header('location: cpu.php');
 }
@@ -70,13 +79,15 @@ if (isset($_POST['add'])) {
       <form id="forme" action="Motherboard.php" method="post">
           <input type="hidden" name="result" id="resulte">
           <div class="col-md-3">
-				        <div class="list-group">
-					      <h3>Price</h3>
-					      <input type="hidden" id="hidden_minimum_price" value="2850" />
-                <input type="hidden" id="hidden_maximum_price" value="46000" />
-                <p id="price_show">2850 - 46000</p>
-                    <div id="price_range"></div>
-                </div>
+            <div class="list-group">
+             <h3>Price</h3>
+             <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
+                        <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
+
+
+                        <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
+                        <div id="price_range"></div>
+                    </div>
 
                 <div class="list-group">
 					      <h3>Brand</h3>
@@ -103,7 +114,6 @@ if (isset($_POST['add'])) {
 
                 <div class="list-group">
                   <h3>Purpose</h3>
-                    <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
 
                       <?php
                     $query = "select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
@@ -121,12 +131,10 @@ if (isset($_POST['add'])) {
                     }
 
                     ?>
-                    </div>
                 </div>
 
 				<div class="list-group">
 					<h3>Socket</h3>
-                      <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                     <?php
 
                     $query = "select distinct(`socket`) from `mothertbl` order by `socket` desc";
@@ -144,11 +152,9 @@ if (isset($_POST['add'])) {
                     }
 
                     ?>
-                </div>
                   </div>
                 <div class="list-group">
                   <h3>Ram Type</h3>
-                                <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                             <?php
 
                             $query = "select distinct(`ram_type`) from `mothertbl` order by `ram_type` desc";
@@ -166,10 +172,8 @@ if (isset($_POST['add'])) {
 
                             ?>
                         </div>
-                        </div>
                         <div class="list-group">
                           <h3>Max RAM</h3>
-                                        <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
                                     <?php
 
                                     $query = "select distinct(`max_ram`) from `mothertbl` order by `max_ram` desc";
@@ -187,10 +191,8 @@ if (isset($_POST['add'])) {
 
                                     ?>
                                 </div>
-                                </div>
 				<div class="list-group">
 					<h3>M.2 Support</h3>
-                              <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
 					<?php
                     $query = "select distinct(`m2_count`) from `mothertbl` order by `m2_count` desc";
                     $statement = $connect->prepare($query);
@@ -205,7 +207,6 @@ if (isset($_POST['add'])) {
                     <?php
                     }
                     ?>
-                </div>
                 </div>
             </div>
 
@@ -273,9 +274,9 @@ $(document).ready(function(){
 
     $('#price_range').slider({
         range:true,
-        min:2850,
-        max:46000,
-        values:[2850, 46000],
+        min:<?php echo( $min) ?>,
+        max:<?php echo( $max) ?>,
+        values:[<?php echo( $min) ?>, <?php echo( $max) ?>],
         step:50,
         stop:function(event, ui)
         {
