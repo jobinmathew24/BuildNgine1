@@ -6,7 +6,7 @@ include('database_connection.php');
 
 if(isset($_POST["action"]))
 {
-$ram_type=$_SESSION['ram_type'];
+// $ram_type=$_SESSION['ram_type'];
 	$query = "
 		SELECT * FROM gpu_tbl where status=1
 	";
@@ -126,7 +126,7 @@ $ram_type=$_SESSION['ram_type'];
 </form>
 	<?php
 	echo $output;
-	echo $query;
+	// echo $query;
 }
 
 ?>

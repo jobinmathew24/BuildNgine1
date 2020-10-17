@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2020 at 09:34 PM
+-- Generation Time: Oct 17, 2020 at 09:55 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -25,54 +25,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ram_tbl`
+-- Table structure for table `memory_tbl`
 --
 
-CREATE TABLE `ram_tbl` (
+CREATE TABLE `memory_tbl` (
   `name` varchar(25) NOT NULL,
   `company` varchar(25) NOT NULL,
-  `ram_type` varchar(10) NOT NULL,
-  `ram_size` int(10) NOT NULL,
-  `mem_freq` int(10) NOT NULL,
-  `fsb` varchar(20) NOT NULL,
-  `voltage` decimal(10,0) NOT NULL,
-  `timing` varchar(20) NOT NULL,
+  `size` int(10) NOT NULL,
+  `form_factor` varchar(10) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `ssd_type` varchar(10) NOT NULL,
+  `rpm` int(8) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `pic` varchar(25) NOT NULL,
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `ram_tbl`
+-- Dumping data for table `memory_tbl`
 --
 
-INSERT INTO `ram_tbl` (`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`, `pic`, `status`) VALUES
-('GOODRAM 0QH0', 'GOODRAM', 'DDR3', 2, 1333, '10600 MB/s', '2', '9-9-9-24', '1250', 'GOODRAM 0QH0.jpg', 1),
-('GOODRAM 4L19', 'GOODRAM', 'DDR4', 16, 2666, '21300 MB/s', '1', '19-19-19', '8500', 'GOODRAM 4L19.jpg', 1),
-('GOODRAM 9QHQ', 'GOODRAM', 'DDR3', 4, 1600, '12800 MB/s', '2', '11-11-11-28', '2700', 'GOODRAM 9QHQ.jpg', 1),
-('GOODRAM L15S', 'GOODRAM', 'DDR4', 4, 2133, '17000 MB/s', '1', '15-15-15', '3200', 'GOODRAM L15S.jpg', 1),
-('GOODRAM L17S', 'GOODRAM', 'DDR4', 8, 2400, '19200 MB/s', '1', '17-17-17', '6700', 'GOODRAM L17S.jpg', 1),
-('HYPERX 10FB', 'HYPERX', 'DDR3', 4, 1866, '14900 MB/s', '2', '10-11-10-30', '2700', 'HYPERX 10FB.jpg', 1),
-('HYPERX 6PB3', 'HYPERX', 'DDR4', 8, 3200, '25600 MB/s', '1', '16-18-18', '7000', 'HYPERX 6PB3.jpg', 1),
-('HYPERX 7PB3', 'HYPERX', 'DDR4', 16, 3600, '28800 MB/s', '1', '17-19-19', '8000', 'HYPERX 7PB3.jpg', 1),
-('HYPERX 80JB', 'HYPERX', 'DDR3', 8, 1866, '14900 MB/s', '2', '10-11-10-30', '3500', 'HYPERX 80JB.jpg', 1),
-('SAMSUNG 0BH0', 'Samsung', 'DDR3', 16, 1600, '12800 MB/s', '1', '11-11-11', '10000', 'SAMSUNG 0BH0.jpg', 1),
-('SAMSUNG 0CB2', 'Samsung', 'DDR4', 32, 2666, '21300 MB/s', '1', '19-19-19', '14000', 'SAMSUNG 0CB2.jpg', 1),
-('SAMSUNG 0DM0', 'Samsung', 'DDR3', 32, 1866, '14900 MB/s', '1', '13-13-13', '13000', 'SAMSUNG 0DMo.jpg', 1),
-('SAMSUNG 0QH0', 'Samsung', 'DDR3', 8, 1866, '14900 MB/s', '2', '13-13-13', '4500', 'SAMSUNG 0QH0.jpg', 1),
-('SAMSUNG 3CB1', 'Samsung', 'DDR4', 16, 2666, '21300 MB/s', '1', '15-15-15-42', '10500', 'SAMSUNG 3CB1.jpg', 1),
-('SAMSUNG 3CH0', 'Samsung', 'DDR3', 4, 1600, '12800 MH/s', '2', '11-11-11', '1950', 'SAMSUNG 3CHO.jpg', 1),
-('SAMSUNG 3DB0', 'Samsung', 'DDR4', 8, 2133, '17000 MB/s', '1', '15-15-15-42', '6000', 'SAMSUNG 3DB0.jpg', 1),
-('SAMSUNG 3DH0', 'Samsung', 'DDR3', 2, 1333, '10600 MB/s', '2', '9-9-9', '1100', 'SAMSUNG 3DH0.jpg', 1);
+INSERT INTO `memory_tbl` (`name`, `company`, `size`, `form_factor`, `type`, `ssd_type`, `rpm`, `price`, `pic`, `status`) VALUES
+('HYPERX A400', 'HYPERX', 120, '\"2.5', 'SSD', '3D V-NAND', 0, '2900', 'HYPERX A400.jpg', 1),
+('HYPERX FURY S44', 'HYPERX', 240, '\"2.5', 'SSD', '3D V-NAND', 0, '5000', 'HYPERX FURY S44.jpg', 1),
+('SAMSUNG 860 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'SAMSUNG 860 DCT.jpg', 1),
+('SAMSUNG 860 EVO', 'Samsung', 500, '\"2.5', 'SSD', '3D V-NAND', 0, '6800', 'SAMSUNG 860 EVO.jpg', 1),
+('SAMSUNG 920 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'SAMSUNG 920 DCT.jpg', 1),
+('SEAGATE ST2000DM006', 'SEAGATE', 2000, '\"3.5', 'HDD', 'nil', 7200, '4000', 'SEAGATE ST2000DM006.jpg', 1),
+('SEAGATE ST3000DM006', 'SEAGATE', 3000, '\"3.5', 'HDD', 'nil', 7200, '6400', 'SEAGATE ST3000DM006.jpg', 1),
+('SEAGATE ST500DM009', 'SEAGATE', 500, '\"3.5', 'HDD', 'nil', 7200, '4500', 'SEAGATE ST500DM009.jpg', 1),
+('WD BLACK DWS500', 'Western Digital', 500, 'M.2', 'SSD', '3D V-NAND', 0, '11000', 'WD BLACK DWS500.png', 1),
+('WD BLUE DWS1000', 'Western Digital', 1000, '\"2.5', 'SSD', 'TLC', 0, '15000', 'WD BLUE DWS1000.png', 1),
+('WD BLUE DWS1000M', 'Western Digital', 1000, 'M.2', 'SSD', '3D V-NAND', 0, '10000', 'WD BLUE DWS1000M.jpg', 1),
+('WD BLUE WD10EZEX', 'Western Digital', 1000, '\"3.5', 'HDD', 'nil', 7200, '4900', 'WD BLUE WD10EZEX.jpg', 1),
+('WD BLUE WD5000AZRZ', 'Western Digital', 500, '\"3.5', 'HDD', 'nil', 5400, '2400', 'WD BLUE WD5000AZRZ.jpg', 1),
+('WD GREEN DWS120', 'Western Digital', 120, '\"2.5', 'SSD', 'TLC', 0, '2400', 'WD GREEN DWS120.jpg', 1),
+('WD GREEN DWS240', 'Western Digital', 240, 'M.2', 'SSD', '3D V-NAND', 0, '2900', 'WD GREEN DWS240.jpg', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `ram_tbl`
+-- Indexes for table `memory_tbl`
 --
-ALTER TABLE `ram_tbl`
+ALTER TABLE `memory_tbl`
   ADD PRIMARY KEY (`name`);
 COMMIT;
 
