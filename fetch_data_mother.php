@@ -76,6 +76,8 @@ if(isset($_POST["action"]))
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Socket : '. $row['socket'].' <br />
 					Chipset : '. $row['chipset'] .' <br  />
+					CPU Power : '. $row['cpu_pow'] .' Pin<br  />
+					MB Power : '. $row['mb_pow'] .' Pin<br  />
 					RAM Type : '. $row['ram_type'] .' <br />
 					RAM Count : '. $row['ram_count'] .' Nos<br />
 					Max RAM : '. $row['max_ram'] .' GB<br />

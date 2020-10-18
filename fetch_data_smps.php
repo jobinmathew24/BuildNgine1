@@ -6,10 +6,9 @@ include('database_connection.php');
 
 if(isset($_POST["action"]))
 {
-$ram_type=$_SESSION['ram_type'];
-$max_freq=$_SESSION['max_freq'];
+$cpu_pow=$_SESSION['cpu_pow'];
 	$query = "
-		SELECT * FROM ram_tbl where status=1 and ram_type='$ram_type' and mem_freq <='$max_freq'
+		SELECT * FROM smps_tbl where status=1 and cpu_pow like '%$cpu_pow%'
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{
@@ -24,28 +23,29 @@ $max_freq=$_SESSION['max_freq'];
 		 AND company IN('".$company_filter."')
 		";
 	}
-	if(isset($_POST["ram_type"]))
+	if(isset($_POST["type"]))
 	{
-		$ram_type_filter = implode("','", $_POST["ram_type"]);
+		$power_filter = implode("','", $_POST["power"]);
 		$query .= "
-		 AND ram_type IN('".$ram_type_filter."')
+		 AND power IN('".$power_filter."')
 		";
 	}
-	if(isset($_POST["ram_size"]))
+	if(isset($_POST["sata_count"]))
 	{
-		$ram_size_filter = implode(",", $_POST["ram_size"]);
+		$sata_count_filter = implode(",", $_POST["sata_count"]);
 		$query .= "
-		 AND ram_size IN(".$ram_size_filter.")
+		 AND sata_count IN(".$sata_count_filter.")
+		";
+	}
+	if(isset($_POST["pci_count"]))
+	{
+		$pci_count_filter = implode(",", $_POST["pci_count"]);
+		$query .= "
+		 AND pci_count IN(".$pci_count_filter.")
 		";
 	}
 
-	if(isset($_POST["mem_freq"]))
-	{
-		$mem_freq_filter = implode("','", $_POST["mem_freq"]);
-		$query .= "
-		 AND mem_freq IN('".$mem_freq_filter."')
-		";
-	}
+
 
 	$query .= "order by `price` ";
 	$statement = $connect->prepare($query);
@@ -61,16 +61,15 @@ $max_freq=$_SESSION['max_freq'];
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">
-					<img src="project/ram/'. $row['pic'] .'" width="150px" height="150px" >
+					<img src="project/smps/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
-					<p>RAM Type : '. $row['ram_type'].' <br />
-					RAM Size : '. $row['ram_size'] .' GB<br  />
-					Memory Frequency: '. $row['mem_freq'] .' Mhz <br />
-					FSB : '. $row['fsb'] .' <br />
-					Voltage: '. $row['voltage'] . 'V <br />
-					Timing: '. $row['timing'] .' <br />
-
+					<p>Manufacture : '. $row['company'].' <br />
+					Power : '. $row['power'] .' W<br  />
+					CPU Power : '. $row['cpu_pow'] .' <br  />
+					MB Power : '. $row['mb_pow'] .' <br  />
+					SATA Count : '. $row['sata_count'] .' <br  />
+					PCIe Count : '. $row['pci_count'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

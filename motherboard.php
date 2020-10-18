@@ -23,16 +23,22 @@ $max=$row['max'];
 if (isset($_POST['add'])) {
   $name=$_POST['result'];
 
-  $sql="select price,socket,ram_type from mothertbl where name='$name'";
+  $sql="select * from mothertbl where name='$name'";
   $result=mysqli_query($con,$sql)or die("query moonchi");
   $rows=mysqli_fetch_array($result);
     $price=$rows['price'];
     $socket=$rows['socket'];
     $ram_type=$rows['ram_type'];
+    $mb_pow=$rows['mb_pow'];
+    $cpu_pow=$rows['cpu_pow'];
+    $max_freq=$rows['max_freq'];
 
   $id=$_SESSION['loginid'];
   $_SESSION['socket']=$socket;
   $_SESSION['ram_type']=$ram_type;
+  // $_SESSION['mb_pow']=$mb_pow;
+  $_SESSION['cpu_pow']=$cpu_pow;
+  $_SESSION['max_freq']=$max_freq;
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
 echo $sql;
