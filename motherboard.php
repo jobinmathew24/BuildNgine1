@@ -32,6 +32,7 @@ if (isset($_POST['add'])) {
     $mb_pow=$rows['mb_pow'];
     $cpu_pow=$rows['cpu_pow'];
     $max_freq=$rows['max_freq'];
+    $m2_count=$rows['m2_count'];
 
   $id=$_SESSION['loginid'];
   $_SESSION['socket']=$socket;
@@ -39,6 +40,7 @@ if (isset($_POST['add'])) {
   // $_SESSION['mb_pow']=$mb_pow;
   $_SESSION['cpu_pow']=$cpu_pow;
   $_SESSION['max_freq']=$max_freq;
+  $_SESSION['m2_count']=$m2_count;
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
 echo $sql;

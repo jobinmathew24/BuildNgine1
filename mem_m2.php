@@ -13,7 +13,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from memory_tbl where status=1 and form_factor in ('\"2.5','\"3.5')";
+$sql3="select MIN(price) as min, MAX(price) as max from memory_tbl where status=1 and form_factor='M.2'";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -34,13 +34,7 @@ while ($rows=mysqli_fetch_array($result)) {
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,1,$price*1)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-if ($_SESSION['m2_count']>0) {
-  header('location:mem_m2.php');
-}
-else {
-  header('location:smps.php');
-}
-
+header('location:smps.php');
 }
 else {
 
@@ -52,7 +46,7 @@ else {
 
 <head>
 
-    <title>SATA Memory</title>
+    <title>M.2 Memory</title>
 
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -89,7 +83,7 @@ else {
     <div class="container">
         <div class="row">
         	<br />
-        	<h2 align="center">Select the SATA Memory</h2>
+        	<h2 align="center">Select the M.2 Memory</h2>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
@@ -108,7 +102,7 @@ else {
 					<h3>Brand</h3>
 					<?php
 
-                    $query = "select distinct(`company`) from `memory_tbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `memory_tbl` where form_factor='M.2' order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -127,7 +121,7 @@ else {
           <h3>Memory Size</h3>
           <?php
 
-                    $query = "select distinct(`size`) from `memory_tbl` order by `size` desc";
+                    $query = "select distinct(`size`) from `memory_tbl`  where form_factor='M.2' order by `size` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -143,25 +137,7 @@ else {
                     ?>
                 </div>
 
-				<div class="list-group">
-					<h3>Memory Type</h3>
-                    <?php
 
-                    $query = "select distinct(`type`) from `memory_tbl` order by `type` desc";
-                    $statement = $connect->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach($result as $row)
-                    {
-                    ?>
-                    <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector type" value="<?php echo $row['type']; ?>" > <?php echo $row['type']; ?></label>
-                    </div>
-                    <?php
-                    }
-
-                    ?>
-                </div>
 
 
 
@@ -204,9 +180,9 @@ $(document).ready(function(){
         var type = get_filter('type');
 
         $.ajax({
-            url:"fetch_data_mem.php",
+            url:"fetch_data_mem_m2.php",
             method:"POST",
-            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, size:size, type:type },
+            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, size:size },
             success:function(data){
                 $('.filter_data').html(data);
             }
