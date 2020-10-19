@@ -83,6 +83,9 @@ echo $sql;
     <div class="row">
       <br />
       <h2 align="center">Select the Motherboard</h2>
+      <h4 align="center">Choosing the best motherboard is in many ways the most integral part of your PC build, although graphics cards and CPUs often get more attention. Every part of your PC plugs into the motherboard you choose. So choose wisely. </h4>
+
+      <br />
       <br />
       <form id="forme" action="Motherboard.php" method="post">
           <input type="hidden" name="result" id="resulte">

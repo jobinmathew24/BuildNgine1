@@ -3,9 +3,14 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: login.php');
 }
+if(!isset($_SESSION['socket']))
+{
+  header('location:Motherboard:php');
+}
 include('database_connection.php');
 
 $ide=$_SESSION['loginid'];
+$socket=$_SESSION['socket'];
 $sql2="select Count(*) from ordertbl where loginid='$ide'";
 // echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
@@ -13,7 +18,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from cpu_tbl where status=1";
+$sql3="select MIN(price) as min, MAX(price) as max from cpu_tbl where status=1 and socket='$socket'";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -84,6 +89,12 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the CPU</h2>
+        	<h4 align="center">If you want to know how to choose a CPU, you need to consider cores and threads.
+            Cores are like individual processors of their own, all packed together on the same chip. Traditionally,
+            they can perform one task each at a time, meaning that more cores make a processor better at multitasking.
+            And you can select<strong> <?php echo $socket; ?></strong> Socket only due you select a <strong> <?php echo $socket; ?></strong>
+          Motherboard </h4>
+
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
@@ -102,7 +113,7 @@ else {
 					<h3>Brand</h3>
 					<?php
 
-                    $query = "select distinct(`company`) from `cpu_tbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `cpu_tbl` where socket='$socket' order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -121,7 +132,7 @@ else {
           <h3>Purpose</h3>
           <?php
 
-                    $query = "select distinct(`purpose`) from `cpu_tbl` order by `purpose` desc";
+                    $query = "select distinct(`purpose`) from `cpu_tbl` where socket='$socket' order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -141,7 +152,7 @@ else {
 					<h3>Core Count</h3>
                     <?php
 
-                    $query = "select distinct(`core_count`) from `cpu_tbl` order by `core_count` desc";
+                    $query = "select distinct(`core_count`) from `cpu_tbl` where socket='$socket' order by `core_count` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -161,7 +172,7 @@ else {
                           <h3>GPU</h3>
                                     <?php
 
-                                    $query = "select distinct(`igpu`) from `cpu_tbl` order by `igpu` desc";
+                                    $query = "select distinct(`igpu`) from `cpu_tbl` where socket='$socket' order by `igpu` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();

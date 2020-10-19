@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2020 at 09:27 PM
+-- Generation Time: Oct 19, 2020 at 09:04 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,44 @@ SET time_zone = "+00:00";
 --
 -- Database: `bulid`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cpu_fan_tbl`
+--
+
+CREATE TABLE `cpu_fan_tbl` (
+  `name` varchar(25) NOT NULL,
+  `company` varchar(25) NOT NULL,
+  `cooler_type` varchar(25) NOT NULL,
+  `socket` varchar(75) NOT NULL,
+  `max_tdp` int(5) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `pic` varchar(25) NOT NULL,
+  `status` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cpu_fan_tbl`
+--
+
+INSERT INTO `cpu_fan_tbl` (`name`, `company`, `cooler_type`, `socket`, `max_tdp`, `price`, `pic`, `status`) VALUES
+('AEROCOOL VERKHO 2', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 115, '2800', 'AEROCOOL VERHO 2.jpg', 1),
+('AEROCOOL VERKHO 3+', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 120, '3000', 'AEROCOOL VERKHO 3+.jpg', 1),
+('COOL MASTER AIR 8', 'Cooler Master', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3', 200, '5200', 'COOL MASTER AIR 8.png', 1),
+('DEEPCOOL 15 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 95, '1400', 'DEEPCOOL 15 PWM.jpeg', 1),
+('DEEPCOOL 31 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 100, '1800', 'DEEPCOOL 31 PWM.jpg', 1),
+('DEEPCOOL BETA 10', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 85, '1100', 'DEEPCOOL BETA 10.jpg', 1),
+('DEEPCOOL CASTLE 240', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 230, '8000', 'DEEPCOOL CASTLE 240.jpg', 1),
+('DEEPCOOL CASTLE 280', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '9000', 'DEEPCOOL CASTLE 280.jpg', 1),
+('DEEPCOOL CASTLE 320', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '11000', 'DEEPCOOL CASTLE 320.jpg', 1),
+('DEEPCOOL CK-AM209', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 65, '800', 'DEEPCOOL CK-AM209.jpg', 1),
+('DEEPCOOL ICE 100', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 100, '1800', 'DEEPCOOL ICE 100.jpg', 1),
+('DEEPCOOL MAXX 300', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 130, '3100', 'DEEPCOOL MAXX 300.jpg', 1),
+('DEEPCOOL MAXX GTE', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4', 150, '3600', 'DEEPCOOL MAXX GTE.jpg', 1),
+('ZALMAN CNPS10 II', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 185, '4650', 'ZALMAN CNPS10 II.jpg', 1),
+('ZALMAN CNPS9X', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 180, '4000', 'ZALMAN CNPS9X.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -290,13 +328,13 @@ INSERT INTO `mothertbl` (`name`, `company`, `socket`, `form_factor`, `ram_type`,
 ('ASROCK AB350 PRO4', 'ASROCK', 'AM4', 'ATX', 'DDR4', 64, 2, 24, 8, 'AMD B350', 4, 4, 2, 2666, 'GAMING', '8000', 'ASROCK AB350 PRO4.jpg', 1),
 ('ASROCK B250', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL B250', 4, 4, 2, 2666, 'GAMING', '8400', 'ASROCK B250.jpg\r\n', 1),
 ('ASROCK B365', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL B365', 4, 4, 2, 2666, 'GAMING', '9800', 'ASROCK B365.jpg', 1),
-('ASROCK FM2A68M', 'ASROCK', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 4, 'AMD A68H', 2, 4, 0, 2400, 'BUSSINESS', '2850', 'ASROOK FM2A68M.jpg\r\n', 1),
+('ASROCK FM2A68M', 'ASROCK', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 4, 'AMD A68H', 2, 4, 0, 2400, 'BUSINESS', '2850', 'ASROOK FM2A68M.jpg\r\n', 1),
 ('ASROCK H110M-DGS', 'ASROCK', 'LGA 1151', 'MicroATX', 'DDR4', 32, 1, 24, 8, 'INTEL H110', 2, 4, 0, 2133, 'BUSINESS', '3060', 'ASROOK H110M-DGS.jpg', 1),
 ('ASROCK H270', 'ASROCK', 'AM4', 'ATX', 'DDR4', 32, 2, 24, 4, 'INTEL H270', 2, 4, 2, 2400, 'GAMING', '7300', 'ASROCK H270.jpg', 1),
 ('ASROCK H370', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL H370', 4, 4, 2, 2666, 'GAMING', '8400', 'ASROCK H370.jpg', 1),
 ('ASROCK H370F', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL H370', 4, 4, 2, 2666, 'GAMING', '11600', 'ASROCK H370F.jpg', 1),
-('ASROCK X399', 'ASROCK', 'TR4', 'ATX', 'DDR4', 128, 4, 24, 16, 'AMD X399 ', 8, 6, 3, 4133, 'GAMING', '34500', 'ASROCK X399.jpg', 1),
-('ASROCK Z390', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z390', 4, 4, 2, 4300, 'GAMING', '9700', 'ASROCK Z390.jpg\r\n', 1),
+('ASROCK X399', 'ASROCK', 'TR4', 'ATX', 'DDR4', 128, 4, 24, 16, 'AMD X399 ', 8, 6, 3, 4133, 'PROFESSIONAL', '34500', 'ASROCK X399.jpg', 1),
+('ASROCK Z390', 'ASROCK', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z390', 4, 4, 2, 4300, 'PROFESSIONAL', '9700', 'ASROCK Z390.jpg\r\n', 1),
 ('ASUS A68HM-K', 'ASUS ', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 4, 'AMD A68H', 2, 4, 0, 2133, 'BUSINESS', '2920', 'ASUS A68HM-K.jpg', 1),
 ('ASUS B150 PRO', 'ASUS', 'LGA 1151', 'ATX', 'DDR4', 64, 1, 24, 8, 'INTEL B150', 4, 6, 1, 2133, 'GAMING', '5830', 'ASUS B150 PRO.jpg', 1),
 ('ASUS B360 MC', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 1, 24, 8, 'INTEL B360', 4, 4, 2, 2666, 'BUSINESS', '8750', 'ASUS B360 MC.jpg', 1),
@@ -306,19 +344,19 @@ INSERT INTO `mothertbl` (`name`, `company`, `socket`, `form_factor`, `ram_type`,
 ('ASUS H110-PLUS', 'ASUS', 'LGA 1151', 'ATX', 'DDR4', 32, 1, 24, 4, 'INTEL H110', 2, 4, 0, 2133, 'BUSINESS', '6600', 'ASUS H110-PLUS.jpg', 1),
 ('ASUS H310-PLUS', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 32, 1, 24, 4, 'INTEL H310', 2, 4, 1, 2666, 'GAMING', '8800', 'ASUS H310-PLUS.jpg\r\n', 1),
 ('ASUS M5A78L-M', 'ASUS', 'AM3+', 'MicroATX', 'DDR3', 16, 1, 24, 4, 'AMD 760G', 2, 4, 0, 1866, 'BUSINESS', '2920', 'ASUS M5A78L-M.jpg', 1),
-('ASUS MAXIMUS IX', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 3, 24, 16, 'INTEL Z390', 2, 6, 2, 4700, 'GAMING', '30000', 'ASUS MAXIMUS IX.jpg', 1),
+('ASUS MAXIMUS IX', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 3, 24, 16, 'INTEL Z390', 2, 6, 2, 4700, 'PROFESSIONAL', '30000', 'ASUS MAXIMUS IX.jpg', 1),
 ('ASUS MAXIMUS VIII', 'ASUS', 'LGA 1151', 'ATX', 'DDR4', 64, 3, 24, 8, 'INTEL Z170', 4, 6, 2, 3800, 'GAMING', '13500', 'ASUS MAXIMUS VIII.jpg', 1),
 ('ASUS PRIME H310M-C', 'ASUS', 'LGA 1151 V2', 'MicroATX', 'DDR4', 32, 1, 24, 4, 'INTEL H310', 2, 4, 1, 2166, 'BUSINESS', '6600', 'ASUS PRIME H310M-C.jpg', 1),
 ('ASUS ROG B360-H', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL B360', 4, 4, 2, 2666, 'GAMING', '12000', 'ASUS ROG B360-H.jpg', 1),
 ('ASUS ROG B450-E', 'ASUS', 'AM4', 'ATX', 'DDR4', 64, 3, 24, 8, 'AMD B450', 4, 4, 2, 3533, 'GAMING', '14150', 'ASUS ROG B450-E.jpg', 1),
 ('ASUS ROG STRIX H370-F', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL H370', 4, 4, 2, 2666, 'GAMING', '13100', 'ASUS ROG STRIX H370-F.jpg', 1),
-('ASUS ROG Z390-H', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 3, 24, 8, 'INTEL Z390', 4, 4, 2, 4266, 'GAMING', '20900', 'ASUS ROG Z390-H.jpG', 1),
+('ASUS ROG Z390-H', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 3, 24, 8, 'INTEL Z390', 4, 4, 2, 4266, 'PROFESSIONAL', '20900', 'ASUS ROG Z390-H.jpG', 1),
 ('ASUS TUF Z370', 'ASUS', 'LGA 1151 V2', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z370', 4, 4, 2, 4000, 'GAMING', '13450', 'ASUS TUF Z370.jpg', 1),
-('ASUS X299', 'ASUS', 'LGA 2066', 'ATX', 'DDR4', 128, 4, 24, 16, 'INTEL X299', 8, 6, 2, 4133, 'GAMING', '46000', 'ASUS X299.jpg', 1),
-('ASUS X299-XE', 'ASUS', 'LGA 2066', 'ATX', 'DDR4', 128, 3, 24, 16, 'INTEL Z390', 8, 6, 2, 4133, 'GAMING', '40000', 'ASUS X299-XE.jpg', 1),
+('ASUS X299', 'ASUS', 'LGA 2066', 'ATX', 'DDR4', 128, 4, 24, 16, 'INTEL X299', 8, 6, 2, 4133, 'PROFESSIONAL', '46000', 'ASUS X299.jpg', 1),
+('ASUS X299-XE', 'ASUS', 'LGA 2066', 'ATX', 'DDR4', 128, 3, 24, 16, 'INTEL Z390', 8, 6, 2, 4133, 'PROFESSIONAL', '40000', 'ASUS X299-XE.jpg', 1),
 ('ASUS X99', 'ASUS', 'LGA 2011-3', 'ATX', 'DDR4', 64, 3, 24, 16, 'INTEL X99', 8, 6, 1, 2400, 'GAMING', '31000', 'ASUS X99.jpg', 1),
 ('GIGABYTE B450', 'GIGABYTE', 'AM4', 'ATX', 'DDR4', 64, 2, 24, 8, 'AMD B450', 4, 4, 2, 3200, 'GAMING', '10500', 'GIGABYTE B450.jpg\r\n', 1),
-('GIGABYTE F2A68HM', 'GIGABYTE', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 8, 'AMD A68H', 2, 4, 0, 2400, 'BUSSINESS', '3150', 'GIGABYTE F2A68HM.JPG', 1),
+('GIGABYTE F2A68HM', 'GIGABYTE', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 8, 'AMD A68H', 2, 4, 0, 2400, 'BUSINESS', '3150', 'GIGABYTE F2A68HM.JPG', 1),
 ('GIGABYTE H110-D3', 'GIGABYTE', 'LGA 1151', 'ATX', 'DDR4', 32, 1, 24, 8, 'INTEL H110', 2, 4, 1, 2133, 'BUSINESS', '5500', 'GIGABYTE H110-D3.jpg', 1),
 ('GIGABYTE X399', 'GIGABYTE', 'TR4', 'ATX', 'DDR4', 128, 5, 24, 16, 'AMD X399', 8, 6, 1, 3600, 'GAMING', '44000', 'GIGABYTE X399.jpg', 1),
 ('GIGABYTE Z270P-D3', 'GIGABYTE', 'LGA 1151', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z270', 4, 6, 1, 3866, 'GAMING', '6900', 'GIGABYTE Z270P-D3.jpg', 1),
@@ -412,7 +450,35 @@ INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`
 (64, 'jo', 'INTEL G3930', 'CPU', '5500', 1, '5500'),
 (65, 'jo', 'GOODRAM L17S', 'RAM', '6700', 1, '6700'),
 (66, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(67, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400');
+(67, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
+(68, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
+(69, 'jo', 'ASUS PRIME H310M-C', 'Motherboard', '6600', 1, '6600'),
+(70, 'jo', 'INTEL G4920', 'CPU', '5200', 1, '5200'),
+(71, 'jo', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000'),
+(72, 'jo', 'ASUS GT 710', 'GPU', '3800', 1, '3800'),
+(73, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
+(74, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
+(75, 'jo', 'WD GREEN DWS240', 'MEMORY', '2900', 1, '2900'),
+(76, 'jo', 'AEROCOOL KCAS 650G', 'SMPS', '7200', 1, '7200'),
+(77, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400'),
+(78, 'jo', 'GIGABYTE H110-D3', 'Motherboard', '5500', 1, '5500'),
+(79, 'jo', 'INTEL G3900', 'CPU', '3400', 1, '3400'),
+(80, 'jo', 'GOODRAM L15S', 'RAM', '3200', 1, '3200'),
+(81, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
+(82, 'jo', 'WD GREEN DWS240', 'MEMORY', '2900', 1, '2900'),
+(83, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400'),
+(84, 'jo', 'ASUS M5A78L-M', 'Motherboard', '2920', 1, '2920'),
+(85, 'jo', 'AMD FX-4320', 'CPU', '5800', 1, '5800'),
+(86, 'jo', 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250'),
+(87, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
+(88, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
+(89, 'jo', 'AEROCOOL VX 500W', 'SMPS', '3200', 1, '3200'),
+(90, 'jo', 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850'),
+(91, 'jo', 'MSI H110M', 'Motherboard', '2920', 1, '2920'),
+(92, 'jo', 'INTEL G3930', 'CPU', '5500', 1, '5500'),
+(93, 'jo', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000'),
+(94, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
+(95, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400');
 
 -- --------------------------------------------------------
 
@@ -516,6 +582,12 @@ INSERT INTO `user_login` (`name`, `address`, `gender`, `email`, `phone`, `logini
 --
 
 --
+-- Indexes for table `cpu_fan_tbl`
+--
+ALTER TABLE `cpu_fan_tbl`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- Indexes for table `cpu_tbl`
 --
 ALTER TABLE `cpu_tbl`
@@ -579,7 +651,7 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `user_login`
