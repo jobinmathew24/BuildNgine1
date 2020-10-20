@@ -5,7 +5,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 }include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
-$sql2="select Count(*) from ordertbl where loginid='$ide'";
+$sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
 // echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -57,7 +57,7 @@ width: 500px}
     <a href="logout.php">Logout</a>
   <!--  <a href="3.html">Register</a>-->
   <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-  <a><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
+  <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
       <a href="Motherboard.php">Bulid a PC</a>
         <a href="users.php">Home</a>
 
