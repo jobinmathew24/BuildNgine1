@@ -2,7 +2,7 @@
 session_start();
 //fetch_data.php
 
-include('database_connection.php');
+include('../database/database_connection.php');
 
 if(isset($_POST["action"]))
 {
@@ -69,7 +69,7 @@ if(isset($_POST["action"]))
 	<div class="col-sm-4 col-lg-3 col-md-3">
 	<center>
 		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:500px;">
-			<img src="project/gpu/none.png" width="150px" height="150px" >
+			<img src="../project/gpu/none.png" width="150px" height="150px" >
 			<p align="center"><strong> None</strong></p>
 			<h4 style="text-align:center;" class="text-danger" >₹ 0</h4>
 			<p>Processor : None <br />
@@ -96,7 +96,7 @@ if(isset($_POST["action"]))
 			<div class="col-sm-4 col-lg-3 col-md-4">
 			<center>
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:500px;">
-					<img src="project/gpu/'. $row['image'] .'" width="150px" height="150px" >
+					<img src="../project/gpu/'. $row['image'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Processor : '. $row['processor'].' <br />

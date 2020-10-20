@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
-  header('location: login.php');
+  header('location: ../login.php');
 }
 
-include('database_connection.php');
+include('../database/database_connection.php');
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide'";
 // echo $sql2;
@@ -54,15 +54,15 @@ echo $sql;
 <head>
 
     <title>Motherboard</title>
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="hover.css">
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/hover.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href = "css/jquery-ui.css" rel = "stylesheet">
+    <link href = "../css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 </head>
 
 <body>

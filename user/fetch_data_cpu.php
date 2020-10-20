@@ -1,13 +1,14 @@
 <?php
-
+session_start();
 //fetch_data.php
 
-include('database_connection.php');
+include('../database/database_connection.php');
 
 if(isset($_POST["action"]))
 {
+$socket=$_SESSION['socket'];
 	$query = "
-		SELECT * FROM mothertbl where status=1
+		SELECT * FROM cpu_tbl where status=1 and socket='$socket'
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{
@@ -29,34 +30,22 @@ if(isset($_POST["action"]))
 		 AND purpose IN('".$purpose_filter."')
 		";
 	}
-	if(isset($_POST["socket"]))
+	if(isset($_POST["core"]))
 	{
-		$socket_filter = implode("','", $_POST["socket"]);
+		$core_filter = implode(",", $_POST["core"]);
 		$query .= "
-		 AND socket IN('".$socket_filter."')
+		 AND core_count IN(".$core_filter.")
 		";
 	}
-	if(isset($_POST["ram_type"]))
+
+	if(isset($_POST["igpu"]))
 	{
-		$ram_filter = implode("','", $_POST["ram_type"]);
+		$igpu_filter = implode("','", $_POST["igpu"]);
 		$query .= "
-		 AND product_ram IN('".$ram_filter."')
+		 AND igpu IN('".$igpu_filter."')
 		";
 	}
-	if(isset($_POST["max_ram"]))
-	{
-		$max_filter = implode("','", $_POST["max_ram"]);
-		$query .= "
-		 AND max_ram IN('".$max_filter."')
-		";
-	}
-	if(isset($_POST["m2_count"]))
-	{
-		$m2_filter = implode("','", $_POST["m2_count"]);
-		$query .= "
-		 AND m2_count IN('".$m2_filter."')
-		";
-	}
+
 	$query .= "order by `price` ";
 	$statement = $connect->prepare($query);
 	$statement->execute();
@@ -71,25 +60,22 @@ if(isset($_POST["action"]))
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:550px;">
-					<img src="project/mother/'. $row['pic'] .'" width="150px" height="150px" >
+					<img src="../project/cpu/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Socket : '. $row['socket'].' <br />
-					Chipset : '. $row['chipset'] .' <br  />
-					CPU Power : '. $row['cpu_pow'] .' Pin<br  />
-					MB Power : '. $row['mb_pow'] .' Pin<br  />
-					RAM Type : '. $row['ram_type'] .' <br />
-					RAM Count : '. $row['ram_count'] .' Nos<br />
-					Max RAM : '. $row['max_ram'] .' GB<br />
-					PCIe Count : '. $row['pcie_count'] .' Nos <br />
-					SATA Count : '. $row['sata_count'] .' Nos <br />
-					M.2 Count : '. $row['m2_count'] .' Nos <br />
-					Max freq : '. $row['max_freq'] .' Mhz <br />
+					Core Count : '. $row['core_count'] .' Nos<br  />
+					Thread Count: '. $row['thread_count'] .' Nos<br />
+					Frequency : '. $row['frequency'] .' Mhz<br />
+					Turbo boost: '. $row['turboboost'] .' <br />
+					GPU: '. $row['igpu'] .' <br />
+					Cache : '. $row['cache'] .' Kb <br />
+					Lithography : '. $row['lithography'] .' <br />
+					Max Temp : '. $row['max_temp'] .' °C<br />
 					Purpose : '. $row['purpose'] .'  </p>
 					<br>
 					<i class="fa fa-shopping-cart"></i>
-					<input type="Submit" name="add" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
-
+					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
 					</center>
 				</div>
 
@@ -99,9 +85,12 @@ if(isset($_POST["action"]))
 	}
 	else
 	{
+
 		$output = '<h3>No Data Found</h3>';
 	}
-
+	?>
+</form>
+	<?php
 	echo $output;
 	// echo $query;
 }

@@ -2,7 +2,7 @@
 session_start();
 //fetch_data.php
 
-include('database_connection.php');
+include('../database/database_connection.php');
 
 if(isset($_POST["action"]))
 {
@@ -61,7 +61,7 @@ $max_freq=$_SESSION['max_freq'];
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">
-					<img src="project/ram/'. $row['pic'] .'" width="150px" height="150px" >
+					<img src="../project/ram/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>RAM Type : '. $row['ram_type'].' <br />

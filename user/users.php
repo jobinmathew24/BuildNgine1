@@ -1,8 +1,8 @@
 <?php
 session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
-  header('location: login.php');
-}include('database_connection.php');
+  header('location: ../login.php');
+}include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide'";
@@ -19,15 +19,15 @@ $cart=$row['Count(*)'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BulidNgine</title>
-  <link rel="stylesheet" href="BOOT.css">
-  <link rel="stylesheet" href="1.css">
-  <link rel="stylesheet" href="hover.css">
+  <link rel="stylesheet" href="../css/BOOT.css">
+  <link rel="stylesheet" href="../css/1.css">
+  <link rel="stylesheet" href="../css/hover.css">
 
 <style>
 body
 {
 
-  background-image: url('slide2.jpg');
+  background-image: url('../slide2.jpg');
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;

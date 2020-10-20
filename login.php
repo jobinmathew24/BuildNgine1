@@ -116,11 +116,11 @@ session_start();
 
      if($user=='admin'){
 
-       header('location:admin.php');
+       header('location:admin/admin.php');
      }
 
      else{
-       header('location:users.php');
+       header('location:user/users.php');
      }
    }
    else{
