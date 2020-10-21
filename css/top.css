@@ -1,0 +1,66 @@
+.navbare {
+  overflow: hidden;
+  background-color: black;
+}
+span.numbe{
+  background-color: yellow;
+  padding: 5px;
+  color: red;
+  border-radius: 5px;
+}
+.navbare a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdowne {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdowne .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: black;
+  margin: 0;
+}
+
+.navbare a:hover, .dropdowne:hover .dropbtn {
+  background-color: white;
+  color:black;
+}
+
+.dropdowne-content {
+  display: none;
+   position: absolute;
+   background-color: #f9f9f9;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 10;
+}
+
+.dropdowne-content a {
+  float: none;
+  color: black;
+  background-color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.dropdowne-content a:hover {
+  background-color: black;
+  color:white;
+}
+
+.dropdowne:hover .dropdowne-content {
+  display: block;
+}
