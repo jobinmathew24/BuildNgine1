@@ -20,27 +20,30 @@ $sql3="select * from ordertbl where loginid='$ide' and status=1";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 if (isset($_POST['submite'])) {
-$sql3="update ordertbl set status=0 where loginid='$ide' ";
+$sql3="update ordertbl set status=1 where loginid='$ide' ";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 header('location:users.php');
 
+}
+if (isset($_POST['submite'])) {
+header('location:users.php');
 }
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
 // echo "$name";
-// $sql="select price from cpu_fan_tbl where name='$name'";
+$sql="update ordertbl set status=0 where loginid='$ide' and name='$name'";
 // echo "$sql";
 
 //
-// $result=mysqli_query($con,$sql)or die("query moonchi");
+$result=mysqli_query($con,$sql)or die("query moonchi");
 // while ($rows=mysqli_fetch_array($result)) {
 //   $price=$rows['price'];
 // }
 // $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','CPU FAN', $price,1,$price*1)";
 // // echo $sql;
 // $result=mysqli_query($con,$sql)or die("query moonchi");
-// header('location:cabinet.php');
+header('location:cart.php');
 }
 else {
 
@@ -67,7 +70,7 @@ else {
 
 <body>
   <div class="navbare">
-  <a href="logout.php">Logout</a>
+    <a href="logout.php">Logout</a>
     <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
   <div class="dropdowne">
     <button class="dropbtn">Buy a product
@@ -85,9 +88,8 @@ else {
       <a href="cabinet_one.php">Cabinet</a>
     </div>
   </div>
-  <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-
-        <a href="users.php">Home</a>
+      <a>welcome <?php echo($_SESSION['loginid'] )?></a>
+      <a href="users.php">Home</a>
 </div>
 
   <script type="text/javascript">
@@ -140,7 +142,7 @@ else {
                       </table>
                       <div style="float: right;">
                         <i class="fa fa-shopping-cart"></i>
-                        <input type="submit" name="submit" class="btn btn-primary" value="Purchase Now" onclick="one(\''.$row['name'].'\')">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Purchase Now" onclick="one('<?php echo $row['name'] ?>')">
 
                         </div>
 
@@ -152,7 +154,8 @@ else {
                   <?php
                 }
               }else {?>
-              <center> <h3>No Data Found</h3></center>
+              <center> <h3>Your Cart is empty</h3><br>
+              <input type="submit" class="btn btn-primary"  name="sumbite" value="Add Products">  </center>
             <?php  }
                 ?>
 
