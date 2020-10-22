@@ -3,6 +3,9 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
+if (isset($_SESSION['socket'])) {
+  header('location: cpu.php');
+}
 
 include('../database/database_connection.php');
 $ide=$_SESSION['loginid'];

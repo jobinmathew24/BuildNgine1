@@ -22,6 +22,7 @@ $max=$row['max'];
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
+$qty=$_POST['points'];
 // echo "$name";
 $sql="select price from memory_tbl where name='$name'";
 // echo "$sql";
@@ -31,7 +32,7 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,1,$price*1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:smps.php');
@@ -96,6 +97,10 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the M.2 Memory</h2>
+        	<h4 align="center">M.2 is a form factor for SSDs (solid-state drives) that's shaped like a stick of gum.
+            These SSDs are generally faster but more expensive than traditional, 2.5-inch SSDs.
+            Thin laptops are increasingly using <strong>M. 2 SSDs</strong> because they take up less room than 2.5-inch SSDs or 
+            hard drives.</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">

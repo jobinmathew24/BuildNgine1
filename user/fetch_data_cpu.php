@@ -72,7 +72,7 @@ $socket=$_SESSION['socket'];
 					Cache : '. $row['cache'] .' Kb <br />
 					Lithography : '. $row['lithography'] .' <br />
 					Max Temp : '. $row['max_temp'] .' °C<br />
-					Purpose : '. $row['purpose'] .'  </p>
+					Purpose : '. $row['purpose'] .'</p>
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

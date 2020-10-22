@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
+if(!isset($_SESSION['gpuname']))
+{
+  header('location:gpu.php');
+}
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
@@ -22,6 +26,7 @@ $max=$row['max'];
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
+  $qty=$_POST['points'];
 // echo "$name";
 $sql="select price from memory_tbl where name='$name'";
 // echo "$sql";
@@ -31,8 +36,9 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,1,$price*1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty)";
 // echo $sql;
+  $_SESSION['memname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 if ($_SESSION['m2_count']>0) {
   header('location:mem_m2.php');
@@ -102,6 +108,10 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the SATA Memory</h2>
+        	<h4 align="center"> <strong>Serial Advanced Technology Attachment (SATA)</strong> is the default interface for most desktop and laptop
+            hard drives. They are referred to as SATA  <strong>Hard Disk Drives (HDD)</strong>, but they are actually rotary hard drives with spinning
+            platters and a moving needle that writes data to consecutive sectors on each platter.<strong>Solid State Drive (SSD)</strong>  is a new generation
+             of storage device used in computers. SSDs replace traditional mechanical hard disks by using flash-based memory, which is significantly faster.</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">

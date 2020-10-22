@@ -101,6 +101,9 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the CPU FAN</h2>
+        	<h4 align="center">Used to <strong>cool the CPU (central processing unit) heatsink. </strong>cool the CPU (central processing unit) heatsink.
+             Effective cooling of a concentrated heat source such as a large-scale integrated circuit requires a
+             heatsink, which may be cooled by a fan; use of a fan alone will not prevent overheating of the small chip.</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">

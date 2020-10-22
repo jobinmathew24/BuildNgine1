@@ -36,13 +36,14 @@ body
 
 }
 .p{
+  width: 1368px;;
   background-color: rgba(0, 0, 0, 0.4);
   height:100%;
 }
-.i{ padding-top: 200px;
+.i{ padding-top: 120px;
 height: 350px;
 width: 500px}
-.j{  }
+
 
 </style>
 </head>
@@ -50,8 +51,6 @@ width: 500px}
   <main>
 <center>
   <div class="p">
-
-
 
     <div class="navbare">
         <a href="logout.php">Logout</a>
@@ -77,24 +76,21 @@ width: 500px}
         <a href="users.php">Home</a>
   </div>
   <div class="i">
-A simple PC builder tool for the users. Select parts from the curated list of components, to build your desktop computer in a few minutes. Whether you're building a general purpose computer or a gaming rig or a PC for photo/video editing, this little tool is going to save you some time and effort
-  </div>
-  <form class="" action="motherboard.php" method="post">
-    <input type="submit" class="btn btn-primary"value="Bulid your PC now">
-  </form>
+A simple PC builder tool for the users. Select parts from the curated list of components,
+to build your desktop computer in a few minutes. Whether you're building a general purpose
+ computer or a gaming rig or a PC for photo/video editing, this little tool is going to save
+  you some time and effort
+<form class="" action="motherboard.php" method="post">
   <br>
-  <div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-  </div><div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-  </div><div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+  <input type="submit" class="btn btn-primary"value="Bulid your PC now">
+</form>
   </div>
-  </div>
+<div class="i">
 
+</div>
+  <br>
+
+</div>
     </center>
   </main>
 <?php

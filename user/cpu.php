@@ -7,6 +7,7 @@ if(!isset($_SESSION['socket']))
 {
   header('location:Motherboard:php');
 }
+
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
@@ -37,6 +38,7 @@ while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','CPU', $price,1,$price*1)";
+  $_SESSION['cpuname']=$name;
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
   header('location: ram.php');
@@ -57,7 +59,7 @@ else {
     <script src="../js/jquery-ui.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/hover.css">
+    <link rel="stylesheet" href="../css/top.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->

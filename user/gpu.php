@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
+if(!isset($_SESSION['ramname']))
+{
+  header('location:ram.php');
+}
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
@@ -36,6 +40,7 @@ while ($rows=mysqli_fetch_array($result)) {
 }
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','GPU', $price,1,$price*1)";
 // echo $sql;
+$_SESSION['gpuname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:mem.php');
 }
@@ -99,6 +104,10 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the GPU</h2>
+        	<h4 align="center"><strong>Graphics Processing Unit (GPU)</strong>, a specialized processor originally designed to accelerate graphics rendering.
+            GPUs can process many pieces of data simultaneously, making them useful for <strong>machine learning, video editing, and gaming applications</strong>.
+            Because GPUs can perform parallel operations on multiple sets of data,they are also commonly used
+            for non-graphical tasks such as machine learning and scientific computation.Its optional</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">

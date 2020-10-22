@@ -47,7 +47,7 @@ if(isset($_POST["action"]))
 			$output .= '
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:380px;">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:470px;">
 					<img src="../project/mem/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
@@ -62,6 +62,9 @@ if(isset($_POST["action"]))
 						$output .= 'Form Factor : '. $row['form_factor'] .' <br  />';
 					}
 					$output .= '
+					<br>
+					<label>Quantity</label> <input type="number" style="width:70px" class="form-control"  value="1" name="points" step="1" min=1 max=3>
+
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

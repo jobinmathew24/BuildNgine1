@@ -3,9 +3,14 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
+if(!isset($_SESSION['cpuname']))
+{
+  header('location:cpu.php');
+}
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
+$ram_type=$_SESSION['ram_type'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
 // echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
@@ -20,6 +25,7 @@ $min=$row['min'];
 $max=$row['max'];
 
 if (isset($_POST['submit'])) {
+  $qty=$_POST['points'];
 
 $name=$_POST['result'];
 // echo "$name";
@@ -31,8 +37,9 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,1,$price*1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty)";
 // echo $sql;
+  $_SESSION['ramname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:gpu.php');
 }
@@ -96,6 +103,10 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the RAM</h2>
+        	<h4 align="center">A vital part of every computer system, <strong>Random Access Memory (RAM)</strong> provides short term storage space
+            for data and program code. Random access memory, RAM, provides short term storage space for data and program
+            code that a computer processor is in the act of using, or which it expects to use imminently. And your Motherboard
+            support <strong><?php echo $ram_type ?></strong> type memory only</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">

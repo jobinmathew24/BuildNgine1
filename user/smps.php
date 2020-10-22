@@ -3,6 +3,10 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
+if(!isset($_SESSION['memname']))
+{
+  header('location:mem.php');
+}
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
@@ -33,6 +37,7 @@ while ($rows=mysqli_fetch_array($result)) {
 }
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','SMPS', $price,1,$price*1)";
 // echo $sql;
+  $_SESSION['smpsname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:cpu_fan.php');
 }
@@ -96,6 +101,10 @@ else {
         <div class="row">
         	<br />
         	<h2 align="center">Select the SMPS</h2>
+        	<h4 align="center">SMPS stands for <strong>Switched-Mode Power Supply</strong>. It is an electronic power supply that uses a
+            switching regulator to convert electrical power efficiently. It is also known as Switching Mode Power Supply.
+             It is power supply unit (PSU) generally used in computers to convert the voltage into the computer acceptable
+             range.</h4>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
