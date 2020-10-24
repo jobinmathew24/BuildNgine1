@@ -75,15 +75,15 @@ else {
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdowne-content">
-      <a href="motherboard_one.php">Motherboard</a>
-      <a href="cpu_one.php">CPU</a>
-      <a href="gpu_one.php">GPU</a>
-      <a href="ram_one.php">RAM</a>
-      <a href="mem_one.php">Memory</a>
-      <a href="mem_m2_one.php">Memory M.2</a>
-      <a href="smps_one.php">SMPS</a>
-      <a href="cpu_fan_one.php">CPU Fan</a>
-      <a href="cabinet_one.php">Cabinet</a>
+      <a href="onetime/motherboard_one.php">Motherboard</a>
+      <a href="onetime/cpu_one.php">CPU</a>
+      <a href="onetime/gpu_one.php">GPU</a>
+      <a href="onetime/ram_one.php">RAM</a>
+      <a href="onetime/mem_one.php">Memory</a>
+      <a href="onetime/mem_m2_one.php">Memory M.2</a>
+      <a href="onetime/smps_one.php">SMPS</a>
+      <a href="onetime/cpu_fan_one.php">CPU Fan</a>
+      <a href="onetime/cabinet_one.php">Cabinet</a>
     </div>
   </div>
       <a>welcome <?php echo($_SESSION['loginid'] )?></a>

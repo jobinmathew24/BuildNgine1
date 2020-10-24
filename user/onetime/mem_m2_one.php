@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
-  header('location: ../login.php');
+  header('location: ../../login.php');
 }
-include('../database/database_connection.php');
+include('../../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
@@ -35,7 +35,7 @@ while ($rows=mysqli_fetch_array($result)) {
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:smps.php');
+header('location:users.php');
 }
 else {
 
@@ -49,39 +49,39 @@ else {
 
     <title>M.2 Memory</title>
 
-    <script src="../js/jquery-1.10.2.min.js"></script>
-    <script src="../js/jquery-ui.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/top.css">
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/top.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <link href = "../../css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="navbare">
       <a href="logout.php">Logout</a>
-      <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
+      <a href="../cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
   <div class="dropdowne">
       <button class="dropbtn">Buy a product
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdowne-content">
-      <a href="onetime/motherboard_one.php">Motherboard</a>
-      <a href="onetime/cpu_one.php">CPU</a>
-      <a href="onetime/gpu_one.php">GPU</a>
-      <a href="onetime/ram_one.php">RAM</a>
-      <a href="onetime/mem_one.php">Memory</a>
-      <a href="onetime/mem_m2_one.php">Memory M.2</a>
-      <a href="onetime/smps_one.php">SMPS</a>
-      <a href="onetime/cpu_fan_one.php">CPU Fan</a>
-      <a href="onetime/cabinet_one.php">Cabinet</a>
+      <a href="motherboard_one.php">Motherboard</a>
+      <a href="cpu_one.php">CPU</a>
+      <a href="gpu_one.php">GPU</a>
+      <a href="ram_one.php">RAM</a>
+      <a href="mem_one.php">Memory</a>
+      <a href="mem_m2_one.php">Memory M.2</a>
+      <a href="smps_one.php">SMPS</a>
+      <a href="cpu_fan_one.php">CPU Fan</a>
+      <a href="cabinet_one.php">Cabinet</a>
     </div>
   </div>
       <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-      <a href="users.php">Home</a>
+      <a href="../users.php">Home</a>
 </div>
   <script type="text/javascript">
   function one(a) {
@@ -173,7 +173,7 @@ else {
 #loading
 {
 	text-align:center;
-	background: url('loader1.gif') no-repeat center;
+	background: url('../loader1.gif') no-repeat center;
 	height: 150px;
 }
 </style>
@@ -197,7 +197,7 @@ $(document).ready(function(){
         var type = get_filter('type');
 
         $.ajax({
-            url:"fetch_data_mem_m2.php",
+            url:"fetch_data_mem_m2_one.php",
             method:"POST",
             data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, size:size },
             success:function(data){
