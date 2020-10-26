@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <?php
-session_start(); ?>
+session_start();
+ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
+  header('location: ../login.php');
+  }
+  include('../database/database_connection.php');
+
+
+  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  // echo $sql2;
+  $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+  $result1=mysqli_query($con,$sql2)or die("number query moonchi");
+  $row=mysqli_fetch_array($result1);
+  $cart=$row['Count(*)'];
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TIME TABLE</title>
+    <title>BulidNgine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/BOOT.css">
   <link rel="stylesheet" href="../css/1.css">
+  <link rel="stylesheet" href="../css/top.css">
 
 <style>
 body
 {
 
-  background-image: url('slide2.jpg');
+  background-image: url('../slide2.jpg');
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,18 +37,18 @@ body
 
 }
 .p{
+  width: 1368px;;
   background-color: rgba(0, 0, 0, 0.4);
   height:100%;
 }
-.i{ padding-top: 200px;
+.i{ padding-top: 120px;
 height: 350px;
 width: 500px}
-.j{  }
+
+.j{ padding-top: 200px;}
 
 </style>
 </head>
-<?php if(isset($_SESSION['loginid'])) {
-  if($_SESSION['user']=='admin'){?>
 <body >
   <main>
 <center>
@@ -41,44 +56,69 @@ width: 500px}
 
 
 
-  <div class="topnav">
+    <div class="navbare">
+        <a href="../logout.php">Logout</a>
+        <a href="orders.php"><i class="fa fa-shopping-cart"></i> orders <span class="numbe"><?php echo "$cart" ?></span></a>
+        <a href="#">welcome <?php echo($_SESSION['loginid'] )?></a>
+    <div class="dropdowne">
+        <button class="dropbtn">Add a product
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdowne-content">
+        <a href="motherboard.php">Motherboard</a>
+        <a href="cpu.php">CPU</a>
+        <a href="gpu.php">GPU</a>
+        <a href="ram.php">RAM</a>
+        <a href="mem.php">Memory</a>
+        <a href="mem_m2.php">Memory M.2</a>
+        <a href="smps.php">SMPS</a>
+        <a href="cpu_fan.php">CPU Fan</a>
+        <a href="cabinet.php">Cabinet</a>
+      </div>
 
-    <a href="logout.php">Logout</a>
-  <!--  <a href="3.html">Register</a>-->
-  <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-      <a href="addcomp.php">Add a New compontent</a>
-      <a href="order.php">Orders</a>
+    </div>
+
+    <div class="dropdowne">
+        <button class="dropbtn">view a product
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdowne-content">
+        <a href="onetime/motherboard_one.php">Motherboard</a>
+        <a href="onetime/cpu_one.php">CPU</a>
+        <a href="onetime/gpu_one.php">GPU</a>
+        <a href="onetime/ram_one.php">RAM</a>
+        <a href="onetime/mem_one.php">Memory</a>
+        <a href="onetime/mem_m2_one.php">Memory M.2</a>
+        <a href="onetime/smps_one.php">SMPS</a>
+        <a href="onetime/cpu_fan_one.php">CPU Fan</a>
+        <a href="onetime/cabinet_one.php">Cabinet</a>
+      </div>
+    </div>
+
+
+        <!-- <a href="Motherboard.php">Bulid a PC</a> -->
+        <a href="prebulit.php">Prebulit System</a>
         <a href="admin.php">Home</a>
-
   </div>
   <div class="i">
-    A timetable is a plan of the times when particular events are to take place. ... In a school or college, a timetable is a list that shows the times in the week at which particular subjects are taught. You can also refer to the range of subjects that a student learns or the classes that a teacher teaches as their timetable.
-  </div>
-  <form class="" action="tablea.php" method="post">
-    <input type="submit" class="btn btn-primary"value="View time table">
-  </form>
+    A simple PC builder tool for the users. Select parts from the curated list of components,
+    to build your desktop computer in a few minutes. Whether you're building a general purpose
+     computer or a gaming rig or a PC for photo/video editing, this little tool is going to save
+      you some time and effort  </div>
+
   <br>
-  <div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div class="i">
 
-  </div><div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-  </div><div class="j">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-  </div>
-  </div>
+</div>
+
 
     </center>
   </main>
 
-
+</div>
 </body>
-<?php }else {
-header('location:login.php');
-}
-}else {
-  header('location:login.php');
-} ?>
+
+
 </html>
