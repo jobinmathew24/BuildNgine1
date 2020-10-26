@@ -71,8 +71,9 @@ width: 500px}
         <a href="onetime/cabinet_one.php">Cabinet</a>
       </div>
     </div>
-        <a>welcome <?php echo($_SESSION['loginid'] )?></a>
+        <a href="#">welcome <?php echo($_SESSION['loginid'] )?></a>
         <a href="Motherboard.php">Bulid a PC</a>
+        <a href="prebulit.php">Prebulit System</a>
         <a href="users.php">Home</a>
   </div>
   <div class="i">

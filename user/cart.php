@@ -6,33 +6,50 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
-$sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
-$sql4="select sum(price) as total from ordertbl where loginid='$ide' and status=1";
+$sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0";
+$sql5="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=1";
+$sql4="select sum(price) as total from ordertbl where loginid='$ide' and status=1 and save=0";
 // echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $result3=mysqli_query($con,$sql4)or die("number query moonchi");
+$result4=mysqli_query($con,$sql5)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $rows=mysqli_fetch_array($result3);
+$rowse=mysqli_fetch_array($result4);
 $cart=$row['Count(*)'];
+$save=$rowse['Count(*)'];
 $total=$rows['total'];
-$sql3="select * from ordertbl where loginid='$ide' and status=1";
+$sql3="select * from ordertbl where loginid='$ide' and status=1 and save=0";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 if (isset($_POST['submite'])) {
-$sql3="update ordertbl set status=1 where loginid='$ide' ";
+$sql3="update ordertbl set status=0 where loginid='$ide' ";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 header('location:users.php');
+}
+
+if (isset($_POST['save'])) {
+$name=$_POST['result'];
+$sql3="update ordertbl set save=1 where loginid='$ide'and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1) ";
+echo "$sql3";
+$result2=mysqli_query($con,$sql3)or die("number query moonchi");
+header('location:cart.php');
+}
+
+if (isset($_POST['delete'])) {
+$name=$_POST['result'];
+$sql3="delete from ordertbl where loginid='$ide'and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1) ";
+$result2=mysqli_query($con,$sql3)or die("number query moonchi");
+header('location:cart.php');
 
 }
-if (isset($_POST['submite'])) {
-header('location:users.php');
-}
+
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
 // echo "$name";
-  $sql="update ordertbl set status=0 where loginid='$ide' and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and name='$name' LIMIT 1)";
+  $sql="update ordertbl set status=0 where loginid='$ide' and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1)";
 // echo "$sql";
 
 echo "$sql";
@@ -73,6 +90,7 @@ else {
   <div class="navbare">
     <a href="logout.php">Logout</a>
     <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
+    <a href="saveforlate.php"><i class="fa fa-archive"></i> Saved <span class="numbe"><?php echo($save)?></span></a>
   <div class="dropdowne">
     <button class="dropbtn">Buy a product
       <i class="fa fa-caret-down"></i>
@@ -142,6 +160,12 @@ else {
 
                       </table>
                       <div style="float: right;">
+                        <i class="fa fa-trash"></i>
+                        <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
+                        &nbsp;
+                        <i class="fa fa-archive"></i>
+                        <input type="submit" name="save" class="btn btn-warning" value="Save for later" onclick="one('<?php echo $row['name'] ?>')">
+                        &nbsp;
                         <i class="fa fa-shopping-cart"></i>
                         <input type="submit" name="submit" class="btn btn-primary" value="Purchase Now" onclick="one('<?php echo $row['name'] ?>')">
 

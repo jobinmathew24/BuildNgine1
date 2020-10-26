@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2020 at 09:04 PM
+-- Generation Time: Oct 26, 2020 at 03:01 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -21,6 +21,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `bulid`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cabinet_tbl`
+--
+
+CREATE TABLE `cabinet_tbl` (
+  `name` varchar(25) NOT NULL,
+  `company` varchar(25) NOT NULL,
+  `model` varchar(25) NOT NULL,
+  `int_power` varchar(10) NOT NULL,
+  `pow_sup` varchar(10) NOT NULL,
+  `pic` varchar(30) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `status` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cabinet_tbl`
+--
+
+INSERT INTO `cabinet_tbl` (`name`, `company`, `model`, `int_power`, `pow_sup`, `pic`, `price`, `status`) VALUES
+('APPLE MAC PRO', 'Apple', 'MAC PRO', 'No', 'No', 'APPLE MAC PRO.jpg', '18000', 1),
+('COOLER MASTER ELITE 350', 'Cooler Master', 'ELITE 350', 'No', 'No', 'COOLER MASTER ELITE 350.jpg', '3000', 1),
+('COOLER MASTER H500M', 'Cooler Master', 'H500M', 'No', 'No', 'COOLER MASTER H500M.jpg', '15500', 1),
+('COOLER MASTER H500P', 'Cooler Master', 'H500P', 'No', 'No', 'COOLER MASTER H500P.jpg', '13500', 1),
+('COOLER MASTER LITE 5', 'Cooler Master', ' LITE 5', 'No', 'No', 'COOLER MASTER LITE 5.png', '6800', 1),
+('COOLER MASTER MB500', 'Cooler Master', 'MB500', 'No', 'No', 'COOLER MASTER MB500.png', '6600', 1),
+('COOLER MASTER MB530P', 'Cooler Master', 'MB530P', 'No', 'No', 'COOLER MASTER MB530P.jpg', '9500', 1),
+('COOLER MASTER MB600L', 'Cooler Master', 'MB600L', 'No', 'No', 'COOLER MASTER MB600L.jpg', '4600', 1),
+('COOLER MASTER SL600M', 'Cooler Master', 'SL600M', 'No', 'No', 'COOLER MASTER SL600M.jpg', '10450', 1),
+('DEEPCOOL MATREXX 55X', 'Deepcool', 'MATREXX 55X', 'No', 'No', 'DEEPCOOL MATREXX 55X.jpg', '3800', 1),
+('DEEPCOOL MATREXX 5S', 'Deepcool', 'MATREXX 5S', 'No', 'No', 'DEEPCOOL MATREXX 5S.jpg', '3600', 1),
+('DEEPCOOL TESSERACT BF', 'Deepcool', 'TESSERACT BF', 'No', 'No', 'DEEPCOOL TESSERACT BF.jpg', '6000', 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +134,7 @@ INSERT INTO `cpu_tbl` (`name`, `company`, `core_count`, `thread_count`, `socket`
 ('AMD A4-7300', 'AMD', 2, 2, 'FM2+', 3800, '4000 Mhz', 'AMD Radeon R5', '28 nm', 96, 65, 70, 'BUSINESS', '2800', 'AMD A4-7300.jpg', 1),
 ('AMD A6-7400K', 'AMD', 2, 2, 'FM2+', 3500, '3900 Mhz', 'AMD Radeon R5', '28 nm', 128, 65, 70, 'BUSINESS', '3500', 'AMD A6-7400K.jpg', 1),
 ('AMD A6-7480', 'AMD', 2, 2, 'FM2+', 3500, '3800 Mhz', 'AMD Radeon R5', '28 nm', 128, 65, 70, 'BUSINESS', '3000', 'AMD A6-7480.jpg', 1),
-('AMD A6-9400', 'AMD', 2, 2, 'AM4', 3500, '3700', 'AMD Radeon R5', '28 nm', 160, 65, 90, 'BUSINESS', '2800', 'AMD A6-9400.jpg', 1),
+('AMD A6-9400', 'AMD', 2, 2, 'AM4', 3500, '3700 Mhz', 'AMD Radeon R5', '28 nm', 160, 65, 90, 'BUSINESS', '2800', 'AMD A6-9400.jpg', 1),
 ('AMD A6-9500', 'AMD', 2, 2, 'AM4', 3500, '3800 Mhz', 'AMD Radeon R5', '28nm', 160, 65, 90, 'BUSINESS', '5000', 'AMD A6-9500.jpg', 1),
 ('AMD A6-9500E', 'AMD', 2, 2, 'AM4', 3000, '3400 Mhz', 'AMD Radeon R5', '28 nm', 160, 35, 90, 'BUSINESS', '5000', 'AMD A6-9500E.jpg', 1),
 ('AMD A8-9600', 'AMD', 4, 4, 'AM4', 3100, '3400 Mhz', 'AMD Radeon R7', '28nm', 320, 65, 90, 'BUSINESS', '4800', 'AMD A8-9600.jpg', 1),
@@ -124,18 +159,18 @@ INSERT INTO `cpu_tbl` (`name`, `company`, `core_count`, `thread_count`, `socket`
 ('AMD RYZEN 2700X', 'AMD', 8, 16, 'AM4', 3700, '4300 Mhz', 'None', '12nm', 768, 105, 85, 'GAMING', '20100', 'AMD RYZEN 2700X.jpg', 1),
 ('AMD RYZEN 3200G', 'AMD', 4, 4, 'AM4', 3600, '4000 Mhz', 'AMD Radeon RX Vega', '14nm', 384, 65, 95, 'BUSINESS', '10000', 'AMD RYZEN 3200G.jpg', 1),
 ('AMD RYZEN 3400G', 'AMD', 4, 8, 'AM4', 3700, '4200 Mhz', 'None', '12nm', 384, 65, 95, 'GAMING', '15300', 'AMD RYZEN 3400G.jpg', 1),
-('AMD RYZEN 3700X', 'AMD', 8, 16, 'AM4', 3600, '4400 Mhz', 'None', '7nm', 2048, 65, 75, 'GAMING', '30500', 'AMD RYZEN 3700X.jpg', 1),
-('AMD RYZEN 3800X', 'AMD', 8, 16, 'AM4', 3900, '4500 Mhz', 'None', '7nm', 2048, 105, 75, 'GAMING', '31500', 'AMD RYZEN 3800X.jpg', 1),
-('AMD RYZEN 3900X', 'AMD', 12, 24, 'AM4', 3800, '4600 Mhz', 'None', '7nm', 3096, 105, 100, 'GAMING', '43000', 'AMD RYZEN 3900X.jpg', 1),
-('AMD RYZEN TR 1900', 'AMD', 12, 24, 'TR4', 3500, '4000 Mhz', 'None', '14nm', 1536, 180, 68, 'GAMING', '34000', 'AMD RYZEN TR 1900.jpg', 1),
-('AMD RYZEN TR 1900X', 'AMD', 12, 24, 'TR4', 3500, '4000 Mhz', 'None', '14nm', 1536, 180, 68, 'GAMING', '34000', 'AMD RYZEN TR 1900X.jpg', 1),
-('AMD RYZEN TR 1920X', 'AMD', 16, 32, 'TR4', 3400, '4000 Mhz', 'None', '14nm', 1152, 180, 68, 'GAMING', '50000', 'AMD RYZEN TR 1920X.jpg', 1),
+('AMD RYZEN 3700X', 'AMD', 8, 16, 'AM4', 3600, '4400 Mhz', 'None', '7nm', 2048, 65, 75, 'PROFESSIONAL', '30500', 'AMD RYZEN 3700X.jpg', 1),
+('AMD RYZEN 3800X', 'AMD', 8, 16, 'AM4', 3900, '4500 Mhz', 'None', '7nm', 2048, 105, 75, 'PROFESSIONAL', '31500', 'AMD RYZEN 3800X.jpg', 1),
+('AMD RYZEN 3900X', 'AMD', 12, 24, 'AM4', 3800, '4600 Mhz', 'None', '7nm', 3096, 105, 100, 'PROFESSIONAL', '43000', 'AMD RYZEN 3900X.jpg', 1),
+('AMD RYZEN TR 1900', 'AMD', 12, 24, 'TR4', 3500, '4000 Mhz', 'None', '14nm', 1536, 180, 68, 'PROFESSIONAL', '34000', 'AMD RYZEN TR 1900.jpg', 1),
+('AMD RYZEN TR 1900X', 'AMD', 12, 24, 'TR4', 3500, '4000 Mhz', 'None', '14nm', 1536, 180, 68, 'PROFESSIONAL', '34000', 'AMD RYZEN TR 1900X.jpg', 1),
+('AMD RYZEN TR 1920X', 'AMD', 16, 32, 'TR4', 3400, '4000 Mhz', 'None', '14nm', 1152, 180, 68, 'PROFESSIONAL', '50000', 'AMD RYZEN TR 1920X.jpg', 1),
 ('INTEL G3900', 'INTEL', 2, 2, 'LGA 1151', 2800, '2800 Mhz', 'None', '14nm', 128, 51, 90, 'BUSINESS', '3400', 'INTEL G3900.jpg', 1),
 ('INTEL G3930', 'INTEL', 2, 2, 'LGA 1151', 2900, '2900 Mhz', 'None', '14nm', 128, 51, 90, 'BUSINESS', '5500', 'INTEL G3930.jpg', 1),
-('INTEL G4400', 'Intel', 2, 2, 'LGA 1151 V2', 3300, '3300 Mhz', 'Intel HD Graphics 530', '14nm', 64, 54, 100, 'BUSSINESS', '7500', 'INTEL G4400.jpg', 1),
+('INTEL G4400', 'Intel', 2, 2, 'LGA 1151 V2', 3300, '3300 Mhz', 'Intel HD Graphics 530', '14nm', 64, 54, 100, 'BUSINESS', '7500', 'INTEL G4400.jpg', 1),
 ('INTEL G4500', 'Intel', 2, 2, 'LGA 1151 V2', 3500, '3500 Mhz', 'Intel HD Graphics 530', '14nm', 64, 51, 100, 'BUSINESS', '6500', 'INTEL G4500.jpg', 1),
-('INTEL G4500T', 'Intel', 2, 2, 'LGA 1151 V2', 3000, '3000', 'Intel HD Graphics 530', '14nm', 64, 35, 100, 'BUSINESS', '7500', 'INTEL G4500T.jpg', 1),
-('INTEL G4520', 'Intel', 2, 2, 'LGA 1151 V2', 3600, '3600', 'Intel HD Graphics 530', '14nm', 64, 47, 100, 'BUSINESS', '6800', 'INTEL G4520.jpg', 1),
+('INTEL G4500T', 'Intel', 2, 2, 'LGA 1151 V2', 3000, '3000 Mhz', 'Intel HD Graphics 530', '14nm', 64, 35, 100, 'BUSINESS', '7500', 'INTEL G4500T.jpg', 1),
+('INTEL G4520', 'Intel', 2, 2, 'LGA 1151 V2', 3600, '3600 Mhz', 'Intel HD Graphics 530', '14nm', 64, 47, 100, 'BUSINESS', '6800', 'INTEL G4520.jpg', 1),
 ('INTEL G4900', 'INTEL', 2, 2, 'LGA 1151 V2', 3100, '3100 Mhz', 'Intel HD Graphics 610', '14nm', 128, 54, 100, 'BUSINESS', '3700', 'INTEL G4900.jpg', 1),
 ('INTEL G4920', 'INTEL', 2, 2, 'LGA 1151 V2', 3200, '3200 Mhz', 'Intel HD Graphics 610', '14nm', 128, 54, 100, 'BUSINESS', '5200', 'INTEL G4920.jpg', 1),
 ('INTEL I3-8300', 'Intel', 4, 4, 'LGA 1151 V2', 3700, '3700 Mhz', 'Intel UHD Graphics ', '14nm', 512, 65, 105, 'BUSINESS', '10500', 'INTEL I3-8300.jpg', 1),
@@ -146,18 +181,18 @@ INSERT INTO `cpu_tbl` (`name`, `company`, `core_count`, `thread_count`, `socket`
 ('INTEL I5-9500', 'Intel', 6, 6, 'LGA 1151 V2', 3000, '4400 Mhz', 'Intel UHD Graphics ', '14nm', 384, 65, 100, 'GAMING', '18000', 'INTEL I5-9500.jpg', 1),
 ('INTEL I5-9600K', 'Intel', 6, 6, 'LGA 1151 V2', 3700, '4600 Mhz', 'Intel UHD Graphics ', '14nm', 384, 95, 100, 'GAMING', '19500', 'INTEL I5-9600K.jpg', 1),
 ('INTEL I7-10700', 'Intel', 8, 16, 'LGA 1151 V2', 3800, '4800 Mhz', 'Intel UHD Graphics ', '14nm', 640, 65, 75, 'GAMING', '30000', 'INTEL I7-10700.jpg', 1),
-('INTEL I7-10700K', 'Intel', 8, 16, 'LGA 1151 V2', 3800, '5000 Mhz', 'Intel UHD Graphics ', '14nm', 640, 125, 90, 'GAMING', '35000', 'INTEL I7-10700K.jpg', 1),
+('INTEL I7-10700K', 'Intel', 8, 16, 'LGA 1151 V2', 3800, '5000 Mhz', 'Intel UHD Graphics ', '14nm', 640, 125, 90, 'PROFESSIONAL', '35000', 'INTEL I7-10700K.jpg', 1),
 ('INTEL I7-6800K', 'Intel', 6, 12, 'LGA 2011-3', 3400, '3800 Mhz', 'None', '14nm', 384, 140, 100, 'GAMING', '26000', 'INTEL I7-6800K.jpg', 1),
 ('INTEL I7-7700', 'Intel', 4, 8, 'LGA 1151', 3600, '4200 Mhz', 'Intel HD Graphics 630', '14nm', 256, 65, 100, 'GAMING', '26000', 'INTEL I7-7700.jpg', 1),
 ('INTEL I7-7700K', 'Intel', 4, 8, 'LGA 1151', 4200, '4500 Mhz', 'Intel HD Graphics 630', '14nm', 256, 91, 100, 'GAMING', '27000', 'INTEL I7-7700K.jpg', 1),
 ('INTEL I7-7740X', 'Intel', 4, 8, 'LGA 2066', 4300, '4500 Mhz', 'None', '14nm', 256, 112, 100, 'GAMING', '25000', 'INTEL I7-7740X.png', 1),
 ('INTEL I7-8700', 'Intel', 6, 12, 'LGA 1151 V2', 3200, '4600 Mhz', 'Intel UHD Graphics ', '14nm', 512, 65, 100, 'GAMING', '27500', 'INTEL I7-8700.jpg', 1),
 ('INTEL I7-9700', 'Intel', 8, 8, 'LGA 1151', 3000, '4700 Mhz', 'Intel UHD Graphics ', '14nm', 512, 65, 100, 'GAMING', '29500', 'INTEL I7-9700.jpg', 1),
-('INTEL I7-9700K', 'Intel', 8, 8, 'LGA 1151', 3600, '4900 Mhz', 'Intel UHD Graphics ', '14nm', 512, 95, 100, 'GAMING', '31000', 'INTEL I7-9700K.jpg', 1),
-('INTEL I9-9900', 'Intel', 8, 16, 'LGA 1151 V2', 3100, '5000 Mhz', 'Intel HD Graphics 630', '14nm', 512, 65, 100, 'GAMING', '37000', 'INTEL I9-9900.jpg', 1),
-('INTEL I9-9900K', 'Intel', 8, 16, 'LGA 1151 V2', 3600, '5000 Mhz', 'Intel HD Graphics 630', '14nm', 512, 95, 100, 'GAMING', '41500', 'INTEL I9-9900K.jpg', 1),
+('INTEL I7-9700K', 'Intel', 8, 8, 'LGA 1151', 3600, '4900 Mhz', 'Intel UHD Graphics ', '14nm', 512, 95, 100, 'PROFESSIONAL', '31000', 'INTEL I7-9700K.jpg', 1),
+('INTEL I9-9900', 'Intel', 8, 16, 'LGA 1151 V2', 3100, '5000 Mhz', 'Intel HD Graphics 630', '14nm', 512, 65, 100, 'PROFESSIONAL', '37000', 'INTEL I9-9900.jpg', 1),
+('INTEL I9-9900K', 'Intel', 8, 16, 'LGA 1151 V2', 3600, '5000 Mhz', 'Intel HD Graphics 630', '14nm', 512, 95, 100, 'PROFESSIONAL', '41500', 'INTEL I9-9900K.jpg', 1),
 ('INTEL XEON E-2100', 'Intel', 4, 8, 'LGA 1151 V2', 3800, '4700 Mhz', 'None', '14nm', 256, 71, 100, 'GAMING', '30000', 'INTEL XEON E-2100.jpg', 1),
-('INTEL XEON E-2176G', 'Intel', 6, 12, 'LGA 1151 V2', 3700, '4700 Mhz', 'None', '14nm', 386, 80, 100, 'GAMING', '34000', 'INTEL XEON E-2176G.jpg', 1);
+('INTEL XEON E-2176G', 'Intel', 6, 12, 'LGA 1151 V2', 3700, '4700 Mhz', 'None', '14nm', 386, 80, 100, 'PROFESSIONAL', '34000', 'INTEL XEON E-2176G.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -381,104 +416,49 @@ CREATE TABLE `ordertbl` (
   `category` varchar(25) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `qty` int(2) NOT NULL,
-  `total` decimal(20,0) NOT NULL
+  `total` decimal(20,0) NOT NULL,
+  `status` int(2) NOT NULL DEFAULT 1,
+  `save` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ordertbl`
 --
 
-INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`) VALUES
-(1, 'qwe', 'ASROCK B365', 'Motherboard', '9800', 1, '9800'),
-(2, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(3, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(4, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(5, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(6, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(7, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(8, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(9, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(10, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(11, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(12, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(13, 'qwe', 'ASUS EX B250-V7', 'Motherboard', '9100', 1, '9100'),
-(14, 'qwe', 'ASUS EX B250-V7', 'Motherboard', '9100', 1, '9100'),
-(15, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(16, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(17, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(18, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(19, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(20, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(21, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(22, 'qwe', 'ASUS EX B250-V7', 'Motherboard', '9100', 1, '9100'),
-(23, 'qwe', 'ASROCK B250', 'Motherboard', '8400', 1, '8400'),
-(24, 'qwe', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(25, 'qwe', 'ASROCK B365', 'Motherboard', '9800', 1, '9800'),
-(26, 'qwe', 'ASUS A68HM-K', 'Motherboard', '2920', 1, '2920'),
-(27, 'qwe', 'ASUS EX B250-V7', 'Motherboard', '9100', 1, '9100'),
-(28, 'qwe', 'ASROCK B250', 'Motherboard', '8400', 1, '8400'),
-(29, 'qwe', 'INTEL G4500', 'CPU', '6500', 1, '6500'),
-(30, 'qwe', 'ASROCK H270', 'Motherboard', '7300', 1, '7300'),
-(31, 'qwe', 'AMD 240GE', 'CPU', '6500', 1, '6500'),
-(37, 'jo', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(38, 'jo', 'AMD 220GE', 'CPU', '6100', 1, '6100'),
-(39, 'jo', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(40, 'jo', 'AMD 220GE', 'CPU', '6100', 1, '6100'),
-(41, 'jo', 'GOODRAM L15S', 'RAM', '3200', 1, '3200'),
-(42, 'jo', 'none', 'GPU', '0', 1, '0'),
-(43, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(44, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(45, 'jo', 'GIGABYTE X399', 'Motherboard', '44000', 1, '44000'),
-(46, 'jo', 'AMD RYZEN TR 1900X', 'CPU', '34000', 1, '34000'),
-(47, 'jo', 'SAMSUNG 0CB2', 'RAM', '14000', 1, '14000'),
-(48, 'jo', 'ASROCK AB350 PRO4', 'Motherboard', '8000', 1, '8000'),
-(49, 'jo', 'AMD 200GE', 'CPU', '5700', 1, '5700'),
-(50, 'jo', 'GOODRAM 4L19', 'RAM', '8500', 1, '8500'),
-(51, 'jo', 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850'),
-(52, 'jo', 'AMD A6-7400K', 'CPU', '3500', 1, '3500'),
-(53, 'jo', 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250'),
-(54, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(55, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(56, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(57, 'jo', 'MSI H110M', 'Motherboard', '2920', 1, '2920'),
-(58, 'jo', 'INTEL G3900', 'CPU', '3400', 1, '3400'),
-(59, 'jo', 'ASUS M5A78L-M', 'Motherboard', '2920', 1, '2920'),
-(60, 'jo', 'AMD FX-4350', 'CPU', '6100', 1, '6100'),
-(61, 'jo', 'ASUS X299', 'Motherboard', '46000', 1, '46000'),
-(62, 'jo', 'INTEL I7-7740X', 'CPU', '25000', 1, '25000'),
-(63, 'jo', 'MSI B360GPC', 'Motherboard', '12000', 1, '12000'),
-(64, 'jo', 'INTEL G3930', 'CPU', '5500', 1, '5500'),
-(65, 'jo', 'GOODRAM L17S', 'RAM', '6700', 1, '6700'),
-(66, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(67, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
-(68, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
-(69, 'jo', 'ASUS PRIME H310M-C', 'Motherboard', '6600', 1, '6600'),
-(70, 'jo', 'INTEL G4920', 'CPU', '5200', 1, '5200'),
-(71, 'jo', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000'),
-(72, 'jo', 'ASUS GT 710', 'GPU', '3800', 1, '3800'),
-(73, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
-(74, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
-(75, 'jo', 'WD GREEN DWS240', 'MEMORY', '2900', 1, '2900'),
-(76, 'jo', 'AEROCOOL KCAS 650G', 'SMPS', '7200', 1, '7200'),
-(77, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400'),
-(78, 'jo', 'GIGABYTE H110-D3', 'Motherboard', '5500', 1, '5500'),
-(79, 'jo', 'INTEL G3900', 'CPU', '3400', 1, '3400'),
-(80, 'jo', 'GOODRAM L15S', 'RAM', '3200', 1, '3200'),
-(81, 'jo', 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400'),
-(82, 'jo', 'WD GREEN DWS240', 'MEMORY', '2900', 1, '2900'),
-(83, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400'),
-(84, 'jo', 'ASUS M5A78L-M', 'Motherboard', '2920', 1, '2920'),
-(85, 'jo', 'AMD FX-4320', 'CPU', '5800', 1, '5800'),
-(86, 'jo', 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250'),
-(87, 'jo', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800'),
-(88, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
-(89, 'jo', 'AEROCOOL VX 500W', 'SMPS', '3200', 1, '3200'),
-(90, 'jo', 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850'),
-(91, 'jo', 'MSI H110M', 'Motherboard', '2920', 1, '2920'),
-(92, 'jo', 'INTEL G3930', 'CPU', '5500', 1, '5500'),
-(93, 'jo', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000'),
-(94, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400'),
-(95, 'jo', 'AEROCOOL VX 400W', 'SMPS', '2400', 1, '2400');
+INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`, `status`, `save`) VALUES
+(2, 'jo', 'HYPERX A400', 'MEMORY', '2900', 1, '2900', 0, 0),
+(3, 'jo', 'HYPERX A400', 'MEMORY', '2900', 1, '2900', 0, 0),
+(4, 'jo', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400', 0, 1),
+(20, 'jo', 'COOLER MASTER H500P', 'cabinet', '13500', 1, '13500', 0, 0),
+(21, 'jo', 'AMD A6-9400', 'CPU', '2800', 1, '2800', 0, 0),
+(22, 'jo', 'AMD A6-9400', 'CPU', '2800', 1, '2800', 0, 0),
+(23, 'jo', 'ASUS ROG Z390-H', 'Motherboard', '20900', 1, '20900', 0, 0),
+(24, 'jo', 'INTEL I5-9500', 'CPU', '18000', 1, '18000', 0, 0),
+(25, 'jo', 'GOODRAM L17S', 'RAM', '6700', 1, '6700', 0, 0),
+(26, 'jo', 'MSI RTX 2080Ti', 'GPU', '140000', 1, '140000', 0, 0),
+(27, 'jo', 'SAMSUNG 860 EVO', 'MEMORY', '6800', 1, '6800', 0, 0),
+(28, 'jo', 'WD BLUE DWS1000M', 'MEMORY', '10000', 1, '10000', 0, 0),
+(29, 'jo', 'AEROCOOL KCAS 650G', 'SMPS', '7200', 1, '7200', 0, 0),
+(30, 'jo', 'DEEPCOOL CASTLE 240', 'CPU FAN', '8000', 1, '8000', 0, 0),
+(31, 'jo', 'COOLER MASTER H500M', 'cabinet', '15500', 1, '15500', 0, 0),
+(32, 'jo', 'MSI H110M-R2', 'Motherboard', '3100', 1, '3100', 0, 1),
+(34, 'jo', 'ASUS MAXIMUS VIII', 'Motherboard', '13500', 1, '13500', 0, 0),
+(35, 'jo', 'INTEL I7-7700', 'CPU', '26000', 1, '26000', 0, 0),
+(36, 'jo', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000', 0, 0),
+(37, 'jo', 'GIGABYTE QR RTX 6000', 'GPU', '350000', 1, '350000', 0, 0),
+(38, 'jo', 'SAMSUNG 860 DCT', 'MEMORY', '30000', 1, '30000', 0, 0),
+(40, 'jo', 'AEROCOOL KCAS 650G', 'SMPS', '7200', 1, '7200', 0, 0),
+(41, 'jo', 'DEEPCOOL CASTLE 320', 'CPU FAN', '11000', 1, '11000', 0, 0),
+(42, 'jo', 'COOLER MASTER H500M', 'cabinet', '15500', 1, '15500', 0, 0),
+(43, 'jo', 'GIGABYTE X399', 'Motherboard', '44000', 1, '44000', 0, 0),
+(44, 'jo', 'AMD RYZEN TR 1920X', 'CPU', '50000', 1, '50000', 0, 0),
+(45, 'jo', 'GOODRAM L17S', 'RAM', '6700', 1, '6700', 0, 0),
+(46, 'jo', 'GIGABYTE QR RTX 6000', 'GPU', '350000', 1, '350000', 0, 0),
+(47, 'jo', 'SAMSUNG 860 DCT', 'MEMORY', '30000', 1, '30000', 0, 0),
+(48, 'jo', 'WD BLUE DWS1000M', 'MEMORY', '10000', 1, '10000', 0, 0),
+(49, 'jo', 'AEROCOOL GM 1200W', 'SMPS', '16000', 1, '16000', 0, 0),
+(50, 'jo', 'DEEPCOOL CASTLE 280', 'CPU FAN', '9000', 1, '9000', 0, 0),
+(51, 'jo', 'COOLER MASTER H500M', 'cabinet', '15500', 1, '15500', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -582,6 +562,12 @@ INSERT INTO `user_login` (`name`, `address`, `gender`, `email`, `phone`, `logini
 --
 
 --
+-- Indexes for table `cabinet_tbl`
+--
+ALTER TABLE `cabinet_tbl`
+  ADD PRIMARY KEY (`name`);
+
+--
 -- Indexes for table `cpu_fan_tbl`
 --
 ALTER TABLE `cpu_fan_tbl`
@@ -651,7 +637,7 @@ ALTER TABLE `user_login`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `user_login`
