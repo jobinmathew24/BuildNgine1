@@ -17,7 +17,7 @@ if (!isset($_POST['submit'])) {
   	var letters = /^[A-Za-z\s]+$/;
     if(namee.value == "")
     {
-      document.getElementById('n').innerHTML="<span class='error'>Please enter a valid name</span>"
+      document.getElementById('name').innerHTML="<span class='error'>Please enter a valid name</span>"
 
       namee.focus();
       return false;
@@ -25,13 +25,13 @@ if (!isset($_POST['submit'])) {
       if(namee.value.match(letters))
     {
          document.regform.address.focus();
-         document.getElementById('n').innerHTML="<span ></span>"
+         document.getElementById('name').innerHTML="<span ></span>"
          return true;
     }
 
     else
     {
-      document.getElementById('n').innerHTML="<span class='error'>Please enter a valid name</span>"
+      document.getElementById('name').innerHTML="<span class='error'>Please enter a valid name</span>"
       namee.focus();
       return false;
     }
@@ -40,12 +40,12 @@ if (!isset($_POST['submit'])) {
       var add=document.forms["regform"]["address"];
       if(add.value == "")
       {
-        document.getElementById('a').innerHTML="<span class='error'>Please enter a valid address</span>"
+        document.getElementById('addr').innerHTML="<span class='error'>Please enter a valid address</span>"
         add.focus();
       }
       else
       {
-        document.getElementById('a').innerHTML="<span ></span>"
+        document.getElementById('addr').innerHTML="<span ></span>"
         document.regform.email.focus();
       }
 
@@ -57,20 +57,20 @@ if (!isset($_POST['submit'])) {
       var mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if(emai.value == "")
       {
-        document.getElementById('e').innerHTML="<span class='error'>Please enter a email</span>"
+        document.getElementById('maile').innerHTML="<span class='error'>Please enter a email</span>"
         emai.focus();
       }
 
       if(emai.value.match(mail))
       {
-        document.getElementById('e').innerHTML="<span ></span>";
-        document.regform.ph.focus();
+        document.getElementById('maile').innerHTML="<span ></span>";
+        // document.regform.ph.focus();
         return true;
       }
 
       else
       {
-        document.getElementById('e').innerHTML="<span class='error'>Please enter a valid email</span>";
+        document.getElementById('maile').innerHTML="<span class='error'>Please enter a valid email</span>";
         emai.focus();
         return false;
       }
@@ -83,21 +83,21 @@ if (!isset($_POST['submit'])) {
 
       if(phone.value == "")
       {
-        document.getElementById('e').innerHTML="<span class='error'>Please enter a valid phone</span>";
+        document.getElementById('p4').innerHTML="<span class='error'>Please enter a valid phone</span>";
         phone.focus();
         return false;
       }
 
       if(phone.value.match(phn))
       {
-          document.getElementById('e').innerHTML="<span></span>";
+          document.getElementById('p4').innerHTML="<span></span>";
         document.regform.user1.focus();
         return true;
       }
 
       else
       {
-          document.getElementById('e').innerHTML="<span class='error'>Please enter a valid phone number</span>";
+          document.getElementById('p4').innerHTML="<span class='error'>Please enter a valid phone number</span>";
         phone.focus();
         return false;
 
@@ -130,7 +130,7 @@ if (!isset($_POST['submit'])) {
     function checkee() {
       var username = document.getElementById('nu').value;
             if (!username) return;
-            console.log("WORKING TILL HERE");
+            console.log("WORKING user TILL HERE");
             var ajax = new XMLHttpRequest();
             ajax.onreadystatechange = function(){
               if (this.readyState == 4 && this.status == 200 ){
@@ -144,6 +144,29 @@ if (!isset($_POST['submit'])) {
             }
             ajax.open("GET", "check.php?username="+username, true);
             ajax.send();
+
+}
+function che() {
+  var email = document.getElementById('em').value;
+        if (!email) return;
+        console.log("WORKING EMAIL TILL HERE");
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200 ){
+            console.log(this.response); //helps SEE WHATS GOING ON in the php file;
+            if(this.response=='TRUE'){
+                document.getElementById('maile').innerHTML="Email is taken once";
+                document.getElementById('em').value="";
+                document.forms["regform"]["email"].focus();
+            }
+            else {
+              document.regform.ph.focus();
+            }
+
+          }
+        }
+        ajax.open("GET", "checke.php?email="+email, true);
+        ajax.send();
 
 }
     function passe2()
@@ -198,7 +221,7 @@ color: white;
   }
 
   </style>
-    <link rel="stylesheet" href="BOOT.css">
+    <link rel="stylesheet" href="css/BOOT.css">
 </head>
 
 <body>
@@ -210,23 +233,30 @@ color: white;
 <h3 style="color:white;padding-left:250px;">New User</h3>
 <br>
 <input type="text"class="form-control" name="user" required placeholder="Name"  onblur="name1()"><br>
-<span id='n'></span>
+<span id='name'></span>
+<br>
 <textarea name="address" rows="8" cols="80"class="form-control" required onblur="addresss()" placeholder="Address"></textarea><br>
-<span id='a'></span>
+<span id='addr'></span>
+<br>
 <h6 style="padding-right:900px; color:white;">Gender:</h6>
 Male</h6> <input type="radio" name="gender" value="M" checked>
 Female </h6><input type="radio" name="gender" value="F"><br>
-
-<input type="email" name="email" required onblur="EMail()"class="form-control  form-group" value=""placeholder="E-mail">
-<span id='e'></span>
+<br>
+<input type="email" name="email" id="em" required onblur="EMail(); che()"class="form-control  form-group" value=""placeholder="E-mail">
+<span id='maile'></span>
+<br>
 <input type="text"required name="ph" onblur="phone()"class="form-control  form-group"value=""placeholder=" Phone Number">
-<span id='P4'></span>
-<input type="text" name="user1" onblur="userw(); checkee()" id="nu"required class="form-control  form-group" placeholder="Username">
+<span id='p4'></span>
+<br>
+<input type="text" name="user1" onblur="userw();checkee()" id="nu"required class="form-control  form-group" placeholder="Username">
 <span id='u'></span>
+<br>
 <input type="password"class="form-control  form-group" name="pass" required placeholder="Password">
 <span id='j'></span>
+<br>
 <input type="password"class="form-control  form-group" name="rpass"required onblur="passe2()" placeholder="Conform Password"><br>
 <span id ='p2'></span>
+<br>
 <input type="checkbox"required name="cheb"> <h6 style="color:white;">I accepts to the terms and conditions.<br>
 
 <br><input type="submit" class="btn btn-success" name="submit" value="Submit" >

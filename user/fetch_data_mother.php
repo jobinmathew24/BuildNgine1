@@ -40,7 +40,7 @@ if(isset($_POST["action"]))
 	{
 		$ram_filter = implode("','", $_POST["ram_type"]);
 		$query .= "
-		 AND product_ram IN('".$ram_filter."')
+		 AND ram_type IN('".$ram_filter."')
 		";
 	}
 	if(isset($_POST["max_ram"]))
@@ -99,6 +99,7 @@ if(isset($_POST["action"]))
 	}
 	else
 	{
+		// echo "$query";
 		$output = '<h3>No Data Found</h3>';
 	}
 
