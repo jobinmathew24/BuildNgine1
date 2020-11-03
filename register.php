@@ -1,5 +1,9 @@
 <?php
 if (!isset($_POST['submit'])) {
+
+
+  $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +13,16 @@ if (!isset($_POST['submit'])) {
   <title>Register</title>
   <script type="text/javascript">
 
+  function getdistrict(val) {
+  	$.ajax({
+  	method: "POST",
+  	url: "get_district.php",
+  	data:'state_id='+val,
+  	success: function(data){
+  		$("#district-list").html(data);
+  	}
+  	});
+  }
 
   function name1() {
 
@@ -46,7 +60,7 @@ if (!isset($_POST['submit'])) {
       else
       {
         document.getElementById('addr').innerHTML="<span ></span>"
-        document.regform.email.focus();
+
       }
 
     }
@@ -222,6 +236,7 @@ color: white;
 
   </style>
     <link rel="stylesheet" href="css/BOOT.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -241,6 +256,23 @@ color: white;
 <h6 style="padding-right:900px; color:white;">Gender:</h6>
 Male</h6> <input type="radio" name="gender" value="M" checked>
 Female </h6><input type="radio" name="gender" value="F"><br>
+<br>
+
+<select onChange="getdistrict(this.value);"  name="state" id="state" class="form-control" >
+<option value="">Select State Name</option>
+<?php $query =mysqli_query($con,"SELECT * FROM state");
+while($row=mysqli_fetch_array($query))
+{ ?>
+<option value="<?php echo $row['StCode'];?>"><?php echo $row['StateName'];?></option>
+<?php
+}
+?>
+</select>
+<br>
+<select name="district" id="district-list" class="form-control">
+<option value="">Select</option>
+</select>
+<br>
 <br>
 <input type="email" name="email" id="em" required onblur="EMail(); che()"class="form-control  form-group" value=""placeholder="E-mail">
 <span id='maile'></span>
@@ -276,6 +308,8 @@ Female </h6><input type="radio" name="gender" value="F"><br>
   $name=$_POST['user'];
   $address=$_POST['address'];
   $gender=$_POST['gender'];
+  $state=$_POST['state'];
+  $district=$_POST['district'];
   $email=$_POST['email'];
   $phone=$_POST['ph'];
   $username=$_POST['user1'];
@@ -291,7 +325,7 @@ Female </h6><input type="radio" name="gender" value="F"><br>
    if($n==0){
     // echo("username is taken");
     mysqli_query($con,$sql1);
-    $sql="insert into user_login(name,address,gender,email,phone,loginid)values('$name','$address','$gender','$email','$phone','$username')";
+    $sql="insert into user_login(name,address,gender,state,district,email,phone,loginid)values('$name','$address','$gender','$state','$district','$email','$phone','$username')";
 
     echo "$sql";
     mysqli_query($con,$sql) or die("query moonchi"); // but I think this is working fine;
