@@ -7,7 +7,7 @@ include('../../database/database_connection.php');
 if(isset($_POST["action"]))
 {
 	$query = "
-		SELECT * FROM mothertbl where status=1
+		SELECT * FROM mothertbl where status=1 and verified =1
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{
@@ -87,8 +87,8 @@ if(isset($_POST["action"]))
 					Max freq : '. $row['max_freq'] .' Mhz <br />
 					Purpose : '. $row['purpose'] .'  </p>
 					<br>
-					<i class="fa fa-shopping-cart"></i>
-					<input type="Submit" name="add" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
+					<i class="fa fa-archive"></i>
+					<input type="Submit" name="add" class="btn btn-warning" value="Set Unverified" onclick="one(\''.$row['name'].'\')">
 
 					</center>
 				</div>

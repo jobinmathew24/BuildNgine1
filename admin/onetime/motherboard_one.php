@@ -15,11 +15,45 @@ session_start();
 
   $cart=$row['Count(*)'];
 
-  $sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1";
+  $sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1 and verified=1";
   $result2=mysqli_query($con,$sql3)or die("price query moonchi");
   $row=mysqli_fetch_array($result2);
   $min=$row['min'];
   $max=$row['max'];
+
+  $sql3="select * from mothertbl where status=1 and verified=0";
+  $result2=mysqli_query($con,$sql3)or die("number query moonchi");
+
+  $sql3="select Count(*) from mothertbl where status=1 and verified=0";
+  $result4=mysqli_query($con,$sql3)or die("number query moonchi");
+  $roww=mysqli_fetch_array($result4);
+    $carte=$roww['Count(*)'];
+
+    if (isset($_POST['delete'])) {
+    $name=$_POST['result'];
+    $sql3="delete from mothertbl where name='$name'";
+    $result2=mysqli_query($con,$sql3)or die("number query moonchi");
+    header('location:motherboard_one.php');
+
+    }
+
+    if (isset($_POST['verify'])) {
+    $name=$_POST['result'];
+    $sql3="update mothertbl set verified=1 where name='$name'";
+    // echo $sql3;
+    $result2=mysqli_query($con,$sql3)or die("number query moonchi");
+    header('location:motherboard_one.php');
+
+    }
+    if (isset($_POST['add'])) {
+    $name=$_POST['result'];
+    $sql3="update mothertbl set verified=0 where name='$name'";
+    // echo $sql3;
+    $result2=mysqli_query($con,$sql3)or die("number query moonchi");
+    header('location:motherboard_one.php');
+
+    }
+
 
 ?>
 <html lang="en">
@@ -94,6 +128,69 @@ session_start();
         <br />
     <form id="forme" action="" method="post">
         <input type="hidden" name="result" id="resulte">
+        <div class="col-md-12">
+          <br />
+            <div class="row filter_datae">
+
+              <?php
+
+              if ($carte>0) {?>
+                <center>
+                  <h3>Not Verified Mother Boards</h3>
+                </center>
+                <?php
+               foreach($result2 as $row)
+                  {?>
+
+                  <div class="col-sm-12 col-lg-12 col-md-12">
+
+                    <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:190px;">
+                      <img  style="float:left; padding:5px;" src="../../project/mother/<?php echo $row['pic']  ?>" width="150px" height="150px" >
+
+
+                        <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
+                          ₹ <?php echo $row['price'] ?>
+                        </div></strong></h4>
+
+
+
+
+                        <strong> Company</strong> : <?php echo $row['company'] ?>&nbsp;&nbsp;
+                        <strong> Socket</strong> : <?php echo $row['socket'] ?>&nbsp;&nbsp;
+                        <strong> Form Factor</strong> : <?php echo $row['form_factor'] ?>&nbsp;&nbsp;
+                        <strong> RAM Type</strong> : <?php echo $row['ram_type'] ?>&nbsp;&nbsp;
+                        <strong> Max RAM</strong> : <?php echo $row['max_ram'] ?> Gb&nbsp;&nbsp;
+                        <br><br>
+
+                        <strong> PCIe Count</strong> : <?php echo $row['pcie_count'] ?>&nbsp;&nbsp;
+                        <strong> MB Power</strong> : <?php echo $row['mb_pow'] ?> Pin&nbsp;&nbsp;
+                        <strong> CPU Power</strong> : <?php echo $row['cpu_pow'] ?> Pin&nbsp;&nbsp;
+                        <strong> Chipset </strong> : <?php echo $row['chipset'] ?> &nbsp;&nbsp;
+                        <strong> RAM Count </strong> : <?php echo $row['ram_count'] ?> Pin&nbsp;&nbsp;
+                        <br><br>
+
+                        <strong> SATA Count</strong> : <?php echo $row['sata_count'] ?> Nos&nbsp;&nbsp;
+                        <strong> M.2 Count</strong> : <?php echo $row['m2_count'] ?> Nos&nbsp;&nbsp;
+                        <strong> Max Freq </strong> : <?php echo $row['max_freq'] ?> Mhz&nbsp;&nbsp;
+                        <strong> Purpose </strong> : <?php echo $row['purpose'] ?> &nbsp;&nbsp;
+
+                    <div style="float: right;">
+                      <i class="fa fa-trash"></i>
+                      <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
+                      &nbsp;
+                      <i class="fa fa-archive"></i>
+                      <input type="submit" name="verify" class="btn btn-primary" value="Save it as Verified" onclick="one('<?php echo $row['name'] ?>')">
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                <?php
+              }
+            }?>
+            </div>
+        </div>
         <div class="col-md-3">
           <div class="list-group">
            <h3>Price</h3>
@@ -227,6 +324,9 @@ session_start();
           </div>
 
           <div class="col-md-9">
+            <center>
+              <h3>Verified Motherboard</h3>
+            </center>
             <br />
               <div class="row filter_data">
 

@@ -13,16 +13,16 @@ session_start();
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
   $row=mysqli_fetch_array($result1);
 
-  $sql="select distinct(`socket`) from `mothertbl` order by `socket` desc";
+  $sql="select distinct(`socket`) from `mothertbl` where verified =1 order by `socket` desc";
   $sql_socket=mysqli_query($con,$sql);
 
-  $sql="select distinct(`ram_type`) from `mothertbl` order by `ram_type` desc";
+  $sql="select distinct(`ram_type`) from `mothertbl` where verified =1 order by `ram_type` desc";
   $sql_ram=mysqli_query($con,$sql);
 
-  $sql="select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
+  $sql="select distinct(`purpose`) from `mothertbl` where verified =1 order by `purpose` desc";
   $sql_pur=mysqli_query($con,$sql);
 
-  $sql="select distinct(`max_ram`) from `mothertbl` order by `max_ram` desc";
+  $sql="select distinct(`max_ram`) from `mothertbl` where verified =1 order by `max_ram` desc";
   $sql_max=mysqli_query($con,$sql);
 
 // $loc="SELECT * FROM tbl_location WHERE is_delete=1";
