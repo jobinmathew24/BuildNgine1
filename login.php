@@ -53,13 +53,13 @@ body
   background-image: url('slide2.jpg');
 
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
 
 }
 .p{
   background-color: rgba(0, 0, 0, 0.3);
-  height:100%;
-  width: 100%;
+  height:auto;
+  width: auto;
 }
 a{
   text-decoration: none;
@@ -100,8 +100,9 @@ if(isset($_POST['submit'])) {
 session_start();
   $username=$_POST['user'];
   $password=$_POST['pass'];
+  $password=md5($password);
   $sql="select * from logintable where loginid='$username' and password='$password'";
-// echo($sql);
+echo($sql);
 
   $con=mysqli_connect("localhost","root","","bulid");
    $result=mysqli_query($con,$sql);

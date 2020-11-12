@@ -31,18 +31,19 @@ body
   background-image: url('../slide2.jpg');
   position: absolute;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   color: white;
 
 }
 .p{
-  width: 1368px;;
+
   background-color: rgba(0, 0, 0, 0.4);
-  height:100%;
+
 }
-.i{ padding-top: 120px;
-height: 350px;
-width: 500px}
+.i{ padding-top: 220px;
+  padding-right: 100px;
+  padding-left: 100px;
+}
 
 
 </style>
@@ -72,7 +73,7 @@ width: 500px}
       </div>
     </div>
         <a href="#">welcome <?php echo($_SESSION['loginid'] )?></a>
-        <a href="Motherboard.php">Bulid a PC</a>
+        <a href="buliding.php">Bulid a PC</a>
         <a href="prebulit.php">Prebulit System</a>
         <a href="users.php">Home</a>
   </div>

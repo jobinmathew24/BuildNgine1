@@ -5,7 +5,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 }
 if(!isset($_SESSION['cpuname']))
 {
-  header('location:cpu.php');
+  header('location:buliding.php');
 }
 include('../database/database_connection.php');
 
@@ -37,11 +37,11 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty,1)";
 // echo $sql;
   $_SESSION['ramname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:gpu.php');
+header('location:buliding.php');
 }
 else {
 

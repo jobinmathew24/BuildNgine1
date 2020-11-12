@@ -5,7 +5,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 }
 if(!isset($_SESSION['gpuname']))
 {
-  header('location:gpu.php');
+  header('location:buliding.php');
 }
 include('../database/database_connection.php');
 
@@ -36,7 +36,7 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty,1)";
 // echo $sql;
   $_SESSION['memname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
@@ -44,7 +44,7 @@ if ($_SESSION['m2_count']>0) {
   header('location:mem_m2.php');
 }
 else {
-  header('location:smps.php');
+  header('location:buliding.php');
 }
 
 }

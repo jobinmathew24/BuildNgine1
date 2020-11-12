@@ -16,18 +16,20 @@ body
   background-image: url('slide2.jpg');
   position: absolute;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   color: white;
 
 }
 .p{
-  width: 1368px;;
+  width: auto%;;
   background-color: rgba(0, 0, 0, 0.4);
-  height:100%;
+  height:auto%;
 }
-.i{ padding-top: 120px;
-height: 350px;
-width: 500px}
+.i{ padding-top: 200px;
+  padding-left: 50px;
+  padding-right: 50px;
+height: auto;
+width: auto; }
 
 .j{ padding-top: 200px;}
 

@@ -16,7 +16,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1";
+$sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1 and verified =1 ";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -45,7 +45,7 @@ if (isset($_POST['add'])) {
   $_SESSION['max_freq']=$max_freq;
   $_SESSION['m2_count']=$m2_count;
 
-  $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$id','$name','Motherboard', $price,1,$price*1)";
+  $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$id','$name','Motherboard', $price,1,$price*1,1)";
 echo $sql;
   $result=mysqli_query($con,$sql)or die("query moonchi");
   header('location: cpu.php');
@@ -125,7 +125,7 @@ echo $sql;
 
                     <?php
 
-                    $query = "select distinct(`company`) from `mothertbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `mothertbl` where verified =1  order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -146,7 +146,7 @@ echo $sql;
                   <h3>Purpose</h3>
 
                       <?php
-                    $query = "select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
+                    $query = "select distinct(`purpose`) from `mothertbl` where verified =1  order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -167,7 +167,7 @@ echo $sql;
 					<h3>Socket</h3>
                     <?php
 
-                    $query = "select distinct(`socket`) from `mothertbl` order by `socket` desc";
+                    $query = "select distinct(`socket`) from `mothertbl` where verified =1  order by `socket` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -187,7 +187,7 @@ echo $sql;
                   <h3>Ram Type</h3>
                             <?php
 
-                            $query = "select distinct(`ram_type`) from `mothertbl` order by `ram_type` desc";
+                            $query = "select distinct(`ram_type`) from `mothertbl` where verified =1  order by `ram_type` desc";
                             $statement = $connect->prepare($query);
                             $statement->execute();
                             $result = $statement->fetchAll();
@@ -206,7 +206,7 @@ echo $sql;
                           <h3>Max RAM</h3>
                                     <?php
 
-                                    $query = "select distinct(`max_ram`) from `mothertbl` order by `max_ram` desc";
+                                    $query = "select distinct(`max_ram`) from `mothertbl` where verified =1  order by `max_ram` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
@@ -224,7 +224,7 @@ echo $sql;
 				<div class="list-group">
 					<h3>M.2 Support</h3>
 					<?php
-                    $query = "select distinct(`m2_count`) from `mothertbl` order by `m2_count` desc";
+                    $query = "select distinct(`m2_count`) from `mothertbl` where verified =1  order by `m2_count` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();

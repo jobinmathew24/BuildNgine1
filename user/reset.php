@@ -11,6 +11,8 @@ unset($_SESSION['ramname']);
 unset($_SESSION['gpuname']);
 unset($_SESSION['memname']);
 unset($_SESSION['smpsname']);
+unset($_SESSION['cpu_fanname']);
+unset($_SESSION['cabinetname']);
 $_SESSION['loginid']=$id;
 header('location: users.php');
  ?>

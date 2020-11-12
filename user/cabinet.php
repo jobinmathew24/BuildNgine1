@@ -5,6 +5,11 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 }
 include('../database/database_connection.php');
 
+if(!isset($_SESSION['cpu_fanname']))
+{
+  header('location:buliding.php');
+}
+
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
 // echo $sql2;
@@ -33,10 +38,11 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','cabinet', $price,1,$price*1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','cabinet', $price,1,$price*1,1)";
 // echo $sql;
+  $_SESSION['cabinetname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:reset.php');
+header('location:users.php');
 }
 else {
 

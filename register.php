@@ -223,12 +223,12 @@ color: white;
     background-image: url('slide2.jpg');
 
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
 
   }
   .p{
     background-color: rgba(0, 0, 0, 0.2);
-    height:100%;
+
   }
   h6{
     color:white;
@@ -241,7 +241,7 @@ color: white;
 
 <body>
   <div class="p ">
-    <div class="container col-sm-12 col-md-6">
+    <div class="container col-sm-12 col-md-6 ">
 
 <form  method="post"action="" name="regform" style="padding:75px; "class="form-group-sm container">
 
@@ -314,6 +314,8 @@ while($row=mysqli_fetch_array($query))
   $phone=$_POST['ph'];
   $username=$_POST['user1'];
   $password=$_POST['pass'];
+  $password=md5($password);
+
   $main="select * from logintable where loginid='$username'";
   $sql1="insert into logintable(loginid,password,usertype)values('$username','$password','user')";
   echo $sql1;

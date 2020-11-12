@@ -32,10 +32,10 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty,1)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:smps.php');
+header('location:buliding.php');
 }
 else {
 

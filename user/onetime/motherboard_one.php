@@ -14,7 +14,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1";
+$sql3="select MIN(price) as min, MAX(price) as max from mothertbl where status=1 and verified =1";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -31,7 +31,7 @@ if (isset($_POST['add'])) {
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','Motherboard', $price,1,$price*1)";
 // echo $sql;
-  $result=mysqli_query($con,$sql)or die("query moonchi");
+  $result=mysqli_query($con,$sql)or die("insert query moonchi");
   header('location: ../users.php');
 }
   else {
@@ -111,7 +111,7 @@ if (isset($_POST['add'])) {
 
                     <?php
 
-                    $query = "select distinct(`company`) from `mothertbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `mothertbl` where verified =1 order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -132,7 +132,7 @@ if (isset($_POST['add'])) {
                   <h3>Purpose</h3>
 
                       <?php
-                    $query = "select distinct(`purpose`) from `mothertbl` order by `purpose` desc";
+                    $query = "select distinct(`purpose`) from `mothertbl` where verified =1  order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -153,7 +153,7 @@ if (isset($_POST['add'])) {
 					<h3>Socket</h3>
                     <?php
 
-                    $query = "select distinct(`socket`) from `mothertbl` order by `socket` desc";
+                    $query = "select distinct(`socket`) from `mothertbl` where verified =1  order by `socket` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -173,7 +173,7 @@ if (isset($_POST['add'])) {
                   <h3>Ram Type</h3>
                             <?php
 
-                            $query = "select distinct(`ram_type`) from `mothertbl` order by `ram_type` desc";
+                            $query = "select distinct(`ram_type`) from `mothertbl` where verified =1  order by `ram_type` desc";
                             $statement = $connect->prepare($query);
                             $statement->execute();
                             $result = $statement->fetchAll();
@@ -192,7 +192,7 @@ if (isset($_POST['add'])) {
                           <h3>Max RAM</h3>
                                     <?php
 
-                                    $query = "select distinct(`max_ram`) from `mothertbl` order by `max_ram` desc";
+                                    $query = "select distinct(`max_ram`) from `mothertbl` where verified =1  order by `max_ram` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
@@ -210,7 +210,7 @@ if (isset($_POST['add'])) {
 				<div class="list-group">
 					<h3>M.2 Support</h3>
 					<?php
-                    $query = "select distinct(`m2_count`) from `mothertbl` order by `m2_count` desc";
+                    $query = "select distinct(`m2_count`) from `mothertbl` where verified =1  order by `m2_count` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -240,7 +240,7 @@ if (isset($_POST['add'])) {
 #loading
 {
 	text-align:center;
-	background: url('loader1.gif') no-repeat center;
+	background: url('../loader1.gif') no-repeat center;
 	height: 150px;
 }
 </style>

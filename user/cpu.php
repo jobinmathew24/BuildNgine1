@@ -5,7 +5,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
 }
 if(!isset($_SESSION['socket']))
 {
-  header('location:Motherboard:php');
+  header('location:buliding:php');
 }
 
 include('../database/database_connection.php');
@@ -37,11 +37,11 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','CPU', $price,1,$price*1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','CPU', $price,1,$price*1,1)";
   $_SESSION['cpuname']=$name;
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-  header('location: ram.php');
+  header('location: buliding.php');
 }
 else {
 
