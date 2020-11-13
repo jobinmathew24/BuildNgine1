@@ -68,7 +68,7 @@ if (!isset($_POST['submit'])) {
     function EMail()
     {
         var emai=document.forms["regform"]["email"];
-      var mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var mail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z]+(?:\.[a-zA-Z]{2,})*$/;
       if(emai.value == "")
       {
         document.getElementById('maile').innerHTML="<span class='error'>Please enter a email</span>"

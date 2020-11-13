@@ -82,7 +82,7 @@ A simple PC builder tool for the users. Select parts from the curated list of co
 to build your desktop computer in a few minutes. Whether you're building a general purpose
  computer or a gaming rig or a PC for photo/video editing, this little tool is going to save
   you some time and effort
-<form class="" action="motherboard.php" method="post">
+<form class="" action="buliding.php" method="post">
   <br>
   <input type="submit" class="btn btn-primary"value="Bulid your PC now">
 </form>

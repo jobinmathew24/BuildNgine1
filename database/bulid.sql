@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2020 at 08:26 PM
+-- Generation Time: Nov 13, 2020 at 10:34 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -978,6 +978,7 @@ CREATE TABLE `memory_tbl` (
 INSERT INTO `memory_tbl` (`name`, `company`, `size`, `form_factor`, `type`, `ssd_type`, `rpm`, `price`, `pic`, `status`) VALUES
 ('HYPERX A400', 'HYPERX', 120, '\"2.5', 'SSD', '3D V-NAND', 0, '2900', 'HYPERX A400.jpg', 1),
 ('HYPERX FURY S44', 'HYPERX', 240, '\"2.5', 'SSD', '3D V-NAND', 0, '5000', 'HYPERX FURY S44.jpg', 1),
+('null', '', 0, '', '', '', 0, '0', '', 0),
 ('SAMSUNG 860 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'SAMSUNG 860 DCT.jpg', 1),
 ('SAMSUNG 860 EVO', 'Samsung', 500, '\"2.5', 'SSD', '3D V-NAND', 0, '6800', 'SAMSUNG 860 EVO.jpg', 1),
 ('SAMSUNG 920 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'SAMSUNG 920 DCT.jpg', 1),
@@ -1093,14 +1094,7 @@ CREATE TABLE `ordertbl` (
 --
 
 INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`, `status`, `bulid`, `save`) VALUES
-(75, 'joe', 'MSI H110M', 'Motherboard', '2920', 1, '2920', 1, 1, 0),
-(76, 'joe', 'INTEL I7-7700K', 'CPU', '27000', 1, '27000', 1, 1, 0),
-(77, 'joe', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000', 1, 1, 0),
-(78, 'joe', 'MSI GTX 1650', 'GPU', '16000', 1, '16000', 1, 1, 0),
-(79, 'joe', 'HYPERX A400', 'MEMORY', '2900', 1, '2900', 1, 1, 0),
-(80, 'joe', 'DEEPCOOL DN500', 'SMPS', '5000', 1, '5000', 1, 1, 0),
-(81, 'joe', 'DEEPCOOL 31 PWM', 'CPU FAN', '1800', 1, '1800', 1, 1, 0),
-(82, 'joe', 'APPLE MAC PRO', 'cabinet', '18000', 1, '18000', 1, 1, 0);
+(147, 'joe', 'MSI H110M-R2', 'Motherboard', '3100', 1, '3100', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1111,6 +1105,7 @@ INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`
 CREATE TABLE `prebuilt_tbl` (
   `prebuilt_id` int(10) NOT NULL,
   `loginid` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `motherboard` varchar(50) NOT NULL,
   `cpu` varchar(50) NOT NULL,
   `ram` varchar(50) NOT NULL,
@@ -1128,6 +1123,18 @@ CREATE TABLE `prebuilt_tbl` (
   `price` decimal(10,0) NOT NULL,
   `status` int(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prebuilt_tbl`
+--
+
+INSERT INTO `prebuilt_tbl` (`prebuilt_id`, `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`, `os`, `apps`, `display`, `keyboard`, `mouse`, `price`, `status`) VALUES
+(4, 'joe', ' LITE 5 AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 500Gb   HDD  Graphics GDDR3 1 GB', 'ASROCK FM2A68M', 'AMD A6-7400K', 'SAMSUNG 3CH0', 'GIGABYTE R5 230', 'WD BLUE WD5000AZRZ', 'null', 'DEEPCOOL DN500', 'DEEPCOOL BETA 10', 'COOLER MASTER LITE 5', 'null', 'null', 'null', 'null', 'null', '26400', 1),
+(5, 'joe', 'TESSERACT BF INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 500Gb   SSD  Graphics GDDR3 1 GB', 'ASUS B150 PRO', 'INTEL I7-9700K', 'SAMSUNG 3DB0', 'ASUS GT 710', 'HYPERX A400', 'WD BLACK DWS500', 'DEEPCOOL DN500', 'DEEPCOOL MAXX 300', 'DEEPCOOL TESSERACT BF', 'null', 'null', 'null', 'null', 'null', '81230', 1),
+(6, 'joe', 'MATREXX 55X INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 240Gb   HDD  Graphics GDDR3 2 GB', 'ASUS H110-PLUS', 'INTEL I7-7700', 'SAMSUNG 3DB0', 'MSI R7 240', 'HYPERX FURY S44', 'null', 'AEROCOOL VX 700W', 'DEEPCOOL MAXX 300', 'DEEPCOOL MATREXX 55X', 'null', 'null', 'null', 'null', 'null', '64000', 1),
+(7, 'joe', 'H500P INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GDDR3 2 GB', 'MSI H110M-R2', 'INTEL I7-9700K', 'SAMSUNG 3DB0', 'MSI GT 710', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL VX 400W', 'COOL MASTER AIR 8', 'COOLER MASTER H500P', 'null', 'null', 'null', 'null', 'null', '98400', 1),
+(8, 'joe', 'MAC PRO INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 1000Gb   HDD  Graphics GDDR3 1 GB', 'MSI H110M', 'INTEL G3930', 'SAMSUNG 3DB0', 'ASUS GT 710', 'WD BLUE DWS1000', 'null', 'COOL MASTER V3', 'DEEPCOOL CASTLE 320', 'APPLE MAC PRO', 'null', 'null', 'null', 'null', 'null', '86320', 1),
+(9, 'joe', 'MAC PRO INTEL I9-9900K 5000 Mhz  8Gb  DDR4   RAM 240Gb   HDD 240Gb   SSD  Graphics GDDR5 2 GB', 'ASROCK B250', 'INTEL I9-9900K', 'GOODRAM L17S', 'GIGABYTE RX 550', 'HYPERX FURY S44', 'WD GREEN DWS240', 'ZALMAN ZM1000', 'DEEPCOOL CASTLE 240', 'APPLE MAC PRO', 'null', 'null', 'null', 'null', 'null', '114000', 1);
 
 -- --------------------------------------------------------
 
@@ -1395,13 +1402,13 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `prebuilt_tbl`
 --
 ALTER TABLE `prebuilt_tbl`
-  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `state`

@@ -47,6 +47,7 @@ if (isset($_POST['add'])) {
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$id','$name','Motherboard', $price,1,$price*1,1)";
 echo $sql;
+$_SESSION['mbname']=$name;
   $result=mysqli_query($con,$sql)or die("query moonchi");
   header('location: cpu.php');
 }

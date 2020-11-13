@@ -34,6 +34,7 @@ while ($rows=mysqli_fetch_array($result)) {
 }
 $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','MEMORY', $price,$qty,$price*$qty,1)";
 // echo $sql;
+$_SESSION['m2_mem']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:buliding.php');
 }
