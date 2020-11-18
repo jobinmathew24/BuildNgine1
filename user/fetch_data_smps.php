@@ -66,7 +66,7 @@ $cpu_pow=$_SESSION['cpu_pow'];
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Manufacture : '. $row['company'].' <br />
 					Power : '. $row['power'] .' W<br  />
-					CPU Power : '. $row['cpu_pow'] .' <br  />
+					CPU Power :'. $row['cpu_pow'] .' <br  />
 					MB Power : '. $row['mb_pow'] .' <br  />
 					SATA Count : '. $row['sata_count'] .' <br  />
 					PCIe Count : '. $row['pci_count'] .' <br  />

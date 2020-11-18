@@ -76,7 +76,7 @@ a{
 
     <center>
 
-  <form method="post"  action="" style="padding:200px;" name="regform"class="form-group-sm container ">
+  <form method="post"  action="" style="padding:150px;" name="regform"class="form-group-sm container ">
   <h3 style="color: white;">Login</h3>
 
     <br>
@@ -84,16 +84,22 @@ a{
   <span id="u"style="color:red; font-size:20px;"></span><br>
   <input type="password"class="form-control  form-group" required onblur="check()" name="pass" placeholder="Password"><br>
   <span id="u1" style="color:red; font-size:20px;"></span><br>
+  <!-- <div id="forgote"></div><br> -->
+
+
+
 <br>
   <input type="submit" class="btn btn-success" name="submit" value="Submit" >
   <br>
   <br>
-  <h5><a href="register.php">New User</a></h5>
+  <h5><a style="color:white;" href="register.php">New User</a>
+  &nbsp;<a style="color:white;" href="forgot.php">Forgot Password ? </a></h5>
   </form>
   </center>
   </div>
   </div>
 <?php
+
 if(isset($_POST['submit'])) {
 
 
@@ -107,6 +113,7 @@ echo($sql);
   $con=mysqli_connect("localhost","root","","bulid");
    $result=mysqli_query($con,$sql);
    $n=mysqli_num_rows($result);
+   $try=1;
      // echo $n;
    if($n>0){
      $rows=mysqli_fetch_array($result);
@@ -128,6 +135,7 @@ echo($sql);
      ?>
 <script type="text/javascript">
 document.getElementById('u1').innerHTML="Please enter a valid user credentials";
+// document.getElementById("forgote").innerHTML = "<a href="asd.php">asd</a>";
 
 </script>
 <?php

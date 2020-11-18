@@ -97,7 +97,7 @@ $socket=$_SESSION['socket'];
 </form>
 	<?php
 	echo $output;
-	echo $query;
+	// echo $query;
 }
 
 ?>
