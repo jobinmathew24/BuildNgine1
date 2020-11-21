@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2020 at 10:34 AM
+-- Generation Time: Nov 20, 2020 at 02:48 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -949,6 +949,7 @@ CREATE TABLE `logintable` (
 --
 
 INSERT INTO `logintable` (`loginid`, `password`, `usertype`) VALUES
+('ajualx', '28dcc1da30ca857246c1d160db06abef', 'user'),
 ('asd', '7815696ecbf1c96e6894b779456d330e', 'admin'),
 ('Joe', '3a368818b7341d48660e8dd6c5a77dbe', 'user');
 
@@ -1079,22 +1080,32 @@ INSERT INTO `mothertbl` (`name`, `company`, `socket`, `form_factor`, `ram_type`,
 CREATE TABLE `ordertbl` (
   `orderid` int(10) NOT NULL,
   `loginid` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(200) NOT NULL,
   `category` varchar(25) NOT NULL,
   `price` decimal(10,0) NOT NULL,
   `qty` int(2) NOT NULL,
   `total` decimal(20,0) NOT NULL,
   `status` int(2) NOT NULL DEFAULT 1,
   `bulid` int(2) NOT NULL DEFAULT 0,
-  `save` int(2) NOT NULL DEFAULT 0
+  `save` int(2) NOT NULL DEFAULT 0,
+  `pic` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ordertbl`
 --
 
-INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`, `status`, `bulid`, `save`) VALUES
-(147, 'joe', 'MSI H110M-R2', 'Motherboard', '3100', 1, '3100', 1, 1, 0);
+INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`, `status`, `bulid`, `save`, `pic`) VALUES
+(167, 'ajualx', 'INTEL I9-9900K', 'CPU', '41500', 1, '41500', 1, 0, 0, ''),
+(168, 'ajualx', 'APPLE MAC PRO', 'cabinet', '18000', 1, '18000', 1, 0, 0, ''),
+(198, 'Joe', 'MAC PRO INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'Business', '123630', 1, '123630', 1, 0, 0, 'APPLE MAC PRO'),
+(208, 'joe', ' LITE 5 INTEL I7-10700 4800 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '108200', 1, '108200', 1, 0, 0, 'COOLER MASTER LITE 5'),
+(217, 'joe', 'MATREXX 55X INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'professional', '34900', 1, '34900', 1, 0, 0, 'DEEPCOOL MATREXX 55X'),
+(226, 'joe', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52920', 1, '52920', 1, 0, 0, 'COOLER MASTER MB500'),
+(227, 'joe', 'MSI GT 710', 'GPU', '3300', 1, '3300', 1, 0, 0, ''),
+(236, 'joe', 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39970', 1, '39970', 1, 0, 0, 'APPLE MAC PRO'),
+(237, 'joe', 'MSI H110M', 'Motherboard', '2920', 1, '2920', 1, 0, 0, ''),
+(238, 'joe', 'GIGABYTE F2A68HM', 'Motherboard', '3150', 1, '3150', 1, 1, 0, '');
 
 -- --------------------------------------------------------
 
@@ -1115,12 +1126,21 @@ CREATE TABLE `prebuilt_tbl` (
   `smps` varchar(50) NOT NULL,
   `cpu_fan` varchar(50) NOT NULL DEFAULT 'null',
   `cabinet` varchar(50) NOT NULL,
+  `cpu_name` varchar(25) NOT NULL,
+  `cpu_freq` int(10) NOT NULL,
+  `ram_size` int(10) NOT NULL,
+  `ram_type` varchar(25) NOT NULL,
+  `hdd_size` int(10) NOT NULL,
+  `grap_comp` varchar(25) NOT NULL,
+  `grap_size` int(10) NOT NULL,
   `os` varchar(50) NOT NULL DEFAULT 'null',
   `apps` varchar(50) NOT NULL DEFAULT 'null',
   `display` varchar(50) NOT NULL DEFAULT 'null',
   `keyboard` varchar(50) NOT NULL DEFAULT 'null',
   `mouse` varchar(50) NOT NULL DEFAULT 'null',
   `price` decimal(10,0) NOT NULL,
+  `pic` varchar(200) NOT NULL,
+  `category` varchar(25) NOT NULL,
   `status` int(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1128,13 +1148,13 @@ CREATE TABLE `prebuilt_tbl` (
 -- Dumping data for table `prebuilt_tbl`
 --
 
-INSERT INTO `prebuilt_tbl` (`prebuilt_id`, `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`, `os`, `apps`, `display`, `keyboard`, `mouse`, `price`, `status`) VALUES
-(4, 'joe', ' LITE 5 AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 500Gb   HDD  Graphics GDDR3 1 GB', 'ASROCK FM2A68M', 'AMD A6-7400K', 'SAMSUNG 3CH0', 'GIGABYTE R5 230', 'WD BLUE WD5000AZRZ', 'null', 'DEEPCOOL DN500', 'DEEPCOOL BETA 10', 'COOLER MASTER LITE 5', 'null', 'null', 'null', 'null', 'null', '26400', 1),
-(5, 'joe', 'TESSERACT BF INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 500Gb   SSD  Graphics GDDR3 1 GB', 'ASUS B150 PRO', 'INTEL I7-9700K', 'SAMSUNG 3DB0', 'ASUS GT 710', 'HYPERX A400', 'WD BLACK DWS500', 'DEEPCOOL DN500', 'DEEPCOOL MAXX 300', 'DEEPCOOL TESSERACT BF', 'null', 'null', 'null', 'null', 'null', '81230', 1),
-(6, 'joe', 'MATREXX 55X INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 240Gb   HDD  Graphics GDDR3 2 GB', 'ASUS H110-PLUS', 'INTEL I7-7700', 'SAMSUNG 3DB0', 'MSI R7 240', 'HYPERX FURY S44', 'null', 'AEROCOOL VX 700W', 'DEEPCOOL MAXX 300', 'DEEPCOOL MATREXX 55X', 'null', 'null', 'null', 'null', 'null', '64000', 1),
-(7, 'joe', 'H500P INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GDDR3 2 GB', 'MSI H110M-R2', 'INTEL I7-9700K', 'SAMSUNG 3DB0', 'MSI GT 710', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL VX 400W', 'COOL MASTER AIR 8', 'COOLER MASTER H500P', 'null', 'null', 'null', 'null', 'null', '98400', 1),
-(8, 'joe', 'MAC PRO INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 1000Gb   HDD  Graphics GDDR3 1 GB', 'MSI H110M', 'INTEL G3930', 'SAMSUNG 3DB0', 'ASUS GT 710', 'WD BLUE DWS1000', 'null', 'COOL MASTER V3', 'DEEPCOOL CASTLE 320', 'APPLE MAC PRO', 'null', 'null', 'null', 'null', 'null', '86320', 1),
-(9, 'joe', 'MAC PRO INTEL I9-9900K 5000 Mhz  8Gb  DDR4   RAM 240Gb   HDD 240Gb   SSD  Graphics GDDR5 2 GB', 'ASROCK B250', 'INTEL I9-9900K', 'GOODRAM L17S', 'GIGABYTE RX 550', 'HYPERX FURY S44', 'WD GREEN DWS240', 'ZALMAN ZM1000', 'DEEPCOOL CASTLE 240', 'APPLE MAC PRO', 'null', 'null', 'null', 'null', 'null', '114000', 1);
+INSERT INTO `prebuilt_tbl` (`prebuilt_id`, `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`, `cpu_name`, `cpu_freq`, `ram_size`, `ram_type`, `hdd_size`, `grap_comp`, `grap_size`, `os`, `apps`, `display`, `keyboard`, `mouse`, `price`, `pic`, `category`, `status`) VALUES
+(3, 'Joe', ' LITE 5 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 3000Gb   HDD 500Gb   SSD  Graphics ASUS GDDR3 1 GB', 'ASUS B150 PRO', 'INTEL I7-7700', 'SAMSUNG 3DB0', 'ASUS GT 710', 'SEAGATE ST3000DM006', 'WD BLACK DWS500', 'AEROCOOL VX 700W', 'DEEPCOOL MAXX 300', 'COOLER MASTER LITE 5', 'INTEL I7-7700', 4200, 8, 'DDR4', 3000, 'ASUS', 1, 'null', 'null', 'null', 'null', 'null', '6800', 'COOLER MASTER LITE 5', 'professional', 1),
+(4, 'Joe', 'MAC PRO INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'ASUS B150 PRO', 'INTEL I7-9700K', 'SAMSUNG 3DB0', 'ASUS GT 710', 'SAMSUNG 920 DCT', 'WD BLUE DWS1000M', 'ZALMAN ZM850', 'DEEPCOOL CASTLE 240', 'APPLE MAC PRO', 'INTEL I7-9700K', 4900, 8, 'DDR4', 2000, 'ASUS', 1, 'null', 'null', 'null', 'null', 'null', '123630', 'APPLE MAC PRO', 'Business', 1),
+(5, 'joe', ' LITE 5 INTEL I7-10700 4800 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'ASUS H310-PLUS', 'INTEL I7-10700', 'GOODRAM L17S', 'ASUS GT 710', 'SAMSUNG 860 DCT', 'WD BLUE DWS1000M', 'AEROCOOL VX 700W', 'DEEPCOOL MAXX 300', 'COOLER MASTER LITE 5', 'INTEL I7-10700', 4800, 8, 'DDR4', 2000, 'ASUS', 1, 'null', 'null', 'null', 'null', 'null', '108200', 'COOLER MASTER LITE 5', 'professional', 1),
+(6, 'joe', 'MATREXX 55X INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'ASUS H110-PLUS', 'INTEL G3930', 'SAMSUNG 3DB0', 'MSI GT 710', 'HYPERX A400', 'null', 'DEEPCOOL DN500', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G3930', 2900, 8, 'DDR4', 120, 'MSI', 2, 'null', 'null', 'null', 'null', 'null', '34900', 'DEEPCOOL MATREXX 55X', 'professional', 1),
+(7, 'joe', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'MSI H110M', 'INTEL I7-7700', 'SAMSUNG 3DB0', 'GIGABYTE R5 230', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL VX 500W', 'AEROCOOL VERKHO 3+', 'COOLER MASTER MB500', 'INTEL I7-7700', 4200, 8, 'DDR4', 500, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '52920', 'COOLER MASTER MB500', 'gaming', 1),
+(8, 'joe', 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'ASUS A68HM-K', 'AMD A6-7400K', 'SAMSUNG 3CH0', 'GIGABYTE R5 230', 'HYPERX FURY S44', 'null', 'DEEPCOOL DN500', 'DEEPCOOL CK-AM209', 'APPLE MAC PRO', 'AMD A6-7400K', 3900, 4, 'DDR3', 240, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '39970', 'APPLE MAC PRO', 'Business', 1);
 
 -- --------------------------------------------------------
 
@@ -1285,7 +1305,8 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login` (`name`, `address`, `gender`, `state`, `district`, `email`, `phone`, `loginid`, `regid`) VALUES
 ('asd', 'asd', 'M', 18, 'Kottayam', 'asd@gmail.com', '7897897897', 'asd', 6),
-('jobin', 'ambatu', 'M', 18, 'Kottayam', 'jobinrj31255@gmail.com', '8977897788', 'Joe', 7);
+('jobin', 'ambatu', 'M', 18, 'Kottayam', 'jobinrj31255@gmail.com', '8977897788', 'Joe', 7),
+('Aju Alex', 'My Address', 'M', 18, 'Kottayam', 'hellogmagil@com', '8779322316', 'ajualx', 8);
 
 --
 -- Indexes for dumped tables
@@ -1402,13 +1423,13 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT for table `prebuilt_tbl`
 --
 ALTER TABLE `prebuilt_tbl`
-  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -1420,7 +1441,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `regid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `regid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

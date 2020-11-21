@@ -68,7 +68,7 @@ if(isset($_POST["action"]))
 	$output = '
 	<div class="col-sm-4 col-lg-3 col-md-3">
 	<center>
-		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:500px;">
+		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
 			<img src="../project/gpu/none.png" width="150px" height="150px" >
 			<p align="center"><strong> None</strong></p>
 			<h4 style="text-align:center;" class="text-danger" >₹ 0</h4>

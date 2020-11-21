@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
- if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
+ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
   header('location: ../login.php');
   }
   include('../database/database_connection.php');
@@ -112,7 +112,7 @@ session_start();
 
       <!-- <a href="Motherboard.php">Bulid a PC</a> -->
       <a href="prebulit.php">Prebulit System</a>
-      <a href="admin.php">Home</a>
+      <a href="retailer.php">Home</a>
   </div>
   <center>
     <div class="container">
@@ -121,7 +121,7 @@ session_start();
         <hr>
         <h6>Try to use accurate data</h6>
         <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
-      <form form action="" method="post" name="mothertbl" enctype="multipart/form-data" class="form-group-sm container"  >
+      <form action="" method="post" name="mothertbl" enctype="multipart/form-data" class="form-group-sm container"  >
         <hr>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="Motherboard Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>

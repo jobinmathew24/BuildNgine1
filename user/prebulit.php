@@ -145,7 +145,7 @@ else {
                 		{?>
                     <div class="col-sm-12 col-lg-12 col-md-12">
 
-              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:170px;">
+              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
               					<img  style="float:left; padding:5px;"src="../cart/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
 
                         <div style="float: left;">
@@ -176,7 +176,8 @@ else {
 
                         </div>
 
-
+                        <br>
+                        <br>
 
               				</div>
 

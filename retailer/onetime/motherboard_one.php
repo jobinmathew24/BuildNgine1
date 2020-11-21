@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
- if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
+ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
   header('location: ../../login.php');
   }
   include('../../database/database_connection.php');
@@ -120,7 +120,7 @@ session_start();
 
       <!-- <a href="Motherboard.php">Bulid a PC</a> -->
       <a href="../prebulit.php">Prebulit System</a>
-      <a href="../admin.php">Home</a>
+      <a href="../retailer.php">Home</a>
   </div>
   <body>
     <div class="container">
@@ -144,7 +144,7 @@ session_start();
 
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
-                    <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:190px;">
+                    <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;;">
                       <img  style="float:left; padding:5px;" src="../../project/mother/<?php echo $row['pic']  ?>" width="150px" height="150px" >
 
 

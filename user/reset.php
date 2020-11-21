@@ -37,7 +37,9 @@ $resultprocess=mysqli_query($con,$processorsql)or die($processorsql);
 $row=mysqli_fetch_array($resultprocess);
 
 $name.=$row['name']. " ";
+$processor=$row['name'];
 $name.=$row['turboboost']. "  ";
+$cpu_freq=$row['turboboost'];
 
 
 $ramsql="select ram_size from ram_tbl where name='$ramname'";
@@ -45,6 +47,7 @@ $resultram=mysqli_query($con,$ramsql)or die($ramsql);
 $row=mysqli_fetch_array($resultram);
 
 $name.=$row['ram_size']. "Gb  ";
+$ram_size=$row['ram_size'];
 
 $name.=$ram_type."   RAM ";
 
@@ -53,6 +56,7 @@ $resulthdd=mysqli_query($con,$hddsql)or die($hddsql);
 $row=mysqli_fetch_array($resulthdd);
 
 $name.=$row['size']. "Gb  ";
+$size=$row['size'];
 $name.=" HDD ";
 
 if($m2_count>0)
@@ -65,24 +69,39 @@ $name.=$row['size']. "Gb  ";
 $name.=" SSD ";
 }
 
-$vramsql="select mem_type,mem_size from gpu_tbl where name='$gpuname'";
+$vramsql="select mem_type,mem_size,company from gpu_tbl where name='$gpuname'";
 $resultvram=mysqli_query($con,$vramsql)or die($vramsql);
 $row=mysqli_fetch_array($resultvram);
 
-$name.=" Graphics ".$row['mem_type']." ";
+$name.=" Graphics ".$row['company']." ";
+$name.=$row['mem_type']." ";
 $name.=$row['mem_size'];
+$graphic_comp=$row['company'];
+$gra_size=$row['mem_size'];
 // echo "$name";
 $pricesql ="select sum(price) as total from ordertbl where loginid='$id' and bulid=1";
 $resultprice=mysqli_query($con,$pricesql)or die($pricesql);
 $row=mysqli_fetch_array($resultprice);
 $price=$row['total'];
+if($price>10000){
+  $cat="Business";
+}
+if ($price>50000) {
+  $cat="gaming";
+}
+if ($price>110000) {
+  $cat="professional";
+}
 
-$sql="insert into `prebuilt_tbl`( `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`,price)
-                          VALUES('$id','$name','$mbname','$cpuname','$ramname','$gpuname','$memname','$m2_mem','$smpsname','$cpu_fanname','$cabinetname',$price)";
+$sql="insert into `prebuilt_tbl`( `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`, `cpu_name`, `cpu_freq`, `ram_size`, `ram_type`, `hdd_size`, `grap_comp`, `grap_size`,`category`,`pic`,`price`)
+                          VALUES('$id','$name','$mbname','$cpuname','$ramname','$gpuname','$memname','$m2_mem','$smpsname','$cpu_fanname','$cabinetname','$processor','$cpu_freq',$ram_size,'$ram_type','$size','$graphic_comp','$gra_size','$cat','$cabinetname',$price)";
 
 if(mysqli_query($con,$sql)or die($sql)){
   $delete="delete from ordertbl where bulid=1";
+  $sqlod="insert into `ordertbl`(`loginid`, `name`, `category`, `price`, `qty`, `total`, `pic`)VALUES('$id','$name','$cat',$price,'1',$price*1,'$cabinetname')";
+
   mysqli_query($con,$delete)or die($delete);
+  mysqli_query($con,$sqlod)or die($sqlod);
 
   $id=$_SESSION['loginid'];
   unset($_SESSION['socket']);

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
+if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
   header('location: ../login.php');
 }
 include('../database/database_connection.php');
@@ -108,7 +108,7 @@ else {
     </div>
   </div>
       <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-      <a href="admin.php">Home</a>
+      <a href="retailer.php">Home</a>
 </div>
 
   <script type="text/javascript">
@@ -140,7 +140,7 @@ else {
                 		{?>
                     <div class="col-sm-12 col-lg-12 col-md-12">
 
-              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:170px;">
+              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;;">
               					<img  style="float:left;"src="../cart/<?php echo $row['name']  ?>.jpg " width="100px" height="100px" >
 
                         <div style="float: left;">

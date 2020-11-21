@@ -126,6 +126,10 @@ echo($sql);
 
        header('location:admin/admin.php');
      }
+    elseif($user=='retailer')
+     {
+        header('location:retailer/retailer.php');
+     }
 
      else{
        header('location:user/users.php');

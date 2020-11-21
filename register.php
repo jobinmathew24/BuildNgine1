@@ -324,6 +324,7 @@ while($row=mysqli_fetch_array($query))
    $result=mysqli_query($con,$main);
    $n=mysqli_num_rows($result);
    // echo($n)
+  
    if($n==0){
     // echo("username is taken");
     mysqli_query($con,$sql1);
