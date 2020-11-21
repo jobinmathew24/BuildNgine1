@@ -3,28 +3,29 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
  header('location: ../login.php');
  }
-$con=mysqli_connect("localhost","root","","projectdb");
+ $loginid=$_SESSION['loginid'];
+$con=mysqli_connect("localhost","root","","bulid");
 
 
 
 //  total num of customers
-$count="SELECT * from tbl_customer";
+$count="select * from logintable where usertype='user' and status=1";
 $count_query=mysqli_query($con,$count);
 $row = mysqli_num_rows($count_query);
 
 //total num of service providers
-$count_sp="SELECT * from tbl_login where role_id=4 and aproval_status=1";
+$count_sp="select * from logintable where usertype='retailer' and status=1";
 $countsp_query=mysqli_query($con,$count_sp);
 $row_sp = mysqli_num_rows($countsp_query);
 
 // new requested service providers
-$count_s="SELECT lid from tbl_login where role_id=4 and aproval_status=0 and is_delete=1";
+$count_s="select * from logintable where usertype='retailer' and status=0";
 $counts_query=mysqli_query($con,$count_s);
 $row_s = mysqli_num_rows($counts_query);
 
 
 // total number of employee
-$count_emp="SELECT * FROM tbl_employee";
+$count_emp="select * from logintable where usertype='retailer' and status=0";
 $emp_query=mysqli_query($con,$count_emp);
 $row_emp = mysqli_num_rows($emp_query);
 
@@ -54,8 +55,8 @@ if(isset($_POST['insert'])){
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="admin_stylesheet.css">
-        <script src="js/sidebarfun.js"></script>
+        <link rel="stylesheet" href="../css/admin.css">
+        <script src="../js/sidebar.js"></script>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -78,14 +79,14 @@ if(isset($_POST['insert'])){
         <!-- Sidebar -->
     <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
        <div class="simplebar-content" style="padding: 0px;">
-				<a class="sidebar-brand" href="Admin_index.html">
-          <span class="align-middle">End To End Workers</span>
+				<a class="sidebar-brand" href="admin.php">
+          <i class="fas fa-cogs"></i><span class="align-middle" style="padding-left:5px;">BulidNgine</span>
         </a>
 
 				 <ul class="navbar-nav align-self-stretch">
 
         <li class="sidebar-header">
-                Pages
+                Admin Control
 		</li>
 	<li class=""><a class="nav-link text-left active"  href="#sp_table" onclick="adminhome()">Home
        <i class="flaticon-bar-chart-1"></i>
@@ -118,11 +119,11 @@ if(isset($_POST['insert'])){
             </li>
 
           <li class="">
-            <a class="nav-link text-left active" href="#servicepro" onclick="serviceprovider()"> Service Provider</a>
+            <a class="nav-link text-left active" href="#servicepro" onclick="serviceprovider()"> Admin</a>
             </li>
 
             <li class="">
-                <a class="nav-link text-left active" href="#emp" onclick="employe()"> Employee </a>
+                <a class="nav-link text-left active" href="#emp" onclick="employe()"> Retailers </a>
                 </li>
                 <li class="">
             <a class="nav-link text-left active"  role="button"
@@ -224,13 +225,13 @@ if(isset($_POST['insert'])){
                         while($d=mysqli_fetch_array($counts_query))
                         {
 
-                           $logid=$d['lid'];
-                           $sp_na="select * from tbl_serviceproviders where login_id=$logid";
-                           $ser_query=mysqli_query($con,$sp_na);
-                            while($spr=mysqli_fetch_array($ser_query))
-                            {
-                              $n=$spr['sp_name'];
-                            }
+                           $n=$d['loginid'];
+                           // $sp_na="select * from tbl_serviceproviders where login_id=$logid";
+                           // $ser_query=mysqli_query($con,$sp_na);
+                           //  while($spr=mysqli_fetch_array($ser_query))
+                           //  {
+                           //    $n=$spr['sp_name'];
+                           //  }
                           ?><tr><?php
                           echo $n." sends you an aproval Request<br>";
                           ?></tr>
@@ -260,10 +261,17 @@ if(isset($_POST['insert'])){
 
             <!-- Nav Item - User Information -->
             <li>
+              <a  href="profile.php"  role="button" >
+                <label ><b style="font-famiy: Times New Roman, Times, serif;">Welcome <?php echo $loginid ?></b></label>
+              </a>
+            </li>
+            <li>
+
               <a  href="logout.php" id="userDropdown" role="button" >
                 <label ><b style="font-famiy: Times New Roman, Times, serif;">Signout</b></label>
               </a>
             </li>
+
 
           </ul>
 
@@ -288,7 +296,7 @@ if(isset($_POST['insert'])){
 									<div class="col-sm-4">
 										<div class="card">
 											<div class="card-body">
-												<h5 class="card-title mb-4">Sevice Providers</h5>
+												<h5 class="card-title mb-4">Retailers</h5>
 												<h1 class="display-5 mt-1 mb-3">
                         <?php
                             echo $row_sp;
@@ -316,13 +324,43 @@ if(isset($_POST['insert'])){
 									<div class="col-sm-4">
 										<div class="card">
 											<div class="card-body">
-												<h5 class="card-title mb-4">Employes</h5>
+												<h5 class="card-title mb-4">Retailer need Attention</h5>
 												<h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
 
 											</div>
 										</div>
 
 									</div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Total Orders</h5>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">New Orders</h5>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">Complaints</h5>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+
+                      </div>
+                    </div>
+
+                  </div>
 
                             <!-- <div class="table-responsive">
                                 <table class="table v-middle">
@@ -596,24 +634,30 @@ if(isset($_POST['insert'])){
             <div class="table-title">
                 <div class="row">
                     <!-- <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div> -->
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div>
                         <button type="button" class="btn btn-info add-new"  id="add-new"><i class="fa fa-plus"></i> Add New</button>
+
+
                     </div>
+                    <br>
                 </div>
             </div>
             <table class="table table-bordered" id="pre-sc">
                 <thead>
                     <tr>
                         <!-- <th>slno</th> -->
-                        <th>Service Category</th>
-                        <th>Amount/Month</th>
-                        <th>Image</th>
+                        <th>Retailer Shop</th>
+                        <th>Retailer Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Picture</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                            $services="SELECT * FROM tbl_services WHERE is_delete='1'";
+                            $services="select loginid from logintable where usertype='retailer'";
                             $ser_query=mysqli_query($con,$services);
                             while($row=mysqli_fetch_array($ser_query))
                             {?>
@@ -621,19 +665,37 @@ if(isset($_POST['insert'])){
                         <!-- <td>John Doe</td> -->
                         <th>
                           <?php
-                              echo $row['sc_name'];
-                              $amt=$row['amount'];
-                              $image=$row['img'];
+                              echo $row['loginid'];
+                            $loginid=$row['loginid'];
+                            $services1="select name,email,phone,pic from user_login where loginid='$loginid'";
+                            $ser_query1=mysqli_query($con,$services1);
+                            while($rows=mysqli_fetch_array($ser_query1)){
+
+                              $name=$rows['name'];
+                              $email=$rows['email'];
+                              $phone=$rows['phone'];
+                              $pic=$rows['pic'];
+
 
                           ?>
                         </th>
                         <th>
                           <?php
-                            echo $amt;
+                            echo $name;
                           ?>
                         </th>
                         <th>
-                          <img src="images/<?php echo $image;?>" width="60px" height="50px"/>
+                          <?php
+                            echo $email;
+                          ?>
+                        </th>
+                        <th>
+                          <?php
+                            echo $phone;
+                          ?>
+                        </th>
+                        <th>
+                          <img src="../images/users/<?php echo $pic;?>" width="60px" height="50px"/>
 
                         </th>
                         <td style="border-top:0px;text-align:center;">
@@ -643,6 +705,7 @@ if(isset($_POST['insert'])){
                         </a></td>
                     </tr>
                     <?php
+                  }
                         }
                     ?>
                 </tbody>
@@ -690,10 +753,12 @@ if(isset($_POST['insert'])){
 <table class="table table-bordered">
 <thead>
   <tr>
-  <th>Name</th>
-  <th>Service Category</th>
-  <th>Lisence Number</th>
-  <th>Action</th>
+    <th>Retailer Shop</th>
+    <th>Retailer Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Picture</th>
+    <th>Actions</th>
 </tr>
 </thead>
 <tbody>
@@ -706,35 +771,38 @@ if(isset($_POST['insert'])){
   }
   else
   {
-    $count_s="SELECT lid from tbl_login where role_id=4 and aproval_status=0 and is_delete=1";
+    $count_s="select loginid from logintable where usertype='retailer' and status=0";
     $counts_query=mysqli_query($con,$count_s);
     $row_s = mysqli_num_rows($counts_query);
     while($data=mysqli_fetch_array($counts_query))
  {
 
-    $lid=$data['lid'];
+    $lid=$data['loginid'];
     $_SESSION['lid']=$lid;
-    $sp_name="select * from tbl_serviceproviders where login_id=$lid";
+    $sp_name="select * from user_login where loginid='$lid'";
     $serv_query=mysqli_query($con,$sp_name);
    while($dta=mysqli_fetch_array($serv_query))
    {
-    $sp_names=$dta['sp_name'];
-    $lno=$dta['lisenceno'];
-    $d=$dta['sc_id'];
+    $name=$dta['name'];
+    $email=$dta['email'];
+    $phone=$dta['phone'];
+    $pic=$dta['pic'];
    }
  ?>
 <tr>
-<th><?php echo $sp_names; ?></th>
+<th><?php echo $lid; ?></th>
 <th><?php
-           $sc="SELECT * FROM tbl_services where sc_id=$d";
-            $sc_query=mysqli_query($con,$sc);
-            $data=mysqli_fetch_array($sc_query);
-            $sc_name= $data['sc_name'];
-            echo $sc_name;
+
+            echo $name;
 
 
           ?> </th>
-<th><?php echo $lno; ?></th>
+<th><?php echo $email; ?></th>
+<th><?php echo $phone; ?></th>
+<th>
+  <img src="../images/users/<?php echo $pic;?>" width="60px" height="50px"/>
+
+</th>
 <td>
   <button class="btn btn-sm btn-success btn-inline sc_approve" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Approve">Approve</button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_reject" onclick=""  title="Delete">Reject</button></a><a>
@@ -746,6 +814,9 @@ if(isset($_POST['insert'])){
 ?>
 </tbody>
 </table>
+<br>
+<br>
+<br>
 </div>
 <!-- SP details -->
 
@@ -764,18 +835,17 @@ if(isset($_POST['insert'])){
 </thead>
 <tbody>
 <?php
-  $employe="select * from tbl_employee";
+  $employe="select loginid from logintable where usertype='reatailer' and status=1";
   $employee_query=mysqli_query($con,$employe);
   while($r=mysqli_fetch_array($employee_query))
   {
-    $name=$r['employee_name'];
-    $sp=$r['sp_id'];
-    $sc=$r['sc_id'];
+    $name=$r['loginid'];
+
   ?>
 <tr>
 <th><?php echo $name; ?></th>
 <th><?php
-$service_providers="select * from tbl_serviceproviders where sp_id=$sp";
+$service_providers="select name,email from user_login where loginid=$name";
 $sp_query=mysqli_query($con,$service_providers);
 while($row=mysqli_fetch_array($sp_query))
 {
