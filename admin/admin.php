@@ -14,7 +14,7 @@ $count_query=mysqli_query($con,$count);
 $row = mysqli_num_rows($count_query);
 
 //total num of service providers
-$count_sp="select * from logintable where usertype='retailer' and status=1";
+$count_sp="select * from logintable where usertype='retailer' ";
 $countsp_query=mysqli_query($con,$count_sp);
 $row_sp = mysqli_num_rows($countsp_query);
 
@@ -28,6 +28,26 @@ $row_s = mysqli_num_rows($counts_query);
 $count_emp="select * from logintable where usertype='retailer' and status=0";
 $emp_query=mysqli_query($con,$count_emp);
 $row_emp = mysqli_num_rows($emp_query);
+
+// total number of Complaints
+$count_comp="select * from Complaints where status=1";
+$comp_query=mysqli_query($con,$count_comp);
+$row_comp = mysqli_num_rows($comp_query);
+
+// total number of Orders
+$count_total_order="select * from ordertbl";
+$Total_order_query=mysqli_query($con,$count_total_order);
+$row_total = mysqli_num_rows($Total_order_query);
+
+// total number of new Orders
+$count_total_order="select * from ordertbl where status=1";
+$Total_order_query=mysqli_query($con,$count_total_order);
+$row_neworder = mysqli_num_rows($Total_order_query);
+
+// total number of new prebulid sys
+$count_total_order="select * from prebuilt_tbl";
+$Total_order_query=mysqli_query($con,$count_total_order);
+$row_pre = mysqli_num_rows($Total_order_query);
 
 // Insert Image
 if(isset($_POST['insert'])){
@@ -77,7 +97,7 @@ if(isset($_POST['insert'])){
    <div class="overlay"></div>
 
         <!-- Sidebar -->
-    <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation">
+    <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation" >
        <div class="simplebar-content" style="padding: 0px;">
 				<a class="sidebar-brand" href="admin.php">
           <i class="fas fa-cogs"></i><span class="align-middle" style="padding-left:5px;">BulidNgine</span>
@@ -293,7 +313,7 @@ if(isset($_POST['insert'])){
     </div>
   <div class="col-md-12">
        <div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Retailers</h5>
@@ -307,7 +327,7 @@ if(isset($_POST['insert'])){
 										</div>
 
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Customers</h5>
@@ -321,7 +341,7 @@ if(isset($_POST['insert'])){
 										</div>
 
 									</div>
-									<div class="col-sm-4">
+									<div class="col-sm-3">
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Retailer need Attention</h5>
@@ -331,35 +351,44 @@ if(isset($_POST['insert'])){
 										</div>
 
 									</div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title mb-4">Total Orders</h5>
-                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_total;?></h1>
 
                       </div>
                     </div>
 
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title mb-4">New Orders</h5>
-                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_neworder;?></h1>
 
                       </div>
                     </div>
 
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-3">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title mb-4">Complaints</h5>
-                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_emp;?></h1>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_comp;?></h1>
 
                       </div>
                     </div>
 
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title mb-4">New Prebluid systems</h5>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_pre;?></h1>
+
+                      </div>
+                    </div>
                   </div>
 
                             <!-- <div class="table-responsive">
@@ -822,7 +851,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Employee Details -->
-<div id="emp" style="display:none;">
+<div id="emp" style="display:inline;">
 <table class="table table-bordered">
 <thead>
 
@@ -900,6 +929,9 @@ while($row=mysqli_fetch_array($sc_query))
 </tbody>
 </table>
 </div>
+<?php
+include('../php/footer.php');
+ ?>
 <!-- customer Details -->
 
     <!-- Optional JavaScript -->

@@ -95,8 +95,8 @@ to build your desktop computer in a few minutes. Whether you're building a gener
 </div>
     </center>
   </main>
-<?php
-
- ?>
+  <?php
+  include('../php/footer.php');
+   ?>
 </body>
 </html>
