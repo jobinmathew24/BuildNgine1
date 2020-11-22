@@ -1,83 +1,80 @@
+
 function adminhome()
 {
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-    document.getElementById("ascm").style.display = "none";
-    document.getElementById("servicepro").style.display = "inline";
-    document.getElementById("sp_table").style.display = "inline";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
+    document.getElementById("orders").style.display = "none";
+    document.getElementById("retailer").style.display = "none";
+    document.getElementById("stats").style.display = "inline";
+    document.getElementById("retailer_att").style.display = "inline";
     // document.getElementById("sp").style.display = "none";
-    document.getElementById("emp").style.display = "none";
     document.getElementById("customer").style.display = "none";
 }
-function admindist()
+function del_state()
 {
     // document.getElementById("alc").style.display = "inline";
-    document.getElementById("new-district").style.display = "inline";
-    document.getElementById("servicepro").style.display = "none";
-    document.getElementById("ascm").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-    document.getElementById("sp_table").style.display = "none";
-    document.getElementById("sp").style.display = "none";
-    document.getElementById("emp").style.display = "none";
+    document.getElementById("delete_state").style.display = "inline";
+    document.getElementById("retailer_att").style.display = "none";
+    document.getElementById("retailer").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
+    document.getElementById("stats").style.display = "none";
+    // document.getElementById("sp").style.display = "none";
+    document.getElementById("orders").style.display = "none";
     document.getElementById("customer").style.display = "none";
 }
-function adminloc()
+function del_district()
 {
-    // document.getElementById("alc").style.display = "inline";
-    document.getElementById("new-location").style.display = "inline";
-    document.getElementById("ascm").style.display = "none";
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("sp_table").style.display = "none";
-    document.getElementById("servicepro").style.display = "none";
-    document.getElementById("emp").style.display = "none";
+    document.getElementById("delete_district").style.display = "inline";
+    document.getElementById("retailer").style.display = "none";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("stats").style.display = "none";
+    document.getElementById("retailer_att").style.display = "none";
+    document.getElementById("orders").style.display = "none";
     document.getElementById("customer").style.display = "none";
-    document.getElementById("servicepro").style.display = "none";
+    document.getElementById("retailer_att").style.display = "none";
 
 }
-function adminscmanagment()
+function retailer()
 {
-    document.getElementById("ascm").style.display = "inline";
-    document.getElementById("sp_table").style.display = "none";
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-    document.getElementById("servicepro").style.display = "none";
-    document.getElementById("emp").style.display = "none";
+    document.getElementById("retailer").style.display = "inline";
+    document.getElementById("stats").style.display = "none";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
+    document.getElementById("orders").style.display = "none";
     document.getElementById("customer").style.display = "none";
-
+    document.getElementById("retailer_att").style.display = "none";
 
 }
-function serviceprovider()
+function retailer_att()
 {
-    document.getElementById("servicepro").style.display = "inline";
-    document.getElementById("ascm").style.display = "none";
-    // document.getElementById("alc").style.display = "none";
-    document.getElementById("sp_table").style.display = "none";
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-    document.getElementById("emp").style.display = "none";
+      document.getElementById("customer").style.display = "none";
+    document.getElementById("retailer_att").style.display = "inline";
+    document.getElementById("retailer").style.display = "none";
+    document.getElementById("stats").style.display = "none";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
+    document.getElementById("orders").style.display = "none";
     document.getElementById("customer").style.display = "none";
 }
-function employe()
+function order()
 {
-    document.getElementById("emp").style.display = "inline";
-    document.getElementById("servicepro").style.display = "none";
-    document.getElementById("ascm").style.display = "none";
-    // document.getElementById("alc").style.display = "none";
-    // document.getElementById("sp_table").style.display = "none";
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-
+    document.getElementById("orders").style.display = "inline";
+    document.getElementById("retailer_att").style.display = "none";
+    document.getElementById("retailer").style.display = "none";
+    document.getElementById("stats").style.display = "none";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
     document.getElementById("customer").style.display = "none";
 }
 function cust()
 {
 
     document.getElementById("customer").style.display = "inline";
-    document.getElementById("servicepro").style.display = "none";
-    document.getElementById("ascm").style.display = "none";
+    document.getElementById("retailer_att").style.display = "none";
+    document.getElementById("retailer").style.display = "none";
     // document.getElementById("alc").style.display = "none";
-    // document.getElementById("sp_table").style.display = "none";
-    document.getElementById("new-district").style.display = "none";
-    document.getElementById("new-location").style.display = "none";
-    document.getElementById("emp").style.display = "none";
+    document.getElementById("stats").style.display = "none";
+    document.getElementById("delete_state").style.display = "none";
+    document.getElementById("delete_district").style.display = "none";
+    document.getElementById("orders").style.display = "none";
 }

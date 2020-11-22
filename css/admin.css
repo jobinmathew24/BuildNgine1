@@ -5,7 +5,15 @@ body {
   background: #f7f7fc;
   font-family: 'Roboto', sans-serif;
 }
+.my-navbar {
+position: fixed;
+z-index: 10;
+width: 100%;
+}
 
+.table-responsive {
+overflow-x:revert;
+}
 a:hover{
 color:white;
 text-decoration:none;

@@ -92,12 +92,12 @@ if(isset($_POST['insert'])){
 
   <body>
 
-
+        <!-- Sidebar wrapper -->
   <div id="wrapper">
-   <div class="overlay"></div>
+    <div class="overlay"></div>
 
         <!-- Sidebar -->
-    <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation" >
+        <nav class="fixed-top align-top" id="sidebar-wrapper" role="navigation" >
        <div class="simplebar-content" style="padding: 0px;">
 				<a class="sidebar-brand" href="admin.php">
           <i class="fas fa-cogs"></i><span class="align-middle" style="padding-left:5px;">BulidNgine</span>
@@ -105,10 +105,8 @@ if(isset($_POST['insert'])){
 
 				 <ul class="navbar-nav align-self-stretch">
 
-        <li class="sidebar-header">
-                Admin Control
-		</li>
-	<li class=""><a class="nav-link text-left active"  href="#sp_table" onclick="adminhome()">Home
+        <li class="sidebar-header">Admin Control</li>
+	       <li class=""><a class="nav-link text-left active"  href="#stats" onclick="adminhome()">Home
        <i class="flaticon-bar-chart-1"></i>
          </a>
           </li>
@@ -123,8 +121,8 @@ if(isset($_POST['insert'])){
 								<div class="col-lg-12 px-2">
 									<div class="submenu-box">
 										<ul class="list-unstyled m-0" id="dropdown-menu">
-											<li><a href="#new-district" onclick="admindist()">Add District</a></li>
-											<li><a href="#new-location" onclick="adminloc()">Add Location</a></li>
+											<li><a href="#delete_state" onclick="del_state()">Delete State</a></li>
+											<li><a href="#delete_district" onclick="del_district()">Delete district</a></li>
 										</ul>
 									</div>
 								</div>
@@ -134,24 +132,41 @@ if(isset($_POST['insert'])){
 		     </div>
 		  </div>
 		  </li>
-          <li class="">
-            <a class="nav-link text-left active" href="#ascm" onclick="adminscmanagment()"> Category Management </a>
-            </li>
+
 
           <li class="">
-            <a class="nav-link text-left active" href="#servicepro" onclick="serviceprovider()"> Admin</a>
+            <a class="nav-link text-left active" href="#retailer_att" onclick="retailer_att()"> Admin</a>
             </li>
 
             <li class="">
-                <a class="nav-link text-left active" href="#emp" onclick="employe()"> Retailers </a>
+                <a class="nav-link text-left active" href="#retailer" onclick="retailer()"> Retailers </a>
+                </li>
+
+                  <li class="">
+                      <a class="nav-link text-left active" href="#retailer_att" onclick="retailer_att()"> Retailers Needs Attention </a>
+                      </li>
+                      <li class="">
+            <a class="nav-link text-left active" href="#customer" onclick="cust()">  Customers  </a>
+            </li>
+            <li class="">
+              <a class="nav-link text-left active" href="#order" onclick="order()"> Orders </a>
+              </li>
+              <li class="">
+                <a class="nav-link text-left active" href="#complaints" onclick="complaints()"> Complaints </a>
                 </li>
                 <li class="">
-            <a class="nav-link text-left active"  role="button"
-            aria-haspopup="true" aria-expanded="false" href="#customer" onclick="cust()">  Customers  </a>
-            </li>
+                  <a class="nav-link text-left active" href="#prebulit" onclick="prebulit()"> Prebulit Systems </a>
+                  </li>
 
+                  <li class="">
+                    <a class="nav-link text-left active" href="logout.php"> Logout </a>
+                    </li>
+
+          </ul>
+          </div>
 
     </nav>
+  </div>
         <!-- /#sidebar-wrapper -->
 
 
@@ -235,7 +250,7 @@ if(isset($_POST['insert'])){
                   ?> new notifications
 								</div>
 								<div class="list-group">
-									<a href="#servicepro" class="list-group-item">
+									<a href="#retailer_att" class="list-group-item">
 										<div class="row no-gutters align-items-center">
 
 											<div class="col-12">
@@ -297,9 +312,13 @@ if(isset($_POST['insert'])){
 
         </nav>
 
+
 <span id="sucess-msg"></span>
         <!-- End of Topbar -->
-<div id="sp_table" style="display:inline ;">
+        <div id="rowr" style="padding-top:50px;">
+
+        </div>
+<div id="stats" style="display:inline ;">
 
   <div class="container-fluid px-lg-4">
   <div class="row">
@@ -311,7 +330,8 @@ if(isset($_POST['insert'])){
 			Generate Report</a>
           </div> -->
     </div>
-  <div class="col-md-12">
+
+  <div class="col-md-12" style="padding-top: 55px;">
        <div class="row">
 									<div class="col-sm-3">
 										<div class="card">
@@ -391,89 +411,7 @@ if(isset($_POST['insert'])){
                     </div>
                   </div>
 
-                            <!-- <div class="table-responsive">
-                                <table class="table v-middle">
-                                    <thead>
-                                        <tr class="bg-light">
-                                            <th class="border-top-0">Service ID</th>
-                                            <th class="border-top-0">Service Provider</th>
-                                            <th class="border-top-0">Service Category</th>
-                                            <th class="border-top-0">Lisence Number</th>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                      $sp="SELECT * FROM tbl_serviceproviders";
-                                      $sp_query=mysqli_query($con,$sp);
-                                      $r=mysqli_num_rows($sp_query);
-                                      if($r>0)
-                                      {
-                                      while($data=mysqli_fetch_assoc($sp_query))
-                                      {
-                                         $d= $data['sc_id'];
-                                         $sp_name=$data['sp_name'];
-                                         $lno=$data['lisenceno'];
-
-
-
-
-                                      ?>
-                                      <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="m-r-10"><a class="btn btn-circle btn-info text-white">
-
-                                                         echo $d;
-
-                                                    ?>
-                                                    </a>
-                                                    </div>
-                                                    </td>
-
-                                                    <td>
-                                                    <div class="d-flex align-items-center">
-
-
-
-                                                                echo $sp_name;
-                                                        ?>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td>
-
-                                                $sc="SELECT * FROM tbl_services where sc_id=$d";
-                                                $sc_query=mysqli_query($con,$sc);
-                                                while($data=mysqli_fetch_assoc($sc_query))
-                                                {
-                                                    $sc_name= $data['sc_name'];
-
-
-                                                }
-                                                  echo $sc_name;
-
-
-                                            ?>
-                                            </td>
-
-                                            <td>
-
-
-                                               echo $lno;
-                                            ?>
-                                            </td>
-                                              </tr>
-
-                                       }}
-                                       ?>
-
-                                </table>
-                            </div>
-                        </div>
-                   </div> -->
                     </div>
 
         </div>
@@ -492,7 +430,7 @@ if(isset($_POST['insert'])){
     <!-- Admin District control -->
     <span id="error-msg"></span>
  <div id="adminlocation">
-  <div id="new-district" style="display:none;">
+  <div id="delete_state" style="display:none;">
   <div class="container">
   <!-- <div style="float: left;"> -->
   <button class="btn btn-primary" data-target="#demo-lg-modalSMSAll" data-toggle="modal" id="add-new-dis">Add New</button>
@@ -557,7 +495,7 @@ if(isset($_POST['insert'])){
     </div>
 <br>
             <!-- Location Management -->
-<div id="new-location" style="display: none;">
+<div id="delete_district" style="display: none;">
 <button class="btn btn-primary" data-target="#demo-lg-modalSMSAll" data-toggle="modal" id="add-new-loc" style="margin-left:30px;">Add New</button>
   <!-- </div> -->
   <div class="row">
@@ -656,21 +594,12 @@ if(isset($_POST['insert'])){
 
 
 <div id="admin_sc_management">
-<div class="container col-sm-12" style="display: inline;" id="ascm">
+<div class="container col-sm-12" style="display: inline;" id="retailer">
 
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
-                <div class="row">
-                    <!-- <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div> -->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div>
-                        <button type="button" class="btn btn-info add-new"  id="add-new"><i class="fa fa-plus"></i> Add New</button>
 
-
-                    </div>
-                    <br>
-                </div>
             </div>
             <table class="table table-bordered" id="pre-sc">
                 <thead>
@@ -778,7 +707,7 @@ if(isset($_POST['insert'])){
 
 <!-- SP Details -->
 <span id="Notification_msg"></span>
-<div id="servicepro" style="display:inline">
+<div id="retailer_att" style="display:inline">
 <table class="table table-bordered">
 <thead>
   <tr>
@@ -794,7 +723,7 @@ if(isset($_POST['insert'])){
 <?php
   if($row_s==0)
   {
-    echo "<script> $('#servicepro').css('display','none');</script>";
+    echo "<script> $('#retailer_att').css('display','none');</script>";
     echo "<script> $('#Notification_msg').text(' No new Notification');</script>";
 
   }
@@ -851,46 +780,44 @@ if(isset($_POST['insert'])){
 
 
 <!-- Employee Details -->
-<div id="emp" style="display:inline;">
+<div id="orders" style="display:none;">
 <table class="table table-bordered">
 <thead>
 
 <tr>
-<th>Name</th>
-<th>Service Provider</th>
-<th>Service Category</th>
-<th>Action</th>
+<th>Order ID</th>
+<th>Product Name</th>
+<th>User Name</th>
+<th>Category</th>
+<th>Sold By</th>
+<th>Price</th>
+<th>Image</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
 <?php
-  $employe="select loginid from logintable where usertype='reatailer' and status=1";
+  $employe="select orderid,loginid,name,sold_by,category,total,pic FROM ordertbl where status=1";
   $employee_query=mysqli_query($con,$employe);
   while($r=mysqli_fetch_array($employee_query))
   {
-    $name=$r['loginid'];
+    $username=$r['loginid'];
+    $orderid=$r['orderid'];
+    $name=$r['name'];
+    $sold_by=$r['sold_by'];
+    $cateory=$r['category'];
+    $price=$r['total'];
+    $img=$r['pic'];
 
   ?>
 <tr>
-<th><?php echo $name; ?></th>
-<th><?php
-$service_providers="select name,email from user_login where loginid=$name";
-$sp_query=mysqli_query($con,$service_providers);
-while($row=mysqli_fetch_array($sp_query))
-{
-  echo $row['sp_name'];
-}
-?></th>
-<th>
-<?php
-$sc="select * from tbl_services where sc_id=$sc";
-$sc_query=mysqli_query($con,$sc);
-while($row=mysqli_fetch_array($sc_query))
-{
-  echo $row['sc_name'];
-}
-?>
-</th>
+<th><?php echo $orderid; ?></th>
+<th><?php echo $name;?></th>
+<th><?php echo $username;?></th>
+<th><?php echo $cateory;?></th>
+<th><?php echo $sold_by;?></th>
+<th><?php echo $price;?></th>
+<th><img src="../cart/<?php echo $img;?>.jpg" alt="" width="50px" height="60px"> </th>
 <td>
   <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
@@ -910,23 +837,55 @@ while($row=mysqli_fetch_array($sc_query))
 <table class="table table-bordered">
 <thead>
 <tr>
+<th>User Name</th>
 <th>Customer Name</th>
-<th>Booking Details</th>
-<th>Employee</th>
-<th>Action</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Picture</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
+<?php
+  $employe="select loginid from logintable where usertype='user' and status=1";
+  $employee_query=mysqli_query($con,$employe);
+  while($r=mysqli_fetch_array($employee_query))
+  {
+    $name=$r['loginid'];
+
+  ?>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th><?php echo $name; ?></th>
+<th><?php
+$service_providers="select name,email,phone,pic from user_login where loginid='$name'";
+$sp_query=mysqli_query($con,$service_providers);
+while($row=mysqli_fetch_array($sp_query))
+{
+  echo $row['name'];
+  $email=$row['email'];
+  $phone=$row['phone'];
+  $pic=$row['pic'];
+
+}
+?></th>
+<th>
+<?php echo  $email;?>
+</th>
+<th>
+<?php echo  $phone;?>
+</th>
+<th>
+<img src="../images/users/<?php echo  $pic;?>" width="60px" height="50px">
+</th>
 <td>
   <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
 </td>
 </tr>
-</tbody>
+<?php
+  }
+?>
+
 </table>
 </div>
 <?php
@@ -936,7 +895,7 @@ include('../php/footer.php');
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="../js/jquery-1.10.2.min.js"></script>
 
     <!-- <script src="js/wow.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -951,6 +910,7 @@ include('../php/footer.php');
 <script>
 // add edit and delete service category
 $(document).ready(function(){
+
 
   $("#add-new").on('click',function(){
       $("#new-sc").css("display","inline");
@@ -1242,7 +1202,7 @@ $(document).on('click','.sc_reject',function()
 
 $('#bar').click(function(){
 	$(this).toggleClass('open');
-  $('#page-content-wrapper ,#sidebar-wrapper,#adminlocation,#admin_sc_management,#servicepro').toggleClass('toggled');
+  $('#page-content-wrapper ,#sidebar-wrapper,#adminlocation,#admin_sc_management,#retailer_att').toggleClass('toggled');
 
 });
 

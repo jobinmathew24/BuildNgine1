@@ -53,7 +53,7 @@ body
 <center>
   <div class="p">
 
-    <div class="navbare">
+    <div class="navbare" style="margin:0px;">
         <a href="logout.php">Logout</a>
         <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
     <div class="dropdowne">
