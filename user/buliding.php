@@ -1,9 +1,5 @@
 <?php
-
 session_start();
-if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
-  header('location: ../login.php');
-}
 if (isset($_SESSION['user']) and !isset($_SESSION['mbname'])) {
   header('location:motherboard.php');
 }
