@@ -36,9 +36,9 @@ if(isset($_POST["action"]))
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:19px; margin-bottom:16px; height:auto;">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:13px; width:180px; margin-bottom:16px; height:450px;">
 					<img src="../project/cabinet/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
@@ -46,6 +46,7 @@ if(isset($_POST["action"]))
 					Model : '. $row['model'].' <br />
 					Integrated power : '. $row['int_power'] .' <br  />
 					Power Supply : '. $row['pow_sup'] .' <br  />
+					Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

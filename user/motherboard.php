@@ -45,10 +45,10 @@ if (isset($_POST['add'])) {
   $_SESSION['max_freq']=$max_freq;
   $_SESSION['m2_count']=$m2_count;
 
-  $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$id','$name','Motherboard', $price,1,$price*1,1)";
+  $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid,date,pic) VALUES ('$id','$name','Motherboard', $price,1,$price*1,1,'$date','$name') ";
 echo $sql;
+$result=mysqli_query($con,$sql)or die("$sql");
 $_SESSION['mbname']=$name;
-  $result=mysqli_query($con,$sql)or die("query moonchi");
   header('location: cpu.php');
 }
   else {

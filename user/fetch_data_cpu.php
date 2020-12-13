@@ -57,9 +57,9 @@ $socket=$_SESSION['socket'];
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:10px; margin-bottom:15px; width:180px; height:570px;">
 					<img src="../project/cpu/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
@@ -72,7 +72,10 @@ $socket=$_SESSION['socket'];
 					Cache : '. $row['cache'] .' Kb <br />
 					Lithography : '. $row['lithography'] .' <br />
 					Max Temp : '. $row['max_temp'] .' °C<br />
-					Purpose : '. $row['purpose'] .'</p>
+					Purpose : '. $row['purpose'] .'<br  />
+						Sold By : '. $row['sold_by'] .' <br  />
+						</p>
+
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

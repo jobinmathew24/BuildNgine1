@@ -58,10 +58,10 @@ $max_freq=$_SESSION['max_freq'];
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-					<img src="../project/ram/'. $row['pic'] .'" width="150px" height="150px" >
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px;   width:180px; margin-bottom:16px; height:520px;">
+					<img src="../project/ram/'. $row['pic'] .'" width="100px" height="100px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>RAM Type : '. $row['ram_type'].' <br />
@@ -70,6 +70,7 @@ $max_freq=$_SESSION['max_freq'];
 					FSB : '. $row['fsb'] .' <br />
 					Voltage: '. $row['voltage'] . 'V <br />
 					Timing: '. $row['timing'] .' <br />
+						Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<label>Quantity</label> <input type="number" style="width:70px" class="form-control" value="1" name="points" step="1" min=1 max=3>
 					<br>

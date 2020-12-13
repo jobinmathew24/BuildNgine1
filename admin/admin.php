@@ -30,9 +30,9 @@ $emp_query=mysqli_query($con,$count_emp);
 $row_emp = mysqli_num_rows($emp_query);
 
 // total number of Complaints
-$count_comp="select * from Complaints where status=1";
-$comp_query=mysqli_query($con,$count_comp);
-$row_comp = mysqli_num_rows($comp_query);
+// $count_comp="select * from Complaints where status=1";
+// $comp_query=mysqli_query($con,$count_comp);
+// $row_comp = mysqli_num_rows($comp_query);
 
 // total number of Orders
 $count_total_order="select * from ordertbl";
@@ -395,7 +395,7 @@ if(isset($_POST['insert'])){
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title mb-4">Complaints</h5>
-                        <h1 class="display-5 mt-1 mb-3"><?php echo $row_comp;?></h1>
+                        <h1 class="display-5 mt-1 mb-3"><?php echo $row;?></h1>
 
                       </div>
                     </div>
@@ -910,23 +910,14 @@ include('../php/footer.php');
 <script>
 // add edit and delete service category
 $(document).ready(function(){
-
-
   $("#add-new").on('click',function(){
       $("#new-sc").css("display","inline");
       $("#sc3").on('click',function(){
           // $("#pre-sc").append("<tr><td>"+$("#c1").val()+"</td><td>"+$("#c2").val()+"</td><td style='border-top:0px;text-align:center'><button class='btn btn-sm btn-success' data-target='#demo-lg-modal1' data-toggle='modal' title='Edit' id='sc1'><i class='fa fa-pencil'></i></button><a><button class='btn btn-sm btn-danger del' title='Delete' id='sc2'><i class='fa fa-times' aria-hidden='true'></i></button></a></td>");
           var sc = $("#c1").val();
           var amt=$("#c2").val();
-
           var fileInput = document.getElementById('img');
           var filename = fileInput.files[0].name;
-
-        // var fd = new FormData(this);
-        // var files = $('#img')[0].files[0];
-        //    fd.append('file',files);
-        //    console.log(fd);
-
           $.ajax({
                 url: "admin_uploaddata.php",
                 method:"POST",

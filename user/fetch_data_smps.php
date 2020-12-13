@@ -58,10 +58,10 @@ $cpu_pow=$_SESSION['cpu_pow'];
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-					<img src="../project/smps/'. $row['pic'] .'" width="150px" height="150px" >
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; width:180px; margin-bottom:16px; height:500px;">
+					<img src="../project/smps/'. $row['pic'] .'" width="130px" height="130px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Manufacture : '. $row['company'].' <br />
@@ -70,6 +70,7 @@ $cpu_pow=$_SESSION['cpu_pow'];
 					MB Power : '. $row['mb_pow'] .' <br  />
 					SATA Count : '. $row['sata_count'] .' <br  />
 					PCIe Count : '. $row['pci_count'] .' <br  />
+					Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

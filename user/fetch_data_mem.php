@@ -51,10 +51,10 @@ if(isset($_POST["action"]))
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-					<img src="../project/mem/'. $row['pic'] .'" width="150px" height="150px" >
+				<div style="border:1px solid #ccc; border-radius:5px; padding:13px; width:180px; margin-bottom:16px; height:480px;">
+					<img src="../project/mem/'. $row['pic'] .'" width="130px" height="130px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Memory Type : '. $row['type'].' <br />
@@ -68,6 +68,7 @@ if(isset($_POST["action"]))
 						$output .= 'Form Factor : '. $row['form_factor'] .' <br  />';
 					}
 					$output .= '
+						Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<label>Quantity</label> <input type="number" style="width:70px" class="form-control" value="1" name="points" step="1" min=1 max=3>
 					<br>

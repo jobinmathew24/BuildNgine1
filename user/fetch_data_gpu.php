@@ -66,10 +66,10 @@ if(isset($_POST["action"]))
 	$result = $statement->fetchAll();
 	$total_row = $statement->rowCount();
 	$output = '
-	<div class="col-sm-4 col-lg-3 col-md-3">
+	<div class="col-sm-4 col-lg-4 col-md-4">
 	<center>
-		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-			<img src="../project/gpu/none.png" width="150px" height="150px" >
+		<div style="border:1px solid #ccc; border-radius:5px;  width:180px; padding:16px; margin-bottom:16px; height:510px;">
+			<img src="../project/gpu/none.png" width="100px" height="100px" >
 			<p align="center"><strong> None</strong></p>
 			<h4 style="text-align:center;" class="text-danger" >₹ 0</h4>
 			<p>Processor : None <br />
@@ -80,6 +80,7 @@ if(isset($_POST["action"]))
 			Memory Width: None <br />
 			Power Conn. :None <br />
 			Purpose :None <br />
+
 			<br>
 			<i class="fa fa-shopping-cart"></i>
 			<input type="submit" name="submite" class="btn btn-primary" value="Add to Cart" onclick="one(\'none\')">
@@ -93,10 +94,10 @@ if(isset($_POST["action"]))
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-4">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:500px;">
-					<img src="../project/gpu/'. $row['image'] .'" width="150px" height="150px" >
+				<div style="border:1px solid #ccc; border-radius:5px; width:180px; padding:13px; margin-bottom:16px; height:510px;">
+					<img src="../project/gpu/'. $row['image'] .'" width="130px" height="130px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Processor : '. $row['processor'].' <br />
@@ -107,6 +108,7 @@ if(isset($_POST["action"]))
 					Memory Width: '. $row['mem_width'] .' <br />
 					Power Conn. :'. $row['pow_con'] .' <br />
 					Purpose :'. $row['purpose'] .' <br />
+					Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">

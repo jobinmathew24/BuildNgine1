@@ -10,6 +10,10 @@ if(!isset($_SESSION['ramname']))
 include('../database/database_connection.php');
 
 $ide=$_SESSION['loginid'];
+$mother=$_SESSION['mbname'];
+$cpu=$_SESSION['cpuname'];
+$ram=$_SESSION['ramname'];
+
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
 // echo $sql2;
 
@@ -23,6 +27,19 @@ $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
 $max=$row['max'];
+
+$sql2="select sum(price) as total from ordertbl where loginid='$ide' and status=1 and save=0 and bulid=1";
+$result2=mysqli_query($con,$sql2)or die("price query moonchi");
+$row=mysqli_fetch_array($result2);
+$summary=$row['total'];
+
+if (isset($_POST['change'])) {
+  $sql3="delete from ordertbl where loginid='$ide'and name='$ram' and bulid = 1 and status=1 and save=0 ";
+  $result2=mysqli_query($con,$sql3)or die("number query moonchi");
+  unset($_SESSION['ramname']);
+  header('location:buliding.php');
+}
+
 if (isset($_POST['submite'])) {
 header('location:mem.php');
 }
@@ -33,12 +50,11 @@ $name=$_POST['result'];
 $sql="select price from gpu_tbl where name='$name'";
 // echo "$sql";
 
-
 $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
-$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid) VALUES ('$ide','$name','GPU', $price,1,$price*1,1)";
+$sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid,date,pic) VALUES ('$ide','$name','GPU', $price,1,$price*1,1,'$date','$name')";
 // echo $sql;
 $_SESSION['gpuname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
@@ -112,7 +128,7 @@ else {
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
 
-            <div class="col-md-3">
+            <div class="col-md-2">
 				<div class="list-group">
 					<h3>Price</h3>
 					<input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
@@ -243,12 +259,55 @@ else {
 
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-6">
             	<br />
                 <div class="row filter_data">
 
                 </div>
             </div>
+
+            <div class="col-md-3">
+
+              <div class="col-sm-12 col-lg-12 col-md-12">
+                <br>
+                <div style="border:1px solid #ccc; border-radius:5px; padding:16px; width:350px; margin-bottom:16px; height:auto;">
+                  <table>
+                    <tr>
+                      <th style="text-align:center;" colspan="3" > <h4> <strong>Configuration Summary</strong> </h4></th>
+                    </tr>
+                    <tr>
+                      <td> <h5> <strong>Motherboard</strong> </h5></td>
+
+                      <td > <h5> <strong><?php echo $mother; ?></strong> </h5></td>
+
+
+                    </tr>
+                    <tr>
+                      <td> <h5> <strong>CPU</strong> </h5></td>
+
+                      <td > <h5> <strong><?php echo $cpu; ?></strong> </h5></td>
+
+                  </tr>
+                  <tr>
+                    <td> <h5> <strong>RAM</strong> </h5></td>
+
+                    <td > <h5> <strong><?php echo $ram; ?></strong> </h5></td>
+                  <td>&nbsp; <input type="submit" class="btn btn-danger" name="change" value="Change"> </td>
+
+                </tr>
+                <tr>
+                <td> &nbsp;</td>
+                </tr>
+                    <tr>
+                    <td > <h5> <strong>Total : ₹ <?php echo $summary; ?></strong> </h5></td>
+                    </tr>
+                  </table>
+                  <br>
+
+                    </div>
+              </div>
+              </div>
+
         </div>
 
     </div>

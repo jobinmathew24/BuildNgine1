@@ -47,15 +47,16 @@ $socket=$_SESSION['socket'];
 	$result = $statement->fetchAll();
 	$total_row = $statement->rowCount();
 	$output = '
-	<div class="col-sm-4 col-lg-3 col-md-3">
+	<div class="col-sm-4 col-lg-4 col-md-4">
 	<center>
-		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:400px;">
+		<div style="border:1px solid #ccc; border-radius:5px; padding:16px; width:180px; margin-bottom:16px; height:440px;">
 			<img src="../project/gpu/none.png" width="150px" height="150px" >
 			<p align="center"><strong>default CPU fan</strong></p>
 			<h4 style="text-align:center;" class="text-danger" >₹ 0</h4>
 			<p>Manufacture : Intel/AMD <br />
 			Type : Box cooling <br  />
 			MAX Cooling TDP:50 W <br  />
+
 			<br>
 			<i class="fa fa-shopping-cart"></i>
 			<input type="submit" name="submite" class="btn btn-primary" value="Add to Cart" onclick="one(\'none\')">
@@ -69,15 +70,16 @@ $socket=$_SESSION['socket'];
 		foreach($result as $row)
 		{
 			$output .= '
-			<div class="col-sm-4 col-lg-3 col-md-3">
+			<div class="col-sm-4 col-lg-4 col-md-4">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:19px; margin-bottom:16px; height:auto;">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:13px; width:180px; margin-bottom:16px; height:440px;">
 					<img src="../project/fan/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
 					<p>Manufacture : '. $row['company'].' <br />
 					Type : '. $row['cooler_type'] .' <br  />
 					MAX Cooling TDP:'. $row['max_tdp'] .'W <br  />
+					Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
 					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
