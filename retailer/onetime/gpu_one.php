@@ -15,42 +15,42 @@ session_start();
 
   $cart=$row['Count(*)'];
 
-  $sql3="select MIN(price) as min, MAX(price) as max from cpu_tbl where status=1 and verified=1";
+  $sql3="select MIN(price) as min, MAX(price) as max from gpu_tbl where status=1 and verified=1";
   $result2=mysqli_query($con,$sql3)or die("price query moonchi");
   $row=mysqli_fetch_array($result2);
   $min=$row['min'];
   $max=$row['max'];
 
-  $sql3="select * from cpu_tbl where status=1 and verified=0";
+  $sql3="select * from gpu_tbl where status=1 and verified=0";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
-  $sql3="select Count(*) from cpu_tbl where status=1 and verified=0";
+  $sql3="select Count(*) from gpu_tbl where status=1 and verified=0";
   $result4=mysqli_query($con,$sql3)or die("number query moonchi");
   $roww=mysqli_fetch_array($result4);
     $carte=$roww['Count(*)'];
 
     if (isset($_POST['delete'])) {
     $name=$_POST['result'];
-    $sql3="delete from cpu_tbl where name='$name'";
+    $sql3="delete from gpu_tbl where name='$name'";
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:cpu_one.php');
+    header('location:gpu_one.php');
 
     }
 
     if (isset($_POST['verify'])) {
     $name=$_POST['result'];
-    $sql3="update cpu_tbl set verified=1 where name='$name'";
+    $sql3="update gpu_tbl set verified=1 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:cpu_one.php');
+    header('location:gpu_one.php');
 
     }
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
-    $sql3="update cpu_tbl set verified=0 where name='$name'";
+    $sql3="update gpu_tbl set verified=0 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:cpu_one.php');
+    header('location:gpu_one.php');
 
     }
 
@@ -106,7 +106,7 @@ session_start();
     </button>
     <div class="dropdowne-content">
       <a href="motherboard_one.php">Motherboard</a>
-      <a href="cpu_one.php">CPU</a>
+      <a href="gpu_one.php">CPU</a>
       <a href="gpu_one.php">GPU</a>
       <a href="ram_one.php">RAM</a>
       <a href="mem_one.php">Memory</a>
@@ -136,7 +136,7 @@ session_start();
 
               if ($carte>0) {?>
                 <center>
-                  <h3>Not Verified CPUs</h3>
+                  <h3>Not Verified GPUs</h3>
                 </center>
                 <?php
                foreach($result2 as $row)
@@ -145,30 +145,31 @@ session_start();
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
                     <div style="border:1px solid #ccc; border-radius:5px; padding:16px; padding-bottom: 25px; margin-bottom:16px; height:auto;">
-                      <img  style="float:left; padding:5px;" src="../../project/cpu/<?php echo $row['pic']  ?>" width="150px" height="150px" >
+                      <img  style="float:left; padding:5px;" src="../../project/gpu/<?php echo $row['image']  ?>" width="150px" height="150px" >
 
 
                         <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
                           ₹ <?php echo $row['price'] ?>
                         </div></strong></h4>
 
+
+
                         <strong> Company</strong> : <?php echo $row['company'] ?>&nbsp;&nbsp;
-                        <strong> Socket</strong> : <?php echo $row['socket'] ?>&nbsp;&nbsp;
-                        <strong> Core Count </strong> : <?php echo $row['core_count'] ?> Nos&nbsp;&nbsp;
-                        <strong> Thread Count</strong> : <?php echo $row['thread_count'] ?> Nos &nbsp;&nbsp;
-                        <strong> Max Frequency</strong> : <?php echo $row['frequency'] ?> Mhz&nbsp;&nbsp;
-                        <br><br>
+                        <strong> Processor</strong> : <?php echo $row['processor'] ?>&nbsp;&nbsp;
+                        <strong>   Core Freq</strong> : <?php echo $row['core_freq'] ?>&nbsp;&nbsp;
+                        <strong> Memory Freq</strong> : <?php echo $row['mem_freq'] ?> &nbsp;&nbsp;
+                        <strong> Memory Type</strong> : <?php echo $row['mem_type'] ?> &nbsp;&nbsp;
+                          <br><br>
 
-                        <strong> Turbo boost</strong> : <?php echo $row['turboboost'] ?>&nbsp;&nbsp;
-                        <strong> GPU</strong> : <?php echo $row['igpu'] ?> &nbsp;&nbsp;
-                        <strong> Cache</strong> : <?php echo $row['cache'] ?> &nbsp;&nbsp;
-                        <strong> Lithography </strong> : <?php echo $row['lithography'] ?> &nbsp;&nbsp;
-                        <strong> Max Temp </strong> : <?php echo $row['max_temp'] ?> °C&nbsp;&nbsp;
-                        <br><br>
-
-
+                        <strong> Memory Size</strong> : <?php echo $row['mem_size'] ?>&nbsp;&nbsp;
+                        <strong> Memory Width</strong> : <?php echo $row['mem_width'] ?> &nbsp;&nbsp;
+                        <strong> Power Conn.</strong> : <?php echo $row['pow_con'] ?> &nbsp;&nbsp;
                         <strong> Purpose </strong> : <?php echo $row['purpose'] ?> &nbsp;&nbsp;
+
+                        <br><br>
                         <strong> Sold By </strong> : <?php echo $row['sold_by'] ?> &nbsp;&nbsp;
+
+
 
                     <div style="float: right;">
                       <i class="fa fa-trash"></i>
@@ -188,20 +189,21 @@ session_start();
             </div>
         </div>
         <div class="col-md-3">
-          <div class="list-group">
-            <h3>Price</h3>
-            <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
-                      <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
+    <div class="list-group">
+      <h3>Price</h3>
+      <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
+                <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
 
 
-                      <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
-                      <div id="price_range"></div>
-                  </div>
+                <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
+                <div id="price_range"></div>
+            </div>
             <div class="list-group">
-        <h3>Brand</h3>
-        <?php
+      <h3>Brand</h3>
 
-                $query = "select distinct(`company`) from `cpu_tbl` where verified =1  order by `company` desc";
+      <?php
+
+                $query = "select distinct(`company`) from `gpu_tbl` order by `company` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -215,12 +217,13 @@ session_start();
                 }
 
                 ?>
+
             </div>
             <div class="list-group">
-        <h3>Purpose</h3>
-        <?php
+      <h3>Processor</h3>
+      <?php
 
-                $query = "select distinct(`purpose`) from `cpu_tbl` where verified =1  order by `purpose` desc";
+                $query = "select distinct(`processor`) from `gpu_tbl` order by `processor` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -228,7 +231,7 @@ session_start();
                 {
                 ?>
                 <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector purpose" value="<?php echo $row['purpose']; ?>"  > <?php echo $row['purpose']; ?></label>
+                    <label><input type="checkbox" class="common_selector processor" value="<?php echo $row['processor']; ?>"  > <?php echo $row['processor']; ?></label>
                 </div>
                 <?php
                 }
@@ -236,30 +239,10 @@ session_start();
                 ?>
             </div>
             <div class="list-group">
-              <h3>Socket</h3>
-                        <?php
+      <h3>Memory Type</h3>
+      <?php
 
-                        $query = "select distinct(`socket`) from `cpu_tbl` where verified =1 order by `socket` desc";
-                        $statement = $connect->prepare($query);
-                        $statement->execute();
-                        $result = $statement->fetchAll();
-                        foreach($result as $row)
-                        {
-                        ?>
-                        <div class="list-group-item checkbox">
-                            <label><input type="checkbox" class="common_selector socket" value="<?php echo $row['socket']; ?>" > <?php echo $row['socket']; ?></label>
-                        </div>
-
-                        <?php
-                        }
-
-                        ?>
-                      </div>
-        <div class="list-group">
-        <h3>Core Count</h3>
-                <?php
-
-                $query = "select distinct(`core_count`) from `cpu_tbl` where verified =1  order by `core_count` desc";
+                $query = "select distinct(`mem_type`) from `gpu_tbl` order by `mem_type` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -267,7 +250,27 @@ session_start();
                 {
                 ?>
                 <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector core" value="<?php echo $row['core_count']; ?>" > <?php echo $row['core_count']; ?> Nos</label>
+                    <label><input type="checkbox" class="common_selector mem_type" value="<?php echo $row['mem_type']; ?>"  > <?php echo $row['mem_type']; ?></label>
+                </div>
+                <?php
+                }
+
+                ?>
+            </div>
+
+    <div class="list-group">
+      <h3>Memory Size</h3>
+                <?php
+
+                $query = "select distinct(`mem_size`) from `gpu_tbl` order by `mem_size` ";
+                $statement = $connect->prepare($query);
+                $statement->execute();
+                $result = $statement->fetchAll();
+                foreach($result as $row)
+                {
+                ?>
+                <div class="list-group-item checkbox">
+                    <label><input type="checkbox" class="common_selector mem_size" value="<?php echo $row['mem_size']; ?>" > <?php echo $row['mem_size']; ?> </label>
                 </div>
                 <?php
                 }
@@ -276,10 +279,10 @@ session_start();
             </div>
 
                     <div class="list-group">
-                      <h3>GPU</h3>
+                      <h3>Power Connectors</h3>
                                 <?php
 
-                                $query = "select distinct(`igpu`) from `cpu_tbl` where verified =1 order by `igpu` desc";
+                                $query = "select distinct(`pow_con`) from `gpu_tbl` order by `pow_con` desc";
                                 $statement = $connect->prepare($query);
                                 $statement->execute();
                                 $result = $statement->fetchAll();
@@ -287,15 +290,35 @@ session_start();
                                 {
                                 ?>
                                 <div class="list-group-item checkbox">
-                                    <label><input type="checkbox" class="common_selector igpu" value="<?php echo $row['igpu']; ?>" > <?php echo $row['igpu']; ?> </label>
+                                    <label><input type="checkbox" class="common_selector pow_con" value="<?php echo $row['pow_con']; ?>" > <?php echo $row['pow_con']; ?> </label>
                                 </div>
                                 <?php
                                 }
 
                                 ?>
                             </div>
+                            <div class="list-group">
+                              <h3>Purpose</h3>
+                                        <?php
+
+                                        $query = "select distinct(`purpose`) from `gpu_tbl` order by `purpose` desc";
+                                        $statement = $connect->prepare($query);
+                                        $statement->execute();
+                                        $result = $statement->fetchAll();
+                                        foreach($result as $row)
+                                        {
+                                        ?>
+                                        <div class="list-group-item checkbox">
+                                            <label><input type="checkbox" class="common_selector purpose" value="<?php echo $row['purpose']; ?>" > <?php echo $row['purpose']; ?> </label>
+                                        </div>
+                                        <?php
+                                        }
+
+                                        ?>
+                                    </div>
 
         </div>
+
 
           <div class="col-md-9">
             <center>
@@ -340,7 +363,7 @@ session_start();
         var max_ram = get_filter('max_ram');
         var m2_count = get_filter('m2_count');
         $.ajax({
-          url:"fetch_data_cpu_one.php",
+          url:"fetch_data_gpu_one.php",
           method:"POST",
           data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, purpose:purpose, socket:socket, ram_type:ram_type, max_ram:max_ram,m2_count:m2_count },
           success:function(data){
