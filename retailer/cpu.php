@@ -13,17 +13,15 @@ session_start();
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
   $row=mysqli_fetch_array($result1);
 
-  $sql="select distinct(`socket`) from `mothertbl` where verified =1 order by `socket` desc";
+  $sql="select distinct(`socket`) from `cpu_tbl` where verified =1 order by `socket` desc";
   $sql_socket=mysqli_query($con,$sql);
 
-  $sql="select distinct(`ram_type`) from `mothertbl` where verified =1 order by `ram_type` desc";
-  $sql_ram=mysqli_query($con,$sql);
+  $sql="select distinct(`core_count`) from `cpu_tbl` where verified =1 order by `core_count` desc";
+  $sql_core=mysqli_query($con,$sql);
 
-  $sql="select distinct(`purpose`) from `mothertbl` where verified =1 order by `purpose` desc";
+  $sql="select distinct(`purpose`) from `cpu_tbl` where verified =1 order by `purpose` desc";
   $sql_pur=mysqli_query($con,$sql);
 
-  $sql="select distinct(`max_ram`) from `mothertbl` where verified =1 order by `max_ram` desc";
-  $sql_max=mysqli_query($con,$sql);
 
 // $loc="SELECT * FROM tbl_location WHERE is_delete=1";
 // $result_loc=mysqli_query($con,$loc);
@@ -46,17 +44,17 @@ session_start();
   </head>
   <script type="text/javascript">
   function check() {
-    var name = document.getElementById('name').value;
-          if (!name) return;
+    var cpu_name = document.getElementById('name').value;
+          if (!cpu_name) return;
           console.log("WORKING user TILL HERE");
           var ajax = new XMLHttpRequest();
           ajax.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200 ){
               console.log(this.response); //helps SEE WHATS GOING ON in the php file;
               if(this.response=='TRUE'){
-                  document.getElementById('nameid').innerHTML="Motherboard name is already entered";
+                  document.getElementById('nameid').innerHTML="CPU name is already entered";
                   document.getElementById('name').value="";
-                  document.forms["mothertbl"]["name"].focus();
+                  document.forms["cpu_tbl"]["name"].focus();
               }
               else{
                   document.getElementById('nameid').innerHTML="";
@@ -64,7 +62,7 @@ session_start();
               }
             }
           }
-          ajax.open("GET", "checkmother.php?name="+name, true);
+          ajax.open("GET", "checkmother.php?cpu_name="+cpu_name, true);
           ajax.send();
 
 }
@@ -118,15 +116,15 @@ session_start();
     <div class="container">
       <br>
 
-      <form action="" method="post" name="mothertbl" enctype="multipart/form-data" class="form-group-sm container"  >
-        <h2 style="float: center;">New Motherboard</h2 >
+      <form action="" method="post" name="cpu_tbl" enctype="multipart/form-data" class="form-group-sm container"  >
+        <h2 style="float: center;">New CPU</h2 >
           <hr>
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="Motherboard Name" name="name" id="name" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="CPU Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Company" name="company" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Company" name="company" value=""><br>
         <select class="form-control" type="button" style="width:450px;" name="socket" required>
 
                       <option value="">Select the Socket</option>
@@ -139,39 +137,26 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Form Factor" name="factor" value=""><br>
-        <select class="form-control" type="button" style="width:450px;" name="ram_type" required>
+        <select class="form-control" type="button" style="width:450px;" name="core_count" required>
 
-                      <option value="">Select the RAM Type</option>
+                      <option value="">Select the Core Count</option>
                         <?php
 
-                           while($data_ram=mysqli_fetch_array($sql_ram))
+                           while($data_ram=mysqli_fetch_array($sql_core))
                            {
-                               echo "<option value='".$data_ram['ram_type']."'>" .$data_ram['ram_type'] ."</option>";
+                               echo "<option value='".$data_ram['core_count']."'>" .$data_ram['core_count'] ."</option>";
                            }
                             ?>
 
         </select><br>
-        <select class="form-control" type="button" style="width:450px;" name="max_ram" required>
-
-                      <option value="">Motherboard Max RAM in Gb</option>
-                        <?php
-
-                           while($data_max=mysqli_fetch_array($sql_max))
-                           {
-                               echo "<option value='".$data_max['max_ram']."'>" .$data_max['max_ram'] ." Gb</option>";
-                           }
-                            ?>
-
-        </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard PCIe Count" name="pcie" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Power Pin" name="mb_pow" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard CPU Power Pin" name="cpu_pow" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Chipset" name="chipset" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard RAM Slot Count" name="ram_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard SATA Slot Count" name="sata_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard M.2 Slot Count" name="m2_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Max Freq" name="max_freq" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Thread Count" name="thread" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Frequency" name="frequency" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Turboboost Freq" name="turboboost" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU IGPU" name="igpu" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Lithography" name="lithography" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Cache" name="cache" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU TDP" name="tdp" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Max Temp" name="max_temp" value=""><br>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
                       <option value="">Select the Purpose</option>
@@ -184,7 +169,7 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard price" name="price" value="">
+        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU price" name="price" value="">
         <!-- Select image to upload: -->
         <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
@@ -203,32 +188,31 @@ if(isset($_POST['submit'])){
   $name=$_POST['name'];
   $company=$_POST['company'];
   $socket=$_POST['socket'];
-  $factor=$_POST['factor'];
-  $ram_type=$_POST['ram_type'];
-  $max_ram=$_POST['max_ram'];
-  $pcie=$_POST['pcie'];
-  $mb_pow=$_POST['mb_pow'];
-  $cpu_pow=$_POST['cpu_pow'];
-  $chipset=$_POST['chipset'];
-  $ram_count=$_POST['ram_count'];
-  $sata_count=$_POST['sata_count'];
-  $m2_count=$_POST['m2_count'];
-  $max_freq=$_POST['max_freq'];
+  $core_count=$_POST['core_count'];
+  $thread=$_POST['thread'];
+  $frequency=$_POST['frequency'];
+  $turboboost=$_POST['turboboost'];
+  $igpu=$_POST['igpu'];
+  $lithography=$_POST['lithography'];
+  $cache=$_POST['cache'];
+  $tdp=$_POST['tdp'];
+  $max_temp=$_POST['max_temp'];
   $purpose=$_POST['purpose'];
   $price=$_POST['price'];
   $pic=$_FILES['image']['name'];
 
-  $sql="insert into `mothertbl`(`name`, `company`, `socket`, `form_factor`, `ram_type`, `max_ram`, `pcie_count`, `mb_pow`, `cpu_pow`, `chipset`, `ram_count`, `sata_count`, `m2_count`, `max_freq`, `purpose`, `price`,`sold_by`, `pic`) VALUES ('$name','$company','$socket','$factor','$ram_type',$max_ram,$pcie,$mb_pow,$cpu_pow,'$chipset',$ram_count,$sata_count,$m2_count,$max_freq,'$purpose',$price,'$id',$pic')";
+  $sql="insert into `cpu_tbl`(`name`, `company`, `socket`, `core_count`, `thread_count`, `frequency`, `turboboost`, `igpu`, `lithography`, `cache`, `tdp`, `max_temp`, `purpose`, `price`,`sold_by`, `pic`) VALUES ('$name','$company','$socket',$core_count,$thread,$frequency,'$turboboost','$igpu','$lithography',$cache,$tdp,$max_temp,'$purpose',$price,'$id','$pic')";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
-  $target_dir = "../project/mother/";
+  $target_dir = "../project/cpu/";
   $target_path=$target_dir.$pic;
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data inserted Sucessfully');</script>";
 header('location:retailer.php');
 }
 else {
-  echo "<script>alert('Data not inserted');</script>";
+  echo $sql ;
+  // echo "<script>alert('Data not inserted');</script>";
 }
 } ?>
 </html>
