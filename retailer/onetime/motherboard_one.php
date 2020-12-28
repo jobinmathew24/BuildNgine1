@@ -5,7 +5,7 @@ session_start();
   header('location: ../../login.php');
   }
   include('../../database/database_connection.php');
-
+  $id=$_SESSION['loginid'];
 
   $sql2="select Count(*) from ordertbl where status=1 and save=0";
   // echo $sql2;
@@ -21,10 +21,10 @@ session_start();
   $min=$row['min'];
   $max=$row['max'];
 
-  $sql3="select * from mothertbl where status=1 and verified=0";
+  $sql3="select * from mothertbl where status=1 and verified=0 and sold_by='$id'";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
-  $sql3="select Count(*) from mothertbl where status=1 and verified=0";
+  $sql3="select Count(*) from mothertbl where status=1 and sold_by='$id' and verified=0";
   $result4=mysqli_query($con,$sql3)or die("number query moonchi");
   $roww=mysqli_fetch_array($result4);
     $carte=$roww['Count(*)'];
@@ -136,7 +136,7 @@ session_start();
 
               if ($carte>0) {?>
                 <center>
-                  <h3>Not Verified Mother Boards</h3>
+                  <h3>Not Verified MotherBoards</h3>
                 </center>
                 <?php
                foreach($result2 as $row)
@@ -144,8 +144,8 @@ session_start();
 
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
-                    <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;;">
-                      <img  style="float:left; padding:5px;" src="../../project/mother/<?php echo $row['pic']  ?>" width="150px" height="150px" >
+                    <div style="border:1px solid #ccc; border-radius:5px; padding:16px; padding-bottom: 25px;margin-bottom:16px; height:auto;">
+                      <img  style="float:left; padding:5px;" src="../../project/mother/<?php echo $row['pic']  ?>" width="170px" height="170px" >
 
 
                         <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
@@ -174,6 +174,9 @@ session_start();
                         <strong> Max Freq </strong> : <?php echo $row['max_freq'] ?> Mhz&nbsp;&nbsp;
                         <strong> Purpose </strong> : <?php echo $row['purpose'] ?> &nbsp;&nbsp;
 
+                        <br>
+                        <br>
+                        <strong> Sold By</strong> : <?php echo $row['sold_by'] ?> &nbsp;&nbsp;
                     <div style="float: right;">
                       <i class="fa fa-trash"></i>
                       <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">

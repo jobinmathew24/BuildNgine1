@@ -7,6 +7,7 @@ session_start();
   include('../../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
+
   $sql2="select Count(*) from ordertbl where status=1 and save=0";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
@@ -15,42 +16,42 @@ session_start();
 
   $cart=$row['Count(*)'];
 
-  $sql3="select MIN(price) as min, MAX(price) as max from gpu_tbl where status=1 and verified=1";
+  $sql3="select MIN(price) as min, MAX(price) as max from memory_tbl where status=1 and verified=1";
   $result2=mysqli_query($con,$sql3)or die("price query moonchi");
   $row=mysqli_fetch_array($result2);
   $min=$row['min'];
   $max=$row['max'];
 
-  $sql3="select * from gpu_tbl where status=1 and verified=0 and sold_by='$id'";
+  $sql3="select * from memory_tbl where status=1 and verified=0 and sold_by='$id' and type='SSD'";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
-  $sql3="select Count(*) from gpu_tbl where status=1 and verified=0 and sold_by='$id'";
+  $sql3="select Count(*) from memory_tbl where status=1 and verified=0 and sold_by='$id' and type='SSD'";
   $result4=mysqli_query($con,$sql3)or die("number query moonchi");
   $roww=mysqli_fetch_array($result4);
     $carte=$roww['Count(*)'];
 
     if (isset($_POST['delete'])) {
     $name=$_POST['result'];
-    $sql3="delete from gpu_tbl where name='$name'";
+    $sql3="delete from memory_tbl where name='$name'";
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:gpu_one.php');
+    header('location:mem_m2_one.php');
 
     }
 
     if (isset($_POST['verify'])) {
     $name=$_POST['result'];
-    $sql3="update gpu_tbl set verified=1 where name='$name'";
+    $sql3="update memory_tbl set verified=1 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:gpu_one.php');
+    header('location:mem_m2_one.php');
 
     }
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
-    $sql3="update gpu_tbl set verified=0 where name='$name'";
+    $sql3="update memory_tbl set verified=0 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:gpu_one.php');
+    header('location:mem_m2_one.php');
 
     }
 
@@ -136,7 +137,7 @@ session_start();
 
               if ($carte>0) {?>
                 <center>
-                  <h3>Not Verified GPUs</h3>
+                  <h3>Not Verified Memorys</h3>
                 </center>
                 <?php
                foreach($result2 as $row)
@@ -145,7 +146,7 @@ session_start();
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
                     <div style="border:1px solid #ccc; border-radius:5px; padding:16px; padding-bottom: 25px; margin-bottom:16px; height:auto;">
-                      <img  style="float:left; padding:5px;" src="../../project/gpu/<?php echo $row['image']  ?>" width="150px" height="150px" >
+                      <img  style="float:left; padding:5px;" src="../../project/mem/<?php echo $row['pic']  ?>" width="150px" height="150px" >
 
 
                         <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
@@ -153,18 +154,13 @@ session_start();
                         </div></strong></h4>
 
 
-
                         <strong> Company</strong> : <?php echo $row['company'] ?>&nbsp;&nbsp;
-                        <strong> Processor</strong> : <?php echo $row['processor'] ?>&nbsp;&nbsp;
-                        <strong>   Core Freq</strong> : <?php echo $row['core_freq'] ?>&nbsp;&nbsp;
-                        <strong> Memory Freq</strong> : <?php echo $row['mem_freq'] ?> &nbsp;&nbsp;
-                        <strong> Memory Type</strong> : <?php echo $row['mem_type'] ?> &nbsp;&nbsp;
+                        <strong> Memory Type</strong> : <?php echo $row['type'] ?>&nbsp;&nbsp;
+                        <strong> Memory Size</strong> : <?php echo $row['size'] ?> Gb&nbsp;&nbsp;
                           <br><br>
 
-                        <strong> Memory Size</strong> : <?php echo $row['mem_size'] ?>&nbsp;&nbsp;
-                        <strong> Memory Width</strong> : <?php echo $row['mem_width'] ?> &nbsp;&nbsp;
-                        <strong> Power Conn.</strong> : <?php echo $row['pow_con'] ?> &nbsp;&nbsp;
-                        <strong> Purpose </strong> : <?php echo $row['purpose'] ?> &nbsp;&nbsp;
+                        <strong> Form Factor</strong> : <?php echo $row['form_factor'] ?>&nbsp;&nbsp;
+                        <strong> SSD Type</strong> : <?php echo $row['ssd_type'] ?> &nbsp;&nbsp;
 
                         <br><br>
                         <strong> Sold By </strong> : <?php echo $row['sold_by'] ?> &nbsp;&nbsp;
@@ -189,21 +185,20 @@ session_start();
             </div>
         </div>
         <div class="col-md-3">
-    <div class="list-group">
-      <h3>Price</h3>
-      <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
-                <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
+          <div class="list-group">
+            <h3>Price</h3>
+            <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
+                      <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
 
 
-                <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
-                <div id="price_range"></div>
-            </div>
+                      <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
+                      <div id="price_range"></div>
+                  </div>
             <div class="list-group">
-      <h3>Brand</h3>
+        <h3>Brand</h3>
+        <?php
 
-      <?php
-
-                $query = "select distinct(`company`) from `gpu_tbl` order by `company` desc";
+                $query = "select distinct(`company`) from `memory_tbl` where form_factor='M.2' order by `company` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -217,13 +212,12 @@ session_start();
                 }
 
                 ?>
-
             </div>
             <div class="list-group">
-      <h3>Processor</h3>
-      <?php
+        <h3>Memory Size</h3>
+        <?php
 
-                $query = "select distinct(`processor`) from `gpu_tbl` order by `processor` desc";
+                $query = "select distinct(`size`) from `memory_tbl`  where form_factor='M.2' order by `size` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -231,26 +225,7 @@ session_start();
                 {
                 ?>
                 <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector processor" value="<?php echo $row['processor']; ?>"  > <?php echo $row['processor']; ?></label>
-                </div>
-                <?php
-                }
-
-                ?>
-            </div>
-            <div class="list-group">
-      <h3>Memory Type</h3>
-      <?php
-
-                $query = "select distinct(`mem_type`) from `gpu_tbl` order by `mem_type` desc";
-                $statement = $connect->prepare($query);
-                $statement->execute();
-                $result = $statement->fetchAll();
-                foreach($result as $row)
-                {
-                ?>
-                <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector mem_type" value="<?php echo $row['mem_type']; ?>"  > <?php echo $row['mem_type']; ?></label>
+                    <label><input type="checkbox" class="common_selector size" value="<?php echo $row['size']; ?>"  > <?php echo $row['size']; ?> GB</label>
                 </div>
                 <?php
                 }
@@ -258,71 +233,16 @@ session_start();
                 ?>
             </div>
 
-    <div class="list-group">
-      <h3>Memory Size</h3>
-                <?php
 
-                $query = "select distinct(`mem_size`) from `gpu_tbl` order by `mem_size` ";
-                $statement = $connect->prepare($query);
-                $statement->execute();
-                $result = $statement->fetchAll();
-                foreach($result as $row)
-                {
-                ?>
-                <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector mem_size" value="<?php echo $row['mem_size']; ?>" > <?php echo $row['mem_size']; ?> </label>
-                </div>
-                <?php
-                }
 
-                ?>
-            </div>
 
-                    <div class="list-group">
-                      <h3>Power Connectors</h3>
-                                <?php
-
-                                $query = "select distinct(`pow_con`) from `gpu_tbl` order by `pow_con` desc";
-                                $statement = $connect->prepare($query);
-                                $statement->execute();
-                                $result = $statement->fetchAll();
-                                foreach($result as $row)
-                                {
-                                ?>
-                                <div class="list-group-item checkbox">
-                                    <label><input type="checkbox" class="common_selector pow_con" value="<?php echo $row['pow_con']; ?>" > <?php echo $row['pow_con']; ?> </label>
-                                </div>
-                                <?php
-                                }
-
-                                ?>
-                            </div>
-                            <div class="list-group">
-                              <h3>Purpose</h3>
-                                        <?php
-
-                                        $query = "select distinct(`purpose`) from `gpu_tbl` order by `purpose` desc";
-                                        $statement = $connect->prepare($query);
-                                        $statement->execute();
-                                        $result = $statement->fetchAll();
-                                        foreach($result as $row)
-                                        {
-                                        ?>
-                                        <div class="list-group-item checkbox">
-                                            <label><input type="checkbox" class="common_selector purpose" value="<?php echo $row['purpose']; ?>" > <?php echo $row['purpose']; ?> </label>
-                                        </div>
-                                        <?php
-                                        }
-
-                                        ?>
-                                    </div>
 
         </div>
 
 
           <div class="col-md-9">
             <center>
-              <h3>Verified GPUs</h3>
+              <h3>Verified Memorys</h3>
             </center>
             <br />
               <div class="row filter_data">
@@ -347,32 +267,26 @@ session_start();
 
 
         $(document).ready(function(){
+          filter_data();
+          function filter_data()
+          {
+              $('.filter_data').html('<div id="loading" style="" ></div>');
+              var action = 'fetch_data';
+              var minimum_price = $('#hidden_minimum_price').val();
+              var maximum_price = $('#hidden_maximum_price').val();
+              var company = get_filter('company');
+              var size = get_filter('size');
+              var type = get_filter('type');
 
-        filter_data();
-
-        function filter_data()
-        {
-            $('.filter_data').html('<div id="loading" style="" ></div>');
-            var action = 'fetch_data';
-            var minimum_price = $('#hidden_minimum_price').val();
-            var maximum_price = $('#hidden_maximum_price').val();
-            var company = get_filter('company');
-            var processor = get_filter('processor');
-            var mem_type = get_filter('mem_type');
-            var mem_size = get_filter('mem_size');
-            var pow_con = get_filter('pow_con');
-            var purpose = get_filter('purpose');
-
-            $.ajax({
-                url:"fetch_data_gpu_one.php",
-                method:"POST",
-                data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, processor:processor, mem_type:mem_type, mem_size:mem_size, pow_con:pow_con, purpose:purpose },
-                success:function(data){
-                    $('.filter_data').html(data);
-                }
-            });
-        }
-
+              $.ajax({
+                  url:"fetch_data_mem_m2_one.php",
+                  method:"POST",
+                  data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, size:size },
+                  success:function(data){
+                      $('.filter_data').html(data);
+                  }
+              });
+          }
 
         function get_filter(class_name)
         {

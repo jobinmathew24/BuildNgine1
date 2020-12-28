@@ -1,4 +1,6 @@
 <?php
+session_start();
+$id=$_SESSION['loginid'];
 
 //fetch_data.php
 
@@ -70,7 +72,7 @@ if(isset($_POST["action"]))
 			$output .= '
 			<div class="col-sm-4 col-lg-3 col-md-3">
 			<center>
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:590px;">
 					<img src="../../project/mother/'. $row['pic'] .'" width="150px" height="150px" >
 					<p align="center"><strong>'. $row['name'] .'</strong></p>
 					<h4 style="text-align:center;" class="text-danger" >₹ '. $row['price'] .'</h4>
@@ -85,12 +87,18 @@ if(isset($_POST["action"]))
 					SATA Count : '. $row['sata_count'] .' Nos <br />
 					M.2 Count : '. $row['m2_count'] .' Nos <br />
 					Max freq : '. $row['max_freq'] .' Mhz <br />
-					Purpose : '. $row['purpose'] .'  </p>
-					<br>
-					<i class="fa fa-archive"></i>
-					<input type="Submit" name="add" class="btn btn-warning" value="Set Unverified" onclick="one(\''.$row['name'].'\')">
+					Purpose : '. $row['purpose'] .'
+					Sold by : '. $row['sold_by'] .'  </p>
+					<br>';
+					$sold=$row['sold_by'];
+					if($sold==$id)
+					{
+						$output .= '<i class="fa fa-archive"></i>
+						<input type="Submit" name="add" class="btn btn-warning" value="Set Unverified" onclick="one(\''.$row['name'].'\')">';
+					}
 
-					</center>
+
+					$output .= '</center>
 				</div>
 
 			</div>

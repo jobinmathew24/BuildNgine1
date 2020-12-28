@@ -33,4 +33,28 @@ $n=mysqli_num_rows($result);
 		die("TRUE");
 	else die("user row illaathe moonchi");
 }
+
+if (isset($_GET['ram_name'])){
+	$name = $_GET['ram_name'];
+	// require('tables.php');
+	$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+	$sql="select name from ram_tbl where name = '$name'";
+	$result=mysqli_query($con,$sql)or die("query moonchi");
+$n=mysqli_num_rows($result);
+	if ($n>0)
+		die("TRUE");
+	else die("user row illaathe moonchi");
+}
+
+if (isset($_GET['mem_type'])){
+	$name = $_GET['mem_type'];
+	// require('tables.php');
+	$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+	$sql="select name from memory_tbl where name = '$name'";
+	$result=mysqli_query($con,$sql)or die("query moonchi");
+$n=mysqli_num_rows($result);
+	if ($n>0)
+		die("TRUE");
+	else die("user row illaathe moonchi");
+}
 ?>

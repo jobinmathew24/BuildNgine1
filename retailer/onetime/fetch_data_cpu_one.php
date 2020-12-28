@@ -1,6 +1,7 @@
 <?php
 session_start();
-//fetch_data.php
+
+$id=$_SESSION['loginid'];
 
 include('../../database/database_connection.php');
 
@@ -81,10 +82,16 @@ if(isset($_POST["action"]))
 					Max Temp : '. $row['max_temp'] .' °C<br />
 					Purpose : '. $row['purpose'] .'<br />
 					Sold By : '. $row['sold_by'] .'</p>
-					<br>
-					<i class="fa fa-archive"></i>
-					<input type="Submit" name="add" class="btn btn-warning" value="Set Unverified" onclick="one(\''.$row['name'].'\')">
-					</center>
+					<br>';
+					$sold=$row['sold_by'];
+					if($sold==$id)
+					{
+						$output .= '<i class="fa fa-archive"></i>
+						<input type="Submit" name="add" class="btn btn-warning" value="Set Unverified" onclick="one(\''.$row['name'].'\')">';
+					}
+
+
+					$output .= '</center>
 				</div>
 
 			</div>

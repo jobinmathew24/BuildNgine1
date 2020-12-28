@@ -13,20 +13,14 @@ session_start();
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
   $row=mysqli_fetch_array($result1);
 
-  $sql="select distinct(`company`) from `gpu_tbl` where verified =1 order by `company` desc";
-  $sql_company=mysqli_query($con,$sql);
 
-  $sql="select distinct(`processor`) from `gpu_tbl` where verified =1 order by `processor` desc";
-  $sql_processor=mysqli_query($con,$sql);
+  $sql="select distinct(`ram_size`) from `ram_tbl` where verified =1 order by `ram_size` desc";
+  $sql_ram_size=mysqli_query($con,$sql);
 
-  $sql="select distinct(`mem_size`) from `gpu_tbl` where verified =1 order by `mem_size` desc";
-  $sql_mem_size=mysqli_query($con,$sql);
+  $sql="select distinct(`ram_type`) from `ram_tbl` where verified =1 order by `ram_type` desc";
+  $sql_ram_type=mysqli_query($con,$sql);
 
-  $sql="select distinct(`mem_type`) from `gpu_tbl` where verified =1 order by `mem_type` desc";
-  $sql_mem_type=mysqli_query($con,$sql);
 
-  $sql="select distinct(`purpose`) from `gpu_tbl` where verified =1 order by `purpose` desc";
-  $sql_pur=mysqli_query($con,$sql);
 
 
 // $loc="SELECT * FROM tbl_location WHERE is_delete=1";
@@ -50,17 +44,17 @@ session_start();
   </head>
   <script type="text/javascript">
   function check() {
-    var gpu_name = document.getElementById('name').value;
-          if (!gpu_name) return;
+    var ram_name = document.getElementById('name').value;
+          if (!ram_name) return;
           console.log("WORKING user TILL HERE");
           var ajax = new XMLHttpRequest();
           ajax.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200 ){
               console.log(this.response); //helps SEE WHATS GOING ON in the php file;
               if(this.response=='TRUE'){
-                  document.getElementById('nameid').innerHTML="GPU name is already entered";
+                  document.getElementById('nameid').innerHTML="RAM name is already entered";
                   document.getElementById('name').value="";
-                  document.forms["gpu_tbl"]["name"].focus();
+                  document.forms["ram_tbl"]["name"].focus();
               }
               else{
                   document.getElementById('nameid').innerHTML="";
@@ -68,7 +62,7 @@ session_start();
               }
             }
           }
-          ajax.open("GET", "checkmother.php?gpu_name="+gpu_name, true);
+          ajax.open("GET", "checkmother.php?ram_name="+ram_name, true);
           ajax.send();
 
 }
@@ -122,79 +116,45 @@ session_start();
     <div class="container">
       <br>
 
-      <form action="" method="post" name="gpu_tbl" enctype="multipart/form-data" class="form-group-sm container"  >
-        <h2 style="float: center;">New GPU</h2 >
+      <form action="" method="post" name="ram_tbl" enctype="multipart/form-data" class="form-group-sm container"  >
+        <h2 style="float: center;">New RAM</h2 >
           <hr>
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="GPU Name" name="name" id="name" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="RAM Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-                <select class="form-control" type="button" style="width:450px;" name="company" required>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="RAM company" name="company"  value=""><br>
 
-                      <option value="">Select the Company</option>
+        <select class="form-control" type="button" style="width:450px;" name="ram_type" required>
+
+                      <option value="">Select the RAM Type</option>
                         <?php
 
-                           while($data_socket=mysqli_fetch_array($sql_company))
+                           while($data_ram=mysqli_fetch_array($sql_ram_type ))
                            {
-                               echo "<option value='".$data_socket['company']."'>" .$data_socket['company'] ."</option>";
+                               echo "<option value='".$data_ram['ram_type']."'>" .$data_ram['ram_type'] ."</option>";
                            }
                             ?>
 
         </select><br>
-        <select class="form-control" type="button" style="width:450px;" name="processor" required>
+        <select class="form-control" type="button" style="width:450px;" name="ram_size" required>
 
-                      <option value="">Select the Processor</option>
+                      <option value="">Select the RAM Size</option>
                         <?php
 
-                           while($data_ram=mysqli_fetch_array($sql_processor ))
+                           while($data_ram=mysqli_fetch_array($sql_ram_size ))
                            {
-                               echo "<option value='".$data_ram['processor']."'>" .$data_ram['processor'] ."</option>";
+                               echo "<option value='".$data_ram['ram_size']."'>" .$data_ram['ram_size'] ." Gb</option>";
                            }
                             ?>
 
         </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Core Freq" name="core_freq" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Frequency" name="mem_freq" value=""><br>
-        <select class="form-control" type="button" style="width:450px;" name="mem_type" required>
-
-                      <option value="">Select the Memory Type</option>
-                        <?php
-
-                           while($data_ram=mysqli_fetch_array($sql_mem_type))
-                           {
-                               echo "<option value='".$data_ram['mem_type']."'>" .$data_ram['mem_type'] ."</option>";
-                           }
-                            ?>
-
-        </select><br>
-        <select class="form-control" type="button" style="width:450px;" name="mem_size" required>
-
-                      <option value="">Select the Memory Size</option>
-                        <?php
-
-                           while($data_ram=mysqli_fetch_array($sql_mem_size))
-                           {
-                               echo "<option value='".$data_ram['mem_size']."'>" .$data_ram['mem_size'] ."</option>";
-                           }
-                            ?>
-
-        </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Width" name="mem_width" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Power Connector" name="pow_con" value=""><br>
-        <select class="form-control" type="button" style="width:450px;" name="purpose" required>
-
-                      <option value="">Select the Purpose</option>
-                        <?php
-
-                           while($data_pur=mysqli_fetch_array($sql_pur))
-                           {
-                               echo "<option value='".$data_pur['purpose']."'>" .$data_pur['purpose'] ."</option>";
-                           }
-                            ?>
-
-        </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="GPU price" name="price" value="">
+        <input type="number" class="form-control" style="width:450px;" required placeholder="RAM Memory Frequency" name="mem_freq" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="FSB" name="fsb" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="RAM Voltage" name="voltage" value=""><br>
+        <input type="text" class="form-control" style="width:450px;" required placeholder="RAM Timing" name="timing" value=""><br>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="RAM price" name="price" value="">
         <!-- Select image to upload: -->
         <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
@@ -212,21 +172,19 @@ if(isset($_POST['submit'])){
 
   $name=$_POST['name'];
   $company=$_POST['company'];
-  $processor=$_POST['processor'];
-  $core_freq=$_POST['core_freq'];
+  $ram_type=$_POST['ram_type'];
+  $ram_size=$_POST['ram_size'];
   $mem_freq=$_POST['mem_freq'];
-  $mem_type=$_POST['mem_type'];
-  $mem_size=$_POST['mem_size'];
-  $mem_width=$_POST['mem_width'];
-  $pow_con=$_POST['pow_con'];
-  $purpose=$_POST['purpose'];
+  $fsb=$_POST['fsb'];
+  $voltage=$_POST['voltage'];
+  $timing=$_POST['timing'];
   $price=$_POST['price'];
   $pic=$_FILES['image']['name'];
 
-  $sql="insert into `gpu_tbl`(`name`, `company`, `processor`, `core_freq`, `mem_freq`, `mem_type`, `mem_size`, `mem_width`, `pow_con`, `purpose`, `price`,`sold_by`, `image`) VALUES ('$name','$company','$processor','$core_freq','$mem_freq','$mem_type','$mem_size','$mem_width','$pow_con','$purpose',$price,'$id','$pic')";
+  $sql="insert into `ram_tbl`(`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`,`sold_by`, `pic`) VALUES ('$name','$company','$ram_type',$ram_size,$mem_freq,'$fsb',$voltage,'$timing',$price,'$id','$pic')";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
-  $target_dir = "../project/gpu/";
+  $target_dir = "../project/ram/";
   $target_path=$target_dir.$pic;
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data inserted Sucessfully');</script>";

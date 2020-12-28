@@ -5,6 +5,7 @@ session_start();
   header('location: ../../login.php');
   }
   include('../../database/database_connection.php');
+  $id=$_SESSION['loginid'];
 
 
   $sql2="select Count(*) from ordertbl where status=1 and save=0";
@@ -21,10 +22,10 @@ session_start();
   $min=$row['min'];
   $max=$row['max'];
 
-  $sql3="select * from cpu_tbl where status=1 and verified=0";
+  $sql3="select * from cpu_tbl where status=1 and verified=0 and sold_by='$id'";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
-  $sql3="select Count(*) from cpu_tbl where status=1 and verified=0";
+  $sql3="select Count(*) from cpu_tbl where status=1 and verified=0 and sold_by='$id'";
   $result4=mysqli_query($con,$sql3)or die("number query moonchi");
   $roww=mysqli_fetch_array($result4);
     $carte=$roww['Count(*)'];
@@ -299,7 +300,7 @@ session_start();
 
           <div class="col-md-9">
             <center>
-              <h3>Verified Motherboard</h3>
+              <h3>Verified CPUs</h3>
             </center>
             <br />
               <div class="row filter_data">
@@ -329,25 +330,26 @@ session_start();
 
         function filter_data()
         {
-        $('.filter_data').html('<div id="loading" style="" ></div>');
-        var action = 'fetch_data';
-        var minimum_price = $('#hidden_minimum_price').val();
-        var maximum_price = $('#hidden_maximum_price').val();
-        var company = get_filter('company');
-        var purpose = get_filter('purpose');
-        var socket = get_filter('socket');
-        var ram_type = get_filter('ram_type');
-        var max_ram = get_filter('max_ram');
-        var m2_count = get_filter('m2_count');
-        $.ajax({
-          url:"fetch_data_cpu_one.php",
-          method:"POST",
-          data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, purpose:purpose, socket:socket, ram_type:ram_type, max_ram:max_ram,m2_count:m2_count },
-          success:function(data){
-              $('.filter_data').html(data);
+            $('.filter_data').html('<div id="loading" style="" ></div>');
+            var action = 'fetch_data';
+            var minimum_price = $('#hidden_minimum_price').val();
+            var maximum_price = $('#hidden_maximum_price').val();
+            var company = get_filter('company');
+            var purpose = get_filter('purpose');
+            var socket = get_filter('socket');
+            var core = get_filter('core');
+            var cache = get_filter('cache');
+            var igpu = get_filter('igpu');
+            // var m2_count = get_filter('m2_count');
+            $.ajax({
+                url:"fetch_data_cpu_one.php",
+                method:"POST",
+                data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, purpose:purpose, socket:socket, core:core, cache:cache, igpu:igpu },
+                success:function(data){
+                    $('.filter_data').html(data);
+                }
+            });
           }
-        });
-        }
 
         function get_filter(class_name)
         {
