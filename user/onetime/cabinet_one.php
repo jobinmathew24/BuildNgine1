@@ -13,7 +13,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from cabinet_tbl where status=1 ";
+$sql3="select MIN(price) as min, MAX(price) as max from cabinet_tbl where Verified =1 and status=1 ";
 // echo $sql3;
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
@@ -119,7 +119,7 @@ else {
 					<h3>Brand</h3>
 					<?php
 
-                    $query = "select distinct(`company`) from `cabinet_tbl`  order by `company` desc";
+                    $query = "select distinct(`company`) from `cabinet_tbl` where Verified =1  order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();

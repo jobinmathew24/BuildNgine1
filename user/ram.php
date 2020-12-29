@@ -21,7 +21,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from ram_tbl where status=1";
+$sql3="select MIN(price) as min, MAX(price) as max from ram_tbl where verified=1 and  status=1";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -139,7 +139,7 @@ else {
 					<h3>Brand</h3>
 					<?php
 
-                    $query = "select distinct(`company`) from `ram_tbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `ram_tbl` where verified=1 order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -158,7 +158,7 @@ else {
           <h3>RAM Type</h3>
           <?php
 
-                    $query = "select distinct(`ram_type`) from `ram_tbl` order by `ram_type` desc";
+                    $query = "select distinct(`ram_type`) from `ram_tbl` where verified=1 order by `ram_type` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -178,7 +178,7 @@ else {
 					<h3>RAM Size</h3>
                     <?php
 
-                    $query = "select distinct(`ram_size`) from `ram_tbl` order by `ram_size` desc";
+                    $query = "select distinct(`ram_size`) from `ram_tbl` where verified=1 order by `ram_size` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -198,7 +198,7 @@ else {
                           <h3>Memory Frequency</h3>
                                     <?php
 
-                                    $query = "select distinct(`mem_freq`) from `ram_tbl` order by `mem_freq` desc";
+                                    $query = "select distinct(`mem_freq`) from `ram_tbl` where verified=1 order by `mem_freq` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();

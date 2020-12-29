@@ -22,7 +22,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from gpu_tbl where status=1";
+$sql3="select MIN(price) as min, MAX(price) as max from gpu_tbl where verified=1 and status=1";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -143,7 +143,7 @@ else {
 
 					<?php
 
-                    $query = "select distinct(`company`) from `gpu_tbl` order by `company` desc";
+                    $query = "select distinct(`company`) from `gpu_tbl` where verified=1 order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -163,7 +163,7 @@ else {
 					<h3>Processor</h3>
 					<?php
 
-                    $query = "select distinct(`processor`) from `gpu_tbl` order by `processor` desc";
+                    $query = "select distinct(`processor`) from `gpu_tbl` where verified=1 order by `processor` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -182,7 +182,7 @@ else {
           <h3>Memory Type</h3>
           <?php
 
-                    $query = "select distinct(`mem_type`) from `gpu_tbl` order by `mem_type` desc";
+                    $query = "select distinct(`mem_type`) from `gpu_tbl` where verified=1 order by `mem_type` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -202,7 +202,7 @@ else {
 					<h3>Memory Size</h3>
                     <?php
 
-                    $query = "select distinct(`mem_size`) from `gpu_tbl` order by `mem_size` ";
+                    $query = "select distinct(`mem_size`) from `gpu_tbl` where verified=1 order by `mem_size` ";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -222,7 +222,7 @@ else {
                           <h3>Power Connectors</h3>
                                     <?php
 
-                                    $query = "select distinct(`pow_con`) from `gpu_tbl` order by `pow_con` desc";
+                                    $query = "select distinct(`pow_con`) from `gpu_tbl` where verified=1 order by `pow_con` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();
@@ -241,7 +241,7 @@ else {
                                   <h3>Purpose</h3>
                                             <?php
 
-                                            $query = "select distinct(`purpose`) from `gpu_tbl` order by `purpose` desc";
+                                            $query = "select distinct(`purpose`) from `gpu_tbl` where verified=1 order by `purpose` desc";
                                             $statement = $connect->prepare($query);
                                             $statement->execute();
                                             $result = $statement->fetchAll();

@@ -16,42 +16,42 @@ session_start();
 
   $cart=$row['Count(*)'];
 
-  $sql3="select MIN(price) as min, MAX(price) as max from smps_tbl where status=1 and verified=1";
+  $sql3="select MIN(price) as min, MAX(price) as max from cpu_fan_tbl where status=1 and verified=1";
   $result2=mysqli_query($con,$sql3)or die("price query moonchi");
   $row=mysqli_fetch_array($result2);
   $min=$row['min'];
   $max=$row['max'];
 
-  $sql3="select * from smps_tbl where status=1 and verified=0 and sold_by='$id' ";
+  $sql3="select * from cpu_fan_tbl where status=1 and verified=0 and sold_by='$id' ";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
-  $sql3="select Count(*) from smps_tbl where status=1 and verified=0 and sold_by='$id' ";
+  $sql3="select Count(*) from cpu_fan_tbl where status=1 and verified=0 and sold_by='$id' ";
   $result4=mysqli_query($con,$sql3)or die("number query moonchi");
   $roww=mysqli_fetch_array($result4);
     $carte=$roww['Count(*)'];
 
     if (isset($_POST['delete'])) {
     $name=$_POST['result'];
-    $sql3="delete from smps_tbl where name='$name'";
+    $sql3="delete from cpu_fan_tbl where name='$name'";
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:smps_one.php');
+    header('location:cpu_fan_one.php');
 
     }
 
     if (isset($_POST['verify'])) {
     $name=$_POST['result'];
-    $sql3="update smps_tbl set verified=1 where name='$name'";
+    $sql3="update cpu_fan_tbl set verified=1 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:smps_one.php');
+    header('location:cpu_fan_one.php');
 
     }
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
-    $sql3="update smps_tbl set verified=0 where name='$name'";
+    $sql3="update cpu_fan_tbl set verified=0 where name='$name'";
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-    header('location:smps_one.php');
+    header('location:cpu_fan_one.php');
 
     }
 
@@ -137,7 +137,7 @@ session_start();
 
               if ($carte>0) {?>
                 <center>
-                  <h3>Not Verified SMPS</h3>
+                  <h3>Not Verified CPU Fan</h3>
                 </center>
                 <?php
                foreach($result2 as $row)
@@ -146,7 +146,7 @@ session_start();
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
                     <div style="border:1px solid #ccc; border-radius:5px; padding:16px; padding-bottom: 25px; margin-bottom:16px; height:auto;">
-                      <img  style="float:left; padding:5px;" src="../../project/smps/<?php echo $row['pic']  ?>" width="150px" height="150px" >
+                      <img  style="float:left; padding:5px;" src="../../project/fan/<?php echo $row['pic']  ?>" width="150px" height="150px" >
 
 
                         <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
@@ -156,15 +156,13 @@ session_start();
 
 
                         <strong> Company</strong> : <?php echo $row['company'] ?>&nbsp;&nbsp;
-                        <strong> Power</strong> : <?php echo $row['power'] ?> W&nbsp;&nbsp;
-                        <strong> MB Power</strong> : <?php echo $row['mb_pow'] ?> Pin&nbsp;&nbsp;
+
+                        <strong> Type </strong> : <?php echo $row['cooler_type'] ?> &nbsp;&nbsp;
+                        <strong>MAX Cooling TDP</strong> : <?php echo $row['max_tdp'] ?> &nbsp;&nbsp;
                           <br><br>
-
-                        <strong> SATA Count</strong> : <?php echo $row['sata_count'] ?> Nos&nbsp;&nbsp;
-                        <strong> CPU Power Con</strong> : <?php echo $row['cpu_pow'] ?> &nbsp;&nbsp;
-                        <strong> PCIe Count</strong> : <?php echo $row['pci_count'] ?> Nos &nbsp;&nbsp;
-
+                        <strong>Sockets</strong> : <?php echo $row['socket'] ?> &nbsp;&nbsp;
                         <br><br>
+
                         <strong> Sold By </strong> : <?php echo $row['sold_by'] ?> &nbsp;&nbsp;
 
 
@@ -200,7 +198,7 @@ session_start();
       <h3>Brand</h3>
       <?php
 
-                $query = "select distinct(`company`) from `smps_tbl` where Verified =1 order by `company` desc";
+                $query = "select distinct(`company`) from `cpu_fan_tbl` where Verified =1  order by `company` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -216,10 +214,10 @@ session_start();
                 ?>
             </div>
             <div class="list-group">
-      <h3>Power</h3>
+      <h3>Cooler Type</h3>
       <?php
 
-                $query = "select distinct(`power`) from `smps_tbl` where Verified =1 order by `power` desc";
+                $query = "select distinct(`cooler_type`) from `cpu_fan_tbl` where Verified =1  order by `cooler_type` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -227,7 +225,7 @@ session_start();
                 {
                 ?>
                 <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector power" value="<?php echo $row['power']; ?>"  > <?php echo $row['power']; ?> W</label>
+                    <label><input type="checkbox" class="common_selector cooler_type" value="<?php echo $row['cooler_type']; ?>"  > <?php echo $row['cooler_type']; ?> </label>
                 </div>
                 <?php
                 }
@@ -236,10 +234,10 @@ session_start();
             </div>
 
     <div class="list-group">
-      <h3>SATA Count</h3>
+      <h3>MAX Cooling TDP</h3>
                 <?php
 
-                $query = "select distinct(`sata_count`) from `smps_tbl` where Verified =1 order by `sata_count` desc";
+                $query = "select distinct(`max_tdp`) from `cpu_fan_tbl` where Verified =1  order by `max_tdp` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -247,33 +245,13 @@ session_start();
                 {
                 ?>
                 <div class="list-group-item checkbox">
-                    <label><input type="checkbox" class="common_selector sata_count" value="<?php echo $row['sata_count']; ?>" > <?php echo $row['sata_count']; ?> Nos</label>
+                    <label><input type="checkbox" class="common_selector max_tdp" value="<?php echo $row['max_tdp']; ?>" > <?php echo $row['max_tdp']; ?> W</label>
                 </div>
                 <?php
                 }
 
                 ?>
             </div>
-            <div class="list-group">
-              <h3>PCIe Count</h3>
-                        <?php
-
-                        $query = "select distinct(`pci_count`) from `smps_tbl` where Verified =1 order by `pci_count` desc";
-                        $statement = $connect->prepare($query);
-                        $statement->execute();
-                        $result = $statement->fetchAll();
-                        foreach($result as $row)
-                        {
-                        ?>
-                        <div class="list-group-item checkbox">
-                            <label><input type="checkbox" class="common_selector pci_count" value="<?php echo $row['pci_count']; ?>" > <?php echo $row['pci_count']; ?> Nos</label>
-                        </div>
-                        <?php
-                        }
-
-                        ?>
-                    </div>
-
 
 
         </div>
@@ -282,7 +260,7 @@ session_start();
 
           <div class="col-md-9">
             <center>
-              <h3>Verified SMPS</h3>
+              <h3>Verified CPU Fan</h3>
             </center>
             <br />
               <div class="row filter_data">
@@ -317,14 +295,14 @@ session_start();
                 var minimum_price = $('#hidden_minimum_price').val();
                 var maximum_price = $('#hidden_maximum_price').val();
                 var company = get_filter('company');
-                var power = get_filter('power');
-                var sata_count = get_filter('sata_count');
-                var pci_count = get_filter('pci_count');
+                var cooler_type = get_filter('cooler_type');
+                var max_tdp = get_filter('max_tdp');
+
 
                 $.ajax({
-                    url:"fetch_data_smps_one.php",
+                    url:"fetch_data_cpu_fan_one.php",
                     method:"POST",
-                    data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, power:power, sata_count:sata_count, pci_count:pci_count },
+                    data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, cooler_type:cooler_type, max_tdp:max_tdp },
                     success:function(data){
                         $('.filter_data').html(data);
                     }

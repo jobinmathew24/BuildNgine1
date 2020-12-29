@@ -9,7 +9,7 @@ if(isset($_POST["action"]))
 $ram_type=$_SESSION['ram_type'];
 $max_freq=$_SESSION['max_freq'];
 	$query = "
-		SELECT * FROM ram_tbl where status=1 and ram_type='$ram_type' and mem_freq <='$max_freq'
+		SELECT * FROM ram_tbl where verified=1 and status=1 and ram_type='$ram_type' and mem_freq <='$max_freq'
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{

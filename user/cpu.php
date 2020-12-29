@@ -20,7 +20,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from cpu_tbl where status=1 and socket='$socket'";
+$sql3="select MIN(price) as min, MAX(price) as max from cpu_tbl where verified=1 and status=1 and socket='$socket'";
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
 $min=$row['min'];
@@ -141,7 +141,7 @@ else {
 					<h3>Brand</h3>
 					     <?php
 
-                    $query = "select distinct(`company`) from `cpu_tbl` where socket='$socket' order by `company` desc";
+                    $query = "select distinct(`company`) from `cpu_tbl` where verified=1 and socket='$socket' order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -160,7 +160,7 @@ else {
           <h3>Purpose</h3>
             <?php
 
-                    $query = "select distinct(`purpose`) from `cpu_tbl` where socket='$socket' order by `purpose` desc";
+                    $query = "select distinct(`purpose`) from `cpu_tbl` where verified=1 and socket='$socket' order by `purpose` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -180,7 +180,7 @@ else {
 					<h3>Core Count</h3>
                     <?php
 
-                    $query = "select distinct(`core_count`) from `cpu_tbl` where socket='$socket' order by `core_count` desc";
+                    $query = "select distinct(`core_count`) from `cpu_tbl` where verified=1 and socket='$socket' order by `core_count` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -200,7 +200,7 @@ else {
                           <h3>GPU</h3>
                                     <?php
 
-                                    $query = "select distinct(`igpu`) from `cpu_tbl` where socket='$socket' order by `igpu` desc";
+                                    $query = "select distinct(`igpu`) from `cpu_tbl` where verified=1 and socket='$socket' order by `igpu` desc";
                                     $statement = $connect->prepare($query);
                                     $statement->execute();
                                     $result = $statement->fetchAll();

@@ -198,7 +198,7 @@ session_start();
         <h3>Brand</h3>
         <?php
 
-                $query = "select distinct(`company`) from `memory_tbl` where form_factor='M.2' order by `company` desc";
+                $query = "select distinct(`company`) from `memory_tbl` where Verified =1 and form_factor='M.2' order by `company` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -217,7 +217,7 @@ session_start();
         <h3>Memory Size</h3>
         <?php
 
-                $query = "select distinct(`size`) from `memory_tbl`  where form_factor='M.2' order by `size` desc";
+                $query = "select distinct(`size`) from `memory_tbl`  where Verified =1 and form_factor='M.2' order by `size` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();

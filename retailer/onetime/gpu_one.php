@@ -203,7 +203,7 @@ session_start();
 
       <?php
 
-                $query = "select distinct(`company`) from `gpu_tbl` order by `company` desc";
+                $query = "select distinct(`company`) from `gpu_tbl` where Verified =1 order by `company` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -223,7 +223,7 @@ session_start();
       <h3>Processor</h3>
       <?php
 
-                $query = "select distinct(`processor`) from `gpu_tbl` order by `processor` desc";
+                $query = "select distinct(`processor`) from `gpu_tbl` where Verified =1 order by `processor` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -242,7 +242,7 @@ session_start();
       <h3>Memory Type</h3>
       <?php
 
-                $query = "select distinct(`mem_type`) from `gpu_tbl` order by `mem_type` desc";
+                $query = "select distinct(`mem_type`) from `gpu_tbl` where Verified =1 order by `mem_type` desc";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -262,7 +262,7 @@ session_start();
       <h3>Memory Size</h3>
                 <?php
 
-                $query = "select distinct(`mem_size`) from `gpu_tbl` order by `mem_size` ";
+                $query = "select distinct(`mem_size`) from `gpu_tbl` where Verified =1 order by `mem_size` ";
                 $statement = $connect->prepare($query);
                 $statement->execute();
                 $result = $statement->fetchAll();
@@ -282,7 +282,7 @@ session_start();
                       <h3>Power Connectors</h3>
                                 <?php
 
-                                $query = "select distinct(`pow_con`) from `gpu_tbl` order by `pow_con` desc";
+                                $query = "select distinct(`pow_con`) from `gpu_tbl` where Verified =1 order by `pow_con` desc";
                                 $statement = $connect->prepare($query);
                                 $statement->execute();
                                 $result = $statement->fetchAll();
@@ -301,7 +301,7 @@ session_start();
                               <h3>Purpose</h3>
                                         <?php
 
-                                        $query = "select distinct(`purpose`) from `gpu_tbl` order by `purpose` desc";
+                                        $query = "select distinct(`purpose`) from `gpu_tbl` where Verified =1 order by `purpose` desc";
                                         $statement = $connect->prepare($query);
                                         $statement->execute();
                                         $result = $statement->fetchAll();

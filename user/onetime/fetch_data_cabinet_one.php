@@ -8,7 +8,7 @@ if(isset($_POST["action"]))
 {
 
 	$query = "
-		SELECT * FROM cabinet_tbl where status=1
+		SELECT * FROM cabinet_tbl where verified=1 and status=1
 	";
 	if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
 	{

@@ -26,7 +26,7 @@ $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
 
-$sql3="select MIN(price) as min, MAX(price) as max from cpu_fan_tbl where status=1 and socket like '%$socket%'";
+$sql3="select MIN(price) as min, MAX(price) as max from cpu_fan_tbl where verified=1 and status=1 and socket like '%$socket%'";
 // echo $sql3;
 $result2=mysqli_query($con,$sql3)or die("price query moonchi");
 $row=mysqli_fetch_array($result2);
@@ -148,7 +148,7 @@ else {
 					<h3>Brand</h3>
 					<?php
 
-                    $query = "select distinct(`company`) from `cpu_fan_tbl` where socket like '%$socket%' order by `company` desc";
+                    $query = "select distinct(`company`) from `cpu_fan_tbl` where verified=1 and socket like '%$socket%' order by `company` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -167,7 +167,7 @@ else {
           <h3>Cooler Type</h3>
           <?php
 
-                    $query = "select distinct(`cooler_type`) from `cpu_fan_tbl` where socket like '%$socket%' order by `cooler_type` desc";
+                    $query = "select distinct(`cooler_type`) from `cpu_fan_tbl` where verified=1 and socket like '%$socket%' order by `cooler_type` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -187,7 +187,7 @@ else {
 					<h3>MAX Cooling TDP</h3>
                     <?php
 
-                    $query = "select distinct(`max_tdp`) from `cpu_fan_tbl` where socket like '%$socket%' order by `max_tdp` desc";
+                    $query = "select distinct(`max_tdp`) from `cpu_fan_tbl` where verified=1 and socket like '%$socket%' order by `max_tdp` desc";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
