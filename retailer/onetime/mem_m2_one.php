@@ -46,6 +46,12 @@ session_start();
     header('location:mem_m2_one.php');
 
     }
+    if (isset($_POST['edit'])) {
+    $name=$_POST['result'];
+    $_SESSION['mem_m2_edit']=$name;
+    header('location:edit/mem_m2_edit.php');
+
+    }
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
     $sql3="update memory_tbl set verified=0 where name='$name'";
@@ -170,6 +176,9 @@ session_start();
                     <div style="float: right;">
                       <i class="fa fa-trash"></i>
                       <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
+                      &nbsp;
+                      <i class="fa fa-pencil"></i>
+                      <input type="submit" name="edit" class="btn btn-warning" value="Edit the Product" onclick="one('<?php echo $row['name'] ?>')">
                       &nbsp;
                       <i class="fa fa-archive"></i>
                       <input type="submit" name="verify" class="btn btn-primary" value="Save it as Verified" onclick="one('<?php echo $row['name'] ?>')">

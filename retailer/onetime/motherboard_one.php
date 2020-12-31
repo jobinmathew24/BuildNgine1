@@ -43,8 +43,15 @@ session_start();
     // echo $sql3;
     $result2=mysqli_query($con,$sql3)or die("number query moonchi");
     header('location:motherboard_one.php');
+    }
+
+    if (isset($_POST['edit'])) {
+    $name=$_POST['result'];
+    $_SESSION['motherboard_edit']=$name;
+    header('location:edit/motherboard_edit.php');
 
     }
+
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
     $sql3="update mothertbl set verified=0 where name='$name'";
@@ -180,6 +187,9 @@ session_start();
                     <div style="float: right;">
                       <i class="fa fa-trash"></i>
                       <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
+                      &nbsp;
+                      <i class="fa fa-pencil"></i>
+                      <input type="submit" name="edit" class="btn btn-warning" value="Edit the Product" onclick="one('<?php echo $row['name'] ?>')">
                       &nbsp;
                       <i class="fa fa-archive"></i>
                       <input type="submit" name="verify" class="btn btn-primary" value="Save it as Verified" onclick="one('<?php echo $row['name'] ?>')">

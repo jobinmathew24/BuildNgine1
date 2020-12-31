@@ -46,6 +46,12 @@ session_start();
     header('location:cabinet_one.php');
 
     }
+    if (isset($_POST['edit'])) {
+    $name=$_POST['result'];
+    $_SESSION['cabinet_edit']=$name;
+    header('location:edit/cabinet_edit.php');
+
+    }
     if (isset($_POST['add'])) {
     $name=$_POST['result'];
     $sql3="update cabinet_tbl set verified=0 where name='$name'";
@@ -146,7 +152,7 @@ session_start();
                   <div class="col-sm-12 col-lg-12 col-md-12">
 
                     <div style="border:1px solid #ccc; border-radius:5px; padding:16px; padding-bottom: 25px; margin-bottom:16px; height:auto;">
-                      <img  style="float:left; padding:5px;" src="../../project/fan/<?php echo $row['pic']  ?>" width="150px" height="150px" >
+                      <img  style="float:left; padding:5px;" src="../../project/cabinet/<?php echo $row['pic']  ?>" width="150px" height="150px" >
 
 
                         <h4><strong><?php echo $row['name'] ?> <div style="color:red; float:right;">
@@ -170,6 +176,9 @@ session_start();
                     <div style="float: right;">
                       <i class="fa fa-trash"></i>
                       <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
+                      &nbsp;
+                      <i class="fa fa-pencil"></i>
+                      <input type="submit" name="edit" class="btn btn-warning" value="Edit the Product" onclick="one('<?php echo $row['name'] ?>')">
                       &nbsp;
                       <i class="fa fa-archive"></i>
                       <input type="submit" name="verify" class="btn btn-primary" value="Save it as Verified" onclick="one('<?php echo $row['name'] ?>')">
