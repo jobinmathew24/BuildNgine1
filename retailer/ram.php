@@ -156,7 +156,7 @@ session_start();
         <input type="text" class="form-control" style="width:450px;" required placeholder="RAM Timing" name="timing" value=""><br>
         <input type="number" class="form-control" style="width:450px;" required placeholder="RAM price" name="price" value="">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" style="width:450px;" accept="image/jpeg" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -181,11 +181,12 @@ if(isset($_POST['submit'])){
   $price=$_POST['price'];
   $pic=$_FILES['image']['name'];
 
-  $sql="insert into `ram_tbl`(`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`,`sold_by`, `pic`) VALUES ('$name','$company','$ram_type',$ram_size,$mem_freq,'$fsb',$voltage,'$timing',$price,'$id','$pic')";
+  $sql="insert into `ram_tbl`(`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`,`sold_by`, `pic`) VALUES
+  ('$name','$company','$ram_type',$ram_size,$mem_freq,'$fsb',$voltage,'$timing',$price,'$id','$name.jpg')";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../project/ram/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data inserted Sucessfully');</script>";
 header('location:retailer.php');

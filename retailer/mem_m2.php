@@ -167,7 +167,7 @@ session_start();
         </select><br>
           <input type="number" class="form-control" style="width:450px;" required placeholder="SSD price" name="price" value="">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -189,11 +189,12 @@ if(isset($_POST['submit'])){
   $price=$_POST['price'];
   $pic=$_FILES['image']['name'];
 
-  $sql="insert into `memory_tbl`(`name`, `company`, `size`, `form_factor`,`type`,`ssd_type`, `rpm`, `price`,`sold_by`, `pic`) VALUES ('$name','$company',$size,'$form_factor','SSD','$ssd_type','nil',$price,'$id','$pic')";
+  $sql="insert into `memory_tbl`(`name`, `company`, `size`, `form_factor`,`type`,`ssd_type`, `rpm`, `price`,`sold_by`, `pic`) VALUES
+  ('$name','$company',$size,'$form_factor','SSD','$ssd_type','nil',$price,'$id','$name.jpg')";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../project/mem/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data inserted Sucessfully');</script>";
 header('location:retailer.php');

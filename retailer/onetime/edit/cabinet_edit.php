@@ -118,7 +118,7 @@ $cabinet_name=$_SESSION['cabinet_edit'];
         <input type="text" class="form-control" style="width:450px;" required placeholder="Is Cabinet Have Power Supply" name="pow_sup" value="<?php echo $row['pow_sup']; ?>"><br>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Cabinet Price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit"  class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -143,11 +143,11 @@ if(isset($_POST['submit'])){
   $price=$_POST['price'];
   $pic=$_FILES['image']['name'];
 
-  $sql="update `cabinet_tbl` set `name`='$name', `company`='$company',`model`='$model',`int_power`='$int_power',`pow_sup`='$pow_sup',`price`=$price, `pic`='$pic' where `name`='$cabinet_name'";
+  $sql="update `cabinet_tbl` set `name`='$name', `company`='$company',`model`='$model',`int_power`='$int_power',`pow_sup`='$pow_sup',`price`=$price, `pic`='$name.jpg' where `name`='$cabinet_name'";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../../../project/Cabinet/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data Sucessfully Updated');</script>";
   // header('location:');

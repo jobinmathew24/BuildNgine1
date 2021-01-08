@@ -144,7 +144,7 @@ $mem_name=$_SESSION['mem_edit'];
         <input type="number" class="form-control" style="width:450px;" required placeholder="HDD RPM" name="rpm" value="<?php echo $row['rpm']; ?>"><br>
           <input type="number" class="form-control" style="width:450px;" required placeholder="HDD price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -169,11 +169,11 @@ if(isset($_POST['submit'])){
   $pic=$_FILES['image']['name'];
 
   $sql="update `memory_tbl` set `name`='$name', `company`='$company', `size`=$size, `form_factor`='$form_factor',
-  `rpm`=$rpm, `price`=$price, `pic`='$pic' where `name`= '$mem_name'";
+  `rpm`=$rpm, `price`=$price, `pic`='$name.jpg' where `name`= '$mem_name'";
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../../../project/mem/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data Sucessfully Updated');</script>";
   echo "<script>window.location.reload();</script>";

@@ -122,9 +122,35 @@ else {
                 		{?>
                     <div class="col-sm-12 col-lg-12 col-md-12">
 
-              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:170px;">
-              					<img  style="float:left;"src="../cart/<?php echo $row['name']  ?>.jpg " width="100px" height="100px" >
+                      <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
+                        <?php if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
+                          <img  style="float:left; padding:5px;"src="../project/cabinet/<?php echo $row['pic']  ?>.jpg " width="100px" height="100px"  >
 
+                      <?php  } elseif ($row['category']=='CPU') {?>
+                        <img  style="float:left; padding:5px;"src="../project/cpu/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+                    <?php  }elseif ($row['category']=='GPU') {?>
+                      <img  style="float:left; padding:5px;"src="../project/gpu/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+                  <?php  }elseif ($row['category']=='MEMORY') {?>
+                    <img  style="float:left; padding:5px;"src="../project/mem/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+                <?php  }elseif ($row['category']=='RAM') {?>
+                  <img  style="float:left; padding:5px;"src="../project/ram/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+              <?php  }elseif ($row['category']=='Motherboard') {?>
+                <img  style="float:left; padding:5px;"src="../project/mother/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+            <?php  }elseif ($row['category']=='SMPS') {?>
+              <img  style="float:left; padding:5px;"src="../project/smps/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+          <?php  }elseif ($row['category']=='CPU FAN') {?>
+            <img  style="float:left; padding:5px;"src="../project/fan/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+        <?php  }elseif ($row['category']=='cabinet') {?>
+          <img  style="float:left; padding:5px;"src="../project/cabinet/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
+
+      <?php  }?>
                         <div style="float: left;">
                           <h4><strong><?php echo $row['name'] ?></strong></h4>
 
@@ -150,11 +176,10 @@ else {
 
                         </div>
 
-
-
-              				</div>
-
+                        <?php if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
+                        <br><br><br><br><br><?php }else{ echo "<br><br>"; } ?>
               			</div>
+                    </div>
                   <?php
                 }
               }else {?>

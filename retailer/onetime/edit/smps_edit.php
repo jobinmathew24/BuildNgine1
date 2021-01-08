@@ -159,7 +159,7 @@ session_start();
         </select><br>
           <input type="number" class="form-control" style="width:450px;" required placeholder="SMPS price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -186,10 +186,10 @@ if(isset($_POST['submit'])){
   $pic=$_FILES['image']['name'];
 
   $sql="update `smps_tbl` set `name`='$name', `company`='$company',`power`=$power,`cpu_pow`='$cpu_pow',
-              `mb_pow`='$mb_pow', `sata_count`=$sata_count,`pci_count`=$pci_count, `price`=$price, `pic`='$pic' where `name`='$smps_name'";
+              `mb_pow`='$mb_pow', `sata_count`=$sata_count,`pci_count`=$pci_count, `price`=$price, `pic`='$name.jpg' where `name`='$smps_name'";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../../../project/smps/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data Sucessfully Updated');</script>";
   echo "<script>window.location.reload();</script>";

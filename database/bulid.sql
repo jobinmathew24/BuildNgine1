@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2020 at 01:53 PM
+-- Generation Time: Jan 08, 2021 at 06:04 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -37,26 +37,29 @@ CREATE TABLE `cabinet_tbl` (
   `pic` varchar(30) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `price` decimal(10,0) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cabinet_tbl`
 --
 
-INSERT INTO `cabinet_tbl` (`name`, `company`, `model`, `int_power`, `pow_sup`, `pic`, `sold_by`, `price`, `status`) VALUES
-('APPLE MAC PRO', 'Apple', 'MAC PRO', 'No', 'No', 'APPLE MAC PRO.jpg', 'BulidNgine Pvt. Ltd. ', '18000', 1),
-('COOLER MASTER ELITE 350', 'Cooler Master', 'ELITE 350', 'No', 'No', 'COOLER MASTER ELITE 350.jpg', 'BulidNgine Pvt. Ltd. ', '3000', 1),
-('COOLER MASTER H500M', 'Cooler Master', 'H500M', 'No', 'No', 'COOLER MASTER H500M.jpg', 'BulidNgine Pvt. Ltd. ', '15500', 1),
-('COOLER MASTER H500P', 'Cooler Master', 'H500P', 'No', 'No', 'COOLER MASTER H500P.jpg', 'BulidNgine Pvt. Ltd. ', '13500', 1),
-('COOLER MASTER LITE 5', 'Cooler Master', ' LITE 5', 'No', 'No', 'COOLER MASTER LITE 5.png', 'BulidNgine Pvt. Ltd. ', '6800', 1),
-('COOLER MASTER MB500', 'Cooler Master', 'MB500', 'No', 'No', 'COOLER MASTER MB500.png', 'BulidNgine Pvt. Ltd. ', '6600', 1),
-('COOLER MASTER MB530P', 'Cooler Master', 'MB530P', 'No', 'No', 'COOLER MASTER MB530P.jpg', 'BulidNgine Pvt. Ltd. ', '9500', 1),
-('COOLER MASTER MB600L', 'Cooler Master', 'MB600L', 'No', 'No', 'COOLER MASTER MB600L.jpg', 'BulidNgine Pvt. Ltd. ', '4600', 1),
-('COOLER MASTER SL600M', 'Cooler Master', 'SL600M', 'No', 'No', 'COOLER MASTER SL600M.jpg', 'BulidNgine Pvt. Ltd. ', '10450', 1),
-('DEEPCOOL MATREXX 55X', 'Deepcool', 'MATREXX 55X', 'No', 'No', 'DEEPCOOL MATREXX 55X.jpg', 'BulidNgine Pvt. Ltd. ', '3800', 1),
-('DEEPCOOL MATREXX 5S', 'Deepcool', 'MATREXX 5S', 'No', 'No', 'DEEPCOOL MATREXX 5S.jpg', 'BulidNgine Pvt. Ltd. ', '3600', 1),
-('DEEPCOOL TESSERACT BF', 'Deepcool', 'TESSERACT BF', 'No', 'No', 'DEEPCOOL TESSERACT BF.jpg', 'BulidNgine Pvt. Ltd. ', '6000', 1);
+INSERT INTO `cabinet_tbl` (`name`, `company`, `model`, `int_power`, `pow_sup`, `pic`, `sold_by`, `price`, `status`, `verified`) VALUES
+('acc', 'asd', 'asd', 'asd', 'asd', 'acc.jpg', 'retailer', '123', 1, 0),
+('APPLE MAC PRO', 'Apple', 'MAC PRO', 'No', 'No', 'APPLE MAC PRO.jpg', 'BulidNgine Pvt. Ltd. ', '18000', 1, 1),
+('COOLER MASTER ELITE 350', 'Cooler Master', 'ELITE 350', 'No', 'No', 'COOLER MASTER ELITE 350.jpg', 'BulidNgine Pvt. Ltd. ', '3000', 1, 1),
+('COOLER MASTER H500M', 'Cooler Master', 'H500M', 'No', 'No', 'COOLER MASTER H500M.jpg', 'BulidNgine Pvt. Ltd. ', '15500', 1, 1),
+('COOLER MASTER H500P', 'Cooler Master', 'H500P', 'No', 'No', 'COOLER MASTER H500P.jpg', 'BulidNgine Pvt. Ltd. ', '13500', 1, 1),
+('COOLER MASTER LITE 5', 'Cooler Master', ' LITE 5', 'No', 'No', 'COOLER MASTER LITE 5.png', 'BulidNgine Pvt. Ltd. ', '6800', 1, 1),
+('COOLER MASTER MB500', 'Cooler Master', 'MB500', 'No', 'No', 'COOLER MASTER MB500.png', 'BulidNgine Pvt. Ltd. ', '6600', 1, 1),
+('COOLER MASTER MB530P', 'Cooler Master', 'MB530P', 'No', 'No', 'COOLER MASTER MB530P.jpg', 'BulidNgine Pvt. Ltd. ', '9500', 1, 1),
+('COOLER MASTER MB600L', 'Cooler Master', 'MB600L', 'No', 'No', 'COOLER MASTER MB600L.jpg', 'BulidNgine Pvt. Ltd. ', '4600', 1, 1),
+('COOLER MASTER SL600M', 'Cooler Master', 'SL600M', 'No', 'No', 'COOLER MASTER SL600M.jpg', 'BulidNgine Pvt. Ltd. ', '10450', 1, 1),
+('DEEPCOOL MATREXX 55X', 'Deepcool', 'MATREXX 55X', 'No', 'No', 'DEEPCOOL MATREXX 55X.jpg', 'BulidNgine Pvt. Ltd. ', '3800', 1, 1),
+('DEEPCOOL MATREXX 5S', 'Deepcool', 'MATREXX 5S', 'No', 'No', 'DEEPCOOL MATREXX 5S.jpg', 'BulidNgine Pvt. Ltd. ', '3600', 1, 1),
+('DEEPCOOL TESSERACT BF', 'Deepcool', 'TESSERACT BF', 'No', 'No', 'DEEPCOOL TESSERACT BF.jpg', 'BulidNgine Pvt. Ltd. ', '6000', 1, 1),
+('joerj', 'asd', 'asd', 'asd', 'asd', 'as.png', 'retailer', '123', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -73,29 +76,31 @@ CREATE TABLE `cpu_fan_tbl` (
   `price` decimal(10,0) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `pic` varchar(25) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cpu_fan_tbl`
 --
 
-INSERT INTO `cpu_fan_tbl` (`name`, `company`, `cooler_type`, `socket`, `max_tdp`, `price`, `sold_by`, `pic`, `status`) VALUES
-('AEROCOOL VERKHO 2', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 115, '2800', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VERHO 2.jpg', 1),
-('AEROCOOL VERKHO 3+', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 120, '3000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VERKHO 3+.jpg', 1),
-('COOL MASTER AIR 8', 'Cooler Master', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3', 200, '5200', 'BulidNgine Pvt. Ltd. ', 'COOL MASTER AIR 8.png', 1),
-('DEEPCOOL 15 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 95, '1400', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL 15 PWM.jpeg', 1),
-('DEEPCOOL 31 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 100, '1800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL 31 PWM.jpg', 1),
-('DEEPCOOL BETA 10', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 85, '1100', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL BETA 10.jpg', 1),
-('DEEPCOOL CASTLE 240', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 230, '8000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 240.jpg', 1),
-('DEEPCOOL CASTLE 280', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '9000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 280.jpg', 1),
-('DEEPCOOL CASTLE 320', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '11000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 320.jpg', 1),
-('DEEPCOOL CK-AM209', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 65, '800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CK-AM209.jpg', 1),
-('DEEPCOOL ICE 100', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 100, '1800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL ICE 100.jpg', 1),
-('DEEPCOOL MAXX 300', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 130, '3100', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL MAXX 300.jpg', 1),
-('DEEPCOOL MAXX GTE', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4', 150, '3600', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL MAXX GTE.jpg', 1),
-('ZALMAN CNPS10 II', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 185, '4650', 'BulidNgine Pvt. Ltd. ', 'ZALMAN CNPS10 II.jpg', 1),
-('ZALMAN CNPS9X', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 180, '4000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN CNPS9X.jpg', 1);
+INSERT INTO `cpu_fan_tbl` (`name`, `company`, `cooler_type`, `socket`, `max_tdp`, `price`, `sold_by`, `pic`, `status`, `verified`) VALUES
+('AEROCOOL VERKHO 2', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 115, '2800', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VERHO 2.jpg', 1, 1),
+('AEROCOOL VERKHO 3+', 'AeroCool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 120, '3000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VERKHO 3+.jpg', 1, 1),
+('COOL MASTER AIR 8', 'Cooler Master', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3', 200, '5200', 'BulidNgine Pvt. Ltd. ', 'COOL MASTER AIR 8.png', 1, 1),
+('DEEPCOOL 15 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 95, '1400', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL 15 PWM.jpeg', 1, 1),
+('DEEPCOOL 31 PWM', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151', 100, '1800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL 31 PWM.jpg', 1, 1),
+('DEEPCOOL BETA 10', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 85, '1100', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL BETA 10.jpg', 1, 1),
+('DEEPCOOL CASTLE 240', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 230, '8000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 240.jpg', 1, 1),
+('DEEPCOOL CASTLE 280', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '9000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 280.jpg', 1, 1),
+('DEEPCOOL CASTLE 320', 'Deepcool', 'Water Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066 LGA 2011-3 TR4', 250, '11000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CASTLE 320.jpg', 1, 1),
+('DEEPCOOL CK-AM209', 'Deepcool', 'Box Cooler', 'AM3+ FM2+', 65, '800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL CK-AM209.jpg', 1, 1),
+('DEEPCOOL ICE 100', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 100, '1800', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL ICE 100.jpg', 1, 1),
+('DEEPCOOL MAXX 300', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+', 130, '3100', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL MAXX 300.jpg', 1, 1),
+('DEEPCOOL MAXX GTE', 'Deepcool', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4', 150, '3600', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL MAXX GTE.jpg', 1, 1),
+('joerj2', 'asd', 'Water Cooler', 'asd', 123, '123', 'retailer', 'as.png', 1, 0),
+('ZALMAN CNPS10 II', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 185, '4650', 'BulidNgine Pvt. Ltd. ', 'ZALMAN CNPS10 II.jpg', 1, 1),
+('ZALMAN CNPS9X', 'ZALMAN', 'Box Cooler', 'LGA 1151 V2 LGA 1151 FM2+ AM3+ AM4 LGA 2066', 180, '4000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN CNPS9X.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -197,7 +202,7 @@ INSERT INTO `cpu_tbl` (`name`, `company`, `core_count`, `thread_count`, `socket`
 ('INTEL I9-9900K', 'Intel', 8, 16, 'LGA 1151 V2', 3600, '5000 Mhz', 'Intel HD Graphics 630', '14nm', 512, 95, 100, 'PROFESSIONAL', '41500', 'BulidNgine Pvt. Ltd. ', 'INTEL I9-9900K.jpg', 1, 1),
 ('INTEL XEON E-2100', 'Intel', 4, 8, 'LGA 1151 V2', 3800, '4700 Mhz', 'None', '14nm', 256, 71, 100, 'GAMING', '30000', 'BulidNgine Pvt. Ltd. ', 'INTEL XEON E-2100.jpg', 1, 1),
 ('INTEL XEON E-2176G', 'Intel', 6, 12, 'LGA 1151 V2', 3700, '4700 Mhz', 'None', '14nm', 386, 80, 100, 'PROFESSIONAL', '34000', 'BulidNgine Pvt. Ltd. ', 'INTEL XEON E-2176G.jpg', 1, 1),
-('qwe', 'qe', 12, 13, 'TR4', 123, '13', 'qd', 'afsf', 132, 123, 123, 'PROFESSIONAL', '123', 'retailer', 'joly.png', 1, 0);
+('qwe', 'qe', 12, 13, 'TR4', 123, '13', 'qd', 'afsf', 132, 123, 123, 'PROFESSIONAL', '123', 'retailer', 'as.png', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -888,57 +893,59 @@ CREATE TABLE `gpu_tbl` (
   `price` decimal(10,0) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `image` varchar(25) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `gpu_tbl`
 --
 
-INSERT INTO `gpu_tbl` (`name`, `company`, `processor`, `core_freq`, `mem_freq`, `mem_type`, `mem_size`, `mem_width`, `pow_con`, `purpose`, `price`, `sold_by`, `image`, `status`) VALUES
-('ASROCK RX 5700', 'ASROCK', 'AMD', '1765 Mhz', '14000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'ASROCK RX 5700.png', 1),
-('ASUS GT 710', 'ASUS', 'NVIDIA', '590 Mhz', '1200 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '3800', 'BulidNgine Pvt. Ltd. ', 'ASUS GT 710.jpeg', 1),
-('ASUS GTX 1050', 'ASUS', 'NVIDIA', '1442 Mhz', '7000 Mhz', 'GDDR5', '3 GB', '128 Bits', 'None', 'PROFESSIONAL', '11500', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1050.jpg', 1),
-('ASUS GTX 1060', 'ASUS', 'NVIDIA', '1506 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '6 pin', 'GAMING', '21000', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1060.jpg', 1),
-('ASUS GTX 1650', 'ASUS', 'NVIDIA', '1695 Mhz', '8000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'GAMING', '15000', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1650.jpg', 1),
-('ASUS R5 230', 'ASUS', 'AMD', '650 Mhz', '1200 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '3400', 'BulidNgine Pvt. Ltd. ', 'ASUS R5 230.jpeg', 1),
-('ASUS RX 550', 'ASUS', 'AMD', '1071 Mhz', '6000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'BUSINESS', '8700', 'BulidNgine Pvt. Ltd. ', 'ASUS RX 550.jpg', 1),
-('ASUS RX 570', 'ASUS', 'AMD', '1266 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '17000', 'BulidNgine Pvt. Ltd. ', 'ASUS RX 570.jpg', 1),
-('ASUS TITAN RTX', 'ASUS', 'NVIDIA', '2900 Mhz', '19000 Mhz', 'GDDR6', '24 GB', '3096 Bit', '8+8 Pin', 'PROFESSIONAL', '320000', 'BulidNgine Pvt. Ltd. ', 'ASUS TITAN RTX.png', 1),
-('GIGABYTE GT 1030', 'GIGABYTE', 'NVIDIA', '1252 Mhz', '6008 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '7200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 1030.jpg', 1),
-('GIGABYTE GT 710', 'GIGABYTE', 'NVIDIA', '954 Mhz', '1800 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '3300', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 710.jpg', 1),
-('GIGABYTE GT 730', 'GIGABYTE', 'NVIDIA', '902 Mhz', '5000 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '6000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 730.jpeg', 1),
-('GIGABYTE GTX 1050', 'GIGABYTE', 'NVIDIA', '1379 Mhz', '7000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'PROFESSIONAL', '10450', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1050.png', 1),
-('GIGABYTE GTX 1060', 'GIGABYTE', 'NVIDIA', '1620 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '20000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1060.jpg', 1),
-('GIGABYTE GTX 1070Ti', 'GIGABYTE', 'NVIDIA', '1632 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '31000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1070Ti.png', 1),
-('GIGABYTE GTX 1080', 'GIGABYTE', 'NVIDIA', '1657 Mhz', '10000 Mhz', 'GDDR5X', '8 GB', '256 Bit', '8 Pin', 'GAMING', '47000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1080.png', 1),
-('GIGABYTE GTX 1080Ti', 'GIGABYTE', 'NVIDIA', '1750 Mhz', '11010 Mhz', 'GDDR5X', '8 GB', '352 Bits', '8+8 Pin', 'GAMING', '54000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1080Ti.png', 1),
-('GIGABYTE GTX 3080', 'GIGABYTE', 'NVIDIA', '2600 Mhz', '18000 Mhz', 'GDDR6', '10 GB', '3096 Bit', '8+8 Pin', 'GAMING', '120000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 3080.jpg', 1),
-('GIGABYTE GTX 750', 'GIGABYTE', 'NVIDIA', '1260 Mhz', '6010 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '8200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 750.jpg', 1),
-('GIGABYTE GTX 750Ti', 'GIGABYTE', 'NVIDIA', '1300 Mhz', '6010 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '8200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 750Ti.jpg', 1),
-('GIGABYTE GTX 970', 'GIGABYTE', 'NVIDIA', '1050 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '15000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 970.png', 1),
-('GIGABYTE QR RTX 6000', 'GIGABYTE', 'NVIDIA', '1940 Mhz', '14000 Mhz', 'GDDR6', '24 GB', '256 Bit', '8+8 Pin', 'PROFESSIONAL', '350000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE QR RTX 6000.jpg', 1),
-('GIGABYTE R5 230', 'GIGABYTE', 'AMD', '625 Mhz', '1066 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '2800', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE R5 230.jpg', 1),
-('GIGABYTE R9 270', 'GIGABYTE', 'AMD', '1189 Mhz', '2100 Mhz', 'GDDR4', '2 GB', '64 Bit', 'None', 'BUSINESS', '7200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE R9 270.jpg', 1),
-('GIGABYTE RTX 2060', 'GIGABYTE', 'NVIDIA', '1750 Mhz', '14000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '30000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RTX 2060.png', 1),
-('GIGABYTE RTX 2070', 'GIGABYTE', 'NVIDIA', '1850 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '40000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RTX 2070.png', 1),
-('GIGABYTE RX 550', 'GIGABYTE', 'AMD', '1195 Mhz', '7000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'BUSINESS', '9500', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX 550.png', 1),
-('GIGABYTE RX 580', 'GIGABYTE', 'AMD', '1355 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '20500', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX 580.jpg', 1),
-('GIGABYTE RX VEGA 56', 'GIGABYTE', 'AMD', '1170 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '35000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX VEGA 56.png', 1),
-('GIGABYTE RX VEGA 64', 'GIGABYTE', 'AMD', '2000 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '2048 Bit', '8+8 Pin', 'GAMING', '45000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX VEGA 64.png', 1),
-('MSI GT 1030', 'MSI', 'NVIDIA', '1189 Mhz', '2100 Mhz', 'GDDR4', '2 GB', '64 Bit', 'None', 'BUSINESS', '8000', 'BulidNgine Pvt. Ltd. ', 'MSI GT 1030.jpg', 1),
-('MSI GT 710', 'MSI', 'NVIDIA', '954 Mhz', '1600 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '3300', 'BulidNgine Pvt. Ltd. ', 'MSI GT 710.jpg', 1),
-('MSI GTX 1050Ti', 'MSI', 'NVIDIA', '1341 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'PROFESSIONAL', '13500', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1050Ti.png', 1),
-('MSI GTX 1060', 'MSI', 'NVIDIA', '1544 Mhz', '8000 Mhz', 'GDDR5', '3 GB', '192 Bit', '8 Pin', 'GAMING', '16000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1060.jpg', 1),
-('MSI GTX 1070', 'MSI', 'NVIDIA', '1506 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1070.png', 1),
-('MSI GTX 1650', 'MSI', 'NVIDIA', '1860 Mhz', '8000 Mhz', 'GDDR5', '4 GB', '128 Bits', '6 pin', 'GAMING', '16000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1650.jpg', 1),
-('MSI GTX 1660', 'MSI', 'NVIDIA', '1785 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '19500', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1660.png', 1),
-('MSI R7 240', 'MSI', 'AMD', '730 Mhz', '1800 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '4500', 'BulidNgine Pvt. Ltd. ', 'MSI R7 240.jpg', 1),
-('MSI RTX 2080', 'MSI', 'NVIDIA', '1900 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '41000', 'BulidNgine Pvt. Ltd. ', 'MSI RTX 2080.png', 1),
-('MSI RTX 2080Ti', 'MSI', 'NVIDIA', '2000 Mhz', '14000 Mhz', 'GDDR6', '11 GB', '352 Bits', '8+8 Pin', 'GAMING', '140000', 'BulidNgine Pvt. Ltd. ', 'MSI RTX 2080Ti.png', 1),
-('MSI RX 550', 'MSI', 'AMD', '1203 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'PROFESSIONAL', '10450', 'BulidNgine Pvt. Ltd. ', 'MSI RX 550.png', 1),
-('MSI RX 580', 'MSI', 'AMD', '1341 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '27000', 'BulidNgine Pvt. Ltd. ', 'MSI RX 580.jpg', 1),
-('MSI RX 590', 'MSI', 'AMD', '1544 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'MSI RX 590.jpg', 1);
+INSERT INTO `gpu_tbl` (`name`, `company`, `processor`, `core_freq`, `mem_freq`, `mem_type`, `mem_size`, `mem_width`, `pow_con`, `purpose`, `price`, `sold_by`, `image`, `status`, `verified`) VALUES
+('ASROCK RX 5700', 'ASROCK', 'AMD', '1765 Mhz', '14000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'ASROCK RX 5700.png', 1, 1),
+('ASUS GT 710', 'ASUS', 'NVIDIA', '590 Mhz', '1200 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '3800', 'BulidNgine Pvt. Ltd. ', 'ASUS GT 710.jpeg', 1, 1),
+('ASUS GTX 1050', 'ASUS', 'NVIDIA', '1442 Mhz', '7000 Mhz', 'GDDR5', '3 GB', '128 Bits', 'None', 'PROFESSIONAL', '11500', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1050.jpg', 1, 1),
+('ASUS GTX 1060', 'ASUS', 'NVIDIA', '1506 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '6 pin', 'GAMING', '21000', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1060.jpg', 1, 1),
+('ASUS GTX 1650', 'ASUS', 'NVIDIA', '1695 Mhz', '8000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'GAMING', '15000', 'BulidNgine Pvt. Ltd. ', 'ASUS GTX 1650.jpg', 1, 1),
+('ASUS R5 230', 'ASUS', 'AMD', '650 Mhz', '1200 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '3400', 'BulidNgine Pvt. Ltd. ', 'ASUS R5 230.jpeg', 1, 1),
+('ASUS RX 550', 'ASUS', 'AMD', '1071 Mhz', '6000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'BUSINESS', '8700', 'BulidNgine Pvt. Ltd. ', 'ASUS RX 550.jpg', 1, 1),
+('ASUS RX 570', 'ASUS', 'AMD', '1266 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '17000', 'BulidNgine Pvt. Ltd. ', 'ASUS RX 570.jpg', 1, 1),
+('ASUS TITAN RTX', 'ASUS', 'NVIDIA', '2900 Mhz', '19000 Mhz', 'GDDR6', '24 GB', '3096 Bit', '8+8 Pin', 'PROFESSIONAL', '320000', 'BulidNgine Pvt. Ltd. ', 'ASUS TITAN RTX.png', 1, 1),
+('GIGABYTE GT 1030', 'GIGABYTE', 'NVIDIA', '1252 Mhz', '6008 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '7200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 1030.jpg', 1, 1),
+('GIGABYTE GT 710', 'GIGABYTE', 'NVIDIA', '954 Mhz', '1800 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '3300', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 710.jpg', 1, 1),
+('GIGABYTE GT 730', 'GIGABYTE', 'NVIDIA', '902 Mhz', '5000 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '6000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GT 730.jpeg', 1, 1),
+('GIGABYTE GTX 1050', 'GIGABYTE', 'NVIDIA', '1379 Mhz', '7000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'PROFESSIONAL', '10450', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1050.png', 1, 1),
+('GIGABYTE GTX 1060', 'GIGABYTE', 'NVIDIA', '1620 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '20000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1060.jpg', 1, 1),
+('GIGABYTE GTX 1070Ti', 'GIGABYTE', 'NVIDIA', '1632 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '31000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1070Ti.png', 1, 1),
+('GIGABYTE GTX 1080', 'GIGABYTE', 'NVIDIA', '1657 Mhz', '10000 Mhz', 'GDDR5X', '8 GB', '256 Bit', '8 Pin', 'GAMING', '47000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1080.png', 1, 1),
+('GIGABYTE GTX 1080Ti', 'GIGABYTE', 'NVIDIA', '1750 Mhz', '11010 Mhz', 'GDDR5X', '8 GB', '352 Bits', '8+8 Pin', 'GAMING', '54000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 1080Ti.png', 1, 1),
+('GIGABYTE GTX 3080', 'GIGABYTE', 'NVIDIA', '2600 Mhz', '18000 Mhz', 'GDDR6', '10 GB', '3096 Bit', '8+8 Pin', 'GAMING', '120000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 3080.jpg', 1, 1),
+('GIGABYTE GTX 750', 'GIGABYTE', 'NVIDIA', '1260 Mhz', '6010 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '8200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 750.jpg', 1, 1),
+('GIGABYTE GTX 750Ti', 'GIGABYTE', 'NVIDIA', '1300 Mhz', '6010 Mhz', 'GDDR5', '2 GB', '64 Bit', 'None', 'BUSINESS', '8200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 750Ti.jpg', 1, 1),
+('GIGABYTE GTX 970', 'GIGABYTE', 'NVIDIA', '1050 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '15000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE GTX 970.png', 1, 1),
+('GIGABYTE QR RTX 6000', 'GIGABYTE', 'NVIDIA', '1940 Mhz', '14000 Mhz', 'GDDR6', '24 GB', '256 Bit', '8+8 Pin', 'PROFESSIONAL', '350000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE QR RTX 6000.jpg', 1, 1),
+('GIGABYTE R5 230', 'GIGABYTE', 'AMD', '625 Mhz', '1066 Mhz', 'GDDR3', '1 GB', '64 Bit', 'None', 'BUSINESS', '2800', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE R5 230.jpg', 1, 1),
+('GIGABYTE R9 270', 'GIGABYTE', 'AMD', '1189 Mhz', '2100 Mhz', 'GDDR4', '2 GB', '64 Bit', 'None', 'BUSINESS', '7200', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE R9 270.jpg', 1, 1),
+('GIGABYTE RTX 2060', 'GIGABYTE', 'NVIDIA', '1750 Mhz', '14000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '30000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RTX 2060.png', 1, 1),
+('GIGABYTE RTX 2070', 'GIGABYTE', 'NVIDIA', '1850 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '40000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RTX 2070.png', 1, 1),
+('GIGABYTE RX 550', 'GIGABYTE', 'AMD', '1195 Mhz', '7000 Mhz', 'GDDR5', '2 GB', '128 Bits', 'None', 'BUSINESS', '9500', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX 550.png', 1, 1),
+('GIGABYTE RX 580', 'GIGABYTE', 'AMD', '1355 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '256 Bit', '8 Pin', 'GAMING', '20500', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX 580.jpg', 1, 1),
+('GIGABYTE RX VEGA 56', 'GIGABYTE', 'AMD', '1170 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '35000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX VEGA 56.png', 1, 1),
+('GIGABYTE RX VEGA 64', 'GIGABYTE', 'AMD', '2000 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '2048 Bit', '8+8 Pin', 'GAMING', '45000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE RX VEGA 64.png', 1, 1),
+('joerjq', 'MSI', 'NVIDIA', '1231', 'qweq', 'GDDR5X', '8 GB', 'qqw', 'qwe', 'PROFESSIONAL', '1231', 'retailer', 'as.png', 1, 0),
+('MSI GT 1030', 'MSI', 'NVIDIA', '1189 Mhz', '2100 Mhz', 'GDDR4', '2 GB', '64 Bit', 'None', 'BUSINESS', '8000', 'BulidNgine Pvt. Ltd. ', 'MSI GT 1030.jpg', 1, 1),
+('MSI GT 710', 'MSI', 'NVIDIA', '954 Mhz', '1600 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '3300', 'BulidNgine Pvt. Ltd. ', 'MSI GT 710.jpg', 1, 1),
+('MSI GTX 1050Ti', 'MSI', 'NVIDIA', '1341 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'PROFESSIONAL', '13500', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1050Ti.png', 1, 1),
+('MSI GTX 1060', 'MSI', 'NVIDIA', '1544 Mhz', '8000 Mhz', 'GDDR5', '3 GB', '192 Bit', '8 Pin', 'GAMING', '16000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1060.jpg', 1, 1),
+('MSI GTX 1070', 'MSI', 'NVIDIA', '1506 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1070.png', 1, 1),
+('MSI GTX 1650', 'MSI', 'NVIDIA', '1860 Mhz', '8000 Mhz', 'GDDR5', '4 GB', '128 Bits', '6 pin', 'GAMING', '16000', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1650.jpg', 1, 1),
+('MSI GTX 1660', 'MSI', 'NVIDIA', '1785 Mhz', '8000 Mhz', 'GDDR5', '6 GB', '192 Bit', '8 Pin', 'GAMING', '19500', 'BulidNgine Pvt. Ltd. ', 'MSI GTX 1660.png', 1, 1),
+('MSI R7 240', 'MSI', 'AMD', '730 Mhz', '1800 Mhz', 'GDDR3', '2 GB', '64 Bit', 'None', 'BUSINESS', '4500', 'BulidNgine Pvt. Ltd. ', 'MSI R7 240.jpg', 1, 1),
+('MSI RTX 2080', 'MSI', 'NVIDIA', '1900 Mhz', '14000 Mhz', 'GDDR6', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '41000', 'BulidNgine Pvt. Ltd. ', 'MSI RTX 2080.png', 1, 1),
+('MSI RTX 2080Ti', 'MSI', 'NVIDIA', '2000 Mhz', '14000 Mhz', 'GDDR6', '11 GB', '352 Bits', '8+8 Pin', 'GAMING', '140000', 'BulidNgine Pvt. Ltd. ', 'MSI RTX 2080Ti.png', 1, 1),
+('MSI RX 550', 'MSI', 'AMD', '1203 Mhz', '7000 Mhz', 'GDDR5', '4 GB', '128 Bits', 'None', 'PROFESSIONAL', '10450', 'BulidNgine Pvt. Ltd. ', 'MSI RX 550.png', 1, 1),
+('MSI RX 580', 'MSI', 'AMD', '1341 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8 Pin', 'GAMING', '27000', 'BulidNgine Pvt. Ltd. ', 'MSI RX 580.jpg', 1, 1),
+('MSI RX 590', 'MSI', 'AMD', '1544 Mhz', '8000 Mhz', 'GDDR5', '8 GB', '256 Bit', '8+8 Pin', 'GAMING', '28000', 'BulidNgine Pvt. Ltd. ', 'MSI RX 590.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -962,7 +969,7 @@ INSERT INTO `logintable` (`loginid`, `password`, `usertype`, `status`) VALUES
 ('asd', '7815696ecbf1c96e6894b779456d330e', 'admin', 1),
 ('Joe', '3a368818b7341d48660e8dd6c5a77dbe', 'user', 1),
 ('retailer', 'bdca866007fb255201297d2a15a49513', 'retailer', 1),
-('retailer1', 'bdca866007fb255201297d2a15a49513', 'retailer', 0);
+('retailer1', 'bdca866007fb255201297d2a15a49513', 'retailer', 1);
 
 -- --------------------------------------------------------
 
@@ -981,30 +988,34 @@ CREATE TABLE `memory_tbl` (
   `price` decimal(10,0) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `pic` varchar(25) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `memory_tbl`
 --
 
-INSERT INTO `memory_tbl` (`name`, `company`, `size`, `form_factor`, `type`, `ssd_type`, `rpm`, `price`, `sold_by`, `pic`, `status`) VALUES
-('HYPERX A400', 'HYPERX', 120, '\"2.5', 'SSD', '3D V-NAND', 0, '2900', 'BulidNgine Pvt. Ltd. ', 'HYPERX A400.jpg', 1),
-('HYPERX FURY S44', 'HYPERX', 240, '\"2.5', 'SSD', '3D V-NAND', 0, '5000', 'BulidNgine Pvt. Ltd. ', 'HYPERX FURY S44.jpg', 1),
-('null', '', 0, '', '', '', 0, '0', 'BulidNgine Pvt. Ltd. ', '', 0),
-('SAMSUNG 860 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 860 DCT.jpg', 1),
-('SAMSUNG 860 EVO', 'Samsung', 500, '\"2.5', 'SSD', '3D V-NAND', 0, '6800', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 860 EVO.jpg', 1),
-('SAMSUNG 920 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 920 DCT.jpg', 1),
-('SEAGATE ST2000DM006', 'SEAGATE', 2000, '\"3.5', 'HDD', 'nil', 7200, '4000', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST2000DM006.jpg', 1),
-('SEAGATE ST3000DM006', 'SEAGATE', 3000, '\"3.5', 'HDD', 'nil', 7200, '6400', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST3000DM006.jpg', 1),
-('SEAGATE ST500DM009', 'SEAGATE', 500, '\"3.5', 'HDD', 'nil', 7200, '4500', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST500DM009.jpg', 1),
-('WD BLACK DWS500', 'Western Digital', 500, 'M.2', 'SSD', '3D V-NAND', 0, '11000', 'BulidNgine Pvt. Ltd. ', 'WD BLACK DWS500.png', 1),
-('WD BLUE DWS1000', 'Western Digital', 1000, '\"2.5', 'SSD', 'TLC', 0, '15000', 'BulidNgine Pvt. Ltd. ', 'WD BLUE DWS1000.png', 1),
-('WD BLUE DWS1000M', 'Western Digital', 1000, 'M.2', 'SSD', '3D V-NAND', 0, '10000', 'BulidNgine Pvt. Ltd. ', 'WD BLUE DWS1000M.jpg', 1),
-('WD BLUE WD10EZEX', 'Western Digital', 1000, '\"3.5', 'HDD', 'nil', 7200, '4900', 'BulidNgine Pvt. Ltd. ', 'WD BLUE WD10EZEX.jpg', 1),
-('WD BLUE WD5000AZRZ', 'Western Digital', 500, '\"3.5', 'HDD', 'nil', 5400, '2400', 'BulidNgine Pvt. Ltd. ', 'WD BLUE WD5000AZRZ.jpg', 1),
-('WD GREEN DWS120', 'Western Digital', 120, '\"2.5', 'SSD', 'TLC', 0, '2400', 'BulidNgine Pvt. Ltd. ', 'WD GREEN DWS120.jpg', 1),
-('WD GREEN DWS240', 'Western Digital', 240, 'M.2', 'SSD', '3D V-NAND', 0, '2900', 'BulidNgine Pvt. Ltd. ', 'WD GREEN DWS240.jpg', 1);
+INSERT INTO `memory_tbl` (`name`, `company`, `size`, `form_factor`, `type`, `ssd_type`, `rpm`, `price`, `sold_by`, `pic`, `status`, `verified`) VALUES
+('acc', 'asd', 1000, '\"3.5', 'HDD', 'nil', 1231, '1231', 'retailer', 'as.png', 1, 0),
+('asd', 'asd', 3000, 'M.2', 'SSD', 'TLC', 0, '123', 'retailer', 'as.png', 1, 0),
+('HYPERX A400', 'HYPERX', 120, '\"2.5', 'SSD', '3D V-NAND', 0, '2900', 'BulidNgine Pvt. Ltd. ', 'HYPERX A400.jpg', 1, 1),
+('HYPERX FURY S44', 'HYPERX', 240, '\"2.5', 'SSD', '3D V-NAND', 0, '5000', 'BulidNgine Pvt. Ltd. ', 'HYPERX FURY S44.jpg', 1, 1),
+('joerj', 'asd', 2000, '\"3.5', 'HDD', 'nil', 1312, '1311', 'retailer1', 'joly.png', 1, 0),
+('null', '', 0, '\"2.5', 'HDD', '', 0, '0', 'BulidNgine Pvt. Ltd. ', '', 0, 1),
+('SAMSUNG 860 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 860 DCT.jpg', 1, 1),
+('SAMSUNG 860 EVO', 'Samsung', 500, '\"2.5', 'SSD', '3D V-NAND', 0, '6800', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 860 EVO.jpg', 1, 1),
+('SAMSUNG 920 DCT', 'Samsung', 2000, '\"2.5', 'SSD', '3D V-NAND', 0, '30000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 920 DCT.jpg', 1, 1),
+('SEAGATE ST2000DM006', 'SEAGATE', 2000, '\"3.5', 'HDD', 'nil', 7200, '4000', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST2000DM006.jpg', 1, 1),
+('SEAGATE ST3000DM006', 'SEAGATE', 3000, '\"3.5', 'HDD', 'nil', 7200, '6400', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST3000DM006.jpg', 1, 1),
+('SEAGATE ST500DM009', 'SEAGATE', 500, '\"3.5', 'HDD', 'nil', 7200, '4500', 'BulidNgine Pvt. Ltd. ', 'SEAGATE ST500DM009.jpg', 1, 1),
+('WD BLACK DWS500', 'Western Digital', 500, 'M.2', 'SSD', '3D V-NAND', 0, '11000', 'BulidNgine Pvt. Ltd. ', 'WD BLACK DWS500.png', 1, 1),
+('WD BLUE DWS1000', 'Western Digital', 1000, '\"2.5', 'SSD', 'TLC', 0, '15000', 'BulidNgine Pvt. Ltd. ', 'WD BLUE DWS1000.png', 1, 1),
+('WD BLUE DWS1000M', 'Western Digital', 1000, 'M.2', 'SSD', '3D V-NAND', 0, '10000', 'BulidNgine Pvt. Ltd. ', 'WD BLUE DWS1000M.jpg', 1, 1),
+('WD BLUE WD10EZEX', 'Western Digital', 1000, '\"3.5', 'HDD', 'nil', 7200, '4900', 'BulidNgine Pvt. Ltd. ', 'WD BLUE WD10EZEX.jpg', 1, 1),
+('WD BLUE WD5000AZRZ', 'Western Digital', 500, '\"3.5', 'HDD', 'nil', 5400, '2400', 'BulidNgine Pvt. Ltd. ', 'WD BLUE WD5000AZRZ.jpg', 1, 1),
+('WD GREEN DWS120', 'Western Digital', 120, '\"2.5', 'SSD', 'TLC', 0, '2400', 'BulidNgine Pvt. Ltd. ', 'WD GREEN DWS120.jpg', 1, 1),
+('WD GREEN DWS240', 'Western Digital', 240, 'M.2', 'SSD', '3D V-NAND', 0, '2900', 'BulidNgine Pvt. Ltd. ', 'WD GREEN DWS240.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1076,7 +1087,7 @@ INSERT INTO `mothertbl` (`name`, `company`, `socket`, `form_factor`, `ram_type`,
 ('GIGABYTE X399', 'GIGABYTE', 'TR4', 'ATX', 'DDR4', 128, 5, 24, 16, 'AMD X399', 8, 6, 1, 3600, 'GAMING', '44000', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE X399.jpg', 1, 1),
 ('GIGABYTE Z270P-D3', 'GIGABYTE', 'LGA 1151', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z270', 4, 6, 1, 3866, 'GAMING', '6900', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE Z270P-D3.jpg', 1, 1),
 ('GIGABYTE Z270P-D4', 'GIGABYTE', 'LGA 1151', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL Z270', 4, 4, 2, 3866, 'GAMING', '7150', 'BulidNgine Pvt. Ltd. ', 'GIGABYTE Z270P-D4.jpg', 1, 1),
-('joerj', 'asd', 'TR4', 'asd', 'DDR4', 1, 1, 1, 1, '1', 1, 1, 1, 1, 'PROFESSIONAL', '1', 'BulidNgine Pvt. Ltd. ', 'tshrt.jpg', 1, 0),
+('joerja', 'asd', 'TR4', 'asd', 'DDR4', 1, 1, 1, 1, '1', 1, 1, 1, 1, 'PROFESSIONAL', '1', 'retailer', 'as.png', 1, 0),
 ('MSI A68HM-E33', 'MSI', 'FM2+', 'MicroATX', 'DDR3', 32, 1, 24, 4, 'AMD A68H', 2, 4, 0, 2133, 'BUSINESS', '3300', 'BulidNgine Pvt. Ltd. ', 'MSI A68HM-E33.jpg', 1, 1),
 ('MSI B360GPC', 'MSI', 'LGA 1151', 'ATX', 'DDR4', 64, 2, 24, 8, 'INTEL B360', 4, 4, 2, 2666, 'GAMING', '12000', 'BulidNgine Pvt. Ltd. ', 'MSI B360GPC.jpg', 1, 1),
 ('MSI B450', 'MSI', 'AM4', 'MicroATX', 'DDR4', 64, 2, 24, 8, 'INTEL B450', 4, 4, 2, 2666, 'GAMING', '9500', 'BulidNgine Pvt. Ltd. ', 'MSI B450.png\r\n', 1, 1),
@@ -1117,12 +1128,25 @@ INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`
 (208, 'joe', ' LITE 5 INTEL I7-10700 4800 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '108200', 1, '108200', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'COOLER MASTER LITE 5'),
 (217, 'joe', 'MATREXX 55X INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'Business', '34900', 1, '34900', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 55X'),
 (226, 'joe', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52920', 1, '52920', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'COOLER MASTER MB500'),
-(227, 'joe', 'MSI GT 710', 'GPU', '3300', 1, '3300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(227, 'joe', 'MSI GT 710', 'GPU', '3300', 1, '3300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 1, ''),
 (236, 'joe', 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39970', 1, '39970', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'APPLE MAC PRO'),
 (258, 'Joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '31220', 1, '31220', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 5S'),
 (259, 'joe', 'MSI A68HM-E33', 'Motherboard', '3300', 1, '3300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
 (302, 'joe', 'MATREXX 5S INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39820', 1, '39820', '2020/12/13 08:12:48', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 5S'),
-(311, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'Business', '33020', 1, '33020', '2020/12/13 08:12:10', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 55X');
+(311, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'Business', '33020', 1, '33020', '2020/12/13 08:12:10', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 55X'),
+(321, 'joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 1000Gb   SSD  Graphics MSI GDDR3 2 GB', 'Business', '45550', 1, '45550', '2020/12/29 08:12:59', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL MATREXX 5S'),
+(322, 'joe', 'AMD A6-7400K', 'CPU', '3500', 1, '3500', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(323, 'joe', 'ASUS B150 PRO', 'Motherboard', '5830', 1, '5830', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(324, 'joe', 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(325, 'joe', 'HYPERX A400', 'MEMORY', '2900', 1, '2900', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(326, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(327, 'joe', 'DEEPCOOL DN500', 'SMPS', '5000', 1, '5000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(328, 'joe', 'DEEPCOOL 15 PWM', 'CPU FAN', '1400', 1, '1400', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(329, 'joe', 'COOLER MASTER ELITE 350', 'cabinet', '3000', 1, '3000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(330, 'joe', 'COOLMASTER V2', 'SMPS', '5300', 1, '5300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(331, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(332, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, ''),
+(342, 'joe', 'TESSERACT BF INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '30220', 1, '30220', '2021/01/07 12:01:47', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 'DEEPCOOL TESSERACT BF');
 
 -- --------------------------------------------------------
 
@@ -1174,7 +1198,9 @@ INSERT INTO `prebuilt_tbl` (`prebuilt_id`, `loginid`, `name`, `motherboard`, `cp
 (8, 'joe', 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'ASUS A68HM-K', 'AMD A6-7400K', 'SAMSUNG 3CH0', 'GIGABYTE R5 230', 'HYPERX FURY S44', 'null', 'DEEPCOOL DN500', 'DEEPCOOL CK-AM209', 'APPLE MAC PRO', 'AMD A6-7400K', 3900, 4, 'DDR3', 240, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '39970', 'APPLE MAC PRO', '', 'Business', 1),
 (9, 'Joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'MSI H110M-R2', 'INTEL G3930', 'GOODRAM L17S', 'GIGABYTE R5 230', 'HYPERX A400', 'null', 'DEEPCOOL DN500', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 5S', 'INTEL G3930', 2900, 8, 'DDR4', 120, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '31220', 'DEEPCOOL MATREXX 5S', '', 'Business', 1),
 (10, 'joe', 'MATREXX 5S INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'MSI H110M', 'INTEL G3900', 'SAMSUNG 3DB0', 'GIGABYTE R5 230', 'HYPERX A400', 'null', 'AEROCOOL KCAS 650G', 'DEEPCOOL CASTLE 320', 'DEEPCOOL MATREXX 5S', 'INTEL G3900', 2800, 8, 'DDR4', 120, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '39820', 'DEEPCOOL MATREXX 5S', '2020/12/13 08:12:48', 'Business', 1),
-(11, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'MSI H110M', 'INTEL G3900', 'SAMSUNG 3DB0', 'GIGABYTE R9 270', 'HYPERX A400', 'null', 'DEEPCOOL DN500', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G3900', 2800, 8, 'DDR4', 120, 'GIGABYTE', 2, 'null', 'null', 'null', 'null', 'null', '33020', 'DEEPCOOL MATREXX 55X', '2020/12/13 08:12:10', 'Business', 1);
+(11, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'MSI H110M', 'INTEL G3900', 'SAMSUNG 3DB0', 'GIGABYTE R9 270', 'HYPERX A400', 'null', 'DEEPCOOL DN500', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G3900', 2800, 8, 'DDR4', 120, 'GIGABYTE', 2, 'null', 'null', 'null', 'null', 'null', '33020', 'DEEPCOOL MATREXX 55X', '2020/12/13 08:12:10', 'Business', 1),
+(12, 'joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 1000Gb   SSD  Graphics MSI GDDR3 2 GB', 'GIGABYTE Z270P-D4', 'INTEL G3930', 'GOODRAM L17S', 'MSI GT 710', 'HYPERX A400', 'WD BLUE DWS1000M', 'DEEPCOOL DN500', 'DEEPCOOL 15 PWM', 'DEEPCOOL MATREXX 5S', 'INTEL G3930', 2900, 8, 'DDR4', 120, 'MSI', 2, 'null', 'null', 'null', 'null', 'null', '45550', 'DEEPCOOL MATREXX 5S', '2020/12/29 08:12:59', 'Business', 1),
+(13, 'joe', 'TESSERACT BF INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'MSI H110M', 'INTEL G3930', 'SAMSUNG 3DB0', 'GIGABYTE R5 230', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL VX 500W', 'DEEPCOOL 15 PWM', 'DEEPCOOL TESSERACT BF', 'INTEL G3930', 2900, 8, 'DDR4', 500, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '30220', 'DEEPCOOL TESSERACT BF', '2021/01/07 12:01:47', 'Business', 1);
 
 -- --------------------------------------------------------
 
@@ -1194,25 +1220,27 @@ CREATE TABLE `ram_tbl` (
   `price` decimal(10,0) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `pic` varchar(25) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ram_tbl`
 --
 
-INSERT INTO `ram_tbl` (`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`, `sold_by`, `pic`, `status`) VALUES
-('GOODRAM 0QH0', 'GOODRAM', 'DDR3', 2, 1333, '10600 MB/s', 2, '9-9-9-24', '1250', 'BulidNgine Pvt. Ltd. ', 'GOODRAM 0QH0.jpg', 1),
-('GOODRAM 9QHQ', 'GOODRAM', 'DDR3', 4, 1600, '12800 MB/s', 2, '11-11-11-28', '2700', 'BulidNgine Pvt. Ltd. ', 'GOODRAM 9QHQ.jpg', 1),
-('GOODRAM L15S', 'GOODRAM', 'DDR4', 4, 2133, '17000 MB/s', 1, '15-15-15', '3200', 'BulidNgine Pvt. Ltd. ', 'GOODRAM L15S.jpg', 1),
-('GOODRAM L17S', 'GOODRAM', 'DDR4', 8, 2400, '19200 MB/s', 1, '17-17-17', '6700', 'BulidNgine Pvt. Ltd. ', 'GOODRAM L17S.jpg', 1),
-('HYPERX 10FB', 'HYPERX', 'DDR3', 4, 1866, '14900 MB/s', 2, '10-11-10-30', '2700', 'BulidNgine Pvt. Ltd. ', 'HYPERX 10FB.jpg', 1),
-('HYPERX 6PB3', 'HYPERX', 'DDR4', 8, 3200, '25600 MB/s', 1, '16-18-18', '7000', 'BulidNgine Pvt. Ltd. ', 'HYPERX 6PB3.jpg', 1),
-('HYPERX 80JB', 'HYPERX', 'DDR3', 8, 1866, '14900 MB/s', 2, '10-11-10-30', '3500', 'BulidNgine Pvt. Ltd. ', 'HYPERX 80JB.jpg', 1),
-('SAMSUNG 0QH0', 'Samsung', 'DDR3', 8, 1866, '14900 MB/s', 2, '13-13-13', '4500', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 0QH0.jpg', 1),
-('SAMSUNG 3CH0', 'Samsung', 'DDR3', 4, 1600, '12800 MH/s', 2, '11-11-11', '1950', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3CHO.jpg', 1),
-('SAMSUNG 3DB0', 'Samsung', 'DDR4', 8, 2133, '17000 MB/s', 1, '15-15-15-42', '6000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DB0.jpg', 1),
-('SAMSUNG 3DH0', 'Samsung', 'DDR3', 2, 1333, '10600 MB/s', 2, '9-9-9', '1100', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DH0.jpg', 1);
+INSERT INTO `ram_tbl` (`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `fsb`, `voltage`, `timing`, `price`, `sold_by`, `pic`, `status`, `verified`) VALUES
+('GOODRAM 0QH0', 'GOODRAM', 'DDR3', 2, 1333, '10600 MB/s', 2, '9-9-9-24', '1250', 'BulidNgine Pvt. Ltd. ', 'GOODRAM 0QH0.jpg', 1, 1),
+('GOODRAM 9QHQ', 'GOODRAM', 'DDR3', 4, 1600, '12800 MB/s', 2, '11-11-11-28', '2700', 'BulidNgine Pvt. Ltd. ', 'GOODRAM 9QHQ.jpg', 1, 1),
+('GOODRAM L15S', 'GOODRAM', 'DDR4', 4, 2133, '17000 MB/s', 1, '15-15-15', '3200', 'BulidNgine Pvt. Ltd. ', 'GOODRAM L15S.jpg', 1, 1),
+('GOODRAM L17S', 'GOODRAM', 'DDR4', 8, 2400, '19200 MB/s', 1, '17-17-17', '6700', 'BulidNgine Pvt. Ltd. ', 'GOODRAM L17S.jpg', 1, 1),
+('HYPERX 10FB', 'HYPERX', 'DDR3', 4, 1866, '14900 MB/s', 2, '10-11-10-30', '2700', 'BulidNgine Pvt. Ltd. ', 'HYPERX 10FB.jpg', 1, 1),
+('HYPERX 6PB3', 'HYPERX', 'DDR4', 8, 3200, '25600 MB/s', 1, '16-18-18', '7000', 'BulidNgine Pvt. Ltd. ', 'HYPERX 6PB3.jpg', 1, 1),
+('HYPERX 80JB', 'HYPERX', 'DDR3', 8, 1866, '14900 MB/s', 2, '10-11-10-30', '3500', 'BulidNgine Pvt. Ltd. ', 'HYPERX 80JB.jpg', 1, 1),
+('joerja', 'asd', 'DDR4', 8, 123, 'qwe', 1234, 'qweq', '123', 'retailer', 'as.png', 1, 0),
+('SAMSUNG 0QH0', 'Samsung', 'DDR3', 8, 1866, '14900 MB/s', 2, '13-13-13', '4500', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 0QH0.jpg', 1, 1),
+('SAMSUNG 3CH0', 'Samsung', 'DDR3', 4, 1600, '12800 MH/s', 2, '11-11-11', '1950', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3CHO.jpg', 1, 1),
+('SAMSUNG 3DB0', 'Samsung', 'DDR4', 8, 2133, '17000 MB/s', 1, '15-15-15-42', '6000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DB0.jpg', 1, 1),
+('SAMSUNG 3DH0', 'Samsung', 'DDR3', 2, 1333, '10600 MB/s', 2, '9-9-9', '1100', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DH0.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1231,24 +1259,26 @@ CREATE TABLE `smps_tbl` (
   `price` decimal(10,0) NOT NULL,
   `sold_by` varchar(100) NOT NULL DEFAULT 'BulidNgine Pvt. Ltd. ',
   `pic` varchar(25) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL DEFAULT 1,
+  `verified` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `smps_tbl`
 --
 
-INSERT INTO `smps_tbl` (`name`, `company`, `power`, `cpu_pow`, `mb_pow`, `sata_count`, `pci_count`, `price`, `sold_by`, `pic`, `status`) VALUES
-('AEROCOOL GM 1200W', 'AeroCool', 1200, '8 pin / 16 pin', '24 pin', 6, 8, '16000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL GM 1200W.jpg', 1),
-('AEROCOOL KCAS 650G', 'AeroCool', 650, '4 pin / 8 pin', '24 pin', 6, 2, '7200', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL KCAS 650G.jpg', 1),
-('AEROCOOL VX 400W', 'AeroCool', 400, '4 pin / 8 pin', '24 pin', 2, 0, '2400', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 400W.jpg', 1),
-('AEROCOOL VX 500W', 'AeroCool', 500, '4 pin / 8 pin', '24 pin', 3, 1, '3200', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 500W.jpeg', 1),
-('AEROCOOL VX 700W', 'AeroCool', 700, '4 pin / 8 pin', '24 pin', 6, 2, '9000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 700W.png', 1),
-('COOL MASTER V2', 'Cooler Master.', 550, '4 pin / 8 pin', '24 pin', 5, 2, '5300', 'BulidNgine Pvt. Ltd. ', 'COOLMASTER v2.jpg', 1),
-('COOL MASTER V3', 'Cooler Master.', 600, '4 pin / 8 pin', '24 pin', 6, 2, '6100', 'BulidNgine Pvt. Ltd. ', 'COOLMASTER v3.jpg', 1),
-('DEEPCOOL DN500', 'Deepcool', 500, '4 pin / 8 pin', '24 pin', 5, 1, '5000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL DN500.jpg', 1),
-('ZALMAN ZM1000', 'ZALMAN', 1000, '4 pin / 8 pin', '24 pin', 6, 4, '14000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN ZM1000.jpg', 1),
-('ZALMAN ZM850', 'ZALMAN', 850, '4 pin / 8 pin', '24 pin', 6, 4, '11000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN ZM850.jpg', 1);
+INSERT INTO `smps_tbl` (`name`, `company`, `power`, `cpu_pow`, `mb_pow`, `sata_count`, `pci_count`, `price`, `sold_by`, `pic`, `status`, `verified`) VALUES
+('AEROCOOL GM 1200W', 'AeroCool', 1200, '8 pin / 16 pin', '24 pin', 6, 8, '16000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL GM 1200W.jpg', 1, 1),
+('AEROCOOL KCAS 650G', 'AeroCool', 650, '4 pin / 8 pin', '24 pin', 6, 2, '7200', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL KCAS 650G.jpg', 1, 1),
+('AEROCOOL VX 400W', 'AeroCool', 400, '4 pin / 8 pin', '24 pin', 2, 0, '2400', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 400W.jpg', 1, 1),
+('AEROCOOL VX 500W', 'AeroCool', 500, '4 pin / 8 pin', '24 pin', 3, 1, '3200', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 500W.jpeg', 1, 1),
+('AEROCOOL VX 700W', 'AeroCool', 700, '4 pin / 8 pin', '24 pin', 6, 2, '9000', 'BulidNgine Pvt. Ltd. ', 'AEROCOOL VX 700W.png', 1, 1),
+('COOLMASTER V2', 'Cooler Master.', 550, '4 pin / 8 pin', '24 pin', 5, 2, '5300', 'BulidNgine Pvt. Ltd. ', 'COOLMASTER v2.jpg', 1, 1),
+('COOLMASTER V3', 'Cooler Master.', 600, '4 pin / 8 pin', '24 pin', 6, 2, '6100', 'BulidNgine Pvt. Ltd. ', 'COOLMASTER v3.jpg', 1, 1),
+('DEEPCOOL DN500', 'Deepcool', 500, '4 pin / 8 pin', '24 pin', 5, 1, '5000', 'BulidNgine Pvt. Ltd. ', 'DEEPCOOL DN500.jpg', 1, 1),
+('joerja', 'asd', 123, '4 pin / 8 pin', '1231', 3, 0, '11231', 'retailer', 'as.png', 1, 0),
+('ZALMAN ZM1000', 'ZALMAN', 1000, '4 pin / 8 pin', '24 pin', 6, 4, '14000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN ZM1000.jpg', 1, 1),
+('ZALMAN ZM850', 'ZALMAN', 850, '4 pin / 8 pin', '24 pin', 6, 4, '11000', 'BulidNgine Pvt. Ltd. ', 'ZALMAN ZM850.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1450,13 +1480,13 @@ ALTER TABLE `district`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=343;
 
 --
 -- AUTO_INCREMENT for table `prebuilt_tbl`
 --
 ALTER TABLE `prebuilt_tbl`
-  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `state`

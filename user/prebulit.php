@@ -8,24 +8,23 @@ include('../database/database_connection.php');
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0";
 $sql5="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=1";
-$sql4="select sum(price) as total from ordertbl where loginid='$ide' and status=1 and save=0";
-$sql6="select Count(*) FROM `prebuilt_tbl` WHERE status=1";
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 
-$result5=mysqli_query($con,$sql6)or die("number query moonchi");
 // echo $sql2;
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
-$result3=mysqli_query($con,$sql4)or die("number query moonchi");
 $result4=mysqli_query($con,$sql5)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
-$rows=mysqli_fetch_array($result3);
 $rowse=mysqli_fetch_array($result4);
-$rowsp=mysqli_fetch_array($result5);
 $cart=$row['Count(*)'];
-$prebulit=$rowsp['Count(*)'];
 $save=$rowse['Count(*)'];
-$total=$rows['total'];
-$sql3="select * FROM `prebuilt_tbl` WHERE status=1 and loginid='$ide'";
+$sql3="select MIN(price) as min, MAX(price) as max from prebuilt_tbl where  status=1 ";
+// echo $sql3;
+$result2=mysqli_query($con,$sql3)or die("price query moonchi");
+$row=mysqli_fetch_array($result2);
+$min=$row['min'];
+$max=$row['max']+50;
+
+$sql3="select * FROM `prebuilt_tbl` WHERE status=1 order by price asc";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 if (isset($_POST['submite'])) {
@@ -78,7 +77,7 @@ else {
 
 <head>
 
-    <title>CART</title>
+    <title>Prebulit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../js/jquery-1.10.2.min.js"></script>
     <script src="../js/jquery-ui.js"></script>
@@ -129,101 +128,167 @@ else {
     <div class="container">
         <div class="row">
         	<br />
-        	<h2 align="center">Your CART</h2>
+        	<h2 align="center">Prebulid System</h2>
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
 
+              <div class="col-md-3">
+                <div class="list-group">
+                  <h3>Price</h3>
+                  <input type="hidden" id="hidden_minimum_price" value="<?php echo( $min) ?>" />
+                            <input type="hidden" id="hidden_maximum_price" value="<?php echo( $max) ?>" />
 
+
+                            <p id="price_show"><?php echo( $min) ?> - <?php echo( $max) ?></p>
+                            <div id="price_range"></div>
+                        </div>
+                  <div class="list-group">
+            <h3>Ram Size</h3>
+            <?php
+
+                      $query = "select distinct(`ram_size`) from `prebuilt_tbl` where status =1  order by `ram_size` desc";
+                      $statement = $connect->prepare($query);
+                      $statement->execute();
+                      $result = $statement->fetchAll();
+                      foreach($result as $row)
+                      {
+                      ?>
+                      <div class="list-group-item checkbox">
+                          <label><input type="checkbox" class="common_selector ram_size" value="<?php echo $row['ram_size']; ?>"  > <?php echo $row['ram_size']; ?> Gb</label>
+                      </div>
+                      <?php
+                      }
+
+                      ?>
+                  </div>
+                  <div class="list-group">
+            <h3>Purpose</h3>
+            <?php
+
+                      $query = "select distinct(`category`) from `prebuilt_tbl` where status =1  order by `category` desc";
+                      $statement = $connect->prepare($query);
+                      $statement->execute();
+                      $result = $statement->fetchAll();
+                      foreach($result as $row)
+                      {
+                      ?>
+                      <div class="list-group-item checkbox">
+                          <label><input type="checkbox" class="common_selector category" value="<?php echo $row['category']; ?>"  > <?php echo $row['category']; ?> </label>
+                      </div>
+                      <?php
+                      }
+
+                      ?>
+                  </div>
+                  <div class="list-group">
+            <h3>Ram Type</h3>
+            <?php
+
+                      $query = "select distinct(`ram_type`) from `prebuilt_tbl` where status =1  order by `ram_type` desc";
+                      $statement = $connect->prepare($query);
+                      $statement->execute();
+                      $result = $statement->fetchAll();
+                      foreach($result as $row)
+                      {
+                      ?>
+                      <div class="list-group-item checkbox">
+                          <label><input type="checkbox" class="common_selector ram_type" value="<?php echo $row['ram_type']; ?>"  > <?php echo $row['ram_type']; ?> </label>
+                      </div>
+                      <?php
+                      }
+
+                      ?>
+                  </div>
+
+
+
+
+              </div>
             <div class="col-md-8">
             	<br />
                 <div class="row filter_data">
-                <?php
-
-                if ($prebulit>0) {
-                 foreach($result2 as $row)
-                		{?>
-                    <div class="col-sm-12 col-lg-12 col-md-12">
-
-              				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-              					<img  style="float:left; padding:5px;"src="../cart/<?php echo $row['name']  ?>.jpg " width="100px" height="100px"  >
-
-                        <div style="float: left;">
-                          <h4><strong><?php echo $row['name'] ?></strong></h4>
-
-                          </div>
-                      <table  >
 
 
-                        <tr ><td ><strong> Category</strong></td><td > : <?php echo $row['category'] ?></td></tr>
-                        <tr ><td ><strong> Price</strong></td><td > : ₹ <?php echo $row['price'] ?></td></tr>
-                        <tr><td ><strong> Quantity</strong></td><td > : <?php echo $row['qty'] ?></td></tr>
-                      <tr>
-                        <h4  style="text-align:right;" class="text-danger" >₹ <?php echo $row['total'] ?></h4>
 
-                      </tr>
-
-                      </table>
-                      <div style="float: right;">
-                        <i class="fa fa-trash"></i>
-                        <input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one('<?php echo $row['name'] ?>')">
-                        &nbsp;
-                        <i class="fa fa-archive"></i>
-                        <input type="submit" name="save" class="btn btn-warning" value="Save for later" onclick="one('<?php echo $row['name'] ?>')">
-                        &nbsp;
-                        <i class="fa fa-shopping-cart"></i>
-                        <input type="submit" name="submit" class="btn btn-primary" value="Purchase Now" onclick="one('<?php echo $row['name'] ?>')">
-
-                        </div>
-
-                        <br>
-                        <br>
-
-              				</div>
-
-              			</div>
-                  <?php
-                }
-              }else {?>
               <center> <h3>Your Cart is empty</h3><br>
               <input type="submit" class="btn btn-primary"  name="sumbite" value="Add Products">  </center>
-            <?php  }
-                ?>
+
 
                 </div>
             </div>
-            <div class="col-md-4">
 
-              <div class="col-sm-12 col-lg-12 col-md-12">
-                <br>
-                <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:170px;">
-                  <table>
-                    <tr>
-                      <td> <h4> <strong> Total Summary</strong> </h4></td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Total items </strong></td>
-                      <td> <?php echo $cart ?></td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Total Price </strong></td>
-                        <td> ₹ <?php echo $total ?></td>
-                    </tr>
-                  </table>
-                  <br>
-                  <div style="float: right;">
-                    <i class="fa fa-shopping-cart"></i>
-                    <input type="submit" name="submite" class="btn btn-primary" value="Purchase All" onclick="one(\''.$row['name'].'\')">
-
-                    </div>
-              </div>
-              </div>
-
-        </div>
       </form>
 
     </div>
     </div>
+    <style>
+    /* #loading
+    {
+    	text-align:center;
+    	background: url('loader1.gif') no-repeat center;
+    	height: 150px;
+    } */
+    </style>
+
+    <script type="text/javascript">
+
+
+
+    $(document).ready(function(){
+
+        filter_data();
+
+        function filter_data()
+        {
+            $('.filter_data').html('<div id="loading" style="" ></div>');
+            var action = 'fetch_data';
+            var minimum_price = $('#hidden_minimum_price').val();
+            var maximum_price = $('#hidden_maximum_price').val();
+            var ram_size = get_filter('ram_size');
+            var ram_type = get_filter('ram_type');
+            var category = get_filter('category');
+
+            $.ajax({
+                url:"fetch_data_prebulit.php",
+                method:"POST",
+                data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, ram_size:ram_size,ram_type:ram_type, category:category},
+                success:function(data){
+                    $('.filter_data').html(data);
+                }
+            });
+        }
+
+        function get_filter(class_name)
+        {
+            var filter = [];
+            $('.'+class_name+':checked').each(function(){
+                filter.push($(this).val());
+            });
+            return filter;
+        }
+
+        $('.common_selector').click(function(){
+            filter_data();
+        });
+
+        $('#price_range').slider({
+            range:true,
+            min:<?php echo( $min) ?>,
+            max:<?php echo( $max) ?>,
+            values:[<?php echo( $min) ?>, <?php echo( $max) ?>],
+            step:50,
+            stop:function(event, ui)
+            {
+                $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
+                $('#hidden_minimum_price').val(ui.values[0]);
+                $('#hidden_maximum_price').val(ui.values[1]);
+                filter_data();
+            }
+        });
+
+    });
+    </script>
 
     <?php
     include('../php/footer.php');

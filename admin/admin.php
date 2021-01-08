@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
+if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
  header('location: ../login.php');
  }
  $loginid=$_SESSION['loginid'];
@@ -67,26 +67,14 @@ if(isset($_POST['insert'])){
 
     <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-        <title>Admin Index</title>
+          <title>Admin Index</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 	      <!--fontawesome-->
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="../css/admin.css">
+              <link rel="stylesheet" href="../css/admin.css">
         <script src="../js/sidebar.js"></script>
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-        <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-        <script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>
-        <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
   </head>
 
 
@@ -228,25 +216,20 @@ if(isset($_POST['insert'])){
 							<a class="nav-icon dropdown" href="" id="alertsDropdown" data-toggle="dropdown" aria-expanded="false">
 								<div class="position-relative">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell align-middle"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-									<span class="indicator" id="circle">
+									<span class="indicator">
                     <?php
-                  if($row_s==0)
-                  {
-                    echo "<script> $(#circle).css('display','none');</script>";
-                  }
-                  else
-                  {
-                    echo $row_s;
-
-
+                  echo $row_s;
                   ?>
-                </div>
                 </span>
+                </div>
               </a>
+              <?php if ($row_s>0){ ?>
+
+
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right py-0" aria-labelledby="alertsDropdown">
 								<div class="dropdown-menu-header">
                   <?php echo $row_s;
-                  }
+
                   ?> new notifications
 								</div>
 								<div class="list-group">
@@ -287,7 +270,7 @@ if(isset($_POST['insert'])){
 								</div> -->
 							</div>
 
-
+<?php } ?>
 
 
 
@@ -530,7 +513,7 @@ if(isset($_POST['insert'])){
                $dis_query=mysqli_query($con,$district);
                while($row=mysqli_fetch_array($dis_query))
                {
-                 echo $row['district_name'];
+                 // echo $row['district_name'];
                }
              ?>
            </th>
@@ -721,13 +704,8 @@ if(isset($_POST['insert'])){
 </thead>
 <tbody>
 <?php
-  if($row_s==0)
-  {
-    echo "<script> $('#retailer_att').css('display','none');</script>";
-    echo "<script> $('#Notification_msg').text(' No new Notification');</script>";
+  if($row_s>0)
 
-  }
-  else
   {
     $count_s="select loginid from logintable where usertype='retailer' and status=0";
     $counts_query=mysqli_query($con,$count_s);
@@ -797,27 +775,57 @@ if(isset($_POST['insert'])){
 </thead>
 <tbody>
 <?php
-  $employe="select orderid,loginid,name,sold_by,category,total,pic FROM ordertbl where status=1";
+  $employe="select * FROM ordertbl where status=1";
   $employee_query=mysqli_query($con,$employe);
-  while($r=mysqli_fetch_array($employee_query))
+  while($row=mysqli_fetch_array($employee_query))
   {
-    $username=$r['loginid'];
-    $orderid=$r['orderid'];
-    $name=$r['name'];
-    $sold_by=$r['sold_by'];
-    $cateory=$r['category'];
-    $price=$r['total'];
-    $img=$r['pic'];
+    $username=$row['loginid'];
+    $orderid=$row['orderid'];
+    $name=$row['name'];
+    $sold_by=$row['sold_by'];
+    $category=$row['category'];
+    $price=$row['total'];
+    $img=$row['pic'];
 
   ?>
 <tr>
 <th><?php echo $orderid; ?></th>
 <th><?php echo $name;?></th>
 <th><?php echo $username;?></th>
-<th><?php echo $cateory;?></th>
+<th><?php echo $category;?></th>
 <th><?php echo $sold_by;?></th>
 <th><?php echo $price;?></th>
-<th><img src="../cart/<?php echo $img;?>.jpg" alt="" width="50px" height="60px"> </th>
+<td>
+  <?php if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
+    <img  style="float:left; padding:5px;"src="../project/cabinet/<?php echo $row['pic']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  } elseif ($row['category']=='CPU') {?>
+  <img  style="float:left; padding:5px;"src="../project/cpu/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='GPU') {?>
+  <img  style="float:left; padding:5px;"src="../project/gpu/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='MEMORY') {?>
+  <img  style="float:left; padding:5px;"src="../project/mem/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='RAM') {?>
+  <img  style="float:left; padding:5px;"src="../project/ram/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='Motherboard') {?>
+  <img  style="float:left; padding:5px;"src="../project/mother/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='SMPS') {?>
+  <img  style="float:left; padding:5px;"src="../project/smps/<?php echo $row['name']  ?>.jpg " width="50px" height="50px" >
+
+  <?php  }elseif ($row['category']=='CPU FAN') {?>
+  <img  style="float:left; padding:5px;"src="../project/fan/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }elseif ($row['category']=='cabinet') {?>
+  <img  style="float:left; padding:5px;"src="../project/cabinet/<?php echo $row['name']  ?>.jpg " width="50px" height="50px"  >
+
+  <?php  }?>
+
+</td>
 <td>
   <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
@@ -1146,7 +1154,7 @@ $(document).on('click','.sc_approve',function()
   var serPro_name= $(this).closest('tr').find('th:nth-child(1)').text();
   var sc_name=serPro_name.trim();
   $(this).closest("tr").remove();
-  var login=<?php echo $_SESSION['lid']; ?>;
+  var login='<?php echo $loginid ?>';
     console.log(sc_name);
 
   $.ajax({
@@ -1172,7 +1180,7 @@ $(document).on('click','.sc_reject',function()
   var rej_name= $(this).closest('tr').find('th:nth-child(1)').text();
   var rj_name=rej_name.trim();
   $(this).closest("tr").remove();
-  var login=<?php echo $_SESSION['lid']; ?>;
+  var login='<?php echo $loginid ?>';
     console.log(rj_name);
 
   $.ajax({

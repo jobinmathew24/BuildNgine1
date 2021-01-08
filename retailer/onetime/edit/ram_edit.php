@@ -145,7 +145,7 @@ $ram_name=$_SESSION['ram_edit'];
         <input type="text" class="form-control" style="width:450px;" required placeholder="RAM Timing" name="timing" value="<?php echo $row['timing']; ?>"><br>
         <input type="number" class="form-control" style="width:450px;" required placeholder="RAM price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -175,12 +175,12 @@ if(isset($_POST['submit'])){
 
   $sql="update `ram_tbl` set `name`='$name', `company`='$company', `ram_type`='$ram_type',
    `ram_size`=$ram_size, `mem_freq`=$mem_freq, `fsb`='$fsb', `voltage`=$voltage,
-   `timing`='$timing', `price`='$price', `pic`='$pic' where `name`='$ram_name'";
+   `timing`='$timing', `price`='$price', `pic`='$name.jpg' where `name`='$ram_name'";
 
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../../../project/ram/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data Sucessfully Updated');</script>";
   echo "<script>window.location.reload();</script>";

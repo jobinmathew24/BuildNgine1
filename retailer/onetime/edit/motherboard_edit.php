@@ -180,7 +180,7 @@ $motherboard_name=$_SESSION['motherboard_edit'];
         </select><br>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -215,12 +215,12 @@ if(isset($_POST['submit'])){
 
   $sql="update `mothertbl` set `name`='$name', `company`='$company', `socket`='$socket', `form_factor`='$factor', `ram_type`='$ram_type',
   `max_ram`=$max_ram, `pcie_count`=$pcie, `mb_pow`=$mb_pow, `cpu_pow`=$cpu_pow, `chipset`='$chipset', `ram_count`=$ram_count, `sata_count`=$sata_count,
-  `m2_count`=$m2_count, `max_freq`=$max_freq, `purpose`='$purpose', `price`=$price, `pic`='$pic' where `name`='$motherboard_name'";
+  `m2_count`=$m2_count, `max_freq`=$max_freq, `purpose`='$purpose', `price`=$price, `pic`='$name.jpg' where `name`='$motherboard_name'";
 
 // echo "$sql";
 if($result1=mysqli_query($con,$sql)){
   $target_dir = "../../../project/mother/";
-  $target_path=$target_dir.$pic;
+  $target_path=$target_dir.$name.".jpg";
   move_uploaded_file($_FILES['image']['tmp_name'],$target_path);
   echo "<script>alert('Data Sucessfully Updated');</script>";
   echo "<script>window.location.reload();</script>";
