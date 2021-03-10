@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
 
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");

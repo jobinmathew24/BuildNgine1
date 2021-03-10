@@ -35,12 +35,12 @@ $row_emp = mysqli_num_rows($emp_query);
 // $row_comp = mysqli_num_rows($comp_query);
 
 // total number of Orders
-$count_total_order="select * from ordertbl";
+$count_total_order="select * from ordertbl where buy=1";
 $Total_order_query=mysqli_query($con,$count_total_order);
 $row_total = mysqli_num_rows($Total_order_query);
 
 // total number of new Orders
-$count_total_order="select * from ordertbl where status=1";
+$count_total_order="select * from ordertbl where status=1 and buy=1";
 $Total_order_query=mysqli_query($con,$count_total_order);
 $row_neworder = mysqli_num_rows($Total_order_query);
 
@@ -658,29 +658,7 @@ if(isset($_POST['insert'])){
 
  <!-- Add new category -->
 
- <table class="table table-bordered" id="new-sc" style="display : none;margin-left :50px;">
-            <thead>
-                    <tr>
-                        <th>Service Category</th>
-                        <th>Amount</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tbody>
-                    <tr>
-                      <form action="#" name="upload" method="post" enctype="multipart/form-data">
-                        <td><input type="text" class="form-control" required="" id="c1"></input></td>
-                        <td><input type="text" class="form-control" required="" id="c2"></input></td>
-                        <td><input type="file" name="myImage" id="img" accept="image/*" /></td>
-                        <td style="border-top:0px;text-align:right">
-                        <!-- <button class="btn btn-sm btn-success" data-target="#demo-lg-modal1" data-toggle="modal" title="Edit" id="sc1"><i class="fa fa-pencil"></i></button><a>
-                        <button class="btn btn-sm btn-danger" title="Delete" id="sc2"><i class="fa fa-times" aria-hidden="true"></i></button></a><a> -->
-                        <button class="btn btn-sm btn-primary" type="submit" style="padding-top: 3px; padding" id="sc3" name="insert" title="Upload/View data"><i class="fa fa-upload"></i></button>
-                        </a></td>
-                      </form>
-                    </tr>
-                </thead>
-            </table>
+
 
             </div>
       </div>
@@ -775,7 +753,7 @@ if(isset($_POST['insert'])){
 </thead>
 <tbody>
 <?php
-  $employe="select * FROM ordertbl where status=1";
+  $employe="select * FROM ordertbl where status=1 and buy=1";
   $employee_query=mysqli_query($con,$employe);
   while($row=mysqli_fetch_array($employee_query))
   {

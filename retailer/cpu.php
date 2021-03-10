@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -41,6 +41,15 @@ session_start();
     <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+}
+p{
+  text-align: left;
+  font-size: 15px;
+}
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -122,12 +131,15 @@ session_start();
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="CPU Name" name="name" id="name" value=""><br>
+        <p>CPU Name</p>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholderr="CPU Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Company" name="company" value=""><br>
+        <p>CPU Company</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="CPU Company" name="company" value=""><br>
+        <p>CPU Socket</p>
         <select class="form-control" type="button" style="width:450px;" name="socket" required>
 
-                      <option value="">Select the Socket</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_socket=mysqli_fetch_array($sql_socket))
@@ -137,9 +149,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>CPU Core Count</p>
         <select class="form-control" type="button" style="width:450px;" name="core_count" required>
 
-                      <option value="">Select the Core Count</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_core))
@@ -149,17 +162,26 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Thread Count" name="thread" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Frequency" name="frequency" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Turboboost Freq" name="turboboost" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU IGPU" name="igpu" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Lithography" name="lithography" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Cache" name="cache" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU TDP" name="tdp" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Max Temp" name="max_temp" value=""><br>
+        <p>CPU Thread Count</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU Thread Count" name="thread" value=""><br>
+        <p>CPU Frequency</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU Frequency" name="frequency" value=""><br>
+        <p>CPU Turboboost Freq</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="CPU Turboboost Freq" name="turboboost" value=""><br>
+        <p>CPU IGPU</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="CPU IGPU" name="igpu" value=""><br>
+        <p>CPU Lithography</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="CPU Lithography" name="lithography" value=""><br>
+        <p>CPU Cache</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU Cache" name="cache" value=""><br>
+        <p>CPU TDP</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU TDP" name="tdp" value=""><br>
+        <p>CPU Max Temp</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU Max Temp" name="max_temp" value=""><br>
+        <p>CPU Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
-                      <option value="">Select the Purpose</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_pur=mysqli_fetch_array($sql_pur))
@@ -169,9 +191,12 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="CPU price" name="price" value="">
+        <p>CPU Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="CPU price" name="price" value="">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p>Choose the Image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

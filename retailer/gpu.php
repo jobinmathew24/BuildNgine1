@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -47,6 +47,15 @@ session_start();
     <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+}
+p{
+  text-align: left;
+  font-size: 15px;
+}
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -128,11 +137,13 @@ session_start();
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="GPU Name" name="name" id="name" value=""><br>
+        <p>GPU Name</p>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholderrr="GPU Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-                <select class="form-control" type="button" style="width:450px;" name="company" required>
+        <p>GPU Company</p>
+        <select class="form-control" type="button" style="width:450px;" name="company" required>
 
-                      <option value="">Select the Company</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_socket=mysqli_fetch_array($sql_company))
@@ -142,9 +153,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>GPU Processor</p>
         <select class="form-control" type="button" style="width:450px;" name="processor" required>
 
-                      <option value="">Select the Processor</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_processor ))
@@ -154,11 +166,14 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Core Freq" name="core_freq" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Frequency" name="mem_freq" value=""><br>
+        <p>GPU Core Frequency</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderrr="GPU Core Freq" name="core_freq" value=""><br>
+        <p>GPU Memory Frequency</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderrr="GPU Memory Frequency" name="mem_freq" value=""><br>
+        <p>GPU Memory Type</p>
         <select class="form-control" type="button" style="width:450px;" name="mem_type" required>
 
-                      <option value="">Select the Memory Type</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_mem_type))
@@ -168,9 +183,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>GPU Memory Size</p>
         <select class="form-control" type="button" style="width:450px;" name="mem_size" required>
 
-                      <option value="">Select the Memory Size</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_mem_size))
@@ -180,11 +196,14 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Width" name="mem_width" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Power Connector" name="pow_con" value=""><br>
+        <p>GPU Memory Width</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderrr="GPU Memory Width" name="mem_width" value=""><br>
+        <p>GPU Power Connector</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderrr="GPU Power Connector" name="pow_con" value=""><br>
+        <p>GPU Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
-                      <option value="">Select the Purpose</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_pur=mysqli_fetch_array($sql_pur))
@@ -194,9 +213,12 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="GPU price" name="price" value="">
+        <p>GPU Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderrr="GPU price" name="price" value="">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p >Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

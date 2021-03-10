@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -45,6 +45,15 @@ session_start();
     <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -121,18 +130,22 @@ session_start();
       <br>
 
       <form action="" method="post" name="smps_tbl" enctype="multipart/form-data" class="form-group-sm container"  >
-        <h2 style="float: center;">New SMPS Memory</h2 >
+        <h2 style="float: center;">New SMPS </h2 >
           <hr>
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="SMPS Name" name="name" id="name" value=""><br>
+        <p>SMPS Name</p>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholderr="SMPS Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-        <input type="text" class="form-control" style="width:450px;" required  placeholder="SMPS company" name="company"  value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required  placeholder="SMPS Power" name="power"  value=""><br>
+        <p>SMPS Company</p>
+        <input type="text" class="form-control" style="width:450px;" required  placeholderr="SMPS company" name="company"  value=""><br>
+        <p>SMPS Power</p>
+        <input type="number" class="form-control" style="width:450px;" required  placeholderr="SMPS Power" name="power"  value=""><br>
+        <p>SMPS CPU Power Connector</p>
         <select class="form-control" type="button" style="width:450px;" name="cpu_pow" required>
 
-                      <option value="">Select the SMPS CPU Power Connector</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_cpu_pow ))
@@ -142,10 +155,11 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required  placeholder="SMPS Motherboard Power" name="mb_pow"  value=""><br>
+        <p>SMPS SATA Power Cable</p>
+        <input type="number" class="form-control" style="width:450px;" required  placeholderr="SMPS Motherboard Power" name="mb_pow"  value=""><br>
         <select class="form-control" type="button" style="width:450px;" name="sata_count" required>
 
-                      <option value="">Select the SMPS SATA Power Cable</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_sata_count))
@@ -155,9 +169,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>SMPS SATA PCIe Power Cable</p>
         <select class="form-control" type="button" style="width:450px;" name="pci_count" required>
 
-                      <option value="">Select the SMPS PCIe Power Cable</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_pci_count))
@@ -167,9 +182,11 @@ session_start();
                             ?>
 
         </select><br>
-          <input type="number" class="form-control" style="width:450px;" required placeholder="SMPS price" name="price" value="">
-        <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" style="width:450px;" accept="image/jpeg" required class="form-control" name="image" id="file" value="">
+        <p>SMPS Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="SMPS price" name="price" value="">
+        <!-- Select image to upload: --><br>
+        <P >Choose the Image </p>
+           <input type="file" style="width:450px;" accept="image/jpeg" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

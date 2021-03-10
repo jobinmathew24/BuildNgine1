@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -43,6 +43,15 @@ session_start();
     <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+}
+p{
+  text-align: left;
+  font-size: 15px;
+}
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -124,12 +133,15 @@ session_start();
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="Motherboard Name" name="name" id="name" value=""><br>
-        <span id='nameid'></span>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Company" name="company" value=""><br>
+        <p> Motherboard Name</p>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholderr="Motherboard Name" name="name" id="name" value=""><br>
+        <span id='nameid'></span><br>
+        <p>Motherboard Company</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="Motherboard Company" name="company" value=""><br>
+        <p>Motherboard socket</p>
         <select class="form-control" type="button" style="width:450px;" name="socket" required>
 
-                      <option value="">Select the Socket</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_socket=mysqli_fetch_array($sql_socket))
@@ -139,10 +151,12 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Form Factor" name="factor" value=""><br>
+        <p>Motherboard Form Factor</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="Motherboard Form Factor" name="factor" value=""><br>
+        <p>Motherboard RAM Type</p>
         <select class="form-control" type="button" style="width:450px;" name="ram_type" required>
 
-                      <option value="">Select the RAM Type</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_ram))
@@ -152,9 +166,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>Motherboard Max RAM in Gb</p>
         <select class="form-control" type="button" style="width:450px;" name="max_ram" required>
 
-                      <option value="">Motherboard Max RAM in Gb</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_max=mysqli_fetch_array($sql_max))
@@ -164,17 +179,26 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard PCIe Count" name="pcie" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Power Pin" name="mb_pow" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard CPU Power Pin" name="cpu_pow" value=""><br>
-        <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Chipset" name="chipset" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard RAM Slot Count" name="ram_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard SATA Slot Count" name="sata_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard M.2 Slot Count" name="m2_count" value=""><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Max Freq" name="max_freq" value=""><br>
+        <p>Motherboard PCIe Count</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard PCIe Count" name="pcie" value=""><br>
+        <p>Motherboard Power Pin</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard Power Pin" name="mb_pow" value=""><br>
+        <p>Motherboard CPU Power Pin</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard CPU Power Pin" name="cpu_pow" value=""><br>
+        <p>Motherboard Chipset</p>
+        <input type="text" class="form-control" style="width:450px;" required placeholderr="Motherboard Chipset" name="chipset" value=""><br>
+        <p>Motherboard RAM Slot Count</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard RAM Slot Count" name="ram_count" value=""><br>
+        <p>Motherboard SATA Slot Count</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard SATA Slot Count" name="sata_count" value=""><br>
+        <p>Motherboard M.2 Slot Count</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard M.2 Slot Count" name="m2_count" value=""><br>
+        <p>Motherboard Max Freq</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard Max Freq" name="max_freq" value=""><br>
+        <p>Motherboard Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
-                      <option value="">Select the Purpose</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_pur=mysqli_fetch_array($sql_pur))
@@ -184,9 +208,11 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard price" name="price" value="">
-        <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <p>Motherboard Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="Motherboard price" name="price" value="">
+        <!-- Select image to upload: --><br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

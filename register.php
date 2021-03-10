@@ -93,7 +93,7 @@ if (!isset($_POST['submit'])) {
     function phone()
     {
       var phone = document.forms["regform"]["ph"];
-      var phn = /^\(?([6-9]{2})\)?([0-9]{8})$/;
+      var phn = /^\(?([6-9]{1})\)?([0-9]{9})$/;
 
       if(phone.value == "")
       {
@@ -324,7 +324,7 @@ while($row=mysqli_fetch_array($query))
    $result=mysqli_query($con,$main);
    $n=mysqli_num_rows($result);
    // echo($n)
-  
+
    if($n==0){
     // echo("username is taken");
     mysqli_query($con,$sql1);

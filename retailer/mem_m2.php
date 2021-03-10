@@ -7,7 +7,7 @@ session_start();
   include('../database/database_connection.php');
   $id=$_SESSION['loginid'];
 
-  $sql2="select Count(*) from ordertbl where status=1 and save=0";
+  $sql2="select Count(*) from ordertbl where status=1 and save=0 and buy =1 and remark!='Order in Transit'";
   // echo $sql2;
   $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -45,7 +45,17 @@ session_start();
     <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+  }
+  p{
+  text-align: left;
+  font-size: 15px;
+  }
+    </style>
   </head>
+
   <script type="text/javascript">
   function check() {
     var mem_type = document.getElementById('name').value;
@@ -126,12 +136,15 @@ session_start();
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
-        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="SSD Name" name="name" id="name" value=""><br>
+        <p>SSD Name</p>
+        <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholderr="SSD Name" name="name" id="name" value=""><br>
         <span id='nameid'></span>
-        <input type="text" class="form-control" style="width:450px;" required  placeholder="SSD company" name="company"  value=""><br>
+        <p>SSD Company</p>
+        <input type="text" class="form-control" style="width:450px;" required  placeholderr="SSD company" name="company"  value=""><br>
+        <p>SSD Size</p>
         <select class="form-control" type="button" style="width:450px;" name="size" required>
 
-                      <option value="">Select the SSD Size</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_size ))
@@ -141,9 +154,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>SSD Form Factor</p>
         <select class="form-control" type="button" style="width:450px;" name="form_factor" required>
 
-                      <option value="">Select the SSD Form Factor</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_form_factor))
@@ -153,9 +167,10 @@ session_start();
                             ?>
 
         </select><br>
+        <p>SSD Type</p>
         <select class="form-control" type="button" style="width:450px;" name="ssd_type" required>
 
-                      <option value="">Select the SSD Type</option>
+                      <option value="">--</option>
                         <?php
 
                            while($data_ram=mysqli_fetch_array($sql_ssd_type))
@@ -165,9 +180,11 @@ session_start();
                             ?>
 
         </select><br>
-          <input type="number" class="form-control" style="width:450px;" required placeholder="SSD price" name="price" value="">
-        <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <p>SSD Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholderr="SSD price" name="price" value="">
+        <!-- Select image to upload: --><br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

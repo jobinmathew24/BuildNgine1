@@ -49,7 +49,8 @@ if(isset($_POST["action"]))
 					Sold By : '. $row['sold_by'] .' <br  />
 					<br>
 					<i class="fa fa-shopping-cart"></i>
-					<input type="submit" name="submit" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
+					<input type="submit" name="submit" class="btn btn-primary"
+					value="Add to Cart" onclick="one(\''.$row['name'].'\')">
 					</center>
 				</div>
 

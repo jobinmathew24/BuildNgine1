@@ -20,7 +20,7 @@ $m2=$_SESSION['m2_mem'];
 $smps=$_SESSION['smpsname'];
 $fan=$_SESSION['cpu_fanname'];
 
-$sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
+$sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0 and buy=0";
 // echo $sql2;
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
@@ -107,7 +107,14 @@ else {
       <a href="onetime/cabinet_one.php">Cabinet</a>
     </div>
   </div>
-      <a>welcome <?php echo($_SESSION['loginid'] )?></a>
+  <div class="dropdowne">
+      <button class="dropbtn">Welcome <?php echo($_SESSION['loginid'] )?>
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdowne-content">
+      <a href="myorder.php"> My Orders </a>
+    </div>
+  </div>
       <a href="users.php">Home</a>
 </div>
   <script type="text/javascript">
