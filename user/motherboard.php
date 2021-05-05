@@ -4,7 +4,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
 if (isset($_SESSION['socket'])) {
-  header('location: cpu.php');
+  header('location: check/checking_cpu.php');
 }
 
 include('../database/database_connection.php');
@@ -49,7 +49,7 @@ if (isset($_POST['add'])) {
 echo $sql;
 $result=mysqli_query($con,$sql)or die("$sql");
 $_SESSION['mbname']=$name;
-  header('location: cpu.php');
+  header('location: check/checking_cpu.php');
 }
   else {
 
@@ -95,6 +95,7 @@ $_SESSION['mbname']=$name;
     </button>
     <div class="dropdowne-content">
       <a href="myorder.php"> My Orders </a>
+        <a href="myprofile.php"> My Profile </a>
     </div>
   </div>
       <a href="users.php">Home</a>

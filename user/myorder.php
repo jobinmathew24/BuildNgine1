@@ -36,10 +36,14 @@ $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 header('location:myorder.php');
 
 }
+if (isset($_POST['invoice'])) {
+$orderid=$_POST['result'];
+$_SESSION['orderid']=$orderid;
+header('location:generate.php');
+
+}
 
 if (isset($_POST['sumbite'])) {
-
-
 
 header('location:cart.php');
 }
@@ -97,6 +101,7 @@ else {
     </button>
     <div class="dropdowne-content">
       <a href="myorder.php"> My Orders </a>
+        <a href="myprofile.php"> My Profile </a>
     </div>
   </div>
       <a href="users.php">Home</a>
@@ -107,6 +112,12 @@ else {
 
   document.getElementById('resulte').value=a;
   alert("Your order has been cancelled");
+  // document.getElementById("forme").submit();
+  }
+  function one1(a) {
+
+  document.getElementById('resulte').value=a;
+  // alert("Your order has been cancelled");
   // document.getElementById("forme").submit();
   }
   </script>
@@ -189,6 +200,8 @@ else {
                       <div style="float: right;">
                         <i class="fa fa-trash"></i>
                         <input type="submit" name="delete" class="btn btn-danger" value="Cancel Order" onclick="one('<?php echo $row['name'] ?>')">
+                        <i class="fa fa-archive"></i>
+                        <input type="submit" name="invoice" class="btn btn-success" value="Print Bill" onclick="one1('<?php echo $row['orderid'] ?>')">
                         &nbsp;
 
                         </div>

@@ -21,7 +21,7 @@ $min=$row['min'];
 $max=$row['max'];
 
 // echo $cart;
-if (isset($_POST['add'])) {
+if (isset($_POST['adda'])) {
   $name=$_POST['result'];
 
   $sql="select * from mothertbl where name='$name'";
@@ -87,6 +87,31 @@ if (isset($_POST['add'])) {
   <script type="text/javascript">
   function one(a) {
   document.getElementById('resulte').value=a;
+  document.getElementById('add'+a).style.display="none"
+  document.getElementById('total'+a).style.display="inline"
+  document.getElementById('total'+a).value="1"
+  document.getElementById('minus'+a).style.display="inline"
+  document.getElementById('plus'+a).style.display="inline"
+  }
+  function plusw(aa) {
+  document.getElementById('resulte').value=aa;
+  var a=parseInt(document.getElementById('total'+aa).value);
+  a=a+1;
+  console.log(a);
+  document.getElementById('total'+aa).value=a;
+  }
+  function minusw(aa) {
+  document.getElementById('resulte').value=aa;
+  var a=parseInt(document.getElementById('total'+aa).value);
+  a=a-1;
+  console.log(a);
+  document.getElementById('total'+aa).value=a;
+  if(a<=0){
+  document.getElementById('add'+aa).style.display="inline"
+  document.getElementById('minus'+aa).style.display="none"
+  document.getElementById('total'+aa).style.display="none"
+  document.getElementById('plus'+aa).style.display="none"
+}
   }
   </script>
 
@@ -259,6 +284,7 @@ if (isset($_POST['add'])) {
 
 $(document).ready(function(){
 
+
     filter_data();
 
     function filter_data()
@@ -274,7 +300,7 @@ $(document).ready(function(){
         var max_ram = get_filter('max_ram');
         var m2_count = get_filter('m2_count');
         $.ajax({
-            url:"fetch_data_mother_one1.php",
+            url:"fetch_data_mother_one.php",
             method:"POST",
             data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, company:company, purpose:purpose, socket:socket, ram_type:ram_type, max_ram:max_ram,m2_count:m2_count },
             success:function(data){
@@ -311,6 +337,17 @@ $(document).ready(function(){
         }
     });
 
+    $('.pluminus').click(function(){
+      var value = $('#total').val();
+      var name = $('#resulte').val();
+      var user='<?php echo $ide ;?>';
+      $.ajax({
+          url:"fetch_data_mother_one.php",
+          method:"POST",
+          data:{value:value,name:name,user:user}
+
+      });
+    });
 });
 </script>
 <?php

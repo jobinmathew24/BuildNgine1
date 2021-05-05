@@ -28,6 +28,20 @@ footer.footer ul {
 list-style:none;
 }
 
+.pluminus{
+  width: 20px;
+border-radius: 100px;
+background-color: #49afea;
+border-width: 0;
+color: white;
+/* display: block; */
+}
+.dis{
+  display: none;
+}
+.texte{
+  width: 100px;
+}
 .footer ul  li{
 display:inline-block;
 margin:0px 7px;

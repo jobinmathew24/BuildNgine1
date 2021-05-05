@@ -87,13 +87,9 @@ if(isset($_POST["action"]))
 					Max freq : '. $row['max_freq'] .' Mhz <br />
 					Purpose : '. $row['purpose'] .'  </p>
 					<br>
-					<div>
+					<i class="fa fa-shopping-cart"></i>
+					<input type="Submit" name="add" class="btn btn-primary" value="Add to Cart" onclick="one(\''.$row['name'].'\')">
 
-					<input type="button" id="add'.$row['name'].'" class="btn btn-primary" value="Add to Cart +" onclick="one(\''.$row['name'].'\')">
-					<input type="text" id="total'.$row['name'].'" name="total" width="50px" class="texte dis" >
-					<input type="button" id="plus'.$row['name'].'" name="pluse" class="pluminus dis" value="+" onclick="plusw(\''.$row['name'].'\')">
-					<input type="button" id="minus'.$row['name'].'" name="minuse" class="pluminus dis" value="-" onclick="minusw(\''.$row['name'].'\')">
-</div>
 					</center>
 				</div>
 
@@ -108,29 +104,6 @@ if(isset($_POST["action"]))
 
 	echo $output;
 	// echo $query;
-}
-if (isset($_POST['name'])) {
-
-	$query .= "select * from ordertbl where name='".$_POST['name']."' and loginid='"
-	.$_POST['user'];
- 	$statement = $connect->prepare($query);
- 	$statement->execute();
- 	$result = $statement->fetchAll();
- 	$total_row = $statement->rowCount();
-	if($total_row>0){
-
-	$query = "update ordertbl set qty= ".$_POST['value']." where loginid='".
-	$_POST['user']."' and name='".$_POST['name']."' and set limit 1";
-	$statement = $connect->prepare($query);
-	$statement->execute();
-}
-else{
-	$query .= "insert into ordertbl(`loginid`,`name`,`category`,``)";
- 	$statement = $connect->prepare($query);
- 	$statement->execute();
-
-}
-	// code...
 }
 
 ?>

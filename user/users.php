@@ -78,9 +78,11 @@ body
       </button>
       <div class="dropdowne-content">
         <a href="myorder.php"> My Orders </a>
+        <a href="myprofile.php"> My Profile </a>
+
       </div>
     </div>
-        <a href="buliding.php">Bulid a PC</a>
+        <a href="check/checking_bulid.php">Bulid a PC</a>
         <a href="prebulit.php">Prebulit System</a>
         <a href="users.php">Home</a>
   </div>
@@ -89,7 +91,7 @@ A simple PC builder tool for the users. Select parts from the curated list of co
 to build your desktop computer in a few minutes. Whether you're building a general purpose
  computer or a gaming rig or a PC for photo/video editing, this little tool is going to save
   you some time and effort
-<form class="" action="buliding.php" method="post">
+<form class="" action="check/checking_config.php" method="post">
   <br>
   <input type="submit" class="btn btn-primary"value="Bulid your PC now">
 </form>

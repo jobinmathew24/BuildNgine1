@@ -55,7 +55,7 @@ $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid,dat
   $_SESSION['cpuname']=$name;
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-  header('location: buliding.php');
+  header('location: check/checking_ram.php');
 }
 else {
 
@@ -106,6 +106,7 @@ else {
     </button>
     <div class="dropdowne-content">
       <a href="myorder.php"> My Orders </a>
+        <a href="myprofile.php"> My Profile </a>
     </div>
   </div>
       <a href="users.php">Home</a>

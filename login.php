@@ -1,3 +1,6 @@
+<?php
+session_start();
+$_SESSION['msg']=""; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +60,7 @@ body
 
 }
 .p{
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   height:auto;
   width: auto;
 }
@@ -92,8 +95,8 @@ a{
   <input type="submit" class="btn btn-success" name="submit" value="Submit" >
   <br>
   <br>
-  <h5><a style="color:white;" href="register.php">New User</a>
-  &nbsp;<a style="color:white;" href="forgot.php">Forgot Password ? </a></h5>
+  <h5><a style="color:white;" href="register.php">New User</a><br>
+  &nbsp;<a style="color:white;" href="forgot.php">Forgot Password ? No Problem. </a></h5>
   </form>
   </center>
   </div>
@@ -103,7 +106,8 @@ a{
 if(isset($_POST['submit'])) {
 
 
-session_start();
+
+
   $username=$_POST['user'];
   $password=$_POST['pass'];
   $password=md5($password);

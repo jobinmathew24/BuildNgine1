@@ -20,7 +20,7 @@ $rows=mysqli_fetch_array($result3);
 $cart=$row['Count(*)'];
 // $save=$rowse['Count(*)'];
 $total=$rows['total'];
-$sql3="select * from ordertbl where  status=1 and save=0 and buy= 1 and remark!='Order in Transit'";
+$sql3="select * from ordertbl where  status=1 and save=0 and buy= 1 ";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 // if (isset($_POST['submite'])) {
@@ -218,7 +218,15 @@ else {
                         &nbsp;
 
                         </div>
-                        <?php} if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
+                        <?php}
+                        if($row['remark']=="Order in Transit") {?>
+                          <div style="float: right;">
+                            <i class="fa fa-gift"></i>
+                            <input type="submit" name="invoice" class="btn btn-success" value="Generate Bill" onclick="one('<?php echo $row['name'] ?>')">
+                            &nbsp;
+
+                            </div>
+                      <?php  } if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
                         <br><br><br><?php }else{ echo "<br><br>"; } ?>
 
 

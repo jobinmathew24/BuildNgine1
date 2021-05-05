@@ -25,9 +25,11 @@ $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 if (isset($_POST['submite'])) {
 $date=date("j / m / Y");
+// $name=$_POST['resulte'];
+
 $sql3="update ordertbl set buy=1,date='$date' where loginid='$ide' ";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-header('location:users.php');
+header('location:cart.php');
 }
 
 if (isset($_POST['save'])) {
@@ -50,6 +52,7 @@ if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
 // echo "$name";
+$_SESSION['name']=$name;
 $date=date("j / m / Y");
   $sql="update ordertbl set buy =1,remark ='Processing Order',date='$date'  where loginid='$ide' and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1)";
 // echo "$sql";
@@ -63,7 +66,7 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 // $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','CPU FAN', $price,1,$price*1)";
 // // echo $sql;
 // $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:cart.php');
+header('location:shippingadd.php');
 }
 else {
 
@@ -115,6 +118,7 @@ else {
     </button>
     <div class="dropdowne-content">
       <a href="myorder.php"> My Orders </a>
+      <a href="myprofile.php"> My Profile </a>
     </div>
   </div>
       <a href="users.php">Home</a>
@@ -124,7 +128,7 @@ else {
   function one(a) {
 
   document.getElementById('resulte').value=a;
-  alert("Your order is placed, And you can complete the payment by Cash on Delivery");
+  // alert("Your order is placed, And you can complete the payment by Cash on Delivery");
   // document.getElementById("forme").submit();
   }
   function two(a) {

@@ -116,6 +116,7 @@ else {
     </button>
     <div class="dropdowne-content">
       <a href="myorder.php"> My Orders </a>
+        <a href="myprofile.php"> My Profile </a>
     </div>
   </div>
       <a href="users.php">Home</a>
