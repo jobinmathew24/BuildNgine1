@@ -34,7 +34,7 @@ if (isset($_POST['change'])) {
   $sql3="delete from ordertbl where loginid='$ide'and name='$cabin' and bulid = 1 and status=1 and save=0 ";
   $result2=mysqli_query($con,$sql3)or die("number query moonchi");
   unset($_SESSION['cabinetname']);
-  header('location:buliding.php');
+  header('location:check/checking_cabinet.php');
 }
 
 if (isset($_POST['delete'])) {
@@ -79,33 +79,10 @@ if (isset($_POST['delete'])) {
  </head>
 
  <body>
-   <div class="navbare">
-       <a href="logout.php">Logout</a>
-       <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
-   <div class="dropdowne">
-       <button class="dropbtn">Buy a product
-       <i class="fa fa-caret-down"></i>
-     </button>
-     <div class="dropdowne-content">
-       <a href="onetime/motherboard_one.php">Motherboard</a>
-       <a href="onetime/cpu_one.php">CPU</a>
-       <a href="onetime/gpu_one.php">GPU</a>
-       <a href="onetime/ram_one.php">RAM</a>
-       <a href="onetime/mem_one.php">Memory</a>
-       <a href="onetime/mem_m2_one.php">Memory M.2</a>
-       <a href="onetime/smps_one.php">SMPS</a>
-       <a href="onetime/cpu_fan_one.php">CPU Fan</a>
-       <a href="onetime/cabinet_one.php">Cabinet</a>
-     </div>
-   </div>
-       <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-       <a href="users.php">Home</a>
- </div>
-   </head>
-   <body>
+   <?php
+   include('../php/pdts_header.php');
+    ?>
      <div class="container">
-
-
      <center>
        <div class="col-md-12">
 

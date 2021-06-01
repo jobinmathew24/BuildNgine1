@@ -62,36 +62,9 @@ else {
 </head>
 
 <body>
-  <div class="navbare">
-    <a href="logout.php">Logout</a>
-    <a href="../cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
-  <div class="dropdowne">
-    <button class="dropbtn">Buy a product
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdowne-content">
-      <a href="motherboard_one.php">Motherboard</a>
-      <a href="cpu_one.php">CPU</a>
-      <a href="gpu_one.php">GPU</a>
-      <a href="ram_one.php">RAM</a>
-      <a href="mem_one.php">Memory</a>
-      <a href="mem_m2_one.php">Memory M.2</a>
-      <a href="smps_one.php">SMPS</a>
-      <a href="cpu_fan_one.php">CPU Fan</a>
-      <a href="cabinet_one.php">Cabinet</a>
-    </div>
-  </div>
-  <div class="dropdowne">
-      <button class="dropbtn">Welcome <?php echo($_SESSION['loginid'] )?>
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdowne-content">
-      <a href="../myorder.php"> My Orders </a>
-        <a href="../myprofile.php"> My Profile </a>
-    </div>
-  </div>
-      <a href="../users.php">Home</a>
-</div>
+  <?php
+  include('../../php/pdts_header_one.php');
+   ?>
   <script type="text/javascript">
   function one(a) {
 

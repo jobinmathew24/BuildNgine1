@@ -136,7 +136,7 @@ echo($sql);
      }
 
      else{
-       header('location:user/users.php');
+       header('location:user/check/checking_login.php');
      }
    }
    else{

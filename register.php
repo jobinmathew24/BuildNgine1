@@ -38,7 +38,7 @@ if (!isset($_POST['submit'])) {
     }
       if(namee.value.match(letters))
     {
-         document.regform.address.focus();
+
          document.getElementById('name').innerHTML="<span ></span>"
          return true;
     }
@@ -63,6 +63,60 @@ if (!isset($_POST['submit'])) {
 
       }
 
+    }
+    function address1() {
+      var add=document.forms["regform"]["address12"];
+      if(add.value == "")
+      {
+        document.getElementById('address2').innerHTML="<span class='error'>Please enter a valid Landmark</span>"
+        add.focus();
+      }
+      else
+      {
+        document.getElementById('address2').innerHTML="<span ></span>"
+
+      }
+
+    }
+    function citys() {
+      var city=document.forms["regform"]["city"];
+      if(city.value == "")
+      {
+        document.getElementById('cityy').innerHTML="<span class='error'>Please enter a valid city</span>"
+        city.focus();
+      }
+      else
+      {
+        document.getElementById('cityy').innerHTML="<span ></span>"
+
+      }
+
+    }
+    function pins()
+    {
+      var PinCode = document.forms["regform"]["pin"];
+      var pin = /^[1-9]{1}[0-9]{5}?$/;
+
+      if(PinCode.value == "")
+      {
+        document.getElementById('pine').innerHTML="<span class='error'>Please enter a valid PinCode</span>";
+        PinCode.focus();
+        return false;
+      }
+
+      if(PinCode.value.match(pin))
+      {
+          document.getElementById('pine').innerHTML="<span></span>";
+        return true;
+      }
+
+      else
+      {
+          document.getElementById('pine').innerHTML="<span class='error'>Please enter a valid PinCode</span>";
+        PinCode.focus();
+        return false;
+
+      }
     }
 
     function EMail()
@@ -241,22 +295,24 @@ color: white;
 
 <body>
   <div class="p ">
-    <div class="container col-sm-12 col-md-6 ">
+    <div class="container col-sm-5 col-md-5 ">
 
 <form  method="post"action="" name="regform" style="padding:75px; "class="form-group-sm container">
 
 <h3 style="color:white;padding-left:250px;">New User</h3>
 <br>
-<input type="text"class="form-control" name="user" required placeholder="Name"  onblur="name1()"><br>
+<input type="text"class="form-control" name="user" required placeholder="Name"  onblur="name1()">
 <span id='name'></span>
-<br>
-<textarea name="address" rows="8" cols="80"class="form-control" required onblur="addresss()" placeholder="Address"></textarea><br>
-<span id='addr'></span>
 <br>
 <h6 style="padding-right:900px; color:white;">Gender:</h6>
 Male</h6> <input type="radio" name="gender" value="M" checked>
 Female </h6><input type="radio" name="gender" value="F"><br>
 <br>
+<input type="text" class="form-control" required name="address" onblur="addresss()" placeholder="Address">
+<span id='addr'></span>
+<br>
+<input type="text"class="form-control" name="address12" required placeholder="Landmark"  onblur="address1()"><br>
+<span id='address2'></span>
 
 <select onChange="getdistrict(this.value);"  name="state" id="state" class="form-control" >
 <option value="">Select State Name</option>
@@ -273,6 +329,12 @@ while($row=mysqli_fetch_array($query))
 <option value="">Select</option>
 </select>
 <br>
+<input type="text" class="form-control" name="city" required placeholder="City"  onblur="citys()">
+<span id='cityy'></span>
+
+<br>
+<input type="text" class="form-control" name="pin" required placeholder="PinCode"  onblur="pins()">
+<span id='pine'></span>
 <br>
 <input type="email" name="email" id="em" required onblur="EMail(); che()"class="form-control  form-group" value=""placeholder="E-mail">
 <span id='maile'></span>
@@ -307,9 +369,12 @@ while($row=mysqli_fetch_array($query))
 } else {
   $name=$_POST['user'];
   $address=$_POST['address'];
+  $address1=$_POST['address12'];
   $gender=$_POST['gender'];
   $state=$_POST['state'];
   $district=$_POST['district'];
+  $city=$_POST['city'];
+  $pin=$_POST['pin'];
   $email=$_POST['email'];
   $phone=$_POST['ph'];
   $username=$_POST['user1'];
@@ -328,7 +393,8 @@ while($row=mysqli_fetch_array($query))
    if($n==0){
     // echo("username is taken");
     mysqli_query($con,$sql1);
-    $sql="insert into user_login(name,address,gender,state,district,email,phone,loginid)values('$name','$address','$gender','$state','$district','$email','$phone','$username')";
+    $sql="insert into user_login(name,address,address2,gender,city,pincode,state,district,email,phone,loginid)values
+    ('$name','$address','$address1','$gender','$city',$pin,'$state','$district','$email','$phone','$username')";
 
     echo "$sql";
     mysqli_query($con,$sql) or die("query moonchi"); // but I think this is working fine;
