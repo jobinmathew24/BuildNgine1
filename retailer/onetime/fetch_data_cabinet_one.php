@@ -3,7 +3,7 @@ session_start();
 //fetch_data.php
 $id=$_SESSION['loginid'];
 
-include('../../database/database_connection.php');
+include('../../database/connection.php');
 
 if(isset($_POST["action"]))
 {

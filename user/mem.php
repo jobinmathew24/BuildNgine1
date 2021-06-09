@@ -7,7 +7,7 @@ if(!isset($_SESSION['gpuname']))
 {
   header('location:buliding.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 $ide=$_SESSION['loginid'];
 $mother=$_SESSION['mbname'];
@@ -16,7 +16,7 @@ $ram=$_SESSION['ramname'];
 $gpu=$_SESSION['gpuname'];
 $sql2="select Count(*) from ordertbl where loginid='$ide'and status=1 and save=0 and buy=0";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];

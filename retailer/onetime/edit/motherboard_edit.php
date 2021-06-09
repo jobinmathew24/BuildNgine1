@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
@@ -9,13 +8,13 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
    header('location:../../onetime/Motherboard_one.php');
    }
 
- include('../../../database/database_connection.php');
+ include('../../../database/connection.php');
  $id=$_SESSION['loginid'];
 $motherboard_name=$_SESSION['motherboard_edit'];
 
   $sql2="select Count(*) from ordertbl where status=1 and save=0";
   // echo $sql2;
-  $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
   $result1=mysqli_query($con,$sql2)or die("number query moonchi");
   $row=mysqli_fetch_array($result1);
 
@@ -53,7 +52,7 @@ $motherboard_name=$_SESSION['motherboard_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-    <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
+     <link rel="stylesheet" href="../css/11.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
   </head>
@@ -83,31 +82,9 @@ $motherboard_name=$_SESSION['motherboard_edit'];
 }
 
   </script>
-  <div class="navbare">
-      <a href="logout.php">Logout</a>
-      <a href="#">welcome <?php echo($_SESSION['loginid'] )?></a>
-
-
-      <div class="dropdowne">
-          <button class="dropbtn">view a product
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdowne-content">
-          <a href="../../onetime/motherboard_one.php">Motherboard</a>
-          <a href="../../onetime/cpu_one.php">CPU</a>
-          <a href="../../onetime/gpu_one.php">GPU</a>
-          <a href="../../onetime/ram_one.php">RAM</a>
-          <a href="../../onetime/mem_one.php">Memory</a>
-          <a href="../../onetime/mem_m2_one.php">Memory M.2</a>
-          <a href="../../onetime/smps_one.php">SMPS</a>
-          <a href="../../onetime/cpu_fan_one.php">CPU Fan</a>
-          <a href="../../onetime/cabinet_one.php">Cabinet</a>
-        </div>
-      </div>
-
-
-          <a href="../../retailer.php">Home</a>
-      </div>
+    <?php
+  include('../../../php/retailer_edit_header.php');
+   ?>
   <center>
     <div class="container">
       <br>
@@ -228,5 +205,7 @@ if($result1=mysqli_query($con,$sql)){
 else {
   echo "<script>alert('Data not inserted');</script>";
 }
-} ?>
+}
+include('../../../php/footer.php');
+?>
 </html>

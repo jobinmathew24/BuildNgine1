@@ -56,7 +56,10 @@ margin:0px 7px;
   color: #6c757d!important;
 font-size:14px;
 }
+.i{
+  font-size: 25px;
 
+  }
 
 /*---------------------------------
 footer
@@ -107,7 +110,7 @@ footer
   background-color: black;
   /* padding: 10px 10px; */
   margin-left: 5px;;
-  width: 180px;
+  width: 170px;
 }
 
 

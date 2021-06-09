@@ -3,14 +3,14 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='retailer') {
   header('location: ../login.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where  status=1 and save=0 and buy =1 and remark!='Order in Transit'";
 // $sql5="select Count(*) from ordertbl where  status=1 and save=1";
 $sql4="select sum(price) as total from ordertbl where  status=1 and save=0";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $result3=mysqli_query($con,$sql4)or die("number query moonchi");
 // $result4=mysqli_query($con,$sql5)or die("number query moonchi");
@@ -68,7 +68,6 @@ else {
 
 ?>
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -92,28 +91,9 @@ else {
 </head>
 
 <body>
-  <div class="navbare">
-    <a href="logout.php">Logout</a>
-    <a href="orders.php"><i class="fa fa-shopping-cart"></i> Orders <span class="numbe"><?php echo($cart)?></span></a>
-      <div class="dropdowne">
-    <button class="dropbtn">Buy a product
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdowne-content">
-      <a href="onetime/motherboard_one.php">Motherboard</a>
-      <a href="onetime/cpu_one.php">CPU</a>
-      <a href="onetime/gpu_one.php">GPU</a>
-      <a href="onetime/ram_one.php">RAM</a>
-      <a href="onetime/mem_one.php">Memory</a>
-      <a href="onetime/mem_m2_one.php">Memory M.2</a>
-      <a href="onetime/smps_one.php">SMPS</a>
-      <a href="onetime/cpu_fan_one.php">CPU Fan</a>
-      <a href="onetime/cabinet_one.php">Cabinet</a>
-    </div>
-  </div>
-      <a>welcome <?php echo($_SESSION['loginid'] )?></a>
-      <a href="retailer.php">Home</a>
-</div>
+  <?php
+  include('../php/retailer_header.php');
+   ?>
 
   <script type="text/javascript">
   function one(a) {
@@ -248,6 +228,6 @@ else {
     </div>
 
 </body>
-
+<?php include('../php/footer.php'); ?>
 </html>
 <?php } ?>

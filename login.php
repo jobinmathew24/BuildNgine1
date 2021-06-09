@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['msg']=""; ?>
-<!DOCTYPE html>
+$_SESSION['msg']="";
+?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,7 @@ $_SESSION['msg']=""; ?>
   }
   function check()
   {
-
+  var paswd=document.forms["regform"]["pass"];
 
     if(paswd.value == "")
     {
@@ -69,13 +69,13 @@ a{
   color: white;
 }
 </style>
-  <link rel="stylesheet" href="css/BOOT.css">
+  <link rel="stylesheet" href="css/11.css">
 
 </head>
 <body>
 
     <div class="p">
-    <div class="container col-sm-12 col-md-6">
+    <div class="container col-sm-3 col-md-3">
 
     <center>
 
@@ -102,7 +102,6 @@ a{
   </div>
   </div>
 <?php
-
 if(isset($_POST['submit'])) {
 
 
@@ -112,48 +111,52 @@ if(isset($_POST['submit'])) {
   $password=$_POST['pass'];
   $password=md5($password);
   $sql="select * from logintable where loginid='$username' and password='$password'";
-echo($sql);
+//echo($sql);
 
-  $con=mysqli_connect("localhost","root","","bulid");
-   $result=mysqli_query($con,$sql);
-   $n=mysqli_num_rows($result);
+  include('database/connection.php');
+   $result=mysqli_query($con,$sql) or die("nadakunilla");
+  //$n=mysqli_num_rows($result);
    $try=1;
+   //echo $con;
      // echo $n;
-   if($n>0){
+   if(mysqli_num_rows($result)){
+       //echo "well played";
      $rows=mysqli_fetch_array($result);
      $_SESSION['loginid']=$username;
      $user=$rows['usertype'];
      $_SESSION['user']=$user;
-  echo($user);
+//   echo($user);
 
-     if($user=='admin'){
-
-       header('location:admin/admin.php');
-     }
+     if($user=='admin'){?>
+<script> window.location.href ='admin/admin.php';</script>
+       <?php // header('location:admin/admin.php');
+  }
     elseif($user=='retailer')
-     {
-        header('location:retailer/retailer.php');
+     {?>
+<script> window.location.href ='retailer/retailer.php';</script>
+      
+  <?php 
+        //header('location:retailer/retailer.php');
      }
 
      else{
-       header('location:user/check/checking_login.php');
+         ?>
+         <script> window.location.href ='user/check/checking_login.php';</script>
+         <?php
+       //header('location:user/check/checking_login.php');
      }
    }
-   else{
-     ?>
+   else{?>
+     
 <script type="text/javascript">
 document.getElementById('u1').innerHTML="Please enter a valid user credentials";
 // document.getElementById("forgote").innerHTML = "<a href="asd.php">asd</a>";
 
 </script>
 <?php
-
    }
 
-}
-
-
-?>
+}?>
 
 </body>
 </html>

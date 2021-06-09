@@ -3,12 +3,12 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0 and buy=0";
 $sql5="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=1 and buy=0";
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 
 // echo $sql2;
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");

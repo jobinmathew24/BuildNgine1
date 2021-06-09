@@ -4,7 +4,7 @@ if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='admin') {
  header('location: ../login.php');
  }
  $loginid=$_SESSION['loginid'];
-$con=mysqli_connect("localhost","root","","bulid");
+include('../database/connection.php');
 
 
 

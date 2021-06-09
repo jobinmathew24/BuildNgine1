@@ -7,11 +7,11 @@ if (isset($_SESSION['socket'])) {
   header('location: check/checking_cpu.php');
 }
 
-include('../database/database_connection.php');
+include('../database/connection.php');
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0 and buy=0";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
@@ -46,8 +46,8 @@ if (isset($_POST['add'])) {
   $_SESSION['m2_count']=$m2_count;
 
   $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid,date,pic) VALUES ('$id','$name','Motherboard', $price,1,$price*1,1,'$date','$name') ";
-echo $sql;
-$result=mysqli_query($con,$sql)or die("$sql");
+// echo $sql;
+$result=mysqli_query($con,$sql)or die($sql);
 $_SESSION['mbname']=$name;
   header('location: check/checking_cpu.php');
 }
@@ -88,7 +88,7 @@ $_SESSION['mbname']=$name;
 
       <br />
       <br />
-      <form id="forme" action="Motherboard.php" method="post">
+      <form id="forme" action="" method="post">
           <input type="hidden" name="result" id="resulte">
           <div class="col-md-3">
             <div class="list-group">

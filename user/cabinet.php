@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 if(!isset($_SESSION['cpu_fanname']))
 {
@@ -22,7 +22,7 @@ $fan=$_SESSION['cpu_fanname'];
 
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0 and buy=0";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];
@@ -91,7 +91,7 @@ else {
   <?php
   include('../php/pdts_header.php');
    ?>
-  
+
   <script type="text/javascript">
   function one(a) {
 

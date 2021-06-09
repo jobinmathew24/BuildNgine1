@@ -3,7 +3,7 @@ session_start();
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+include('../database/connection.php');
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $row=mysqli_fetch_array($result1);
 $cart=$row['Count(*)'];

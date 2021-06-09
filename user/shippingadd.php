@@ -3,7 +3,7 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 $ec="";
 $ide=$_SESSION['loginid'];
 $orderid=$_SESSION['orderid'];
@@ -12,7 +12,7 @@ $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and order
 $sql5="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=1 and buy=0";
 $sql4="select sum(price) as total from ordertbl where loginid='$ide' and status=1 and orderid= $orderid and save=0 and buy=0";
 // // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $result3=mysqli_query($con,$sql4)or die("number query moonchi");
 $result4=mysqli_query($con,$sql5)or die("number query moonchi");
@@ -58,7 +58,7 @@ if (isset($_POST['deloddadds'])) {
 $ship_id=$_POST['result'];
 $sql="update ordertbl set ship_id =$ship_id where orderid=$orderid";
 mysqli_query($con,$sql)or die($sql);
-header('location:make_payment.php');
+header('location:payment_method.php');
 
 }
 
@@ -102,7 +102,7 @@ header('location:make_payment.php');
      $ship_id =  mysqli_insert_id($con);
      $sql="update ordertbl set ship_id =$ship_id where orderid=$orderid";
      mysqli_query($con,$sql)or die($sql);
-     header('location:make_payment.php');
+header('location:payment_method.php');
  }
 
 ?>

@@ -1,6 +1,5 @@
 <?php
-include('database/database_connection.php');
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+include('../database/connection.php');
 
 if(!empty($_POST["state_id"]))
 {

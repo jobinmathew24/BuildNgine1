@@ -5,7 +5,7 @@ $email = $_POST["email"];
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 $error="";
- $con=mysqli_connect("localhost","root","","bulid");
+ include('database/connection.php');
 	$sel_query = "SELECT * FROM `user_login` WHERE email='".$email."'";
 	$results = mysqli_query($con,$sel_query);
 	$rows=mysqli_fetch_array($results);

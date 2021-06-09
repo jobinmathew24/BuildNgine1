@@ -1,8 +1,9 @@
 <?php
+  include('database/connection.php');
 if (!isset($_POST['submit'])) {
 
 
-  $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -289,7 +290,7 @@ color: white;
   }
 
   </style>
-    <link rel="stylesheet" href="css/BOOT.css">
+    <link rel="stylesheet" href="css/11.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
 
@@ -364,7 +365,9 @@ while($row=mysqli_fetch_array($query))
   </div>
 </div>
 </body>
-
+<?php 
+  include('php/footer.php');
+ ?>
 </html><?php
 } else {
   $name=$_POST['user'];
@@ -385,7 +388,7 @@ while($row=mysqli_fetch_array($query))
   $sql1="insert into logintable(loginid,password,usertype)values('$username','$password','user')";
   echo $sql1;
 
-  $con=mysqli_connect("localhost","root","","bulid");
+  include('database/connection.php');;
    $result=mysqli_query($con,$main);
    $n=mysqli_num_rows($result);
    // echo($n)

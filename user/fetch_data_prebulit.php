@@ -2,7 +2,7 @@
 
 //fetch_data.php
 
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 if(isset($_POST["action"]))
 {

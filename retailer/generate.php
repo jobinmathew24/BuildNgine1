@@ -4,7 +4,7 @@ $orderid=$_SESSION['orderid'];
 $loginid=$_SESSION['loginid'];
 require('invoice.php');
 $our_company="BuildNgine Pvt Ltd.";
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+include('../database/connection.php');
 $sql="select * from ordertbl where orderid=$orderid";
 $result=mysqli_query($con,$sql);
 $row=mysqli_fetch_array($result);

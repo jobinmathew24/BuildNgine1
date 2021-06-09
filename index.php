@@ -71,4 +71,7 @@ to build your desktop computer in a few minutes. Whether you're building a gener
   </main>
 
 </body>
+<?php
+  include('php/footer.php');
+ ?>
 </html>

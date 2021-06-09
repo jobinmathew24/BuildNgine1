@@ -38,7 +38,7 @@ color: white;
 <h2> Reset Password</h2>
 
 <?php
-$con=mysqli_connect("localhost","root","","bulid");
+include('database/connection.php');
 $error="";
 if (isset($_GET["key"]) && isset($_GET["email"])
 && !isset($_POST["action"])){

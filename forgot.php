@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php
+session_start();?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -62,7 +63,7 @@ a{
   color: white;
 }
 </style>
-  <link rel="stylesheet" href="css/BOOT.css">
+  <link rel="stylesheet" href="css/11.css">
 
 </head>
 <body>
@@ -79,7 +80,6 @@ a{
   <input type="text" id ="emaile" class="form-control" name="email" required onblur="name1()"placeholder="Enter E-mail"><br>
   <span id="u"style="color:red;background-color:black; font-size:20px;">
 <?php
-session_start();
 $msg=$_SESSION['msg'];
 echo $msg;
  ?>

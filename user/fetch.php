@@ -1,6 +1,6 @@
 <?php
 $Socket=$_GET['socket'];
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+include('../database/connection.php'); 
  $sql="select * from mothertbl where socket='$Socket'";
  echo "$sql";
 $loginid="qwe";

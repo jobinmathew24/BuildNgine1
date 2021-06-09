@@ -3,14 +3,14 @@ session_start();
 if(!isset($_SESSION['loginid']) or !$_SESSION['user']=='user') {
   header('location: ../login.php');
 }
-include('../database/database_connection.php');
+include('../database/connection.php');
 
 $ide=$_SESSION['loginid'];
 $sql2="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=0 and buy=0 ";
 $sql5="select Count(*) from ordertbl where loginid='$ide' and status=1 and save=1 and buy=0";
 $sql4="select sum(price) as total from ordertbl where loginid='$ide' and status=1 and save=1";
 // echo $sql2;
-$con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
+
 $result1=mysqli_query($con,$sql2)or die("number query moonchi");
 $result3=mysqli_query($con,$sql4)or die("number query moonchi");
 $result4=mysqli_query($con,$sql5)or die("number query moonchi");
@@ -32,9 +32,9 @@ header('location:users.php');
 if (isset($_POST['adde'])) {
 $name=$_POST['result'];
 $sql3="update ordertbl set save=0 where loginid='$ide'and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=1 and name='$name' LIMIT 1) ";
-echo "$sql3";
+// echo "$sql3";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
-header('location:saveforlate.php');
+header('location:cart.php');
 }
 
 if (isset($_POST['delete'])) {

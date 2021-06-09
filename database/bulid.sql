@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2021 at 05:00 PM
+-- Generation Time: Jun 01, 2021 at 06:52 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bulid`
+-- Database: `id16958259_bulid`
 --
 
 -- --------------------------------------------------------
@@ -989,6 +989,7 @@ CREATE TABLE `logintable` (
 --
 
 INSERT INTO `logintable` (`loginid`, `password`, `usertype`, `status`) VALUES
+('a', '0cc175b9c0f1b6a831c399e269772661', 'user', 1),
 ('adhin', '837b783362236598611ab6cdf081154c', 'user', 1),
 ('ajualx', '28dcc1da30ca857246c1d160db06abef', 'user', 1),
 ('asd', '7815696ecbf1c96e6894b779456d330e', 'admin', 1),
@@ -1151,6 +1152,7 @@ INSERT INTO `mothertbl` (`name`, `company`, `socket`, `form_factor`, `ram_type`,
 CREATE TABLE `ordertbl` (
   `orderid` int(10) NOT NULL,
   `loginid` varchar(50) NOT NULL,
+  `ship_id` int(10) NOT NULL,
   `name` varchar(200) NOT NULL,
   `category` varchar(25) NOT NULL,
   `price` decimal(10,0) NOT NULL,
@@ -1162,6 +1164,7 @@ CREATE TABLE `ordertbl` (
   `bulid` int(2) NOT NULL DEFAULT 0,
   `save` int(2) NOT NULL DEFAULT 0,
   `buy` int(2) NOT NULL DEFAULT 0,
+  `payment` varchar(50) NOT NULL,
   `remark` varchar(100) NOT NULL,
   `pic` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1170,49 +1173,46 @@ CREATE TABLE `ordertbl` (
 -- Dumping data for table `ordertbl`
 --
 
-INSERT INTO `ordertbl` (`orderid`, `loginid`, `name`, `category`, `price`, `qty`, `total`, `date`, `sold_by`, `status`, `bulid`, `save`, `buy`, `remark`, `pic`) VALUES
-(167, 'ajualx', 'INTEL I9-9900K', 'CPU', '41500', 1, '41500', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(168, 'ajualx', 'APPLE MAC PRO', 'cabinet', '18000', 1, '18000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(198, 'Joe', 'MAC PRO INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '123630', 1, '123630', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, 'Order in Transit', 'APPLE MAC PRO'),
-(208, 'joe', ' LITE 5 INTEL I7-10700 4800 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '108200', 1, '108200', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, 'Order cancelled by User', 'COOLER MASTER LITE 5'),
-(217, 'joe', 'MATREXX 55X INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'Business', '34900', 1, '34900', '22 / 02 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, 'Processing Order', 'DEEPCOOL MATREXX 55X'),
-(226, 'joe', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52920', 1, '52920', '19 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, 'Processing Order', 'COOLER MASTER MB500'),
-(227, 'joe', 'MSI GT 710', 'GPU', '3300', 1, '3300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(236, 'joe', 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39970', 1, '39970', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'APPLE MAC PRO'),
-(258, 'Joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '31220', 1, '31220', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 5S'),
-(259, 'joe', 'MSI A68HM-E33', 'Motherboard', '3300', 1, '3300', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, 'Order cancelled by User', ''),
-(302, 'joe', 'MATREXX 5S INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39820', 1, '39820', '2020/12/13 08:12:48', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 5S'),
-(311, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'Business', '33020', 1, '33020', '2020/12/13 08:12:10', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 55X'),
-(321, 'joe', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 1000Gb   SSD  Graphics MSI GDDR3 2 GB', 'Business', '45550', 1, '45550', '2020/12/29 08:12:59', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 5S'),
-(322, 'joe', 'AMD A6-7400K', 'CPU', '3500', 1, '3500', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(323, 'joe', 'ASUS B150 PRO', 'Motherboard', '5830', 1, '5830', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(324, 'joe', 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(325, 'joe', 'HYPERX A400', 'MEMORY', '2900', 1, '2900', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(326, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(327, 'joe', 'DEEPCOOL DN500', 'SMPS', '5000', 1, '5000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(328, 'joe', 'DEEPCOOL 15 PWM', 'CPU FAN', '1400', 1, '1400', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(329, 'joe', 'COOLER MASTER ELITE 350', 'cabinet', '3000', 1, '3000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(330, 'joe', 'COOLMASTER V2', 'SMPS', '5300', 1, '5300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(331, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(332, 'joe', 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(342, 'joe', 'TESSERACT BF INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '30220', 1, '30220', '2021/01/07 12:01:47', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL TESSERACT BF'),
-(360, 'joe', 'MATREXX 55X INTEL G4900 3100 Mhz  4Gb  DDR4   RAM 120Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '34200', 1, '34200', '2021/01/26 04:01:36', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 55X'),
-(370, 'joe', ' LITE 5 INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD 500Gb   SSD  Graphics MSI GDDR4 2 GB', 'gaming', '58830', 1, '58830', '2021/01/27 10:01:27', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'COOLER MASTER LITE 5'),
-(371, 'joe', 'ASUS H110-PLUS', 'Motherboard', '6600', 1, '6600', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 1, 0, '', ''),
-(381, 'j', 'SL600M INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 500Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR5 4 GB', 'gaming', '60350', 1, '60350', '2021/01/28 09:01:51', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'COOLER MASTER SL600M'),
-(392, 'j', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics MSI GDDR4 2 GB', 'gaming', '67060', 1, '67060', '2021/01/28 11:01:53', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'COOLER MASTER MB500'),
-(402, 'JOE', ' LITE 5 AMD RYZEN 2600X 4200 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR5 4 GB', 'gaming', '78500', 1, '78500', '20 / 02 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, 'Order cancelled by User', 'COOLER MASTER LITE 5'),
-(416, 'joe', 'MATREXX 55X INTEL G4500 3500 Mhz  8Gb  DDR4   RAM 1000Gb   HDD 500Gb   SSD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52000', 1, '52000', '2021/02/22 06:02:32', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', 'DEEPCOOL MATREXX 55X'),
-(417, 'joe', 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(418, 'joe', 'MSI H110M', 'Motherboard', '2920', 1, '2920', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', ''),
-(419, 'Joe', 'MSI H110M', 'Motherboard', '2920', 1, '2920', '2021/03/30 11:03:11', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'MSI H110M'),
-(420, 'Joe', 'INTEL G3930', 'CPU', '5500', 1, '5500', '2021/03/30 11:03:16', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'INTEL G3930'),
-(421, 'Joe', 'SAMSUNG 3DB0', 'RAM', '6000', 1, '6000', '2021/03/30 11:03:18', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'SAMSUNG 3DB0'),
-(422, 'Joe', 'GIGABYTE R5 230', 'GPU', '2800', 1, '2800', '2021/03/30 11:03:20', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'GIGABYTE R5 230'),
-(423, 'Joe', 'WD BLUE WD5000AZRZ', 'MEMORY', '2400', 1, '2400', '2021/03/30 11:03:22', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'WD BLUE WD5000AZRZ'),
-(424, 'Joe', 'AEROCOOL VX 500W', 'SMPS', '3200', 1, '3200', '2021/03/30 11:03:24', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'AEROCOOL VX 500W'),
-(425, 'Joe', 'DEEPCOOL 15 PWM', 'CPU FAN', '1400', 1, '1400', '2021/03/30 11:03:26', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'DEEPCOOL 15 PWM'),
-(427, 'joe', 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850', '2021/04/13 08:04:47', 'BulidNgine Pvt. Ltd. ', 1, 1, 0, 0, '', 'ASROCK FM2A68M');
+INSERT INTO `ordertbl` (`orderid`, `loginid`, `ship_id`, `name`, `category`, `price`, `qty`, `total`, `date`, `sold_by`, `status`, `bulid`, `save`, `buy`, `payment`, `remark`, `pic`) VALUES
+(167, 'ajualx', 0, 'INTEL I9-9900K', 'CPU', '41500', 1, '41500', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(168, 'ajualx', 0, 'APPLE MAC PRO', 'cabinet', '18000', 1, '18000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(198, 'Joe', 0, 'MAC PRO INTEL I7-9700K 4900 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '123630', 1, '123630', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Order in Transit', 'APPLE MAC PRO'),
+(208, 'joe', 0, ' LITE 5 INTEL I7-10700 4800 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR3 1 GB', 'professional', '108200', 1, '108200', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, '', 'Order cancelled by User', 'COOLER MASTER LITE 5'),
+(217, 'joe', 0, 'MATREXX 55X INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'Business', '34900', 1, '34900', '22 / 02 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Order in Transit', 'DEEPCOOL MATREXX 55X'),
+(226, 'joe', 0, 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52920', 1, '52920', '19 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Order in Transit', 'COOLER MASTER MB500'),
+(227, 'joe', 0, 'MSI GT 710', 'GPU', '3300', 1, '3300', '20 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', ''),
+(236, 'joe', 0, 'MAC PRO AMD A6-7400K 3900 Mhz  4Gb  DDR3   RAM 240Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39970', 1, '39970', '20 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', 'APPLE MAC PRO'),
+(258, 'Joe', 0, 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '31220', 1, '31220', '27 / 05 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', 'DEEPCOOL MATREXX 5S'),
+(259, 'joe', 0, 'MSI A68HM-E33', 'Motherboard', '3300', 1, '3300', '29 / 01 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, '', 'Order cancelled by User', ''),
+(302, 'joe', 0, 'MATREXX 5S INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '39820', 1, '39820', '2020/12/13 08:12:48', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 5S'),
+(311, 'joe', 0, 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics GIGABYTE GDDR4 2 GB', 'Business', '33020', 1, '33020', '2020/12/13 08:12:10', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 55X'),
+(321, 'joe', 0, 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 120Gb   HDD 1000Gb   SSD  Graphics MSI GDDR3 2 GB', 'Business', '45550', 1, '45550', '2020/12/29 08:12:59', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 5S'),
+(322, 'joe', 0, 'AMD A6-7400K', 'CPU', '3500', 1, '3500', '22 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', ''),
+(323, 'joe', 0, 'ASUS B150 PRO', 'Motherboard', '5830', 1, '5830', '22 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', ''),
+(324, 'joe', 0, 'GOODRAM 0QH0', 'RAM', '1250', 1, '1250', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(325, 'joe', 0, 'HYPERX A400', 'MEMORY', '2900', 1, '2900', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(326, 'joe', 0, 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(327, 'joe', 0, 'DEEPCOOL DN500', 'SMPS', '5000', 1, '5000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(328, 'joe', 0, 'DEEPCOOL 15 PWM', 'CPU FAN', '1400', 1, '1400', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(329, 'joe', 0, 'COOLER MASTER ELITE 350', 'cabinet', '3000', 1, '3000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(330, 'joe', 0, 'COOLMASTER V2', 'SMPS', '5300', 1, '5300', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(331, 'joe', 0, 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(332, 'joe', 0, 'WD BLACK DWS500', 'MEMORY', '11000', 1, '11000', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(342, 'joe', 0, 'TESSERACT BF INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '30220', 1, '30220', '2021/01/07 12:01:47', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL TESSERACT BF'),
+(360, 'joe', 0, 'MATREXX 55X INTEL G4900 3100 Mhz  4Gb  DDR4   RAM 120Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR3 1 GB', 'Business', '34200', 1, '34200', '2021/01/26 04:01:36', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 55X'),
+(370, 'joe', 0, ' LITE 5 INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD 500Gb   SSD  Graphics MSI GDDR4 2 GB', 'gaming', '58830', 1, '58830', '2021/01/27 10:01:27', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'COOLER MASTER LITE 5'),
+(371, 'joe', 0, 'ASUS H110-PLUS', 'Motherboard', '6600', 1, '6600', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 1, 0, '', '', ''),
+(381, 'j', 0, 'SL600M INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 500Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR5 4 GB', 'gaming', '60350', 1, '60350', '2021/01/28 09:01:51', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'COOLER MASTER SL600M'),
+(392, 'j', 0, 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics MSI GDDR4 2 GB', 'gaming', '67060', 1, '67060', '2021/01/28 11:01:53', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'COOLER MASTER MB500'),
+(402, 'JOE', 0, ' LITE 5 AMD RYZEN 2600X 4200 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR5 4 GB', 'gaming', '78500', 1, '78500', '20 / 02 / 2021', 'BulidNgine Pvt. Ltd. ', 0, 0, 0, 1, '', 'Order cancelled by User', 'COOLER MASTER LITE 5'),
+(416, 'joe', 0, 'MATREXX 55X INTEL G4500 3500 Mhz  8Gb  DDR4   RAM 1000Gb   HDD 500Gb   SSD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '52000', 1, '52000', '2021/02/22 06:02:32', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 55X'),
+(417, 'joe', 0, 'ASROCK FM2A68M', 'Motherboard', '2850', 1, '2850', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(418, 'joe', 0, 'MSI H110M', 'Motherboard', '2920', 1, '2920', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(439, 'joe', 0, 'MATREXX 5S AMD A8-9600 3400 Mhz  8Gb  DDR4   RAM 120Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR3 1 GB', 'gaming', '66870', 1, '66870', '22 / 04 / 2021', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 1, '', 'Processing Order', 'DEEPCOOL MATREXX 5S'),
+(483, 'joe', 0, 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'Business', '37520', 1, '37520', '2021/05/06 01:05:20', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 55X'),
+(508, 'a', 2, 'AMD A4-7300', 'CPU', '2800', 1, '2800', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(509, 'a', 0, 'WD GREEN DWS120', 'MEMORY', '2400', 1, '2400', '', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', ''),
+(518, 'a', 0, 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics ASUS GDDR3 2 GB', 'Business', '28420', 1, '28420', '2021/05/29 07:05:30', 'BulidNgine Pvt. Ltd. ', 1, 0, 0, 0, '', '', 'DEEPCOOL MATREXX 5S');
 
 -- --------------------------------------------------------
 
@@ -1285,7 +1285,10 @@ INSERT INTO `prebuilt_tbl` (`prebuilt_id`, `loginid`, `name`, `motherboard`, `cp
 (16, 'j', 'SL600M INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 500Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR5 4 GB', 'GIGABYTE Z270P-D3', 'INTEL G3900', 'SAMSUNG 3DB0', 'GIGABYTE GTX 970', 'SAMSUNG 860 EVO', 'WD GREEN DWS240', 'COOLMASTER V2', 'DEEPCOOL MAXX GTE', 'COOLER MASTER SL600M', 'INTEL G3900', 2800, 8, 'DDR4', 500, 'GIGABYTE', 4, 'null', 'null', 'null', 'null', 'null', '60350', 'COOLER MASTER SL600M', '2021/01/28 09:01:51', 'gaming', 1),
 (17, 'j', 'MB500 INTEL I7-7700 4200 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics MSI GDDR4 2 GB', 'ASROCK H110M-DGS', 'INTEL I7-7700', 'SAMSUNG 3DB0', 'MSI GT 1030', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL KCAS 650G', 'DEEPCOOL 31 PWM', 'COOLER MASTER MB500', 'INTEL I7-7700', 4200, 8, 'DDR4', 500, 'MSI', 2, 'null', 'null', 'null', 'null', 'null', '67060', 'COOLER MASTER MB500', '2021/01/28 11:01:53', 'gaming', 1),
 (18, 'JOE', ' LITE 5 AMD RYZEN 2600X 4200 Mhz  8Gb  DDR4   RAM 2000Gb   HDD 1000Gb   SSD  Graphics ASUS GDDR5 4 G', 'MSI B450 GAMING PLUS', 'AMD RYZEN 2600X', 'HYPERX 6PB3', 'ASUS GTX 1650', 'SEAGATE ST2000DM006', 'WD BLUE DWS1000M', 'DEEPCOOL DN500', 'COOL MASTER AIR 8', 'COOLER MASTER LITE 5', 'AMD RYZEN 2600X', 4200, 8, 'DDR4', 2000, 'ASUS', 4, 'null', 'null', 'null', 'null', 'null', '78500', 'COOLER MASTER LITE 5', '2021/02/20 02:02:51', 'gaming', 1),
-(19, 'joe', 'MATREXX 55X INTEL G4500 3500 Mhz  8Gb  DDR4   RAM 1000Gb   HDD 500Gb   SSD  Graphics GIGABYTE GDDR3 ', 'ASROCK B250', 'INTEL G4500', 'GOODRAM L17S', 'GIGABYTE R5 230', 'WD BLUE WD10EZEX', 'WD BLACK DWS500', 'COOLMASTER V3', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G4500', 3500, 8, 'DDR4', 1000, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '52000', 'DEEPCOOL MATREXX 55X', '2021/02/22 06:02:32', 'gaming', 1);
+(19, 'joe', 'MATREXX 55X INTEL G4500 3500 Mhz  8Gb  DDR4   RAM 1000Gb   HDD 500Gb   SSD  Graphics GIGABYTE GDDR3 ', 'ASROCK B250', 'INTEL G4500', 'GOODRAM L17S', 'GIGABYTE R5 230', 'WD BLUE WD10EZEX', 'WD BLACK DWS500', 'COOLMASTER V3', 'DEEPCOOL 31 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G4500', 3500, 8, 'DDR4', 1000, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '52000', 'DEEPCOOL MATREXX 55X', '2021/02/22 06:02:32', 'gaming', 1),
+(20, 'joe', 'MATREXX 5S AMD A8-9600 3400 Mhz  8Gb  DDR4   RAM 120Gb   HDD 240Gb   SSD  Graphics GIGABYTE GDDR3 1 ', 'MSI B450 GAMING PLUS', 'AMD A8-9600', 'SAMSUNG 3DB0', 'GIGABYTE R5 230', 'WD GREEN DWS120', 'WD GREEN DWS240', 'AEROCOOL VX 500W', 'DEEPCOOL MAXX GTE', 'DEEPCOOL MATREXX 5S', 'AMD A8-9600', 3400, 8, 'DDR4', 120, 'GIGABYTE', 1, 'null', 'null', 'null', 'null', 'null', '66870', 'DEEPCOOL MATREXX 5S', '2021/04/22 11:04:42', 'gaming', 1),
+(21, 'joe', 'MATREXX 55X INTEL G3900 2800 Mhz  8Gb  DDR4   RAM 120Gb   HDD  Graphics MSI GDDR3 2 GB', 'MSI H110M', 'INTEL G3900', 'SAMSUNG 3DB0', 'MSI GT 710', 'HYPERX A400', 'null', 'AEROCOOL VX 500W', 'DEEPCOOL 15 PWM', 'DEEPCOOL MATREXX 55X', 'INTEL G3900', 2800, 8, 'DDR4', 120, 'MSI', 2, 'null', 'null', 'null', 'null', 'null', '37520', 'DEEPCOOL MATREXX 55X', '2021/05/06 01:05:20', 'Business', 1),
+(22, 'a', 'MATREXX 5S INTEL G3930 2900 Mhz  8Gb  DDR4   RAM 500Gb   HDD  Graphics ASUS GDDR3 2 GB', 'MSI H110M', 'INTEL G3930', 'SAMSUNG 3DB0', 'ASUS R5 230', 'WD BLUE WD5000AZRZ', 'null', 'AEROCOOL VX 500W', 'DEEPCOOL 15 PWM', 'DEEPCOOL MATREXX 5S', 'INTEL G3930', 2900, 8, 'DDR4', 500, 'ASUS', 2, 'null', 'null', 'null', 'null', 'null', '28420', 'DEEPCOOL MATREXX 5S', '2021/05/29 07:05:30', 'Business', 1);
 
 -- --------------------------------------------------------
 
@@ -1326,6 +1329,33 @@ INSERT INTO `ram_tbl` (`name`, `company`, `ram_type`, `ram_size`, `mem_freq`, `f
 ('SAMSUNG 3CH0', 'Samsung', 'DDR3', 4, 1600, '12800 MH/s', 2, '11-11-11', '1950', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3CHO.jpg', 1, 1),
 ('SAMSUNG 3DB0', 'Samsung', 'DDR4', 8, 2133, '17000 MB/s', 1, '15-15-15-42', '6000', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DB0.jpg', 1, 1),
 ('SAMSUNG 3DH0', 'Samsung', 'DDR3', 2, 1333, '10600 MB/s', 2, '9-9-9', '1100', 'BulidNgine Pvt. Ltd. ', 'SAMSUNG 3DH0.jpg', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipping_add`
+--
+
+CREATE TABLE `shipping_add` (
+  `ship_id` int(10) NOT NULL,
+  `loginid` varchar(20) NOT NULL,
+  `name` varchar(25) NOT NULL,
+  `address_line1` varchar(50) NOT NULL,
+  `address_line2` varchar(50) NOT NULL,
+  `city` varchar(50) NOT NULL,
+  `district` varchar(50) NOT NULL,
+  `state` int(10) NOT NULL,
+  `pincode` int(7) NOT NULL,
+  `phone` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shipping_add`
+--
+
+INSERT INTO `shipping_add` (`ship_id`, `loginid`, `name`, `address_line1`, `address_line2`, `city`, `district`, `state`, `pincode`, `phone`) VALUES
+(2, 'a', 'joerj', 'Fathimapuram P.O', 'asd', 'Changanacherry', 'Thrissur', 18, 686102, 2147483647),
+(4, 'a', 'aqgg', 'fqwe', 'asd', 'Changanacherry', 'Alappuzha', 18, 686102, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -1429,7 +1459,10 @@ INSERT INTO `state` (`StCode`, `StateName`, `status`, `reason`) VALUES
 CREATE TABLE `user_login` (
   `name` varchar(25) NOT NULL,
   `address` varchar(100) NOT NULL,
+  `address2` varchar(50) NOT NULL,
   `gender` varchar(10) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `pincode` int(6) NOT NULL,
   `state` int(11) NOT NULL,
   `district` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -1443,14 +1476,15 @@ CREATE TABLE `user_login` (
 -- Dumping data for table `user_login`
 --
 
-INSERT INTO `user_login` (`name`, `address`, `gender`, `state`, `district`, `email`, `phone`, `pic`, `loginid`, `regid`) VALUES
-('asd', 'asd', 'M', 18, 'Kottayam', 'asd@gmail.com', '7897897897', 'admin.png', 'asd', 6),
-('jobin', 'ambatu', 'M', 18, 'Kottayam', 'jobinrj31255@gmail.com', '8977897788', 'user.png', 'Joe', 7),
-('Aju Alex', 'My Address', 'M', 18, 'Kottayam', 'hellogmagil@com', '8779322316', 'user.png', 'ajualx', 8),
-('retailer', 'asd', 'M', 1, 'North and Middle Andama', 'retailer@gmail.com', '9990804990', 'retailer.png', 'retailer', 9),
-('retailer1', 'asd', 'M', 1, 'North and Middle Andama', 'retailer1@gmail.com', '9990804990', 'retailer.png', 'retailer1', 11),
-('ADHIN BABU', '90/13\r\nKOZHIKODE\r\n', 'M', 2, '', 'adhinbabu1998@gmaio.com', '9990804990', 'user.png', 'adhin', 12),
-('jo', 'as', 'M', 18, 'Kottayam', 'abc@gmail.com', '9111111111', 'user.png', 'j', 13);
+INSERT INTO `user_login` (`name`, `address`, `address2`, `gender`, `city`, `pincode`, `state`, `district`, `email`, `phone`, `pic`, `loginid`, `regid`) VALUES
+('asd', 'asd', '', 'M', '', 0, 18, 'Kottayam', 'asd@gmail.com', '7897897897', 'admin.png', 'asd', 6),
+('jobin', 'ambatu', '', 'M', '', 0, 18, 'Kottayam', 'jobinrj31255@gmail.com', '8977897788', 'user.png', 'Joe', 7),
+('Aju Alex', 'My Address', '', 'M', '', 0, 18, 'Kottayam', 'hellogmagil@com', '8779322316', 'user.png', 'ajualx', 8),
+('retailer', 'asd', '', 'M', '', 0, 1, 'North and Middle Andama', 'retailer@gmail.com', '9990804990', 'retailer.png', 'retailer', 9),
+('retailer1', 'asd', '', 'M', '', 0, 1, 'North and Middle Andama', 'retailer1@gmail.com', '9990804990', 'retailer.png', 'retailer1', 11),
+('ADHIN BABU', '90/13\r\nKOZHIKODE\r\n', '', 'M', '', 0, 2, '', 'adhinbabu1998@gmaio.com', '9990804990', 'user.png', 'adhin', 12),
+('jo', 'as', '', 'M', '', 0, 18, 'Kottayam', 'abc@gmail.com', '9111111111', 'user.png', 'j', 13),
+('joe', 'Fathimapuram P.O', 'Fathimapuram P.O', 'M', 'Changanacherry', 686102, 18, 'Kottayam', 'aabc@gmail.com', '7897897897', 'user.png', 'a', 14);
 
 --
 -- Indexes for dumped tables
@@ -1553,6 +1587,13 @@ ALTER TABLE `ram_tbl`
   ADD PRIMARY KEY (`name`);
 
 --
+-- Indexes for table `shipping_add`
+--
+ALTER TABLE `shipping_add`
+  ADD PRIMARY KEY (`ship_id`),
+  ADD KEY `loginid` (`loginid`);
+
+--
 -- Indexes for table `smps_tbl`
 --
 ALTER TABLE `smps_tbl`
@@ -1597,7 +1638,7 @@ ALTER TABLE `message`
 -- AUTO_INCREMENT for table `ordertbl`
 --
 ALTER TABLE `ordertbl`
-  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=429;
+  MODIFY `orderid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=520;
 
 --
 -- AUTO_INCREMENT for table `password_reset_temp`
@@ -1609,7 +1650,13 @@ ALTER TABLE `password_reset_temp`
 -- AUTO_INCREMENT for table `prebuilt_tbl`
 --
 ALTER TABLE `prebuilt_tbl`
-  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `prebuilt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `shipping_add`
+--
+ALTER TABLE `shipping_add`
+  MODIFY `ship_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `state`
@@ -1621,7 +1668,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `regid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `regid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -1647,6 +1694,12 @@ ALTER TABLE `prebuilt_tbl`
   ADD CONSTRAINT `prebuilt_tbl_ibfk_7` FOREIGN KEY (`mem_m2`) REFERENCES `memory_tbl` (`name`),
   ADD CONSTRAINT `prebuilt_tbl_ibfk_8` FOREIGN KEY (`smps`) REFERENCES `smps_tbl` (`name`),
   ADD CONSTRAINT `prebuilt_tbl_ibfk_9` FOREIGN KEY (`cpu_fan`) REFERENCES `cpu_fan_tbl` (`name`);
+
+--
+-- Constraints for table `shipping_add`
+--
+ALTER TABLE `shipping_add`
+  ADD CONSTRAINT `shipping_add_ibfk_1` FOREIGN KEY (`loginid`) REFERENCES `logintable` (`loginid`);
 
 --
 -- Constraints for table `user_login`

@@ -1,7 +1,7 @@
 <head>
   <script>
     setTimeout(function(){
-       window.location.href = '../Motherboard.php';
+       window.location.href = '../motherboard.php';
     }, 2500);
 </script>
   <style media="screen">
