@@ -70,7 +70,7 @@ if(isset($_POST["action"]))
 					Voltage: '. $row['voltage'] . 'V <br />
 					Timing: '. $row['timing'] .' <br />
 					<br>
-					<label>Quantity</label> <input type="number" style="width:70px" class="form-control" value="1" name="points" step="1" min=1 max=3>
+					<label>Quantity</label> <input type="number" style="width:70px" id ="'.$row['name'].'" class="form-control" value="1" name="points" step="1" min=1 max=3>
 					<br>
 
 					<i class="fa fa-shopping-cart"></i>

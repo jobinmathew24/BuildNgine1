@@ -35,36 +35,40 @@ header('location:users.php');
 
 if (isset($_POST['save'])) {
 $name=$_POST['result'];
-$sql3="update ordertbl set save=1 where loginid='$ide'and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1) ";
-echo "$sql3";
-$result2=mysqli_query($con,$sql3)or die("number query moonchi");
-header('location:cart.php');
+$sql="select * from prebuilt_tbl where name='$name'";
+// echo "$sql";
+
+$result=mysqli_query($con,$sql)or die("query moonchi");
+while ($rows=mysqli_fetch_array($result)) {
+  $price=$rows['price'];
+  $category=$rows['category'];
+  $cabinet=$rows['cabinet'];
+}
+$sql="insert into `ordertbl`(`loginid`, `name`, `category`, `price`, `qty`, `total`,date, `pic`,save)VALUES('$ide','$name','$category',$price,'1',$price*1,'$date','$cabinet',1)";
+// echo $sql;
+mysqli_query($con,$sql)or die("munji");
+header('location:saveforlate.php');
+
 }
 
-if (isset($_POST['delete'])) {
-$name=$_POST['result'];
-$sql3="delete from ordertbl where loginid='$ide'and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1) ";
-$result2=mysqli_query($con,$sql3)or die("number query moonchi");
-header('location:cart.php');
-
-}
 
 if (isset($_POST['submit'])) {
 
 $name=$_POST['result'];
-// echo "$name";
-  $sql="update ordertbl set status=0 where loginid='$ide' and name='$name' and orderid=(select orderid FROM ordertbl where loginid='$ide' and status=1 and save=0 and name='$name' LIMIT 1)";
+$sql="select * from prebuilt_tbl where name='$name'";
 // echo "$sql";
 
-echo "$sql";
 $result=mysqli_query($con,$sql)or die("query moonchi");
+while ($rows=mysqli_fetch_array($result)) {
+  $price=$rows['price'];
+  $category=$rows['category'];
+    $cabinet=$rows['cabinet'];
+}
 
-// while ($rows=mysqli_fetch_array($result)) {
-//   $price=$rows['price'];
-// }
-// $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','CPU FAN', $price,1,$price*1)";
-// // echo $sql;
-// $result=mysqli_query($con,$sql)or die("query moonchi");
+
+$sql="insert into `ordertbl`(`loginid`, `name`, `category`, `price`, `qty`, `total`,date, `pic`)VALUES('$ide','$name','$category',$price,'1',$price*1,'$date','$cabinet')";
+// echo $sql;
+$result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:cart.php');
 }
 else {

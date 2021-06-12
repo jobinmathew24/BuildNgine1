@@ -22,7 +22,7 @@ $min=$row['min'];
 $max=$row['max'];
 
 if (isset($_POST['submit'])) {
-  $qty=$_POST['points'];
+  $qty=$_POST['num'];
 
 $name=$_POST['result'];
 // echo "$name";
@@ -34,6 +34,7 @@ $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
+
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty)";
 
 $result=mysqli_query($con,$sql)or die("query moonchi");
@@ -70,7 +71,9 @@ else {
   function one(a) {
 
   document.getElementById('resulte').value=a;
-  // alert(a);
+  var b=document.getElementById(a).value
+  document.getElementById('nos').value=b;
+  // alert(b);
   // document.getElementById("forme").submit();
   }
   </script>
@@ -86,6 +89,7 @@ else {
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
+              <input type="hidden" name="num" id="nos">
 
             <div class="col-md-3">
               <div class="list-group">

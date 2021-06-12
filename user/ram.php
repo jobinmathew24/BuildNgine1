@@ -42,11 +42,10 @@ if (isset($_POST['change'])) {
 if (isset($_POST['submit'])) {
   $qty=$_POST['points'];
 
-$name=$_POST['result'];
+$name=$_POST['num'];
 // echo "$name";
 $sql="select price from ram_tbl where name='$name'";
 // echo "$sql";
-
 
 $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
@@ -88,6 +87,8 @@ else {
   function one(a) {
 
   document.getElementById('resulte').value=a;
+  var b=document.getElementById(a).value
+  document.getElementById('nos').value=b;
   // alert(a);
   // document.getElementById("forme").submit();
   }
@@ -105,6 +106,7 @@ else {
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
+              <input type="hidden" name="num" id="nos">
 
             <div class="col-md-2">
               <div class="list-group">

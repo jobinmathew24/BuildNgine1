@@ -50,6 +50,7 @@ if(isset($_POST["action"]))
 		foreach($result as $row)
 		{
 			$output .= '
+			<a href="bulid.php?id='.$row['prebuilt_id'].'">
 			<div class="col-sm-12 col-lg-12 col-md-12">
 
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
@@ -62,6 +63,7 @@ if(isset($_POST["action"]))
 				<table  >
 
 
+
 					<tr ><td ><strong> Category</strong></td><td > : '. $row['category'] .'</td></tr>
 					<tr ><td ><strong> Price</strong></td><td > : ₹ '. $row['price'] .'</td></tr>
 					<tr><td ><strong> Created By</strong></td><td > : '. $row['loginid'] .'</td></tr>
@@ -72,9 +74,7 @@ if(isset($_POST["action"]))
 
 				</table>
 				<div style="float: right;">
-					<i class="fa fa-trash"></i>
-					<input type="submit" name="delete" class="btn btn-danger" value="Delete" onclick="one(\''.$row['name'] .'\')">
-					&nbsp;
+				
 					<i class="fa fa-archive"></i>
 					<input type="submit" name="save" class="btn btn-warning" value="Save for later" onclick="one(\''.$row['name'] .'\')">
 					&nbsp;
@@ -89,6 +89,7 @@ if(isset($_POST["action"]))
 				</div>
 
 			</div>
+			</a>
 			';
 		}
 	}

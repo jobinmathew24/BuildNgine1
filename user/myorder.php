@@ -111,7 +111,8 @@ else {
                 // echo $ec;
                 if ($orders>0) {
                  foreach($result2 as $row)
-                		{?>
+                		{
+                      ?>
                     <div class="col-sm-12 col-lg-12 col-md-12">
 
               				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
@@ -160,7 +161,22 @@ else {
                         <tr><td ><strong> Status</strong></td><td > : <?php echo $row['remark'] ?></td>
                           <td ><strong> Ordered on</strong></td><td > : <?php echo $row['date'] ?></tr>
                             <tr>
-                              <td ><strong> Payment Method</strong></td><td > : Cash on Delivery</td>
+                              <?php
+                              // $sql='select payment_status from payment where orderid=\''.$row["orderid"].'\'';
+                              // echo $sql;
+                              $result=mysqli_query($con,'select payment_status from payment where orderid=\''.$row["orderid"].'\'');
+                              while($rowed=mysqli_fetch_array($result)){
+                                if ($rowed['payment_status']=="complete") {?>
+                                  <td ><strong> Payment Method</strong></td><td > : Online Payment</td>
+                                  <?php
+                                }
+                                if ($rowed['payment_status']!="complete") {?>
+                                  <td ><strong> Payment Method</strong></td><td > : Cash on Delivery</td>
+                                  <?php
+                                }
+
+                              }
+                               ?>
                             </tr>
                       <tr>
                         <h4  style="text-align:right;" class="text-danger" >₹ <?php echo $row['total'] ?></h4>
@@ -186,7 +202,8 @@ else {
               			</div>
                   <?php
                 }
-              }else {?>
+              }
+              else {?>
               <center> <h3>Your Order List is empty</h3><br>
               <input type="submit" class="btn btn-primary"  name="sumbite" value="Add Products">  </center>
             <?php  }

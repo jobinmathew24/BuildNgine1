@@ -9,8 +9,11 @@
       <div class="col-6 text-right">
         <ul class="list-inline">
           <li class="footer-item">
-            <a class="text-muted" href="#">Support</a>
+            <a class="text-muted" href="wants_seller.php">Sell on BuildNgine</a>
           </li>
+          <li class="footer-item">
+              <a class="text-muted" href="#">Support</a>
+            </li>
           <li class="footer-item">
             <a class="text-muted" href="#">Help Center</a>
           </li>
