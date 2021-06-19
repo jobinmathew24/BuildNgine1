@@ -42,7 +42,7 @@ var $angle=0;
 function Header()
 {
     // Logo
-    $this->Image('images/logos/logo.png',10,6,60);
+    $this->Image('../images/logos/logo.png',10,6,60);
 	//$this->Image('images/logo.png',10,6,70,20,'PNG');
     // Line break
     $this->Ln(20);

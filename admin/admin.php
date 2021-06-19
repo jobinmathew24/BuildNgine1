@@ -109,8 +109,8 @@ if(isset($_POST['insert'])){
 								<div class="col-lg-12 px-2">
 									<div class="submenu-box">
 										<ul class="list-unstyled m-0" id="dropdown-menu">
-											<li><a href="#delete_state" onclick="del_state()">Delete State</a></li>
-											<li><a href="#delete_district" onclick="del_district()">Delete district</a></li>
+											<li><a href="#delete_state" onclick="del_state()">Update State</a></li>
+											<!-- <li><a href="#delete_district" onclick="del_district()">Delete district</a></li> -->
 										</ul>
 									</div>
 								</div>
@@ -244,12 +244,7 @@ if(isset($_POST['insert'])){
                         {
 
                            $n=$d['loginid'];
-                           // $sp_na="select * from tbl_serviceproviders where login_id=$logid";
-                           // $ser_query=mysqli_query($con,$sp_na);
-                           //  while($spr=mysqli_fetch_array($ser_query))
-                           //  {
-                           //    $n=$spr['sp_name'];
-                           //  }
+
                           ?><tr><?php
                           echo $n." sends you an aproval Request<br>";
                           ?></tr>
@@ -423,27 +418,27 @@ if(isset($_POST['insert'])){
       <table class="table table-bordered" id="add-district" style="width: 800px; margin-left :40px;">
         <thead>
           <tr>
-            <th scope="col">District</th>
+            <th scope="col">State</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
         <?php
-                $sql="SELECT * FROM tbl_district where is_delete=1";
+                $sql="select * from state";
                 $sql_query=mysqli_query($con,$sql);
                 while($data=mysqli_fetch_array($sql_query))
                 {
-                  $dis_id=$data['district_id'];
+                  $dis_id=$data['StCode'];
               ?>
           <tr>
             <th scope="row">
              <?php
 
-               echo $data['district_name'];
+               echo $data['StateName'];
              ?>
             </th>
             <td style="border-top:0px;text-align:right;">
-                        <button class="btn btn-sm btn-success btn-inline edit" data-target="#demo-lg-modal1" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
+                        <button class="btn btn-sm btn-success btn-inline edit" data-target="#demo-lg-modal1" data-toggle="modal" title="Edit"><i class="fa fa-pen"></i></button><a>
                         <button class="btn btn-sm btn-danger btn-inline del" title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
                         </a></td>
           </tr>
@@ -640,7 +635,7 @@ if(isset($_POST['insert'])){
 
                         </th>
                         <td style="border-top:0px;text-align:center;">
-                        <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
+                        <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pen"></i></button><a>
                         <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
                         <!-- <button class="btn btn-sm btn-primary btn-inline" style="padding-top: 3px;" onclick="" title="Upload/View data"><i class="fa fa-upload"></i></button> -->
                         </a></td>
@@ -805,7 +800,7 @@ if(isset($_POST['insert'])){
 
 </td>
 <td>
-  <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
+  <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pen"></i></button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
 </td>
 </tr>
@@ -864,7 +859,7 @@ while($row=mysqli_fetch_array($sp_query))
 <img src="../images/users/<?php echo  $pic;?>" width="60px" height="50px">
 </th>
 <td>
-  <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pencil"></i></button><a>
+  <button class="btn btn-sm btn-success btn-inline sc_edit" data-target="#demo-lg-modal1" onclick="" data-toggle="modal" title="Edit"><i class="fa fa-pen"></i></button><a>
   <button class="btn btn-sm btn-danger btn-inline sc_del" onclick=""  title="Delete"><i class="fa fa-times" aria-hidden="true"></i></button></a><a>
 </td>
 </tr>

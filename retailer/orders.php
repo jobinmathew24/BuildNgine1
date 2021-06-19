@@ -37,11 +37,10 @@ $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 header('location:orders.php');
 }
 
-if (isset($_POST['delete'])) {
-$name=$_POST['result'];
-$sql3="delete from ordertbl where orderid=(select orderid FROM ordertbl where status=1 and save=0 and name='$name' LIMIT 1) ";
-$result2=mysqli_query($con,$sql3)or die("number query moonchi");
-header('location:orders.php');
+if (isset($_POST['invoice'])) {
+$orderid=$_POST['result'];
+$_SESSION['orderid']=$orderid;
+header('location:generate.php');
 
 }
 
@@ -180,9 +179,23 @@ else {
                              <td ><strong> Address</strong></td><td > : <?php echo $row1['address'] ?></td><tr>
                                <tr><td ><strong> Email</strong></td><td > : <?php echo $row1['email'] ?></td>
                                <td ><strong> Phone</strong></td><td > : <?php echo $row1['phone'] ?></td><tr>
-                                 <tr>
-                                   <td ><strong> Payment Method</strong></td><td > : Cash on Delivery</td>
-                                 </tr>
+                                 <?php
+                                 // $sql='select payment_status from payment where orderid=\''.$row["orderid"].'\'';
+                                 // echo $sql;
+                                 $result=mysqli_query($con,'select payment_status from payment where orderid=\''.$row["orderid"].'\'');
+                                 // echo $sql;
+                                 while($rowed=mysqli_fetch_array($result)){
+                                   if ($rowed['payment_status']=="complete") {?>
+                                     <td ><strong> Payment Method</strong></td><td > : Online Payment</td>
+                                     <?php
+                                   }
+                                   if ($rowed['payment_status']!="complete") {?>
+                                     <td ><strong> Payment Method</strong></td><td > : Cash on Delivery</td>
+                                     <?php
+                                   }
+
+                                 }
+                                  ?>
                           <?php }
                             ?>
                             <tr><h4  style="text-align:right;" class="text-danger" >₹ <?php echo $row['total'] ?></h4>
@@ -202,7 +215,7 @@ else {
                         if($row['remark']=="Order in Transit") {?>
                           <div style="float: right;">
                             <i class="fa fa-gift"></i>
-                            <input type="submit" name="invoice" class="btn btn-success" value="Generate Bill" onclick="one('<?php echo $row['name'] ?>')">
+                            <input type="submit" name="invoice" class="btn btn-success" value="Generate Bill" onclick="one('<?php echo $row['orderid'] ?>')">
                             &nbsp;
 
                             </div>

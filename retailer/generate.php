@@ -10,6 +10,8 @@ $result=mysqli_query($con,$sql);
 $row=mysqli_fetch_array($result);
 
 $order_date=$row['date'];
+$loginid=$row['loginid'];
+$ship_id=$row['ship_id'];
 
 $our_phone=8590252557;
 $order_number=$orderid;
@@ -98,6 +100,7 @@ $pdf->addDate( "Ordered Date : ".$order_date."\nOrder Number : ".$order_number."
     		$pdf->addSubTotals($sub_total_details);
 				$time = time();
 				$file_name .=$time.".pdf";
+		// $pdf->Output();
 		$pdf->Output($file_name,'D');
 
  ?>
