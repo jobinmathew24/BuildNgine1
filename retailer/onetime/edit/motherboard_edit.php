@@ -52,9 +52,18 @@ $motherboard_name=$_SESSION['motherboard_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+}
+p{
+  text-align: left;
+  font-size: 15px;
+}
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -95,9 +104,12 @@ $motherboard_name=$_SESSION['motherboard_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p> Motherboard Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="Motherboard Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>Motherboard Company</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Company" name="company" value="<?php echo $row['company']; ?>"><br>
+        <p>Motherboard socket</p>
         <select class="form-control" type="button" style="width:450px;" name="socket" required>
 
                       <option value="<?php echo $row['socket']; ?>"><?php echo $row['socket']; ?></option>
@@ -110,7 +122,9 @@ $motherboard_name=$_SESSION['motherboard_edit'];
                             ?>
 
         </select><br>
+        <p>Motherboard Form Factor</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Form Factor" name="factor" value="<?php echo $row['form_factor']; ?>"><br>
+        <p>Motherboard RAM Type</p>
         <select class="form-control" type="button" style="width:450px;" name="ram_type" required>
 
                       <option value="<?php echo $row['ram_type']; ?>"><?php echo $row['ram_type']; ?></option>
@@ -123,6 +137,7 @@ $motherboard_name=$_SESSION['motherboard_edit'];
                             ?>
 
         </select><br>
+        <p>Motherboard Max RAM in Gb</p>
         <select class="form-control" type="button" style="width:450px;" name="max_ram" required>
 
                       <option value="<?php echo $row['max_ram']; ?>"><?php echo $row['max_ram']; ?></option>
@@ -135,14 +150,23 @@ $motherboard_name=$_SESSION['motherboard_edit'];
                             ?>
 
         </select><br>
+        <p>Motherboard PCIe Count</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard PCIe Count" name="pcie" value="<?php echo $row['pcie_count']; ?>"><br>
+        <p>Motherboard Power Pin</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Power Pin" name="mb_pow" value="<?php echo $row['mb_pow']; ?>"><br>
+        <p>Motherboard CPU Power Pin</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard CPU Power Pin" name="cpu_pow" value="<?php echo $row['cpu_pow']; ?>"><br>
+        <p>Motherboard Chipset</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="Motherboard Chipset" name="chipset" value="<?php echo $row['chipset']; ?>"><br>
+        <p>Motherboard RAM Slot Count</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard RAM Slot Count" name="ram_count" value="<?php echo $row['ram_count']; ?>"><br>
+        <p>Motherboard SATA Slot Count</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard SATA Slot Count" name="sata_count" value="<?php echo $row['sata_count']; ?>"><br>
+        <p>Motherboard M.2 Slot Count</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard M.2 Slot Count" name="m2_count" value="<?php echo $row['m2_count']; ?>"><br>
+        <p>Motherboard Max Freq</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard Max Freq" name="max_freq" value="<?php echo $row['max_freq']; ?>"><br>
+        <p>Motherboard Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
                       <option value="<?php echo $row['purpose']; ?>"><?php echo $row['purpose']; ?></option>
@@ -155,9 +179,11 @@ $motherboard_name=$_SESSION['motherboard_edit'];
                             ?>
 
         </select><br>
+        <p>Motherboard Price</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Motherboard price" name="price" value="<?php echo $row['price']; ?>">
-        <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <!-- Select image to upload: --><br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

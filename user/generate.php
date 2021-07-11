@@ -1,7 +1,7 @@
 <?php
 session_start();
 $orderid=$_SESSION['orderid'];
-$loginid=$_SESSION['loginid'];
+// $loginid=$_SESSION['loginid'];
 require('invoice.php');
 $our_company="BuildNgine Pvt Ltd.";
 include('../database/connection.php');
@@ -10,6 +10,7 @@ $result=mysqli_query($con,$sql);
 $row=mysqli_fetch_array($result);
 
 $order_date=$row['date'];
+$loginid=$row['loginid'];
 
 $our_phone=8590252557;
 $order_number=$orderid;

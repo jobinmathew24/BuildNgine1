@@ -52,9 +52,18 @@ $mem_m2_name=$_SESSION['mem_m2_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -95,9 +104,12 @@ $mem_m2_name=$_SESSION['mem_m2_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>SSD Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="SSD Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>SSD Company</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="SSD company" name="company"  value="<?php echo $row['company']; ?>"><br>
+        <p>SSD Size</p>
         <select class="form-control" type="button" style="width:450px;" name="size" required>
 
                       <option value="<?php echo $row['size']; ?>"><?php echo $row['size']; ?>Gb</option>
@@ -110,6 +122,7 @@ $mem_m2_name=$_SESSION['mem_m2_edit'];
                             ?>
 
         </select><br>
+        <p>SSD Form Factor</p>
         <select class="form-control" type="button" style="width:450px;" name="form_factor" required>
 
                       <option value="<?php echo $row['form_factor']; ?>"><?php echo $row['form_factor']; ?></option>
@@ -122,6 +135,7 @@ $mem_m2_name=$_SESSION['mem_m2_edit'];
                             ?>
 
         </select><br>
+        <p>SSD Type</p>
         <select class="form-control" type="button" style="width:450px;" name="ssd_type" required>
 
                       <option value="<?php echo $row['ssd_type']; ?>"><?php echo $row['ssd_type']; ?></option>
@@ -134,9 +148,12 @@ $mem_m2_name=$_SESSION['mem_m2_edit'];
                             ?>
 
         </select><br>
-          <input type="number" class="form-control" style="width:450px;" required placeholder="SSD price" name="price" value="<?php echo $row['price']; ?>">
+        <p>SSD Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="SSD price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

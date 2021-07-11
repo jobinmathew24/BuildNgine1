@@ -23,7 +23,7 @@ if(isset($_POST["action"]))
 		 AND company IN('".$company_filter."')
 		";
 	}
-	if(isset($_POST["type"]))
+	if(isset($_POST["power"]))
 	{
 		$power_filter = implode("','", $_POST["power"]);
 		$query .= "

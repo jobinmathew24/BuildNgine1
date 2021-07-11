@@ -18,12 +18,35 @@
         <a href="../../onetime/cabinet_one.php"  class="loc">Cabinet</a>
       </div>
     </div>
-    <a href="../../retailer.php"  class="loc">Home</a>
+
     <form class="" action="" method="post">
 
-      <button type="submit" class="search"><i class="fa fa-search"></i></button>
-      <input type="text" name="search_text" placeholder="Search.." value="">
+
+      <input type="text" name="search_text" id="search" placeholder="Search.." value="">
     </form>
-    <a href="retailer.php">
+    <a href="../../retailer.php">
     <img src="../../../images/logos/logo_w.png" alt=""></a>
     </div>
+    <script type="text/javascript">
+
+      $("#search").on("keyup",function(){
+        // console.log("asda");
+        var search=$(this).val();
+
+        $.ajax({
+          url:"live_search.php",
+          type:"POST",
+          data:{search:search},
+          success: function(data){
+            $("#search_result").html(data);
+          }
+        })
+      });
+    </script>
+    <div class="p">
+    <br><br><br>
+    <center>
+      <div class="col-md-12" id="search_result">
+
+      </div>
+    </center>

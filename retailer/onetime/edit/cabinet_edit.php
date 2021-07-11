@@ -44,9 +44,18 @@ $cabinet_name=$_SESSION['cabinet_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -74,13 +83,9 @@ $cabinet_name=$_SESSION['cabinet_edit'];
 }
 
   </script>
-  <div class="navbare">
-      <a href="logout.php">Logout</a>
-      <a href="#">welcome <?php echo($_SESSION['loginid'] )?></a>
-
 
         <?php
-  include('../../../php/retailer_edit_header.php');
+        include('../../../php/retailer_edit_header.php');
    ?>
   <center>
     <div class="container">
@@ -92,15 +97,22 @@ $cabinet_name=$_SESSION['cabinet_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>Cabinet Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="Cabinet Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>Cabinet Company</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="Cabinet company" name="company"  value="<?php echo $row['company']; ?>"><br>
+        <p>Cabinet Model</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="Cabinet model" name="model"  value="<?php echo $row['model']; ?>"><br>
+        <p>Is Cabinet Has Integrated power Yes/No</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="Is Cabinet Has Integrated power" name="int_power" value="<?php echo $row['int_power']; ?>"><br>
+        <p>Is Cabinet Have Power Supply Yes/No</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="Is Cabinet Have Power Supply" name="pow_sup" value="<?php echo $row['pow_sup']; ?>"><br>
+        <p>Cabinet Price</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="Cabinet Price" name="price" value="<?php echo $row['price']; ?>">
-        <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <!-- Select image to upload: --><br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit"  class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

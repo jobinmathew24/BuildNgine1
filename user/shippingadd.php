@@ -268,7 +268,7 @@ header('location:payment_method.php');
                           <h4  style="text-align:right;" class="text-danger" >₹ <?php echo $row['total'] ?></h4>
 
                         </tr>
-
+<br>
                         </table>
 
                 				</div>

@@ -20,7 +20,7 @@ $rows=mysqli_fetch_array($result3);
 $cart=$row['Count(*)'];
 // $save=$rowse['Count(*)'];
 $total=$rows['total'];
-$sql3="select * from ordertbl where  status=1 and save=0 and buy= 1 ";
+$sql3="select * from ordertbl where  status=1 and buy =1 and save=0";
 $result2=mysqli_query($con,$sql3)or die("number query moonchi");
 
 // if (isset($_POST['submite'])) {
@@ -43,7 +43,14 @@ $_SESSION['orderid']=$orderid;
 header('location:generate.php');
 
 }
+if (isset($_POST['cod'])) {
+$orderid=$_POST['result'];
+// $_SESSION['orderid']=$orderid;
+$sql="update payment set payment_status='complete' where orderid='$orderid'";
+mysqli_query($con,$sql);
+header('location:orders.php');
 
+}
 if (isset($_POST['conform'])) {
 
 $name=$_POST['result'];
@@ -179,6 +186,7 @@ else {
                              <td ><strong> Address</strong></td><td > : <?php echo $row1['address'] ?></td><tr>
                                <tr><td ><strong> Email</strong></td><td > : <?php echo $row1['email'] ?></td>
                                <td ><strong> Phone</strong></td><td > : <?php echo $row1['phone'] ?></td><tr>
+                               <!-- <td ><strong> Phone</strong></td><td > : <?php echo $row1['date'] ?></td><tr> -->
                                  <?php
                                  // $sql='select payment_status from payment where orderid=\''.$row["orderid"].'\'';
                                  // echo $sql;
@@ -204,22 +212,31 @@ else {
 
                       </table>
 
-                      <?php if($row['remark']!="Order in Transit") {?>
+                    <?php if($row['remark']=='Processing Order') {?>
                       <div style="float: right;">
                         <i class="fa fa-gift"></i>
-                        <input type="submit" name="conform" class="btn btn-success" value="Conform Order" onclick="one('<?php echo $row['name'] ?>')">
+                        <input type="submit" name="conform" class="btn btn-danger" value="Conform Order" onclick="one('<?php echo $row['name'] ?>')">
                         &nbsp;
 
                         </div>
-                        <?php}
-                        if($row['remark']=="Order in Transit") {?>
+<?php } $result=mysqli_query($con,'select payment_status from payment where orderid=\''.$row["orderid"].'\'');
+// echo $sql;
+while($rowed=mysqli_fetch_array($result)){
+  if ($rowed['payment_status']!="complete") {?>
+    <div style="float: right;">
+      <i class="fa fa-money"></i>
+      <input type="submit" name="cod" class="btn btn-primary" value="Cash received" onclick="one('<?php echo $row['orderid'] ?>')">
+      &nbsp;
+
+      </div>
+    <?php }} ?>
                           <div style="float: right;">
-                            <i class="fa fa-gift"></i>
+                            <i class="fa fa-book"></i>
                             <input type="submit" name="invoice" class="btn btn-success" value="Generate Bill" onclick="one('<?php echo $row['orderid'] ?>')">
                             &nbsp;
 
                             </div>
-                      <?php  } if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
+                      <?php  if ($row['category']=='professional'||$row['category']=='Business'||$row['category']=='gaming'){?>
                         <br><br><br><?php }else{ echo "<br><br>"; } ?>
 
 

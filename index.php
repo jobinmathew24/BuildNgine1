@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BulidNgine</title>
+    <title>buildNgine</title>
   <link rel="stylesheet" href="css/BOOT.css">
   <link rel="stylesheet" href="css/1.css">
 
@@ -13,7 +13,7 @@
 body
 {
 
-  background-image: url('slide2.jpg');
+  background-image: url('slide3.jpg');
   position: absolute;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -57,7 +57,7 @@ to build your desktop computer in a few minutes. Whether you're building a gener
   you some time and effort
 <form class="" action="login.php" method="post">
   <br>
-  <input type="submit" class="btn btn-primary"value="Bulid your PC now">
+  <input type="submit" class="btn btn-primary"value="build your PC now">
 </form>
   </div>
 
@@ -69,9 +69,10 @@ to build your desktop computer in a few minutes. Whether you're building a gener
 
     </center>
   </main>
+  <?php
+  include('php/footer.php');
+   ?>
 
 </body>
-<?php
-  include('php/footer.php');
- ?>
+
 </html>

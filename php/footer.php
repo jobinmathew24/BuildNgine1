@@ -12,11 +12,9 @@
             <a class="text-muted" href="wants_seller.php">Sell on BuildNgine</a>
           </li>
           <li class="footer-item">
-              <a class="text-muted" href="#">Support</a>
+              <a class="text-muted" href="complaint.php">Support and Complaint</a>
             </li>
-          <li class="footer-item">
-            <a class="text-muted" href="#">Help Center</a>
-          </li>
+
           <li class="footer-item">
             <a class="text-muted" href="#">Privacy</a>
           </li>

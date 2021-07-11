@@ -18,17 +18,20 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BulidNgine</title>
+    <title>buildNgine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../css/11.css">
   <!-- <link rel="stylesheet" href="../css/1.css"> -->
   <link rel="stylesheet" href="../css/top.css">
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../js/jquery-ui.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
 
 <style>
 body
 {
 
-  background-image: url('../slide2.jpg');
+  background-image: url('../slide4.jpg');
   position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
@@ -93,18 +96,40 @@ width: 500px}
     </div>
 
 
-        <!-- <a href="Motherboard.php">Bulid a PC</a> -->
+        <!-- <a href="Motherboard.php">build a PC</a> -->
         <a href="prebulit.php" class="loc">Prebulit System</a>
-        <a href="retailer.php" class="loc">Home</a>
+
         <form class="" action="" method="post">
 
-          <button type="submit" class="search"><i class="fa fa-search"></i></button>
-          <input type="text" name="search_text" placeholder="Search.." value="">
+          <input type="text" name="search_text" id="search" placeholder="Search.." value="">
         </form>
         <a href="retailer.php">
         <img src="../images/logos/logo_w.png" alt=""></a>
     </div>
+    <script type="text/javascript">
+
+      $("#search").on("keyup",function(){
+        // console.log("asda");
+        var search=$(this).val();
+
+        $.ajax({
+          url:"live_search.php",
+          type:"POST",
+          data:{search:search},
+          success: function(data){
+            $("#search_result").html(data);
+          }
+        })
+      });
+    </script>
     <div class="p">
+    <br><br>
+    <center>
+      <div class="col-md-12" id="search_result">
+
+      </div>
+    </center>
+
 
   <div class="i">
     A simple PC builder tool for the users. Select parts from the curated list of components,

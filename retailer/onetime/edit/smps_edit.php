@@ -50,9 +50,18 @@ session_start();
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -93,10 +102,14 @@ session_start();
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>SMPS Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="SMPS Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>SMPS Company</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="SMPS company" name="company"  value="<?php echo $row['company']; ?>"><br>
+        <p>SMPS Power</p>
         <input type="number" class="form-control" style="width:450px;" required  placeholder="SMPS Power" name="power"  value="<?php echo $row['power']; ?>"><br>
+        <p>SMPS CPU Power Connector</p>
         <select class="form-control" type="button" style="width:450px;" name="cpu_pow" required>
 
                       <option value="<?php echo $row['cpu_pow']; ?>"><?php echo $row['cpu_pow']; ?></option>
@@ -109,7 +122,9 @@ session_start();
                             ?>
 
         </select><br>
-        <input type="number" class="form-control" style="width:450px;" required  placeholder="SMPS Motherboard Power" name="mb_pow"  value="<?php echo $row['mb_pow']; ?>"><br>
+        <p>SMPS Motherboard Power Connector</p>
+        <input type="number" class="form-control" min="4" max="8" style="width:450px;" required  placeholder="SMPS Motherboard Power" name="mb_pow"  value="<?php echo $row['mb_pow']; ?>"><br>
+        <p>SMPS SATA Power Connector</p>
         <select class="form-control" type="button" style="width:450px;" name="sata_count" required>
 
                       <option value="<?php echo $row['sata_count']; ?>"><?php echo $row['sata_count']; ?></option>
@@ -122,6 +137,7 @@ session_start();
                             ?>
 
         </select><br>
+        <p>SMPS SATA PCIe Power Cable</p>
         <select class="form-control" type="button" style="width:450px;" name="pci_count" required>
 
                       <option value="<?php echo $row['pci_count']; ?>"><?php echo $row['pci_count']; ?></option>
@@ -134,9 +150,12 @@ session_start();
                             ?>
 
         </select><br>
-          <input type="number" class="form-control" style="width:450px;" required placeholder="SMPS price" name="price" value="<?php echo $row['price']; ?>">
+        <p>SMPS Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="SMPS price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <P >Choose the Image </p>
+          <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

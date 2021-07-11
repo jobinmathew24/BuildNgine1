@@ -45,9 +45,18 @@ $cpu_fan_name=$_SESSION['cpu_fan_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -88,9 +97,12 @@ $cpu_fan_name=$_SESSION['cpu_fan_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>CPU Fan Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="CPU Fan Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>CPU Fan Company</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="CPU Fan company" name="company"  value="<?php echo $row['company']; ?>"><br>
+        <p>CPU Fan Cooler Type</p>
         <select class="form-control" type="button" style="width:450px;" name="cooler_type" required>
 
                       <option value="<?php echo $row['cooler_type']; ?>"><?php echo $row['cooler_type']; ?></option>
@@ -103,11 +115,16 @@ $cpu_fan_name=$_SESSION['cpu_fan_edit'];
                             ?>
 
         </select><br>
+        <p>CPU Fan Compatible Sockets</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="CPU Fan Compatible Sockets" name="socket"  value="<?php echo $row['socket']; ?>"><br>
+        <p>CPU Fan Max TDP</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Fan Max TDP" name="max_tdp" value="<?php echo $row['max_tdp']; ?>"><br>
+        <p>CPU Fan Price</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Fan Price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p>Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

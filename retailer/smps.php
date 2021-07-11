@@ -41,7 +41,7 @@ session_start();
     <script src="../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../css/jquery-ui.css" rel = "stylesheet">
     <style media="screen">
@@ -113,8 +113,9 @@ session_start();
                             ?>
 
         </select><br>
-        <p>SMPS SATA Power Cable</p>
-        <input type="number" class="form-control" style="width:450px;" required  placeholderr="SMPS Motherboard Power" name="mb_pow"  value=""><br>
+        <p>SMPS Motherboard Power Connector</p>
+        <input type="number" class="form-control" min="4" max="8" style="width:450px;" required  placeholderr="SMPS Motherboard Power" name="mb_pow"  value=""><br>
+        <p>SMPS SATA Power Connector</p>
         <select class="form-control" type="button" style="width:450px;" name="sata_count" required>
 
                       <option value="">--</option>

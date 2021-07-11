@@ -95,7 +95,7 @@ if ($price>110000) {
 }
 
 $sql="insert into `prebuilt_tbl`( `loginid`, `name`, `motherboard`, `cpu`, `ram`, `gpu`, `mem`, `mem_m2`, `smps`, `cpu_fan`, `cabinet`, `cpu_name`, `cpu_freq`, `ram_size`, `ram_type`, `hdd_size`, `grap_comp`, `grap_size`,`category`,`pic`,date,`price`)
-                          VALUES('$id','$name','$mbname','$cpuname','$ramname','$gpuname','$memname','$m2_mem','$smpsname','$cpu_fanname','$cabinetname','$processor','$cpu_freq',$ram_size,'$ram_type','$size','$graphic_comp','$gra_size','$cat','$cabinetname','$date',$price)";
+                          VALUES('$id','$name','$mbname','$cpuname','$ramname','$gpuname','$memname','$m2_mem','$smpsname','$cpu_fanname','$cabinetname','$processor','$cpu_freq',$ram_size,'$ram_type','$size','$graphic_comp','$gra_size','$cat','$cabinetname".".jpg'".",'$date',$price)";
 
 if(mysqli_query($con,$sql)or die($sql)){
   $delete="delete from ordertbl where bulid=1";
@@ -119,7 +119,7 @@ if(mysqli_query($con,$sql)or die($sql)){
   unset($_SESSION['cpu_fanname']);
   unset($_SESSION['cabinetname']);
   $_SESSION['user']=$id;
-  header('location: users.php');
+  header('location:myorder.php');
 
 }
 // echo $sql;

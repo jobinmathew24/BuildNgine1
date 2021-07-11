@@ -2,7 +2,7 @@
 $connect = new PDO("mysql:host=localhost;dbname=bulid", "root", "");
 $con=mysqli_connect("localhost","root","","bulid") or die("connection moonchi");
 date_default_timezone_set("Asia/Kolkata");
-  $date=date("Y/m/d h:m:s");
+  $date=date("Y/m/d");
 ?>
 <?php
 		// if (function_exists('conectar')){

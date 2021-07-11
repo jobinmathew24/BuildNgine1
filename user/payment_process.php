@@ -14,7 +14,8 @@ if(isset($_POST['amt']) && isset($_POST['name'])){
 
 if(isset($_POST['payment_id']) && isset($_SESSION['OID'])){
     $payment_id=$_POST['payment_id'];
+    echo "update payment set payment_status='complete',payment_id='$payment_id' where id='".$_SESSION['OID']."'";
     mysqli_query($con,"update payment set payment_status='complete',payment_id='$payment_id' where id='".$_SESSION['OID']."'");
-    mysqli_query($con,"update ordertbl set buy=1 where orderid=$orderid");
+    mysqli_query($con,"update ordertbl set buy=1,remark='Processing Order',date='$date' where orderid=$orderid");
 }
 ?>

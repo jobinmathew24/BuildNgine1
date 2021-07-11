@@ -38,7 +38,7 @@ while ($rows=mysqli_fetch_array($result)) {
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty)";
 
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:../users.php');
+header('location:../cart.php');
 }
 else {
 

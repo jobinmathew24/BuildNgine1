@@ -54,7 +54,7 @@ if(isset($_POST["action"]))
 			<div class="col-sm-12 col-lg-12 col-md-12">
 
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;">
-					<img  style="float:left; padding:5px;"src="../project/cabinet/'.  $row['cabinet'] .'.jpg " width="100px" height="100px"  >
+					<img  style="float:left; padding:5px;"src="../project/cabinet/'.  $row['pic'] .' " width="100px" height="100px"  >
 
 					<div style="float: left;">
 						<h4><strong>'.$row['name'].'</strong></h4>
@@ -74,7 +74,7 @@ if(isset($_POST["action"]))
 
 				</table>
 				<div style="float: right;">
-				
+
 					<i class="fa fa-archive"></i>
 					<input type="submit" name="save" class="btn btn-warning" value="Save for later" onclick="one(\''.$row['name'] .'\')">
 					&nbsp;

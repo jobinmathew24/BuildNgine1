@@ -37,7 +37,7 @@ while ($rows=mysqli_fetch_array($result)) {
 $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','cabinet', $price,1,$price*1)";
 // echo $sql;
 $result=mysqli_query($con,$sql)or die("query moonchi");
-header('location:../users.php');
+header('location:../cart.php');
 }
 else {
 
@@ -66,6 +66,7 @@ else {
   <?php
   include('../../php/pdts_header_one.php');
    ?>
+
   <script type="text/javascript">
   function one(a) {
 
@@ -76,9 +77,10 @@ else {
   </script>
 
     <!-- Page Content -->
+
     <div class="container">
         <div class="row">
-        	<br />
+
         	<h2 align="center">Select the Cabinet</h2>
         	<h4 align="center">The computer's case is nothing more than its shell or a skeleton. The case performs
             the function of holding the computer together, cooling (with fans), and grounding the computer components

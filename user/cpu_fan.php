@@ -114,7 +114,6 @@ else {
         	<br />
           <form id="forme" action="" method="post">
               <input type="hidden" name="result" id="resulte">
-
             <div class="col-md-2">
               <div class="list-group">
       					<h3>Price</h3>

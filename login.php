@@ -110,7 +110,7 @@ if(isset($_POST['submit'])) {
   $username=$_POST['user'];
   $password=$_POST['pass'];
   $password=md5($password);
-  $sql="select * from logintable where loginid='$username' and password='$password'";
+  $sql="select * from logintable where loginid='$username' and password='$password' and status='1'";
 //echo($sql);
 
   include('database/connection.php');
@@ -134,8 +134,8 @@ if(isset($_POST['submit'])) {
     elseif($user=='retailer')
      {?>
 <script> window.location.href ='retailer/retailer.php';</script>
-      
-  <?php 
+
+  <?php
         //header('location:retailer/retailer.php');
      }
 
@@ -147,9 +147,9 @@ if(isset($_POST['submit'])) {
      }
    }
    else{?>
-     
+
 <script type="text/javascript">
-document.getElementById('u1').innerHTML="Please enter a valid user credentials";
+document.getElementById('u1').innerHTML="Please enter a valid user credentials, Or you think user credentials contact Admin. ";
 // document.getElementById("forgote").innerHTML = "<a href="asd.php">asd</a>";
 
 </script>

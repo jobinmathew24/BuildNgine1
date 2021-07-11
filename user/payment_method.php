@@ -80,17 +80,7 @@ $added_on=date('Y-m-d h:i:s');
 <form action="stripe_payment.php" method="post">
   <input type="hidden" name="orderid" value="<?php echo $orderid; ?>" >
   <input type="button" name="cod_btn"  class="btn btn-primary" value="Pay by CoD" onclick="pay_later()"/>
-	<!-- <script
-		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		data-key="<?php echo $publishableKey?>"
-		data-amount="<?php echo $val; ?>"
-		data-name="<?php echo $pays['name']; ?>"
-		data-description="<?php echo $pays['category']; ?>"
-    data-image="../images/logos/logo_computer.png "
-		data-currency="inr"
-		data-email="<?php echo $email; ?>"
-	>
-	</script> -->
+
   <input type="hidden" name="name1" id="orderid" value="<?php echo $orderid ?>"/>
 </form>
 </div>
@@ -104,20 +94,12 @@ $added_on=date('Y-m-d h:i:s');
 	<form>
 	    <input type="hidden" name="name" id="name" value="<?php echo $name ?>"/>
 	    <input type="hidden" name="amt" id="amt" value="<?php echo $val ?>"/>
-	    <input type="button" name="btn" id="btn" class="btn btn-primary"value="Pay by Online Methods" onclick="pay_now()"/>
+	    <input type="button" name="btn" id="btn" class="btn btn-primary" value="Pay by Online Methods" onclick="pay_now()"/>
 	</form>
 </div>
 </div>
 <br>
-<!-- <div class="col-sm-12 col-lg-12 col-md-12">
-	<div style="border:1.5px solid #ccc; border-radius:5px; width: 500px; padding:16px; margin-bottom:16px; height:auto;">
-<h4 style="float:left"> Cash on Delivery(CoD)</h4>
-	<form action="cod_complete.php" method="post">
-	    <input type="hidden" name="orderid" value="<?php echo $orderid; ?>" >
-	    <input type="button" name="cod_btn"  class="btn btn-primary" value="Pay by CoD" />
-	</form>
-</div>
-</div> -->
+
 
 </center>
 	<script>
@@ -131,7 +113,7 @@ $added_on=date('Y-m-d h:i:s');
 	               data:"amt="+amt+"&name="+name,
 	               success:function(result){
 	                   var options = {
-	                        "key": "rzp_test_gpOeSEIrbu39fa",
+	                        "key": "rzp_test_STMlWhsjE3lt1R",
 	                        "amount": amt,
 	                        "currency": "INR",
 	                        "name": "<?php echo $name ?>",

@@ -31,7 +31,7 @@ if (isset($_POST['add'])) {
   $sql="insert into ordertbl (loginid, name, category, price, qty, total) VALUES ('$ide','$name','Motherboard', $price,1,$price*1)";
 // echo $sql;
   $result=mysqli_query($con,$sql)or die("insert query moonchi");
-  header('location: ../users.php');
+  header('location: ../cart.php');
 }
   else {
 

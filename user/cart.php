@@ -27,8 +27,8 @@ if (isset($_POST['submite'])) {
 $date=date("j / m / Y");
 // $name=$_POST['resulte'];
 
-$sql3="update ordertbl set buy=1,date='$date' where loginid='$ide' ";
-$result2=mysqli_query($con,$sql3)or die("number query moonchi");
+$sql3="update ordertbl2 set buy=1,date='$date' where loginid='$ide' ";
+$result2=mysqli_query($con,$sql3)or die("$sql3");
 header('location:cart.php');
 }
 
@@ -228,8 +228,8 @@ else {
                   </table>
                   <br>
                   <div style="float: right;">
-                    <i class="fa fa-shopping-cart"></i>
-                    <input type="submit" name="submite" class="btn btn-primary" value="Purchase All" onclick="one(\''.$row['name'].'\')">
+                    <!-- <i class="fa fa-shopping-cart"></i>
+                    <input type="submit" name="submite" class="btn btn-primary" value="Purchase All" onclick="one(\''.$row['name'].'\')"> -->
 
                     </div>
               </div>

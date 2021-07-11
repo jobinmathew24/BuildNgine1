@@ -21,17 +21,23 @@ $cart=$row['Count(*)'];
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BulidNgine</title>
+    <title>buildNgine</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../css/BOOT.css">
-  <link rel="stylesheet" href="../css/1.css">
+  <!-- <link rel="stylesheet" href="../css/BOOT.css"> -->
+  <!-- <link rel="stylesheet" href="../css/1.css"> -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+
   <link rel="stylesheet" href="../css/top.css">
+  <script src="../js/jquery-1.10.2.min.js"></script>
+  <script src="../js/jquery-ui.js"></script>
+  <script src="../js/bootstrap.min.js"></script>
+
 
 <style>
 body
 {
 
-  background-image: url('../slide2.jpg');
+  background-image: url('../slide4.jpg');
   position: absolute;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -50,6 +56,8 @@ body
 
 
 </style>
+
+
 </head>
 <body >
   <main>
@@ -84,52 +92,41 @@ body
         <a href="myprofile.php" class="loc"> My Profile </a>
       </div>
     </div>
-    <a href="check/checking_bulid.php" class="loc">Bulid a PC</a>
+    <a href="check/checking_bulid.php" class="loc">build a PC</a>
     <a href="prebulit.php" class="loc">Prebulit System</a>
-        <a href="users.php" class="loc">Home</a>
+        <!-- <a href="users.php" class="loc">Home</a> -->
         <form class="" action="" method="post">
 
-          <button type="submit" class="search"><i class="fa fa-search"></i></button>
-          <input type="text" name="search_text" placeholder="Search.." value="">
+          <!-- <button type="submit" class="search"><i class="fa fa-search"></i></button> -->
+          <input type="text" name="search_text" id="search" placeholder="Search.." value="">
         </form>
         <a href="users.php">
         <img src="../images/logos/logo_w.png" alt=""></a>
     </div>
+    <script type="text/javascript">
+    $("#search").on("keyup",function(){
+        // console.log("asda");
+        var search=$(this).val();
 
-    <!-- <div class="navbare" style="margin:0px;"> -->
-        <!-- <a href="logout.php">Logout</a> -->
-        <!-- <a href="cart.php"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a> -->
-    <!-- <div class="dropdowne">
-        <button class="dropbtn">Buy a product
-        <i class="fa fa-caret-down"></i>
-      </button> -->
-      <!-- <div class="dropdowne-content">
-        <a href="onetime/motherboard_one.php">Motherboard</a>
-        <a href="onetime/cpu_one.php">CPU</a>
-        <a href="onetime/gpu_one.php">GPU</a>
-        <a href="onetime/ram_one.php">RAM</a>
-        <a href="onetime/mem_one.php">Memory</a>
-        <a href="onetime/mem_m2_one.php">Memory M.2</a>
-        <a href="onetime/smps_one.php">SMPS</a>
-        <a href="onetime/cpu_fan_one.php">CPU Fan</a>
-        <a href="onetime/cabinet_one.php">Cabinet</a>
-      </div> -->
-    <!-- </div>
-    <div class="dropdowne">
-        <button class="dropbtn">Welcome
+        $.ajax({
+          url:"live_search.php",
+          type:"POST",
+          data:{search:search},
+          success: function(data){
+            $("#search_result").html(data);
+          }
+        })
+      });
+    </script>
 
-        <i class="fa fa-caret-down"></i>
-      </button> -->
-      <!-- <div class="dropdowne-content">
-        <a href="myorder.php"> My Orders </a>
-        <a href="myprofile.php"> My Profile </a>
+    <center>
+      <br>
+      <br>
 
-      </div> -->
-    <!-- </div>
-        <a href="check/checking_bulid.php">Bulid a PC</a>
-        <a href="prebulit.php">Prebulit System</a>
-        <a href="users.php">Home</a>
-  </div> -->
+      <div style="font-size:10px;"class="col-md-12" id="search_result">
+
+      </div>
+    </center>
   <div class="i">
 A simple PC builder tool for the users. Select parts from the curated list of components,
 to build your desktop computer in a few minutes. Whether you're building a general purpose
@@ -137,7 +134,7 @@ to build your desktop computer in a few minutes. Whether you're building a gener
   you some time and effort
 <form class="" action="check/checking_config.php" method="post">
   <br>
-  <input type="submit" class="btn btn-primary"value="Bulid your PC now">
+  <input type="submit" class="btn btn-primary"value="build your PC now">
 </form>
   </div>
 <div class="i">

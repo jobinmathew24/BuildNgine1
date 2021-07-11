@@ -160,17 +160,22 @@ else {
                         <td ><strong> Sold By</strong></td><td > : <?php echo $row['sold_by'] ?></td></tr>
                         <tr><td ><strong> Status</strong></td><td > : <?php echo $row['remark'] ?></td>
                           <td ><strong> Ordered on</strong></td><td > : <?php echo $row['date'] ?></tr>
+                            <?php $del=$row['date'];
+
+                            $del= date('d/m/Y', strtotime($del. ' + 7 days'));
+                             ?>
+                          <td ><strong> Delivery on</strong></td><td > : <?php echo $del ?></tr>
                             <tr>
                               <?php
                               // $sql='select payment_status from payment where orderid=\''.$row["orderid"].'\'';
                               // echo $sql;
                               $result=mysqli_query($con,'select payment_status from payment where orderid=\''.$row["orderid"].'\'');
                               while($rowed=mysqli_fetch_array($result)){
-                                if ($rowed['payment_status']=="complete") {?>
+                                if ($rowed['payment_status']=='complete') {?>
                                   <td ><strong> Payment Method</strong></td><td > : Online Payment</td>
                                   <?php
                                 }
-                                if ($rowed['payment_status']!="complete") {?>
+                                else {?>
                                   <td ><strong> Payment Method</strong></td><td > : Cash on Delivery</td>
                                   <?php
                                 }
@@ -188,7 +193,7 @@ else {
                       <div style="float: right;">
                         <i class="fa fa-trash"></i>
                         <input type="submit" name="delete" class="btn btn-danger" value="Cancel Order" onclick="one('<?php echo $row['name'] ?>')">
-                        <i class="fa fa-archive"></i>
+                        <i class="fa fa-book"></i>
                         <input type="submit" name="invoice" class="btn btn-success" value="Print Bill" onclick="one1('<?php echo $row['orderid'] ?>')">
                         &nbsp;
 

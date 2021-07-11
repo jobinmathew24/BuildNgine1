@@ -54,9 +54,18 @@ $gpu_name=$_SESSION['gpu_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+    width: 450px;
+    }
+    p{
+    text-align: left;
+    font-size: 15px;
+    }
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -97,9 +106,11 @@ $gpu_name=$_SESSION['gpu_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>GPU Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="GPU Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
-                <select class="form-control" type="button" style="width:450px;" name="company"  required>
+        <p>GPU Company</p>
+        <select class="form-control" type="button" style="width:450px;" name="company"  required>
 
                       <option value="<?php echo $row['company']; ?>"><?php echo $row['company']; ?></option>
                         <?php
@@ -111,6 +122,7 @@ $gpu_name=$_SESSION['gpu_edit'];
                             ?>
 
         </select><br>
+        <p>GPU Processor</p>
         <select class="form-control" type="button" style="width:450px;" name="processor" required>
 
                       <option value="<?php echo $row['processor']; ?>"><?php echo $row['processor']; ?></option>
@@ -123,8 +135,11 @@ $gpu_name=$_SESSION['gpu_edit'];
                             ?>
 
         </select><br>
+        <p>GPU Core Frequency</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Core Freq" name="core_freq" value="<?php echo $row['core_freq']; ?>"><br>
+        <p>GPU Memory Frequency</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Frequency" name="mem_freq" value="<?php echo $row['mem_freq']; ?>"><br>
+        <p>GPU Memory Type</p>
         <select class="form-control" type="button" style="width:450px;" name="mem_type" required>
 
                       <option value="<?php echo $row['mem_type']; ?>"><?php echo $row['mem_type']; ?></option>
@@ -137,6 +152,7 @@ $gpu_name=$_SESSION['gpu_edit'];
                             ?>
 
         </select><br>
+        <p>GPU Memory Size</p>
         <select class="form-control" type="button" style="width:450px;" name="mem_size" required>
 
                       <option value="<?php echo $row['mem_size']; ?>"><?php echo $row['mem_size']; ?></option>
@@ -149,8 +165,11 @@ $gpu_name=$_SESSION['gpu_edit'];
                             ?>
 
         </select><br>
+        <p>GPU Memory Width</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Memory Width" name="mem_width" value="<?php echo $row['mem_width']; ?>"><br>
+        <p>GPU Power Connector</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="GPU Power Connector" name="pow_con" value="<?php echo $row['pow_con']; ?>"><br>
+        <p>GPU Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
                       <option value="<?php echo $row['purpose']; ?>"><?php echo $row['purpose']; ?></option>
@@ -163,9 +182,12 @@ $gpu_name=$_SESSION['gpu_edit'];
                             ?>
 
         </select><br>
+        <p>GPU Price</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="GPU price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p >Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">
@@ -210,6 +232,6 @@ else {
   // echo "<script>alert('Data not inserted');</script>";
 }
 }
-include('../php/footer.php');
+include('../../../php/footer.php');
 ?>
 </html>

@@ -85,7 +85,7 @@ if(isset($_POST["action"]))
 					SATA Count : '. $row['sata_count'] .' Nos <br />
 					M.2 Count : '. $row['m2_count'] .' Nos <br />
 					Max freq : '. $row['max_freq'] .' Mhz <br />
-					Purpose : '. $row['purpose'] .'
+					Purpose : '. $row['purpose'] .'<br  />
 					Sold By : '. $row['sold_by'] .' <br  /></p>
 
 					<br>

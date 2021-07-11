@@ -27,12 +27,34 @@
     <a href="myprofile.php" class="loc"> My Profile </a>
   </div>
 </div>
-    <a href="users.php" class="loc">Home</a>
+    <!-- <a href="users.php" class="loc">Home</a> -->
     <form class="" action="" method="post">
 
-      <button type="submit" class="search"><i class="fa fa-search"></i></button>
-      <input type="text" name="search_text" placeholder="Search.." value="">
+      <!-- <button type="submit" class="search"><i class="fa fa-search"></i></button> -->
+      <input type="text" name="search_text" id="search" placeholder="Search.." value="">
     </form>
     <a href="users.php">
     <img src="../images/logos/logo_w.png" alt=""></a>
 </div>
+<script type="text/javascript">
+  $("#search").on("keyup",function(){
+    // console.log("asd");
+    var search=$(this).val();
+
+    $.ajax({
+      url:"live_search.php",
+      type:"POST",
+      data:{search:search},
+      success: function(data){
+        $("#search_result").html(data);
+      }
+    })
+  });
+</script>
+
+<br><br><br>
+<center>
+  <div class="col-md-12" id="search_result">
+
+  </div>
+</center>

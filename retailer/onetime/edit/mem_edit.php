@@ -48,10 +48,19 @@ $mem_name=$_SESSION['mem_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
   </head>
+  <style media="screen">
+  .container {
+width: 450px;
+}
+p{
+text-align: left;
+font-size: 15px;
+}
+  </style>
   <script type="text/javascript">
   function check() {
     var mem_type = document.getElementById('name').value;
@@ -91,9 +100,12 @@ $mem_name=$_SESSION['mem_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>HDD Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="HDD Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>HDD Company</p>
         <input type="text" class="form-control" style="width:450px;" required  placeholder="HDD company" name="company"  value="<?php echo $row['company']; ?>"><br>
+        <p>HDD Size</p>
         <select class="form-control" type="button" style="width:450px;" name="size" required>
 
                       <option value="<?php echo $row['size']; ?>"><?php echo $row['size']; ?></option>
@@ -106,6 +118,7 @@ $mem_name=$_SESSION['mem_edit'];
                             ?>
 
         </select><br>
+        <p>HDD Form Factor</p>
         <select class="form-control" type="button" style="width:450px;" required name="form_factor" >
 
                       <option value='<?php echo $row['form_factor']; ?>'><?php echo $row['form_factor']; ?></option>
@@ -118,10 +131,14 @@ $mem_name=$_SESSION['mem_edit'];
                             ?>
 
         </select><br>
+        <p>HDD RPM</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="HDD RPM" name="rpm" value="<?php echo $row['rpm']; ?>"><br>
-          <input type="number" class="form-control" style="width:450px;" required placeholder="HDD price" name="price" value="<?php echo $row['price']; ?>">
+        <p>HDD Price</p>
+        <input type="number" class="form-control" style="width:450px;" required placeholder="HDD price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p >Choose the image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

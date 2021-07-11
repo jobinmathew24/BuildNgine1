@@ -189,8 +189,8 @@ else {
                   </table>
                   <br>
                   <div style="float: right;">
-                    <i class="fa fa-shopping-cart"></i>
-                    <input type="submit" name="submite" class="btn btn-primary" value="Purchase All" onclick="one(\''.$row['name'].'\')">
+                    <!-- <i class="fa fa-shopping-cart"></i> -->
+                    <!-- <input type="submit" name="submite" class="btn btn-primary" value="Purchase All" onclick="one(\''.$row['name'].'\')"> -->
 
                     </div>
               </div>

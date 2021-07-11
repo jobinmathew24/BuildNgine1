@@ -50,9 +50,18 @@ $cpu_name=$_SESSION['cpu_edit'];
     <script src="..././../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/top.css">
-     <link rel="stylesheet" href="../css/11.css"> 
+     <link rel="stylesheet" href="../css/11.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href = "../../../css/jquery-ui.css" rel = "stylesheet">
+    <style media="screen">
+    .container {
+  width: 450px;
+}
+p{
+  text-align: left;
+  font-size: 15px;
+}
+    </style>
   </head>
   <script type="text/javascript">
   function check() {
@@ -93,9 +102,12 @@ $cpu_name=$_SESSION['cpu_edit'];
           <h6>Try to use accurate data</h6>
           <h6>(Try using <strong>CAPITAL</strong> letters)</h6>
         <hr>
+        <p>CPU Name</p>
         <input type="text" class="form-control" style="width:450px;" required onchange="check()" placeholder="CPU Name" name="name" id="name" value="<?php echo $row['name']; ?>"><br>
         <span id='nameid'></span>
+        <p>CPU Company</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Company" name="company" value="<?php echo $row['company']; ?>"><br>
+        <p>CPU Socket</p>
         <select class="form-control" type="button" style="width:450px;" name="socket" required>
 
                       <option value="<?php echo $row['socket']; ?>"><?php echo $row['socket']; ?></option>
@@ -108,6 +120,7 @@ $cpu_name=$_SESSION['cpu_edit'];
                             ?>
 
         </select><br>
+        <p>CPU Core Count</p>
         <select class="form-control" type="button" style="width:450px;" name="core_count" required>
 
                       <option value="<?php echo $row['core_count']; ?>"><?php echo $row['core_count']; ?></option>
@@ -120,14 +133,23 @@ $cpu_name=$_SESSION['cpu_edit'];
                             ?>
 
         </select><br>
+        <p>CPU Thread Count</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Thread Count" name="thread" value="<?php echo $row['thread_count']; ?>"><br>
+        <p>CPU Frequency</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Frequency" name="frequency" value="<?php echo $row['frequency']; ?>"><br>
+        <p>CPU Turboboost Freq</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Turboboost Freq" name="turboboost" value="<?php echo $row['turboboost']; ?>"><br>
+        <p>CPU IGPU</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="CPU IGPU" name="igpu" value="<?php echo $row['igpu']; ?>"><br>
+        <p>CPU Lithography</p>
         <input type="text" class="form-control" style="width:450px;" required placeholder="CPU Lithography" name="lithography" value="<?php echo $row['lithography']; ?>"><br>
+        <p>CPU Cache</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Cache" name="cache" value="<?php echo $row['cache']; ?>"><br>
+        <p>CPU TDP</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU TDP" name="tdp" value="<?php echo $row['tdp']; ?>"><br>
+        <p>CPU Max Temp</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU Max Temp" name="max_temp" value="<?php echo $row['max_temp']; ?>"><br>
+        <p>CPU Purpose</p>
         <select class="form-control" type="button" style="width:450px;" name="purpose" required>
 
                       <option value="<?php echo $row['purpose']; ?>"><?php echo $row['purpose']; ?></option>
@@ -140,9 +162,12 @@ $cpu_name=$_SESSION['cpu_edit'];
                             ?>
 
         </select><br>
+        <p>CPU Price</p>
         <input type="number" class="form-control" style="width:450px;" required placeholder="CPU price" name="price" value="<?php echo $row['price']; ?>">
         <!-- Select image to upload: -->
-        <span >Choose the image </span> <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
+        <br>
+        <p>Choose the Image </p>
+        <input type="file" accept="image/jpeg" style="width:450px;" required class="form-control" name="image" id="file" value="">
         <br>
         <input type="submit" name="submit" class="btn btn-success" value="Submit">
         <input type="reset" name="reset" class="btn btn-danger" value="Reset">

@@ -129,7 +129,7 @@ else {
                 <div class="row filter_data">
                 <?php
                 echo $ec;
-                if ($cart>0) {
+
                  foreach($result2 as $row)
                 		{?>
 
@@ -137,7 +137,7 @@ else {
               				<!-- <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:auto;"> -->
                         <nav>
                           <div class="col-sm-4">
-                          <img  style=" padding:5px;"src="../project/cabinet/<?php echo $row['pic']  ?>.jpg " width="300px" height="300px"  >
+                          <img  style=" padding:5px;"src="../project/cabinet/<?php echo $row['pic']  ?> " width="300px" height="300px"  >
                           <br><br>
 
 
@@ -218,10 +218,7 @@ else {
                   </div>
                   <?php
                 }
-              }else {?>
-              <center> <h3>Your Cart is empty</h3><br>
-                <?php  }
-                ?>
+              ?>
 
                 </div>
             </div>

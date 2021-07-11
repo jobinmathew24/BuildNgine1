@@ -42,17 +42,17 @@ if (isset($_POST['change'])) {
 if (isset($_POST['submit'])) {
   $qty=$_POST['points'];
 
-$name=$_POST['num'];
+$name=$_POST['result'];
 // echo "$name";
 $sql="select price from ram_tbl where name='$name'";
-// echo "$sql";
+echo "$sql";
 
 $result=mysqli_query($con,$sql)or die("query moonchi");
 while ($rows=mysqli_fetch_array($result)) {
   $price=$rows['price'];
 }
 $sql="insert into ordertbl (loginid, name, category, price, qty, total,bulid,date,pic) VALUES ('$ide','$name','RAM', $price,$qty,$price*$qty,1,'$date','$name')";
-// echo $sql;
+echo $sql;
   $_SESSION['ramname']=$name;
 $result=mysqli_query($con,$sql)or die("query moonchi");
 header('location:check/checking_gpu.php');
