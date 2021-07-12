@@ -1,4 +1,34 @@
-<div class="navbare">
+<style media="screen">
+.navbare .icon {
+display: none;
+}
+
+@media screen and (max-width: 900px) {
+.navbare a:not(:first-child) {display: none;}
+.navbare input:not(:first-child) {display: none;}
+.navbare a.icon {
+  float: right;
+  display: block;
+}
+}
+
+@media screen and (max-width: 900px) {
+.navbare.responsive {position: relative;}
+.navbare.responsive .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.navbare.responsive a {
+  float: none;
+  display: block;
+  text-align: left;
+}
+}
+</style>
+<div class="navbare" id="myTopnav">
+  <a href="users.php">
+  <img src="../images/logos/logo_w.png" alt=""></a>
   <a href="logout.php" class="loc">Logout</a>
   <a href="cart.php" class="loc"><i class="fa fa-shopping-cart"></i> CART <span class="numbe"><?php echo($cart)?></span></a>
   <!-- <a href="saveforlate.php" class="loc"><i class="fa fa-archive"></i> Saved <span class="numbe"><?php echo($save)?></span></a> -->
@@ -27,21 +57,31 @@
     <a href="myprofile.php" class="loc"> My Profile </a>
   </div>
 </div>
+<a href="javascript:void(0);" class="icon" style="padding:15px; color:white;" onclick="myFunction()">
+<i class="fa fa-bars"></i>
+</a>
     <!-- <a href="users.php" class="loc">Home</a> -->
     <form class="" action="" method="post">
-
+      <input type="hidden" name="" value="">
       <!-- <button type="submit" class="search"><i class="fa fa-search"></i></button> -->
       <input type="text" name="search_text" id="search" placeholder="Search.." value="">
     </form>
-    <a href="users.php">
-    <img src="../images/logos/logo_w.png" alt=""></a>
+
 </div>
 <script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "navbare") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbare";
+  }
+}
 
   $("#search").on("keyup",function(){
     // console.log("asda");
     var search=$(this).val();
-  
+
     $.ajax({
       url:"live_search.php",
       type:"POST",

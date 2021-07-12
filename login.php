@@ -54,15 +54,15 @@ body
 {
 
   background-image: url('slide2.jpg');
-
   background-repeat: no-repeat;
   background-size: 100%;
 
 }
 .p{
   background-color: rgba(0, 0, 0, 0.4);
-  height:auto;
-  width: auto;
+  height:100%;
+  width: 100%;
+  padding-bottom: 170px;
 }
 a{
   text-decoration: none;
@@ -75,11 +75,15 @@ a{
 <body>
 
     <div class="p">
-    <div class="container col-sm-3 col-md-3">
+      <center>
+        <br>
+        <br>
+        <br>
+        <br>
+    <div class=" col-sm-4 col-ld-4 col-md-4">
 
-    <center>
 
-  <form method="post"  action="" style="padding:150px;" name="regform"class="form-group-sm container ">
+  <form method="post"  action="" style="" name="regform"class="form-group-sm  ">
   <h3 style="color: white;">Login</h3>
 
     <br>
